@@ -3,12 +3,7 @@
 #include "cocos2d.h"
 #include "..\Classes\GraphicLib\ApiGraphicLib.h"
 #include "..\Classes\Utils\ApiUtils.h"
-// test GitHub
-// test GitHub
-// test GitHub
-// test GitHub
-// test GitHub
-// test GitHub
+
 /**
 @brief    The cocos2d Application.
 

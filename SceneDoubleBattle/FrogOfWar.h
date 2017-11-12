@@ -1,7 +1,7 @@
 #pragma once
 #include "..\Classes\GraphicLib\ApiGraphicLib.h"
 #include "..\Classes\Utils\ImageUrlLoader.h"
-// ≤‚ ‘GitHub
+
 class FrogOfWar : public CSprite
 {
 public:
