@@ -107,8 +107,8 @@ void BFG_FrogOfWar::initPhysicsBody()
 	auto body = PhysicsBody::createBox(this->getContentSize());
 	//body->setGravityEnable(false);
 
-	body->setCategoryBitmask(0x0001); // 设定物体类别掩码
-	body->setCollisionBitmask(0x0001); // 设定碰撞掩码 执行碰撞反应
-	body->setContactTestBitmask(0x0011); // 设定接触掩码 执行碰撞事件
+	body->setCategoryBitmask(BIT_MASK_CATEGORY_FROG_OF_WAR); // 设定物体类别掩码
+	body->setCollisionBitmask(BIT_MASK_COLLISION_FROG_OF_WAR); // 设定碰撞掩码 执行碰撞反应
+	body->setContactTestBitmask(BIT_MASK_CONTACT_TEST_FROG_OF_WAR); // 设定接触掩码 执行碰撞事件
 	this->setPhysicsBody(body);
 }

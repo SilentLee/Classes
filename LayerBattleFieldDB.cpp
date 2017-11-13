@@ -158,5 +158,8 @@ void LayerBattleFieldDB::onEnter()
 bool LayerBattleFieldDB::onContact(PhysicsContact& contact)
 {
 	log("onContact");
+
+
+
 	return true;
 }
