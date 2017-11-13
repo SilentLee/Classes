@@ -1,6 +1,6 @@
 #pragma once
-#include "..\Classes\GraphicLib\ApiGraphicLib.h"
-#include "..\Classes\Utils\ImageUrlLoader.h"
+#include "ApiGraphicLib.h"
+#include "ImageUrlLoader.h"
 
 class BtnCardDB : public CButton
 {
