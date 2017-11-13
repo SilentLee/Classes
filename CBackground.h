@@ -1,6 +1,6 @@
 #pragma once
 
-#include "..\Classes\GraphicLib\GraphicLibIncludes.h"
+#include "GraphicLibIncludes.h"
 
 USING_NS_CC;
 // test

@@ -57,6 +57,7 @@ bool FrogOfWar::initWithAbsolutePos(const std::string& filename, int posX, int p
 	CSprite::initWithAbsolutePos(filename, posX, posY);
 
 	// 初始化物理引擎
+	initPhysicsBody();
 
 	return true;
 }
@@ -69,6 +70,9 @@ bool FrogOfWar::initWithRelativePos(const std::string& filename, float posX, flo
 	// 父类初始化
 	CSprite::initWithRelativePos(filename, posX, posY);
 
+	// 初始化物理引擎
+	initPhysicsBody();
+
 	return true;
 }
 
@@ -79,6 +83,9 @@ bool FrogOfWar::initWithRealAbsolutePos(const std::string& filename, int posX, i
 
 	// 父类初始化
 	CSprite::initWithRealAbsolutePos(filename, posX, posY);
+
+	// 初始化物理引擎
+	initPhysicsBody();
 
 	return true;
 }
@@ -92,4 +99,16 @@ bool FrogOfWar::initWithPosInSquare(const std::string& filename, int posX, int p
 	CSprite::initWithPosInSquare(filename, posX, posY);
 
 	return true;
+}
+
+void FrogOfWar::initPhysicsBody()
+{
+	//auto body = PhysicsBody::createCircle(this->getContentSize().width / 2);
+	auto body = PhysicsBody::createBox(this->getContentSize());
+	//body->setGravityEnable(false);
+
+	body->setCategoryBitmask(0x0001); // 设定物体类别掩码
+	body->setCollisionBitmask(0x0001); // 设定碰撞掩码 执行碰撞反应
+	body->setContactTestBitmask(0x0011); // 设定接触掩码 执行碰撞事件
+	this->setPhysicsBody(body);
 }
