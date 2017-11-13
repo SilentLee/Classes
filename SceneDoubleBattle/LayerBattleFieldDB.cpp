@@ -1,6 +1,5 @@
 #include "LayerBattleFieldDB.h"
-#include "Weapons.h"
-#include "FrogOfWar.h"
+#include "..\Classes\SceneDoubleBattle\Weapons\Weapons.h"
 
 LayerBattleFieldDB* LayerBattleFieldDB::create()
 {
@@ -38,7 +37,7 @@ void LayerBattleFieldDB::addFog(float originX, float originY, int width, int hei
 		{
 			//int imageKeyInt = 5 * CCRANDOM_0_1();
 			int imageKeyInt = 0;
-			FrogOfWar* fog = FrogOfWar::createFrogOfWarWithRelativePos(ImageUrlLoader::getFogImageUrl(imageKeyInt).c_str(), originX + stepX * i, originY + stepY * j);
+			CSprite* fog = CSprite::createSpriteWithRelativePos(ImageUrlLoader::getFogImageUrl(imageKeyInt).c_str(), originX + stepX * i, originY + stepY * j);
 			this->addChild(fog, 1, i + j * width); 
 
 			/*auto body = PhysicsBody::createEdgeBox();*/

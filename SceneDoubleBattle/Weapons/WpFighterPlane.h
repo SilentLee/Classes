@@ -1,6 +1,6 @@
 #pragma once
-#include "ApiGraphicLib.h"
-#include "ImageUrlLoader.h"
+#include "..\Classes\GraphicLib\ApiGraphicLib.h"
+#include "..\Classes\Utils\ImageUrlLoader.h"
 
 class WpFighterPlane : public CSprite
 {

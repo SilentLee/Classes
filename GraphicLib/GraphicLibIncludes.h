@@ -7,5 +7,5 @@
 #include "cocostudio/CocoStudio.h"
 
 // 自建头文件
-#include "ApiParam.h"
-#include "ResolutionAdapter.h"
+#include "..\Classes\Params\ParamResolutionConfig.h"
+#include "..\Classes\GraphicLib\ResolutionAdapter.h"

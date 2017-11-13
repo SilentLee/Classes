@@ -3,7 +3,7 @@
 #include "cocos2d.h"
 #include <string>
 #include <map>
-#include "ApiParam.h"
+#include "..\Classes\Params\ApiParam.h"
 
 using namespace std;
 USING_NS_CC;

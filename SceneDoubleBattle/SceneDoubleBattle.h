@@ -1,10 +1,10 @@
 #pragma once
 
 #include "cocos2d.h"
-#include "ApiGraphicLib.h"
-#include "ApiUtils.h"
-#include "LayerBattleFieldDB.h"
-#include "LayerTouchDB.h"
+#include "..\Classes\GraphicLib\ApiGraphicLib.h"
+#include "..\Classes\Utils\ApiUtils.h"
+#include "..\Classes\SceneDoubleBattle\LayerBattleFieldDB.h"
+#include "..\Classes\SceneDoubleBattle\LayerTouchDB.h"
 
 class SceneDoubleBattle : public cocos2d::Scene
 {
