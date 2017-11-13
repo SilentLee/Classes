@@ -1,6 +1,6 @@
 #pragma once
 
-#include "GraphicLibIncludes.h"
+#include "LibCommonGraphIncludes.h"
 
 USING_NS_CC;
 
@@ -11,14 +11,14 @@ static float SizeAdjustFactor;
 // фад╩©ийсЁъ╢Г
 static Size VisibleSize;
 
-class ResolutionAdapter
+class CG_ResolutionAdapter
 {
 protected:
 	Node* node;
 
 public:
-	ResolutionAdapter();
-	~ResolutionAdapter();
+	CG_ResolutionAdapter();
+	~CG_ResolutionAdapter();
 
 public:
 	static void init();

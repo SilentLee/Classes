@@ -10,7 +10,7 @@ Scene* SceneDoubleBattle::createScene()
 	phyWorld->setGravity(Vec2(0, 0));
 
 	// 创建场景背景
-	CBackground* bgDoubleBattleScene = CBackground::createBackground(ImageUrlLoader::getImageUrl(IMAGE_URL_DB_SCENE_BG).c_str());
+	CG_Background* bgDoubleBattleScene = CG_Background::create(CU_ImgLoader::getImg(IMG_URL_DB_SCENE_BG).c_str());
 	scene->addChild(bgDoubleBattleScene);
 
 	// 创建对战层

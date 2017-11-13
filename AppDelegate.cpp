@@ -71,10 +71,10 @@ bool AppDelegate::applicationDidFinishLaunching() {
     director->setAnimationInterval(1.0f / 60);
 
 	// 分辨率适配器初始化
-	ResolutionAdapter::init();
+	CG_ResolutionAdapter::init();
 
 	// 加载图片资源路径
-	ImageUrlLoader::loadImageUrls();
+	CU_ImgLoader::loadImg();
 
     register_all_packages();
 

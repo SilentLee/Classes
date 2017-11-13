@@ -1,12 +1,12 @@
 #pragma once
-#include "ApiGraphicLib.h"
-#include "ImageUrlLoader.h"
+#include "LibCommonGraphApi.h"
+#include "LibCommonUtilsApi.h"
 
-class BtnCardDB : public CButton
+class BFG_BtnCard : public CG_Button
 {
 public:
-	static BtnCardDB* createBtnCardDBWithAbsolutePos(int cardType, int posX, int posY);
-	static BtnCardDB* createBtnCardDBWithRelativePos(int cardType, float posX, float posY);
+	static BFG_BtnCard* createWithAbsolutePos(int cardType, int posX, int posY);
+	static BFG_BtnCard* createWithRelativePos(int cardType, float posX, float posY);
 
 	bool initWithAbsolutePos(int cardType, int posX, int posY);
 	bool initWithRelativePos(int cardType, float posX, float posY);

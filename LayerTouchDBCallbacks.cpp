@@ -29,7 +29,7 @@ void LayerTouchDB::onTouchesBegan(const std::vector<Touch*>& touches, Event *unu
 			layerBattleFieldDB->arrangeWeaponWithAbsolutePos(discardType, posX, posY, mDiscardTimes);
 
 			// 获取在战场中加入的武器并设置透明度
-			CSprite* weaponToArrange = (CSprite*)layerBattleFieldDB->getChildByTag(mDiscardTimes);
+			CG_Sprite* weaponToArrange = (CG_Sprite*)layerBattleFieldDB->getChildByTag(mDiscardTimes);
 			weaponToArrange->setOpacity(150);
 			//weaponToArrange->setPosInSquare(posX, posY);
 		}
@@ -56,7 +56,7 @@ void LayerTouchDB::onTouchesMoved(const std::vector<Touch*>& touches, Event *unu
 		LayerBattleFieldDB* layerBattleFieldDB = (LayerBattleFieldDB*)this->getParent()->getChildByName("layerBattleFieldDB");
 
 		// 获取在战场中加入的武器并设置 透明度 位置
-		CSprite* weaponToArrange = (CSprite*)layerBattleFieldDB->getChildByTag(mDiscardTimes);
+		CG_Sprite* weaponToArrange = (CG_Sprite*)layerBattleFieldDB->getChildByTag(mDiscardTimes);
 		weaponToArrange->setOpacity(150);
 		weaponToArrange->setPosInSquare(posX, posY);
 	}
@@ -82,7 +82,7 @@ void LayerTouchDB::onTouchesEnded(const std::vector<Touch*>& touches, Event *unu
 		int discardType = discard();
 
 		LayerBattleFieldDB* layerBattleFieldDB = (LayerBattleFieldDB*)this->getParent()->getChildByName("layerBattleFieldDB");
-		CSprite* weaponToArrange = (CSprite*)layerBattleFieldDB->getChildByTag(mDiscardTimes);
+		CG_Sprite* weaponToArrange = (CG_Sprite*)layerBattleFieldDB->getChildByTag(mDiscardTimes);
 		weaponToArrange->setOpacity(255);
 		//weaponToArrange->setRealPosWithAbsoluteValue(touch->getLocation().x, touch->getLocation().y);
 		weaponToArrange->scheduleUpdate();
@@ -121,10 +121,10 @@ int LayerTouchDB::discard()
 			// 将下一张卡牌放置到卡牌选择按钮中
 			mBtnCards[mCardBtnSwitch]->setCardType(mStructCards[NUM_CARD_BUTTONS - 1].CARD_TYPE);
 			mStructCards[NUM_CARD_BUTTONS - 1].CARD_STATUS = CARD_STATUS_OCCUPIED;
-			mBtnCards[mCardBtnSwitch]->setButtonImage(ImageUrlLoader::getCardImageUrls(mStructCards[NUM_CARD_BUTTONS - 1].CARD_TYPE).c_str());
+			mBtnCards[mCardBtnSwitch]->setButtonImage(CU_ImgLoader::getCardImg(mStructCards[NUM_CARD_BUTTONS - 1].CARD_TYPE).c_str());
 
 			// 设置下一张卡牌
-			mNextCard->setTexture(ImageUrlLoader::getCardImageUrls(mStructCards[NUM_CARD_BUTTONS].CARD_TYPE).c_str());
+			mNextCard->setTexture(CU_ImgLoader::getCardImg(mStructCards[NUM_CARD_BUTTONS].CARD_TYPE).c_str());
 			mStructCards[NUM_CARD_BUTTONS].CARD_STATUS = CARD_STATUS_NEXT_CARD;
 
 			// 洗牌

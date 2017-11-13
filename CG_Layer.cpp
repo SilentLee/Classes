@@ -1,8 +1,8 @@
-#include "CLayer.h"
+#include "CG_Layer.h"
 
-CLayer* CLayer::createLayer()
+CG_Layer* CG_Layer::create()
 {
-	CLayer* ret = new CLayer();
+	CG_Layer* ret = new CG_Layer();
 	if (ret && ret->init())
 	{
 		ret->autorelease();
@@ -12,7 +12,7 @@ CLayer* CLayer::createLayer()
 	return nullptr;
 }
 
-bool CLayer::init()
+bool CG_Layer::init()
 {
 	return Layer::init();
 }

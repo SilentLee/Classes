@@ -1,6 +1,6 @@
 #include "LayerBattleFieldDB.h"
-#include "Weapons.h"
-#include "FrogOfWar.h"
+#include "LibBattlefieldWeaponApi.h"
+#include "LibBattleFieldGraphApi.h"
 
 LayerBattleFieldDB* LayerBattleFieldDB::create()
 {
@@ -38,7 +38,7 @@ void LayerBattleFieldDB::addFog(float originX, float originY, int width, int hei
 		{
 			//int imageKeyInt = 5 * CCRANDOM_0_1();
 			int imageKeyInt = 0;
-			FrogOfWar* fog = FrogOfWar::createFrogOfWarWithRelativePos(ImageUrlLoader::getFogImageUrl(imageKeyInt).c_str(), originX + stepX * i, originY + stepY * j);
+			BFG_FrogOfWar* fog = BFG_FrogOfWar::createWithRelativePos(CU_ImgLoader::getFogImg(imageKeyInt).c_str(), originX + stepX * i, originY + stepY * j);
 			this->addChild(fog, 1, i + j * width); 
 
 			/*auto body = PhysicsBody::createEdgeBox();*/
@@ -49,11 +49,11 @@ void LayerBattleFieldDB::addFog(float originX, float originY, int width, int hei
 void LayerBattleFieldDB::addDefenseLine()
 {
 	// 创建我方防线
-	CSprite* defenseLineOwn = CSprite::createSpriteWithRelativePos(ImageUrlLoader::getImageUrl(IMAGE_URL_DEFENSE_LINE).c_str(), 0.5, 0.15);
+	CG_Sprite* defenseLineOwn = CG_Sprite::createWithRelativePos(CU_ImgLoader::getImg(IMG_URL_DEFENSE_LINE).c_str(), 0.5, 0.15);
 	this->addChild(defenseLineOwn);
 
 	// 创建对手防线
-	CSprite* defenseLineOppo = CSprite::createSpriteWithRelativePos(ImageUrlLoader::getImageUrl(IMAGE_URL_DEFENSE_LINE).c_str(), 0.5, 0.9);
+	CG_Sprite* defenseLineOppo = CG_Sprite::createWithRelativePos(CU_ImgLoader::getImg(IMG_URL_DEFENSE_LINE).c_str(), 0.5, 0.9);
 	this->addChild(defenseLineOppo);
 }
 
@@ -70,68 +70,68 @@ void LayerBattleFieldDB::arrangeWeaponWithAbsolutePos(int weaponType, int posX, 
 	switch (weaponType)
 	{
 	case CARD_TYPE_FIGHTER_PLANE:
-		weapon = WpFighterPlane::createWpFighterPlaneWithRealAbsolutePos(IMAGE_URL_WEAPON_FIGHTER_PLANE_OWN, posX, posY);
-		weapon = WpFighterPlane::createWpFighterPlaneWithPosInSquare(IMAGE_URL_WEAPON_FIGHTER_PLANE_OWN, posX, posY);
+		weapon = BFW_FighterPlane::createWithRealAbsolutePos(IMG_URL_WEAPON_FIGHTER_PLANE_OWN, posX, posY);
+		weapon = BFW_FighterPlane::createWithPosInSquare(IMG_URL_WEAPON_FIGHTER_PLANE_OWN, posX, posY);
 		this->addChild(weapon, 0, discardTimes);
 		break;
 		
 	case CARD_TYPE_BOMBING_PLANE:
 		//weapon = WpBombingPlane::createWpBombingPlaneWithRealAbsolutePos(IMAGE_URL_WEAPON_BOMBING_PLANE_OWN, posX, posY);
-		weapon = WpBombingPlane::createWpBombingPlaneWithPosInSquare(IMAGE_URL_WEAPON_BOMBING_PLANE_OWN, posX, posY);
+		weapon = BFW_BombingPlane::createWithPosInSquare(IMG_URL_WEAPON_BOMBING_PLANE_OWN, posX, posY);
 		this->addChild(weapon, 0, discardTimes);
 		break;
 
 	case CARD_TYPE_ANTI_AIRCRAFT_MISSILE:
 		//weapon = WpFighterPlane::createWpFighterPlaneWithRealAbsolutePos(IMAGE_URL_CARD_ANTI_AIRCRAFT_MISSILE, posX, posY);
-		weapon = WpFighterPlane::createWpFighterPlaneWithPosInSquare(IMAGE_URL_CARD_ANTI_AIRCRAFT_MISSILE, posX, posY);
+		weapon = BFW_FighterPlane::createWithPosInSquare(IMG_URL_CARD_ANTI_AIRCRAFT_MISSILE, posX, posY);
 		this->addChild(weapon, 0, discardTimes);
 		break;
 
 	case CARD_TYPE_EARLY_WARNING_PLANE:
-		//weapon = WpFighterPlane::createWpFighterPlaneWithRealAbsolutePos(IMAGE_URL_CARD_EARLY_WARNING_PLANE, posX, posY);
-		weapon = WpFighterPlane::createWpFighterPlaneWithPosInSquare(IMAGE_URL_CARD_EARLY_WARNING_PLANE, posX, posY);
+		//weapon = BFW_FighterPlane::createBFW_FighterPlaneWithRealAbsolutePos(IMAGE_URL_CARD_EARLY_WARNING_PLANE, posX, posY);
+		weapon = BFW_FighterPlane::createWithPosInSquare(IMG_URL_CARD_EARLY_WARNING_PLANE, posX, posY);
 		this->addChild(weapon, 0, discardTimes);
 		break;
 
 	case CARD_TYPE_FLAK:
-		//weapon = WpFighterPlane::createWpFighterPlaneWithRealAbsolutePos(IMAGE_URL_CARD_FLAK, posX, posY);
-		weapon = WpFighterPlane::createWpFighterPlaneWithPosInSquare(IMAGE_URL_CARD_FLAK, posX, posY);
+		//weapon = BFW_FighterPlane::createBFW_FighterPlaneWithRealAbsolutePos(IMAGE_URL_CARD_FLAK, posX, posY);
+		weapon = BFW_FighterPlane::createWithPosInSquare(IMG_URL_CARD_FLAK, posX, posY);
 		this->addChild(weapon, 0, discardTimes);
 		break;
 
 	case CARD_TYPE_JAMMING_PLANE:
-		//weapon = WpFighterPlane::createWpFighterPlaneWithRealAbsolutePos(IMAGE_URL_CARD_JAMMING_PLANE, posX, posY);
-		weapon = WpFighterPlane::createWpFighterPlaneWithPosInSquare(IMAGE_URL_CARD_JAMMING_PLANE, posX, posY);
+		//weapon = BFW_FighterPlane::createBFW_FighterPlaneWithRealAbsolutePos(IMAGE_URL_CARD_JAMMING_PLANE, posX, posY);
+		weapon = BFW_FighterPlane::createWithPosInSquare(IMG_URL_CARD_JAMMING_PLANE, posX, posY);
 		this->addChild(weapon, 0, discardTimes);
 		break;
 
 	case CARD_TYPE_RADAR:
-		//weapon = WpFighterPlane::createWpFighterPlaneWithRealAbsolutePos(IMAGE_URL_CARD_RADAR, posX, posY);
-		weapon = WpFighterPlane::createWpFighterPlaneWithPosInSquare(IMAGE_URL_CARD_RADAR, posX, posY);
+		//weapon = BFW_FighterPlane::createBFW_FighterPlaneWithRealAbsolutePos(IMAGE_URL_CARD_RADAR, posX, posY);
+		weapon = BFW_FighterPlane::createWithPosInSquare(IMG_URL_CARD_RADAR, posX, posY);
 		this->addChild(weapon, 0, discardTimes);
 		break;
 
 	case CARD_TYPE_8:
-		//weapon = WpFighterPlane::createWpFighterPlaneWithRealAbsolutePos(IMAGE_URL_CARD_8, posX, posY);
-		weapon = WpFighterPlane::createWpFighterPlaneWithPosInSquare(IMAGE_URL_CARD_8, posX, posY);
+		//weapon = BFW_FighterPlane::createBFW_FighterPlaneWithRealAbsolutePos(IMAGE_URL_CARD_8, posX, posY);
+		weapon = BFW_FighterPlane::createWithPosInSquare(IMG_URL_CARD_8, posX, posY);
 		this->addChild(weapon, 0, discardTimes);
 		break;
 
 	case CARD_TYPE_9:
-		//weapon = WpFighterPlane::createWpFighterPlaneWithRealAbsolutePos(IMAGE_URL_CARD_9, posX, posY);
-		weapon = WpFighterPlane::createWpFighterPlaneWithPosInSquare(IMAGE_URL_CARD_9, posX, posY);
+		//weapon = BFW_FighterPlane::createBFW_FighterPlaneWithRealAbsolutePos(IMAGE_URL_CARD_9, posX, posY);
+		weapon = BFW_FighterPlane::createWithPosInSquare(IMG_URL_CARD_9, posX, posY);
 		this->addChild(weapon, 0, discardTimes);
 		break;
 
 	case CARD_TYPE_10:
-		//weapon = WpFighterPlane::createWpFighterPlaneWithRealAbsolutePos(IMAGE_URL_CARD_10, posX, posY);
-		weapon = WpFighterPlane::createWpFighterPlaneWithPosInSquare(IMAGE_URL_CARD_10, posX, posY);
+		//weapon = BFW_FighterPlane::createBFW_FighterPlaneWithRealAbsolutePos(IMAGE_URL_CARD_10, posX, posY);
+		weapon = BFW_FighterPlane::createWithPosInSquare(IMG_URL_CARD_10, posX, posY);
 		this->addChild(weapon, 0, discardTimes);
 		break;
 
 	case CARD_TYPE_11:
-		//weapon = WpFighterPlane::createWpFighterPlaneWithRealAbsolutePos(IMAGE_URL_CARD_11, posX, posY);
-		weapon = WpFighterPlane::createWpFighterPlaneWithPosInSquare(IMAGE_URL_CARD_11, posX, posY);
+		//weapon = BFW_FighterPlane::createWithRealAbsolutePos(IMAGE_URL_CARD_11, posX, posY);
+		weapon = BFW_FighterPlane::createWithPosInSquare(IMG_URL_CARD_11, posX, posY);
 		this->addChild(weapon, 0, discardTimes);
 		break;
 	}

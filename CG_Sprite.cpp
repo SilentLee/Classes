@@ -1,8 +1,8 @@
-#include "CSprite.h"
+#include "CG_Sprite.h"
 
-CSprite* CSprite::createSpriteWithAbsolutePos(std::string fileName, int posX, int posY)
+CG_Sprite* CG_Sprite::createWithAbsolutePos(std::string fileName, int posX, int posY)
 {
-	CSprite* ret = new CSprite();
+	CG_Sprite* ret = new CG_Sprite();
 	if (ret && ret->initWithAbsolutePos(fileName.c_str(), posX, posY))
 	{
 		ret->autorelease();
@@ -12,9 +12,9 @@ CSprite* CSprite::createSpriteWithAbsolutePos(std::string fileName, int posX, in
 	return nullptr;
 }
 
-CSprite* CSprite::createSpriteWithRelativePos(std::string fileName, float posX, float posY)
+CG_Sprite* CG_Sprite::createWithRelativePos(std::string fileName, float posX, float posY)
 {
-	CSprite* ret = new CSprite();
+	CG_Sprite* ret = new CG_Sprite();
 	if (ret && ret->initWithRelativePos(fileName, posX, posY));
 	{
 		ret->autorelease();
@@ -24,9 +24,9 @@ CSprite* CSprite::createSpriteWithRelativePos(std::string fileName, float posX, 
 	return nullptr;
 }
 
-CSprite* CSprite::createSpriteWithRealAbsolutePos(std::string fileName, int posX, int posY)
+CG_Sprite* CG_Sprite::createWithRealAbsolutePos(std::string fileName, int posX, int posY)
 {
-	CSprite* ret = new CSprite();
+	CG_Sprite* ret = new CG_Sprite();
 	if (ret && ret->initWithRealAbsolutePos(fileName.c_str(), posX, posY))
 	{
 		ret->autorelease();
@@ -36,9 +36,9 @@ CSprite* CSprite::createSpriteWithRealAbsolutePos(std::string fileName, int posX
 	return nullptr;
 }
 
-CSprite* CSprite::createSpriteWithPosInSquare(std::string fileName, int posX, int posY)
+CG_Sprite* CG_Sprite::createWithPosInSquare(std::string fileName, int posX, int posY)
 {
-	CSprite* ret = new CSprite();
+	CG_Sprite* ret = new CG_Sprite();
 	if (ret && ret->initWithPosInSquare(fileName.c_str(), posX, posY))
 	{
 		ret->autorelease();
@@ -48,7 +48,7 @@ CSprite* CSprite::createSpriteWithPosInSquare(std::string fileName, int posX, in
 	return nullptr;
 }
 
-bool CSprite::initWithAbsolutePos(const std::string& filename, int posX, int posY)
+bool CG_Sprite::initWithAbsolutePos(const std::string& filename, int posX, int posY)
 {
 	//   ≈‰∆˜≥ı ºªØ
 	node = this;
@@ -67,7 +67,7 @@ bool CSprite::initWithAbsolutePos(const std::string& filename, int posX, int pos
 	return true;
 }
 
-bool CSprite::initWithRelativePos(const std::string& filename, float posX, float posY)
+bool CG_Sprite::initWithRelativePos(const std::string& filename, float posX, float posY)
 {
 	//   ≈‰∆˜≥ı ºªØ
 	node = this;
@@ -84,7 +84,7 @@ bool CSprite::initWithRelativePos(const std::string& filename, float posX, float
 
 	return true;
 }
-bool CSprite::initWithRealAbsolutePos(const std::string& filename, int posX, int posY)
+bool CG_Sprite::initWithRealAbsolutePos(const std::string& filename, int posX, int posY)
 {
 	//   ≈‰∆˜≥ı ºªØ
 	node = this;
@@ -103,7 +103,7 @@ bool CSprite::initWithRealAbsolutePos(const std::string& filename, int posX, int
 	return true;
 }
 
-bool CSprite::initWithPosInSquare(const std::string& filename, int posX, int posY)
+bool CG_Sprite::initWithPosInSquare(const std::string& filename, int posX, int posY)
 {
 	//   ≈‰∆˜≥ı ºªØ
 	node = this;

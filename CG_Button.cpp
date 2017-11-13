@@ -1,8 +1,8 @@
-#include "CButton.h"
+#include "CG_Button.h"
 
-CButton* CButton::createButtonWithAbsolutePos(std::string fileName, int posX, int posY)
+CG_Button* CG_Button::createWithAbsolutePos(std::string fileName, int posX, int posY)
 {
-	CButton* ret = new CButton();
+	CG_Button* ret = new CG_Button();
 	if (ret && ret->initWithAbsolutePos(fileName, posX, posY));
 	{
 		ret->autorelease();
@@ -12,9 +12,9 @@ CButton* CButton::createButtonWithAbsolutePos(std::string fileName, int posX, in
 	return nullptr;
 }
 
-CButton* CButton::createButtonWithRelativePos(std::string fileName, float posX, float posY)
+CG_Button* CG_Button::createWithRelativePos(std::string fileName, float posX, float posY)
 {
-	CButton* ret = new CButton();
+	CG_Button* ret = new CG_Button();
 	if (ret && ret->initWithRelativePos(fileName, posX, posY));
 	{
 		ret->autorelease();
@@ -24,7 +24,7 @@ CButton* CButton::createButtonWithRelativePos(std::string fileName, float posX, 
 	return nullptr;
 }
 
-bool CButton::initWithAbsolutePos(std::string filename, int posX, int posY)
+bool CG_Button::initWithAbsolutePos(std::string filename, int posX, int posY)
 {
 	// ÊÊÅäÆ÷³õÊ¼»¯
 	node = this;
@@ -42,7 +42,7 @@ bool CButton::initWithAbsolutePos(std::string filename, int posX, int posY)
 	return true;
 }
 
-bool CButton::initWithRelativePos(std::string filename, float posX, float posY)
+bool CG_Button::initWithRelativePos(std::string filename, float posX, float posY)
 {
 	// ÊÊÅäÆ÷³õÊ¼»¯
 	node = this;
@@ -60,17 +60,17 @@ bool CButton::initWithRelativePos(std::string filename, float posX, float posY)
 	return true;
 }
 
-void CButton::onPressStateChangedToNormal()
+void CG_Button::onPressStateChangedToNormal()
 {
 	this->setSizeAdp(1.0);
 }
 
-void CButton::onPressStateChangedToPressed()
+void CG_Button::onPressStateChangedToPressed()
 {
 	this->setSizeAdp(0.8);
 }
 
-void CButton::setButtonImage(std::string filename)
+void CG_Button::setButtonImage(std::string filename)
 {
 	this->loadTextures(filename, filename, filename);
 }

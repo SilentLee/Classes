@@ -1,16 +1,16 @@
 #pragma once
 
-#include "GraphicLibIncludes.h"
+#include "LibCommonGraphIncludes.h"
 
 USING_NS_CC;
 USING_NS_CC_EXT;
 using namespace ui;
 
-class CButton : public Button, public ResolutionAdapter
+class CG_Button : public Button, public CG_ResolutionAdapter
 {
 public:
-	static CButton* createButtonWithAbsolutePos(std::string fileName, int posX, int posY);
-	static CButton* createButtonWithRelativePos(std::string fileName, float posX, float posY);
+	static CG_Button* createWithAbsolutePos(std::string fileName, int posX, int posY);
+	static CG_Button* createWithRelativePos(std::string fileName, float posX, float posY);
 
 	bool initWithAbsolutePos(std::string filename, int posX, int posY);
 	bool initWithRelativePos(std::string filename, float posX, float posY);

@@ -1,9 +1,9 @@
 #include <stdio.h>
-#include "CBackground.h"
+#include "CG_Background.h"
 
-CBackground* CBackground::createBackground(std::string fileName)
+CG_Background* CG_Background::create(std::string fileName)
 {
-	CBackground* ret = new CBackground();
+	CG_Background* ret = new CG_Background();
 	if (ret && ret->initWithFile(fileName.c_str()))
 	{
 		ret->autorelease();
@@ -13,7 +13,7 @@ CBackground* CBackground::createBackground(std::string fileName)
 	return nullptr;
 }
 
-bool CBackground::initWithFile(const std::string& filename)
+bool CG_Background::initWithFile(const std::string& filename)
 {
 	//   ≈‰∆˜≥ı ºªØ
 	node = this;

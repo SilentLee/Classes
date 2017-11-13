@@ -1,8 +1,8 @@
 #pragma once
 
 #include "cocos2d.h"
-#include "ApiGraphicLib.h"
-#include "ApiUtils.h"
+#include "LibCommonGraphApi.h"
+#include "LibCommonUtilsApi.h"
 
 USING_NS_CC;
 

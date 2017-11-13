@@ -1,9 +1,9 @@
 #pragma once
 
 #include "cocos2d.h"
-#include "ApiGraphicLib.h"
-#include "ApiUtils.h"
-#include "BtnCardDB.h"
+#include "LibCommonGraphApi.h"
+#include "LibCommonUtilsApi.h"
+#include "LibBattleFieldGraphApi.h"
 #include <vector>
 
 USING_NS_CC;
@@ -24,8 +24,8 @@ private:
 public:
 	//S_CARD_STRUCT_DOUBLE_BATTLE mCards[NUM_CARDS_IN_GROUP];
 	vector<S_CARD_STRUCT_DOUBLE_BATTLE> mStructCards;
-	BtnCardDB* mBtnCards[NUM_CARD_BUTTONS];
-	CSprite* mNextCard;
+	BFG_BtnCard* mBtnCards[NUM_CARD_BUTTONS];
+	CG_Sprite* mNextCard;
 
 public:
 	static LayerTouchDB* create();

@@ -1,8 +1,8 @@
-#include "WpFighterPlane.h"
+#include "BFW_FighterPlane.h"
 
-WpFighterPlane* WpFighterPlane::createWpFighterPlaneWithPosInSquare(std::string fileName, int posX, int posY)
+BFW_FighterPlane* BFW_FighterPlane::createWithPosInSquare(std::string fileName, int posX, int posY)
 {
-	WpFighterPlane* ret = new WpFighterPlane();
+	BFW_FighterPlane* ret = new BFW_FighterPlane();
 	if (ret && ret->initWithPosInSquare(fileName.c_str(), posX, posY))
 	{
 		ret->autorelease();
@@ -12,9 +12,9 @@ WpFighterPlane* WpFighterPlane::createWpFighterPlaneWithPosInSquare(std::string 
 	return nullptr;
 }
 
-WpFighterPlane* WpFighterPlane::createWpFighterPlaneWithRealAbsolutePos(std::string fileName, int posX, int posY)
+BFW_FighterPlane* BFW_FighterPlane::createWithRealAbsolutePos(std::string fileName, int posX, int posY)
 {
-	WpFighterPlane* ret = new WpFighterPlane();
+	BFW_FighterPlane* ret = new BFW_FighterPlane();
 	if (ret && ret->initWithRealAbsolutePos(fileName.c_str(), posX, posY))
 	{
 		ret->autorelease();
@@ -24,9 +24,9 @@ WpFighterPlane* WpFighterPlane::createWpFighterPlaneWithRealAbsolutePos(std::str
 	return nullptr;
 }
 
-WpFighterPlane* WpFighterPlane::createWpFighterPlaneWithAbsolutePos(std::string fileName, int posX, int posY)
+BFW_FighterPlane* BFW_FighterPlane::createWithAbsolutePos(std::string fileName, int posX, int posY)
 {
-	WpFighterPlane* ret = new WpFighterPlane();
+	BFW_FighterPlane* ret = new BFW_FighterPlane();
 	if (ret && ret->initWithAbsolutePos(fileName.c_str(), posX, posY))
 	{
 		ret->autorelease();
@@ -36,9 +36,9 @@ WpFighterPlane* WpFighterPlane::createWpFighterPlaneWithAbsolutePos(std::string 
 	return nullptr;
 }
 
-WpFighterPlane* WpFighterPlane::createWpFighterPlaneWithRelativePos(std::string fileName, float posX, float posY)
+BFW_FighterPlane* BFW_FighterPlane::createWithRelativePos(std::string fileName, float posX, float posY)
 {
-	WpFighterPlane* ret = new WpFighterPlane();
+	BFW_FighterPlane* ret = new BFW_FighterPlane();
 	if (ret && ret->initWithRelativePos(fileName, posX, posY));
 	{
 		ret->autorelease();
@@ -49,10 +49,10 @@ WpFighterPlane* WpFighterPlane::createWpFighterPlaneWithRelativePos(std::string 
 }
 
 // 初始化函数
-bool WpFighterPlane::initWithPosInSquare(const std::string& filename, int posX, int posY)
+bool BFW_FighterPlane::initWithPosInSquare(const std::string& filename, int posX, int posY)
 {
 	// 父类初始化
-	CSprite::initWithPosInSquare(filename, posX, posY);
+	CG_Sprite::initWithPosInSquare(filename, posX, posY);
 
 	initPhysicsBody();
 
@@ -62,10 +62,10 @@ bool WpFighterPlane::initWithPosInSquare(const std::string& filename, int posX, 
 	return true;
 }
 
-bool WpFighterPlane::initWithAbsolutePos(const std::string& filename, int posX, int posY)
+bool BFW_FighterPlane::initWithAbsolutePos(const std::string& filename, int posX, int posY)
 {
 	// 父类初始化
-	CSprite::initWithAbsolutePos(filename, posX, posY);
+	CG_Sprite::initWithAbsolutePos(filename, posX, posY);
 
 	initPhysicsBody();
 
@@ -75,10 +75,10 @@ bool WpFighterPlane::initWithAbsolutePos(const std::string& filename, int posX, 
 	return true;
 }
 
-bool WpFighterPlane::initWithRelativePos(const std::string& filename, float posX, float posY)
+bool BFW_FighterPlane::initWithRelativePos(const std::string& filename, float posX, float posY)
 {
 	// 父类初始化
-	CSprite::initWithRelativePos(filename, posX, posY);
+	CG_Sprite::initWithRelativePos(filename, posX, posY);
 
 	initPhysicsBody();
 
@@ -88,10 +88,10 @@ bool WpFighterPlane::initWithRelativePos(const std::string& filename, float posX
 	return true;
 }
 
-bool WpFighterPlane::initWithRealAbsolutePos(const std::string& filename, int posX, int posY)
+bool BFW_FighterPlane::initWithRealAbsolutePos(const std::string& filename, int posX, int posY)
 {
 	// 父类初始化
-	CSprite::initWithRealAbsolutePos(filename, posX, posY);
+	CG_Sprite::initWithRealAbsolutePos(filename, posX, posY);
 
 	initPhysicsBody();
 
@@ -101,7 +101,7 @@ bool WpFighterPlane::initWithRealAbsolutePos(const std::string& filename, int po
 	return true;
 }
 
-void WpFighterPlane::initPhysicsBody()
+void BFW_FighterPlane::initPhysicsBody()
 {
 	//auto body = PhysicsBody::createCircle(this->getContentSize().width / 2);
 	auto body = PhysicsBody::createBox(this->getContentSize());
@@ -114,7 +114,7 @@ void WpFighterPlane::initPhysicsBody()
 }
 
 // 调度函数
-void WpFighterPlane::update(float dt)
+void BFW_FighterPlane::update(float dt)
 {
 	Vec2 pos = this->getAdpPosWithRelativeValue();
 	this->setAdpPosWithRelativeValue(pos.x, pos.y + PARAM_SPEED_FIGHTER_PLANE);
