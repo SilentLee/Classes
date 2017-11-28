@@ -1,6 +1,8 @@
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
 #include "SceneDoubleBattle.h"
+#include "SceneSelect.h"
+#include "GlobalInstanceApi.h"
 
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1
@@ -76,12 +78,24 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	// 加载图片资源路径
 	CU_ImgLoader::loadImg();
 
+	// 加载卡牌及机载武器参数
+	CU_CardLoader::loadCardParams();
+	CU_CardLoader::loadAirborneWeaponParams();
+
+	// 连接服务器
+	if (!connectServer()) 
+		log("连接服务器失败");
+
+	CNetworkInstance* networkInstance = CNetworkInstance::getInstance();
+	networkInstance->setNetworkSession(mNetWorkSession);
+
     register_all_packages();
 
 	// 创建游戏入口场景
     // create a scene. it's an autorelease object
     //auto scene = HelloWorld::createScene();
-	auto scene = SceneDoubleBattle::createScene();
+	//auto scene = SceneDoubleBattle::createScene();
+	auto scene = SceneSelect::createScene();
 
     // run
     director->runWithScene(scene);
@@ -112,3 +126,13 @@ void AppDelegate::applicationWillEnterForeground() {
     SimpleAudioEngine::getInstance()->resumeAllEffects();
 #endif
 }
+
+// 服务器连接函数
+bool AppDelegate::connectServer()
+{
+	mNetWorkSession = new CNetworkSession();
+	if (!mNetWorkSession->Begin())
+		return false;
+	return true;
+}
+
