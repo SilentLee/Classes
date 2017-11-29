@@ -4,7 +4,7 @@
 #include "LibCommonGraphApi.h"
 #include "LibCommonUtilsApi.h"
 
-/**
+/****
 @brief    The cocos2d Application.
 
 Private inheritance here hides part of interface from Director.
