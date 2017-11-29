@@ -3,14 +3,17 @@
 #include "cocos2d.h"
 #include "LibCommonGraphApi.h"
 #include "LibCommonUtilsApi.h"
+#include "NetworkSession.h"
 
-/****
+/**
 @brief    The cocos2d Application.
 
 Private inheritance here hides part of interface from Director.
 */
 class  AppDelegate : private cocos2d::Application
 {
+private:
+	CNetworkSession* mNetWorkSession;
 public:
     AppDelegate();
     virtual ~AppDelegate();
@@ -35,5 +38,8 @@ public:
     @param  the pointer of the application
     */
     virtual void applicationWillEnterForeground();
+
+	// 服务器连接函数
+	bool connectServer();
 };
 
