@@ -5,6 +5,7 @@
 #include "LibCommonUtilsApi.h"
 #include "LayerBattleFieldDB.h"
 #include "LayerTouchDB.h"
+#include "GlobalInstanceApi.h"
 
 class SceneSelect : public cocos2d::Scene
 {
@@ -15,7 +16,7 @@ public:
 
 	// 按钮回调函数
 public:
-	void BtnStartCallback();
+	void BtnStartCallback(ROOM_TYPE roomType);
 
 // 更新函数
 public:

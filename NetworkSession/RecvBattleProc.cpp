@@ -26,7 +26,7 @@ void CNetworkSession::onPT_ARRANGE_CARD_SUCC_U(BYTE* packet)
 
 void CNetworkSession::onPT_BATTLE_START_GAME_M(BYTE* packet)
 {
-	log("CNetworkSession::onPT_BATTLE_1V1_START_GAME_M");
+	log("CNetworkSession::onPT_BATTLE_START_GAME_M");
 	READ_PACKET(PT_BATTLE_START_GAME_M);
 
 	CRoomInstance* roomInstance = CRoomInstance::getInstance();
