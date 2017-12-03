@@ -27,6 +27,15 @@ inline VOID READ_PT_BATTLE_1V1_SEARCH_ROOM_FAIL_U(BYTE *buffer, S_PT_BATTLE_1V1_
 	Stream->ReadDWORD(&parameter.ERROR_CODE);
 }
 
+inline VOID READ_PT_BATTLE_1V1_START_GAME_M(BYTE *buffer, S_PT_BATTLE_1V1_START_GAME_M &parameter)
+{
+	CStreamSP Stream;
+	Stream->SetBuffer(buffer);
+
+	Stream->ReadInt64(&parameter.START_TIME);
+	Stream->ReadInt32(&parameter.ROOM_STATUS);
+}
+
 inline VOID READ_PT_BATTLE_1V1_ARRANGE_CARD(BYTE *buffer, S_PT_BATTLE_1V1_ARRANGE_CARD &parameter)
 {
 	CStreamSP Stream;

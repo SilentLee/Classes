@@ -23,3 +23,13 @@ void CNetworkSession::onPT_ARRANGE_CARD_SUCC_U(BYTE* packet)
 	operInfoInstance->setPtBattle1V1ArrangeSuccU(recvData);
 	operInfoInstance->setIsOperInfoRecv(true);
 }
+
+void CNetworkSession::onPT_BATTLE_1V1_START_GAME_M(BYTE* packet)
+{
+	log("CNetworkSession::onPT_BATTLE_1V1_START_GAME_M");
+	READ_PACKET(PT_BATTLE_1V1_START_GAME_M);
+
+	CRoomInstance* roomInstance = CRoomInstance::getInstance();
+	roomInstance->setCurrentTime(recvData.START_TIME);
+	roomInstance->setStatus((ROOM_STATUS)recvData.ROOM_STATUS);
+}

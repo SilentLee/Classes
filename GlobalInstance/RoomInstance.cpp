@@ -9,8 +9,6 @@ bool CRoomInstance::init()
 	mRoomID = 0;
 	mCurrentTime = DEFAULT_GAME_TIME;
 
-	mHasGameBegan = false;
-
 	mUsersInBlueTeam.clear();
 	mUsersInRedTeam.clear();
 	return true;

@@ -41,6 +41,10 @@ VOID CNetworkSession::RecvData()
 			onPT_ARRANGE_CARD_SUCC_U(packet);
 			break;
 
+		case PT_BATTLE_1V1_START_GAME_M:
+			onPT_BATTLE_1V1_START_GAME_M(packet);
+			break;
+
 
 
 

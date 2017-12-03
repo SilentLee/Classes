@@ -1,5 +1,5 @@
 #pragma once
-#include <windows.h>
+//#include <windows.h>
 //
 typedef enum BATTLE_1V1_PROTOCOL
 {
@@ -17,6 +17,11 @@ typedef enum BATTLE_1V1_PROTOCOL
 	PT_BATTLE_1V1_SEARCH_ROOM_FAIL_U,
 	/*
 	DWORD					:		ERROR_CODE
+	*/
+	PT_BATTLE_1V1_START_GAME_M,
+	/*
+	INT64						:		START_TIME
+	INT							:		ROOM_STATUS
 	*/
 	PT_BATTLE_1V1_ARRANGE_CARD,
 	/*
@@ -40,6 +45,5 @@ typedef enum BATTLE_1V1_PROTOCOL
 	/*
 	DWORD					:		ERROR_CODE
 	*/
-
 	BATTLE_1V1_PT_END
 };

@@ -53,7 +53,7 @@ private:
 	// 当前所剩游戏时间
 	int mCurrentTime;
 	// 游戏开始标志位
-	bool mHasGameBegan;
+	//bool mHasGameBegan;
 
 	// 蓝队玩家列表
 	list<S_USER*> mUsersInBlueTeam;
@@ -79,6 +79,6 @@ public:
 	void setCurrentTime(int currentTime){ mCurrentTime = currentTime; };
 	int getCurrentTime(){ return mCurrentTime; };
 
-	void setHasGameBegan(bool hasGameBegan){ mHasGameBegan = hasGameBegan; };
-	int getHasGameBegan(){ return mHasGameBegan; };
+	//void setHasGameBegan(bool hasGameBegan){ mHasGameBegan = hasGameBegan; };
+	//int getHasGameBegan(){ return mHasGameBegan; };
 };
