@@ -56,13 +56,13 @@ void LayerBattleFieldDB::updateBFSituation(float dt)
 
 	COperInfoInstance* operInfoInstance = COperInfoInstance::getInstance();
 	if (operInfoInstance->getIsOperInfoRecv()) {
-		S_PT_BATTLE_1V1_ARRANGE_CARD_SUCC_U ptBattle1V1ArrangeCardSuccU = operInfoInstance->getPtBattle1V1ArrangeSuccU();
+		S_PT_BATTLE_ARRANGE_CARD_SUCC_U ptBattleArrangeCardSuccU = operInfoInstance->getPtBattleArrangeSuccU();
 		operInfoInstance->setIsOperInfoRecv(false);
 		log("load S_PT_BATTLE_1V1_ARRANGE_CARD_SUCC_U");
 
-		int weaponType = ptBattle1V1ArrangeCardSuccU.CARD_TYPE;
-		float posX = ptBattle1V1ArrangeCardSuccU.POS_X;
-		float posY = ptBattle1V1ArrangeCardSuccU.POS_Y;
+		int weaponType = ptBattleArrangeCardSuccU.CARD_TYPE;
+		float posX = ptBattleArrangeCardSuccU.POS_X;
+		float posY = ptBattleArrangeCardSuccU.POS_Y;
 
 		arrangeEnemyWeaponWithAbsolutePos(weaponType, posX, posY, 1000);
 	}

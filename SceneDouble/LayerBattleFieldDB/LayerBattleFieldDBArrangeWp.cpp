@@ -85,23 +85,23 @@ void LayerBattleFieldDB::arrangeWeaponWithAbsolutePosOnEnded(int discardTimes)
 
 	mWeaponsOwn.push_back(weaponToArrange);
 
-	S_PT_BATTLE_1V1_ARRANGE_CARD ptBattle1V1ArrangeCard;
-	memset(&ptBattle1V1ArrangeCard, 0, sizeof(ptBattle1V1ArrangeCard));
+	S_PT_BATTLE_ARRANGE_CARD ptBattleArrangeCard;
+	memset(&ptBattleArrangeCard, 0, sizeof(ptBattleArrangeCard));
 
 
 	// 发送此时布设的卡牌
-	ptBattle1V1ArrangeCard.CARD_TYPE = weaponToArrange->getPropertyWp().WP_TYPE;
-	ptBattle1V1ArrangeCard.COORDINATE_X = weaponToArrange->getPosXInSquare();
-	ptBattle1V1ArrangeCard.COORDINATE_Y = weaponToArrange->getPosYInSquare();
-	ptBattle1V1ArrangeCard.POS_X = weaponToArrange->getAdpPosXWithAbsoluteValue();
-	ptBattle1V1ArrangeCard.POS_Y = weaponToArrange->getAdpPosYWithAbsoluteValue();
-	ptBattle1V1ArrangeCard.SPEED = weaponToArrange->getPropertyWp().SPEED;
+	ptBattleArrangeCard.CARD_TYPE = weaponToArrange->getPropertyWp().WP_TYPE;
+	ptBattleArrangeCard.COORDINATE_X = weaponToArrange->getPosXInSquare();
+	ptBattleArrangeCard.COORDINATE_Y = weaponToArrange->getPosYInSquare();
+	ptBattleArrangeCard.POS_X = weaponToArrange->getAdpPosXWithAbsoluteValue();
+	ptBattleArrangeCard.POS_Y = weaponToArrange->getAdpPosYWithAbsoluteValue();
+	ptBattleArrangeCard.SPEED = weaponToArrange->getPropertyWp().SPEED;
 
 	BYTE WriteBuffer[MAX_BUFFER_LENGTH] = { 0, };
 	CNetworkSession* networkSession = CNetworkInstance::getInstance()->getNetworkSession();
-	networkSession->WritePacket(PT_BATTLE_1V1_ARRANGE_CARD,
+	networkSession->WritePacket(PT_BATTLE_ARRANGE_CARD,
 		WriteBuffer,
-		WRITE_PT_BATTLE_1V1_ARRANGE_CARD(WriteBuffer, ptBattle1V1ArrangeCard));
+		WRITE_PT_BATTLE_ARRANGE_CARD(WriteBuffer, ptBattleArrangeCard));
 }
 
 void LayerBattleFieldDB::arrangeWeaponWithAbsolutePosCancelled(int discardTimes)

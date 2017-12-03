@@ -3,8 +3,8 @@
 #include "LibParamApi.h"
 #include <list>
 
-#include "BATTLE_1V1_Protocol.h" // 使用 ProtocolHeader.h 会报错
-#include "BATTLE_1V1_PT_Structure.h"
+#include "BATTLE_Protocol.h" // 使用 ProtocolHeader.h 会报错
+#include "BATTLE_PT_Structure.h"
 
 using namespace std;
 

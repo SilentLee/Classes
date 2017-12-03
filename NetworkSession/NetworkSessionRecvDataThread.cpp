@@ -31,18 +31,17 @@ VOID CNetworkSession::RecvData()
         
         switch(protocol)
         {
-			// RecvProc1v1
-
-		case PT_BATTLE_1V1_SEARCH_ROOM_SUCC_U:
-			onPT__BATTLE_1V1_SEARCH_ROOM_SUCC_U(packet);
+		// BattleProctocol
+		case PT_BATTLE_SEARCH_ROOM_SUCC_U:
+			onPT_BATTLE_SEARCH_ROOM_SUCC_U(packet);
 			break;
 
-		case PT_BATTLE_1V1_ARRANGE_CARD_SUCC_U:
+		case PT_BATTLE_ARRANGE_CARD_SUCC_U:
 			onPT_ARRANGE_CARD_SUCC_U(packet);
 			break;
 
-		case PT_BATTLE_1V1_START_GAME_M:
-			onPT_BATTLE_1V1_START_GAME_M(packet);
+		case PT_BATTLE_START_GAME_M:
+			onPT_BATTLE_START_GAME_M(packet);
 			break;
 
 

@@ -38,9 +38,9 @@ public:
 	VOID        RecvData();
 public:
 	// RecvProc1v1
-	void onPT__BATTLE_1V1_SEARCH_ROOM_SUCC_U(BYTE* packet);
+	void onPT_BATTLE_SEARCH_ROOM_SUCC_U(BYTE* packet);
 	void onPT_ARRANGE_CARD_SUCC_U(BYTE* packet);
-	void onPT_BATTLE_1V1_START_GAME_M(BYTE* packet);
+	void onPT_BATTLE_START_GAME_M(BYTE* packet);
 
     // 从服务器接收数据后的处理函数
     // 注册
