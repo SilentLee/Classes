@@ -1,5 +1,8 @@
 #pragma once
 
+// 默认游戏对战时长
+#define DEFAULT_GAME_TIME												30000
+
 // 战场方格大小
 #define BATTLE_FIELD_SQUARE_WIDTH							108.0f
 

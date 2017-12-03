@@ -117,57 +117,46 @@ void LayerBattleFieldDB::arrangeEnemyWeaponWithAbsolutePos(int weaponType, int p
 	switch (weaponType)
 	{
 	case CARD_TYPE_FIGHTER_PLANE:
-		//enemyWeaponToArrange = BFW_OPPO_FighterPlane::createWithPosInSquare(IMG_URL_WEAPON_FIGHTER_PLANE_OPPO, posX, posY);
 		enemyWeaponToArrange = BFW_OPPO_FighterPlane::createWithAbsolutePos(IMG_URL_WEAPON_FIGHTER_PLANE_OPPO, posX, posY);
 		break;
 
 	case CARD_TYPE_BOMBING_PLANE:
-		//enemyWeaponToArrange = BFW_OPPO_BombingPlane::createWithPosInSquare(IMG_URL_WEAPON_BOMBING_PLANE_OPPO, posX, posY);
 		enemyWeaponToArrange = BFW_OPPO_BombingPlane::createWithAbsolutePos(IMG_URL_WEAPON_BOMBING_PLANE_OPPO, posX, posY);
 		break;
 
 	case CARD_TYPE_ANTI_AIRCRAFT_MISSILE:
-		//enemyWeaponToArrange = BFW_OPPO_AntiAirCraftMissile::createWithPosInSquare(IMG_URL_WEAPON_ANTI_AIRCRAFT_MISSILE_OPPO, posX, posY);
 		enemyWeaponToArrange = BFW_OPPO_AntiAirCraftMissile::createWithAbsolutePos(IMG_URL_WEAPON_ANTI_AIRCRAFT_MISSILE_OPPO, posX, posY);
 		break;
 
 	case CARD_TYPE_EARLY_WARNING_PLANE:
-		//enemyWeaponToArrange = BFW_OPPO_EarlyWarningPlane::createWithPosInSquare(IMG_URL_WEAPON_EARLY_WARNING_PLANE_OPPO, posX, posY);
 		enemyWeaponToArrange = BFW_OPPO_EarlyWarningPlane::createWithAbsolutePos(IMG_URL_WEAPON_EARLY_WARNING_PLANE_OPPO, posX, posY);
 		break;
 
 	case CARD_TYPE_FLAK:
-		//enemyWeaponToArrange = BFW_OPPO_Flak::createWithPosInSquare(IMG_URL_WEAPON_FLAK_OPPO, posX, posY);
 		enemyWeaponToArrange = BFW_OPPO_Flak::createWithAbsolutePos(IMG_URL_WEAPON_FLAK_OPPO, posX, posY);
 		break;
 
 	case CARD_TYPE_JAMMING_PLANE:
-		//enemyWeaponToArrange = BFW_OPPO_JammingPlane::createWithPosInSquare(IMG_URL_WEAPON_JAMMING_PLANE_OPPO, posX, posY);
 		enemyWeaponToArrange = BFW_OPPO_JammingPlane::createWithAbsolutePos(IMG_URL_WEAPON_JAMMING_PLANE_OPPO, posX, posY);
 		break;
 
 	case CARD_TYPE_RADAR:
-		//enemyWeaponToArrange = BFW_OPPO_Radar::createWithPosInSquare(IMG_URL_WEAPON_RADAR_OPPO, posX, posY);
 		enemyWeaponToArrange = BFW_OPPO_Radar::createWithAbsolutePos(IMG_URL_WEAPON_RADAR_OPPO, posX, posY);
 		break;
 
 	case CARD_TYPE_8:
-		//enemyWeaponToArrange = BFW_OPPO_8::createWithPosInSquare(IMG_URL_WEAPON_8_OPPO, posX, posY);
 		enemyWeaponToArrange = BFW_OPPO_8::createWithAbsolutePos(IMG_URL_WEAPON_8_OPPO, posX, posY);
 		break;
 
 	case CARD_TYPE_9:
-		//enemyWeaponToArrange = BFW_OPPO_9::createWithPosInSquare(IMG_URL_WEAPON_9_OPPO, posX, posY);
 		enemyWeaponToArrange = BFW_OPPO_9::createWithAbsolutePos(IMG_URL_WEAPON_9_OPPO, posX, posY);
 		break;
 
 	case CARD_TYPE_10:
-		//enemyWeaponToArrange = BFW_OPPO_10::createWithPosInSquare(IMG_URL_WEAPON_10_OPPO, posX, posY);
 		enemyWeaponToArrange = BFW_OPPO_10::createWithAbsolutePos(IMG_URL_WEAPON_10_OPPO, posX, posY);
 		break;
 
 	case CARD_TYPE_11:
-		//enemyWeaponToArrange = BFW_OPPO_11::createWithPosInSquare(IMG_URL_WEAPON_11_OPPO, posX, posY);
 		enemyWeaponToArrange = BFW_OPPO_11::createWithAbsolutePos(IMG_URL_WEAPON_11_OPPO, posX, posY);
 		break;
 	}

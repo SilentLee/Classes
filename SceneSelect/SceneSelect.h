@@ -17,6 +17,10 @@ public:
 public:
 	void BtnStartCallback();
 
+// ¸üÐÂº¯Êý
+public:
+	void UpdateToBattle(float dt);
+
 	// implement the "static create()" method manually
 	CREATE_FUNC(SceneSelect);
 };

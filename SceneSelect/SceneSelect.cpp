@@ -37,5 +37,7 @@ bool SceneSelect::init()
 	BtnStart->addClickEventListener(CC_CALLBACK_0(SceneSelect::BtnStartCallback, this));
 	this->addChild(BtnStart);
 
+	this->schedule(schedule_selector(SceneSelect::UpdateToBattle), 1 / 60);
+
 	return true;
 }

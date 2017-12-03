@@ -31,7 +31,12 @@ VOID CNetworkSession::RecvData()
         
         switch(protocol)
         {
-			// RecvProcDB
+			// RecvProc1v1
+
+		case PT_BATTLE_1V1_SEARCH_ROOM_SUCC_U:
+			onPT__BATTLE_1V1_SEARCH_ROOM_SUCC_U(packet);
+			break;
+
 		case PT_BATTLE_1V1_ARRANGE_CARD_SUCC_U:
 			onPT_ARRANGE_CARD_SUCC_U(packet);
 			break;

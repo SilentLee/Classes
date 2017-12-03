@@ -37,7 +37,8 @@ public:
 	BOOL        GetPacket(DWORD &protocol, BYTE *packet, DWORD &packetLength);
 	VOID        RecvData();
 public:
-	// 对战处理
+	// RecvProc1v1
+	void onPT__BATTLE_1V1_SEARCH_ROOM_SUCC_U(BYTE* packet);
 	void onPT_ARRANGE_CARD_SUCC_U(BYTE* packet);
 
 
