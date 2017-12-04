@@ -1,8 +1,8 @@
 #pragma once
 
 // 武器类型
-enum weaponType {
-	NO_WP_TYPE = 0,
+enum ENUM_WEAPON_TYPE {
+	WP_TYPE_NONE = 0,
 
 	/************以下为建筑类型武器 不能移动*************/
 	WP_TYPE_ANTI_AIRCRAFT_MISSILE,

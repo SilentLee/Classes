@@ -10,7 +10,7 @@ class COperInfoInstance
 private:
 	bool mIsOperInfoRecv;
 
-	S_PT_BATTLE_ARRANGE_CARD_SUCC_U mPtBattleArrangeSuccU;
+	S_PT_BATTLE_ARRANGE_WEAPON_SUCC_U mPtBattleArrangeWeaponSuccU;
 
 public:
 	void resetOperInfoInstance();
@@ -33,6 +33,6 @@ public:
 
 public:
 	// ´æÈ¡º¯Êý
-	void setPtBattleArrangeSuccU(S_PT_BATTLE_ARRANGE_CARD_SUCC_U ptBattleArrganeSuccU) { memcpy(&mPtBattleArrangeSuccU, &ptBattleArrganeSuccU, sizeof(S_PT_BATTLE_ARRANGE_CARD_SUCC_U)); };
-	S_PT_BATTLE_ARRANGE_CARD_SUCC_U getPtBattleArrangeSuccU() { return mPtBattleArrangeSuccU; };
+	void setPtBattleArrangeWeaponSuccU(S_PT_BATTLE_ARRANGE_WEAPON_SUCC_U ptBattleArrganeWeaponSuccU) { memcpy(&mPtBattleArrangeWeaponSuccU, &ptBattleArrganeWeaponSuccU, sizeof(S_PT_BATTLE_ARRANGE_WEAPON_SUCC_U)); };
+	S_PT_BATTLE_ARRANGE_WEAPON_SUCC_U getPtBattleArrangeWeaponSuccU() { return mPtBattleArrangeWeaponSuccU; };
 };
