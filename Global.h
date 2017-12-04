@@ -26,7 +26,7 @@
 //#define IP_ADDRESS "192.168.0.103"        // 华业
 //#define IP_ADDRESS "192.168.1.107"        // 东一时区
 //#define IP_ADDRESS "192.168.0.122"
-#define IP_ADDRESS "192.168.0.121"
+#define IP_ADDRESS "192.168.0.102"
 #define IP_PORT     6000
 
 // 游戏文件路径
