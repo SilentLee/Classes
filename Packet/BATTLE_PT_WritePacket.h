@@ -87,6 +87,18 @@ inline DWORD WRITE_PT_BATTLE_ARRANGE_WEAPON_FAIL_U(BYTE *buffer, S_PT_BATTLE_ARR
 	return Stream->GetLength();
 }
 
+inline DWORD WRITE_PT_BATTLE_UPDATE_SITUATION_M(BYTE *buffer, S_PT_BATTLE_UPDATE_SITUATION_M &parameter)
+{
+	CStreamSP Stream;
+	Stream->SetBuffer(buffer);
+
+	Stream->WriteInt32(parameter.REMAINING_GAME_TIME);
+	Stream->WriteInt32(parameter.DATA_LENGTH);
+	Stream->WriteBytes(parameter.DATA, 4000);
+
+	return Stream->GetLength();
+}
+
 inline DWORD WRITE_PT_BATTLE_SEARCH_ROOM(BYTE *buffer, INT room_type)
 {
 	CStreamSP Stream;
@@ -168,6 +180,18 @@ inline DWORD WRITE_PT_BATTLE_ARRANGE_WEAPON_FAIL_U(BYTE *buffer, DWORD error_cod
 	Stream->SetBuffer(buffer);
 
 	Stream->WriteDWORD(error_code);
+
+	return Stream->GetLength();
+}
+
+inline DWORD WRITE_PT_BATTLE_UPDATE_SITUATION_M(BYTE *buffer, INT remaining_game_time, INT data_length, BYTE *data)
+{
+	CStreamSP Stream;
+	Stream->SetBuffer(buffer);
+
+	Stream->WriteInt32(remaining_game_time);
+	Stream->WriteInt32(data_length);
+	Stream->WriteBytes(data, 4000);
 
 	return Stream->GetLength();
 }

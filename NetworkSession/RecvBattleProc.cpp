@@ -33,3 +33,8 @@ void CNetworkSession::onPT_BATTLE_START_GAME_M(BYTE* packet)
 	roomInstance->setCurrentTime(recvData.START_TIME);
 	roomInstance->setStatus((ROOM_STATUS)recvData.ROOM_STATUS);
 }
+
+void CNetworkSession::onPT_BATTLE_UPDATE_SITUATION_M(BYTE* packet)
+{
+	log("CNetworkSession::onPT_BATTLE_UPDATE_SITUATION_M");
+}

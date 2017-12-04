@@ -44,6 +44,10 @@ VOID CNetworkSession::RecvData()
 			onPT_BATTLE_START_GAME_M(packet);
 			break;
 
+		case PT_BATTLE_UPDATE_SITUATION_M:
+			onPT_BATTLE_UPDATE_SITUATION_M(packet);
+			break;
+
 
 
 

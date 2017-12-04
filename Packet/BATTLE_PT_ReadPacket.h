@@ -73,3 +73,13 @@ inline VOID READ_PT_BATTLE_ARRANGE_WEAPON_FAIL_U(BYTE *buffer, S_PT_BATTLE_ARRAN
 	Stream->ReadDWORD(&parameter.ERROR_CODE);
 }
 
+inline VOID READ_PT_BATTLE_UPDATE_SITUATION_M(BYTE *buffer, S_PT_BATTLE_UPDATE_SITUATION_M &parameter)
+{
+	CStreamSP Stream;
+	Stream->SetBuffer(buffer);
+
+	Stream->ReadInt32(&parameter.REMAINING_GAME_TIME);
+	Stream->ReadInt32(&parameter.DATA_LENGTH);
+	Stream->ReadBytes(parameter.DATA, 4000);
+}
+

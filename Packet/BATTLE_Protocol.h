@@ -48,5 +48,11 @@ typedef enum BATTLE_PROTOCOL
 	/*
 	DWORD					:		ERROR_CODE
 	*/
+	PT_BATTLE_UPDATE_SITUATION_M,
+	/*
+	INT							:		REMAINING_GAME_TIME
+	INT							:		DATA_LENGTH
+	BYTE						:		DATA[4000]
+	*/
 	BATTLE_PT_END
 };
