@@ -79,7 +79,10 @@ inline VOID READ_PT_BATTLE_UPDATE_SITUATION_M(BYTE *buffer, S_PT_BATTLE_UPDATE_S
 	Stream->SetBuffer(buffer);
 
 	Stream->ReadInt32(&parameter.REMAINING_GAME_TIME);
-	Stream->ReadInt32(&parameter.DATA_LENGTH);
+	Stream->ReadInt32(&parameter.BLUE_TROOPS_DATA_LENGTH);
+	Stream->ReadInt32(&parameter.RED_TROOPS_DATA_LENGTH);
+	Stream->ReadInt32(&parameter.BLUE_TROOPS_ACTION_DATA_LENGTH);
+	Stream->ReadInt32(&parameter.RED_TROOPS_ACTION_DATA_LENGTH);
 	Stream->ReadBytes(parameter.DATA, 4000);
 }
 

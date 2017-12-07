@@ -89,15 +89,19 @@
 // 机载武器攻击值参数
 #define PARAM_DP_AAM														10
 
-enum cardType {
-	NO_TYPE = 0,
+enum ENUM_CARD_TYPE {
+	CARD_NO_TYPE = 0,
+
+	/************以下为建筑类型武器 不能移动*************/
+	CARD_TYPE_ANTI_AIRCRAFT_MISSILE,
+	CARD_TYPE_FLAK,
+	CARD_TYPE_RADAR,
+
+	/************以下为飞机类型武器 可以移动*************/
 	CARD_TYPE_FIGHTER_PLANE,
 	CARD_TYPE_BOMBING_PLANE,
-	CARD_TYPE_ANTI_AIRCRAFT_MISSILE,
 	CARD_TYPE_EARLY_WARNING_PLANE,
-	CARD_TYPE_FLAK,
 	CARD_TYPE_JAMMING_PLANE,
-	CARD_TYPE_RADAR,
 	CARD_TYPE_8,
 	CARD_TYPE_9,
 	CARD_TYPE_10,
@@ -118,9 +122,4 @@ enum BtnCardNo {
 	BTN_CARD_3,
 	BTN_CARD_4,
 	BTN_CARD_5
-};
-
-enum airborneWeaponType {
-	AIRBORNE_WP_TYPE_BEGIN = CARD_TYPE_END,
-	AIRBORNE_WP_TYPE_AAM
 };

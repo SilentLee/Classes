@@ -93,7 +93,10 @@ inline DWORD WRITE_PT_BATTLE_UPDATE_SITUATION_M(BYTE *buffer, S_PT_BATTLE_UPDATE
 	Stream->SetBuffer(buffer);
 
 	Stream->WriteInt32(parameter.REMAINING_GAME_TIME);
-	Stream->WriteInt32(parameter.DATA_LENGTH);
+	Stream->WriteInt32(parameter.BLUE_TROOPS_DATA_LENGTH);
+	Stream->WriteInt32(parameter.RED_TROOPS_DATA_LENGTH);
+	Stream->WriteInt32(parameter.BLUE_TROOPS_ACTION_DATA_LENGTH);
+	Stream->WriteInt32(parameter.RED_TROOPS_ACTION_DATA_LENGTH);
 	Stream->WriteBytes(parameter.DATA, 4000);
 
 	return Stream->GetLength();
@@ -184,13 +187,16 @@ inline DWORD WRITE_PT_BATTLE_ARRANGE_WEAPON_FAIL_U(BYTE *buffer, DWORD error_cod
 	return Stream->GetLength();
 }
 
-inline DWORD WRITE_PT_BATTLE_UPDATE_SITUATION_M(BYTE *buffer, INT remaining_game_time, INT data_length, BYTE *data)
+inline DWORD WRITE_PT_BATTLE_UPDATE_SITUATION_M(BYTE *buffer, INT remaining_game_time, INT blue_troops_data_length, INT red_troops_data_length, INT blue_troops_action_data_length, INT red_troops_action_data_length, BYTE *data)
 {
 	CStreamSP Stream;
 	Stream->SetBuffer(buffer);
 
 	Stream->WriteInt32(remaining_game_time);
-	Stream->WriteInt32(data_length);
+	Stream->WriteInt32(blue_troops_data_length);
+	Stream->WriteInt32(red_troops_data_length);
+	Stream->WriteInt32(blue_troops_action_data_length);
+	Stream->WriteInt32(red_troops_action_data_length);
 	Stream->WriteBytes(data, 4000);
 
 	return Stream->GetLength();

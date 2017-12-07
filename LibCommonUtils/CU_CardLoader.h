@@ -8,7 +8,7 @@
 // 武器基本属性结构体
 typedef struct _PROPERTY_WP
 {
-	int WP_TYPE;
+	ENUM_WEAPON_TYPE WP_TYPE;
 	int LEVEL;
 	float SPEED;
 	int RANGE_DEC;

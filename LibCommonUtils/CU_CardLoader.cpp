@@ -8,7 +8,7 @@ void CU_CardLoader::loadCardParams()
 	PROPERTY_WP propertyWp;
 
 	// 装载战斗机卡牌参数
-	propertyWp.WP_TYPE = CARD_TYPE_FIGHTER_PLANE;
+	propertyWp.WP_TYPE = WP_TYPE_FIGHTER_PLANE;
 	propertyWp.LEVEL = 1;
 	propertyWp.SPEED = PARAM_SPEED_FIGHTER_PLANE;
 	propertyWp.RANGE_DEC = PARAM_RANGE_DEC_FIGHTER_PLANE;
@@ -17,7 +17,7 @@ void CU_CardLoader::loadCardParams()
 	cardParams.insert(make_pair(CARD_TYPE_FIGHTER_PLANE, propertyWp));
 
 	// 装载轰炸机卡牌参数
-	propertyWp.WP_TYPE = CARD_TYPE_BOMBING_PLANE;
+	propertyWp.WP_TYPE = WP_TYPE_BOMBING_PLANE;
 	propertyWp.LEVEL = 1;
 	propertyWp.SPEED = PARAM_SPEED_BOMBING_PLANE;
 	propertyWp.RANGE_DEC = PARAM_RANGE_DEC_BOMBING_PLANE;
@@ -26,7 +26,7 @@ void CU_CardLoader::loadCardParams()
 	cardParams.insert(make_pair(CARD_TYPE_BOMBING_PLANE, propertyWp));
 
 	// 装载防空导弹卡牌参数
-	propertyWp.WP_TYPE = CARD_TYPE_ANTI_AIRCRAFT_MISSILE;
+	propertyWp.WP_TYPE = WP_TYPE_ANTI_AIRCRAFT_MISSILE;
 	propertyWp.LEVEL = 1;
 	propertyWp.SPEED = PARAM_SPEED_ANTI_AIRCRAFT_MISSILE;
 	propertyWp.RANGE_DEC = PARAM_RANGE_DEC_ANTI_AIRCRAFT_MISSILE;
@@ -35,7 +35,7 @@ void CU_CardLoader::loadCardParams()
 	cardParams.insert(make_pair(CARD_TYPE_ANTI_AIRCRAFT_MISSILE, propertyWp));
 
 	// 装载预警机卡牌参数
-	propertyWp.WP_TYPE = CARD_TYPE_EARLY_WARNING_PLANE;
+	propertyWp.WP_TYPE = WP_TYPE_EARLY_WARNING_PLANE;
 	propertyWp.LEVEL = 1;
 	propertyWp.SPEED = PARAM_SPEED_EARLY_WARNING_PLANE;
 	propertyWp.RANGE_DEC = PARAM_RANGE_DEC_EARLY_WARNING_PLANE;
@@ -44,7 +44,7 @@ void CU_CardLoader::loadCardParams()
 	cardParams.insert(make_pair(CARD_TYPE_EARLY_WARNING_PLANE, propertyWp));
 
 	// 装载高射炮卡牌参数
-	propertyWp.WP_TYPE = CARD_TYPE_FLAK;
+	propertyWp.WP_TYPE = WP_TYPE_FLAK;
 	propertyWp.LEVEL = 1;
 	propertyWp.SPEED = PARAM_SPEED_FLAK;
 	propertyWp.RANGE_DEC = PARAM_RANGE_DEC_FLAK;
@@ -53,7 +53,7 @@ void CU_CardLoader::loadCardParams()
 	cardParams.insert(make_pair(CARD_TYPE_FLAK, propertyWp));
 
 	// 装载干扰机卡牌参数
-	propertyWp.WP_TYPE = CARD_TYPE_JAMMING_PLANE;
+	propertyWp.WP_TYPE = WP_TYPE_JAMMING_PLANE;
 	propertyWp.LEVEL = 1;
 	propertyWp.SPEED = PARAM_SPEED_JAMMING_PLANE;
 	propertyWp.RANGE_DEC = PARAM_RANGE_DEC_JAMMING_PLANE;
@@ -62,7 +62,7 @@ void CU_CardLoader::loadCardParams()
 	cardParams.insert(make_pair(CARD_TYPE_JAMMING_PLANE, propertyWp));
 
 	// 装载雷达卡牌参数
-	propertyWp.WP_TYPE = CARD_TYPE_RADAR;
+	propertyWp.WP_TYPE = WP_TYPE_RADAR;
 	propertyWp.LEVEL = 1;
 	propertyWp.SPEED = PARAM_SPEED_RADAR;
 	propertyWp.RANGE_DEC = PARAM_RANGE_DEC_RADAR;
@@ -71,7 +71,7 @@ void CU_CardLoader::loadCardParams()
 	cardParams.insert(make_pair(CARD_TYPE_RADAR, propertyWp));
 
 	// 装载卡牌8参数
-	propertyWp.WP_TYPE = CARD_TYPE_8;
+	propertyWp.WP_TYPE = WP_TYPE_8;
 	propertyWp.LEVEL = 1;
 	propertyWp.SPEED = PARAM_SPEED_TYPE_8;
 	propertyWp.RANGE_DEC = PARAM_RANGE_DEC_TYPE_8;
@@ -80,7 +80,7 @@ void CU_CardLoader::loadCardParams()
 	cardParams.insert(make_pair(CARD_TYPE_8, propertyWp));
 
 	// 装载卡牌9参数
-	propertyWp.WP_TYPE = CARD_TYPE_9;
+	propertyWp.WP_TYPE = WP_TYPE_9;
 	propertyWp.LEVEL = 1;
 	propertyWp.SPEED = PARAM_SPEED_TYPE_9;
 	propertyWp.RANGE_DEC = PARAM_RANGE_DEC_TYPE_9;
@@ -89,7 +89,7 @@ void CU_CardLoader::loadCardParams()
 	cardParams.insert(make_pair(CARD_TYPE_9, propertyWp));
 
 	// 装载卡牌10参数
-	propertyWp.WP_TYPE = CARD_TYPE_10;
+	propertyWp.WP_TYPE = WP_TYPE_10;
 	propertyWp.LEVEL = 1;
 	propertyWp.SPEED = PARAM_SPEED_TYPE_10;
 	propertyWp.RANGE_DEC = PARAM_RANGE_DEC_TYPE_10;
@@ -98,7 +98,7 @@ void CU_CardLoader::loadCardParams()
 	cardParams.insert(make_pair(CARD_TYPE_10, propertyWp));
 
 	// 装载卡牌11参数
-	propertyWp.WP_TYPE = CARD_TYPE_11;
+	propertyWp.WP_TYPE = WP_TYPE_11;
 	propertyWp.LEVEL = 1;
 	propertyWp.SPEED = PARAM_SPEED_TYPE_11;
 	propertyWp.RANGE_DEC = PARAM_RANGE_DEC_TYPE_11;
@@ -117,13 +117,13 @@ void CU_CardLoader::loadAirborneWeaponParams()
 	PROPERTY_WP propertyWp;
 
 	// 装载空空导弹参数
-	propertyWp.WP_TYPE = AIRBORNE_WP_TYPE_AAM;
+	propertyWp.WP_TYPE = WP_TYPE_AAM;
 	propertyWp.LEVEL = 1;
 	propertyWp.SPEED = PARAM_SPEED_AAM;
 	propertyWp.RANGE_DEC = PARAM_RANGE_DEC_AAM;
 	propertyWp.RANGE_FIRE = PARAM_RANGE_FIRE_AAM;
 	propertyWp.DP = PARAM_DP_AAM;
-	airborneWeaponParams.insert(make_pair(AIRBORNE_WP_TYPE_AAM, propertyWp));
+	airborneWeaponParams.insert(make_pair(WP_TYPE_AAM, propertyWp));
 }
 
 PROPERTY_WP CU_CardLoader::getAirborneWeaponParams(int key)

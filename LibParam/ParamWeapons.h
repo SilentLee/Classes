@@ -18,5 +18,14 @@ enum ENUM_WEAPON_TYPE {
 	WP_TYPE_9,
 	WP_TYPE_10,
 	WP_TYPE_11,
+
+	/********以下为机载类型武器 可以移动 不能布设********/
+	WP_TYPE_AAM,
+
 	WP_TYPE_END
 };
+
+//enum airborneWeaponType {
+//	AIRBORNE_WP_TYPE_BEGIN = WP_TYPE_END,
+//	AIRBORNE_WP_TYPE_AAM
+//};

@@ -51,7 +51,7 @@ private:
 	// 房间在服务器中的指针地址
 	DWORD_PTR mRoomID;
 	// 当前所剩游戏时间
-	int mCurrentTime;
+	int mRemainingTime;
 	// 游戏开始标志位
 	//bool mHasGameBegan;
 
@@ -76,8 +76,8 @@ public:
 	void setRoomID(DWORD_PTR roomID){ mRoomID = roomID; };
 	DWORD_PTR getRoomID(){ return mRoomID; };
 
-	void setCurrentTime(int currentTime){ mCurrentTime = currentTime; };
-	int getCurrentTime(){ return mCurrentTime; };
+	void setRemainingTime(int remainingTime){ mRemainingTime = remainingTime; };
+	int getRemainingTime(){ return mRemainingTime; };
 
 	//void setHasGameBegan(bool hasGameBegan){ mHasGameBegan = hasGameBegan; };
 	//int getHasGameBegan(){ return mHasGameBegan; };

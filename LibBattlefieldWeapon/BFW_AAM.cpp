@@ -52,7 +52,7 @@ BFW_AAM* BFW_AAM::createWithRelativePos(std::string fileName, float posX, float 
 bool BFW_AAM::initWithPosInSquare(const std::string& filename, int posX, int posY)
 {
 	// 载入空空导弹参数
-	PROPERTY_WP propertyWp = CU_CardLoader::getAirborneWeaponParams(AIRBORNE_WP_TYPE_AAM);
+	PROPERTY_WP propertyWp = CU_CardLoader::getAirborneWeaponParams(WP_TYPE_AAM);
 
 	// 父类初始化
 	BFW_BasicClass::initWithPosInSquare(filename, posX, posY, propertyWp);
@@ -68,7 +68,7 @@ bool BFW_AAM::initWithPosInSquare(const std::string& filename, int posX, int pos
 bool BFW_AAM::initWithAbsolutePos(const std::string& filename, int posX, int posY)
 {
 	// 载入空空导弹参数
-	PROPERTY_WP propertyWp = CU_CardLoader::getAirborneWeaponParams(AIRBORNE_WP_TYPE_AAM);
+	PROPERTY_WP propertyWp = CU_CardLoader::getAirborneWeaponParams(WP_TYPE_AAM);
 
 	// 父类初始化
 	BFW_BasicClass::initWithAbsolutePos(filename, posX, posY, propertyWp);
@@ -84,7 +84,7 @@ bool BFW_AAM::initWithAbsolutePos(const std::string& filename, int posX, int pos
 bool BFW_AAM::initWithRelativePos(const std::string& filename, float posX, float posY)
 {
 	// 载入空空导弹参数
-	PROPERTY_WP propertyWp = CU_CardLoader::getAirborneWeaponParams(AIRBORNE_WP_TYPE_AAM);
+	PROPERTY_WP propertyWp = CU_CardLoader::getAirborneWeaponParams(WP_TYPE_AAM);
 
 	// 父类初始化
 	BFW_BasicClass::initWithRelativePos(filename, posX, posY, propertyWp);
@@ -100,7 +100,7 @@ bool BFW_AAM::initWithRelativePos(const std::string& filename, float posX, float
 bool BFW_AAM::initWithRealAbsolutePos(const std::string& filename, int posX, int posY)
 {
 	// 载入空空导弹参数
-	PROPERTY_WP propertyWp = CU_CardLoader::getAirborneWeaponParams(AIRBORNE_WP_TYPE_AAM);
+	PROPERTY_WP propertyWp = CU_CardLoader::getAirborneWeaponParams(WP_TYPE_AAM);
 
 	// 父类初始化
 	BFW_BasicClass::initWithRealAbsolutePos(filename, posX, posY, propertyWp);

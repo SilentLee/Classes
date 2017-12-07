@@ -101,7 +101,7 @@ int LayerTouchDB::discard()
 	if (mCardBtnSwitch == BTN_CARD_NONE)
 	{
 		log("No card selected!!!");
-		return NO_TYPE;
+		return CARD_NO_TYPE;
 	}
 
 	int discardType = mBtnCards[mCardBtnSwitch]->getCardType();
