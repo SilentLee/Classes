@@ -45,11 +45,14 @@ public:
 
 private:
 	// 房间类型
-	ROOM_TYPE mType;
+	ROOM_TYPE mRoomType;
 	// 房间当前状态
-	ROOM_STATUS mStatus;
+	ROOM_STATUS mRoomStatus;
 	// 房间在服务器中的指针地址
 	DWORD_PTR mRoomID;
+	// 当前玩家数量
+	int mCurrentUserCount;
+
 	// 当前所剩游戏时间
 	int mRemainingTime;
 	// 游戏开始标志位
@@ -65,16 +68,19 @@ public:
 
 // 存取函数
 public:
-	void setType(ROOM_TYPE type){ mType = type; };
-	ROOM_TYPE getType(){ return mType; };
+	void setRoomType(ROOM_TYPE type){ mRoomType = type; };
+	ROOM_TYPE geRoomtType(){ return mRoomType; };
 
-	void setStatus(ROOM_STATUS status){ mStatus = status; };
-	ROOM_STATUS getStatus(){ return mStatus; };
+	void setRoomStatus(ROOM_STATUS roomStatus){ mRoomStatus = roomStatus; };
+	ROOM_STATUS getRoomStatus(){ return mRoomStatus; };
 
-	int getCurrentUserCount(){ return mUsersInBlueTeam.size() + mUsersInRedTeam.size(); };
+	//int getCurrentUserCount(){ return mUsersInBlueTeam.size() + mUsersInRedTeam.size(); };
 
 	void setRoomID(DWORD_PTR roomID){ mRoomID = roomID; };
 	DWORD_PTR getRoomID(){ return mRoomID; };
+
+	void setCurrentUserCount(int currentUserCount){ mCurrentUserCount = currentUserCount; };
+	int getCurrentUserCount(){ return mCurrentUserCount; };
 
 	void setRemainingTime(int remainingTime){ mRemainingTime = remainingTime; };
 	int getRemainingTime(){ return mRemainingTime; };

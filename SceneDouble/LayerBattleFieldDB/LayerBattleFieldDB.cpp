@@ -20,9 +20,9 @@ bool LayerBattleFieldDB::init()
 { 
 	Layer::init();
 	// 添加战场迷雾
-	addFog(0.05, 0.3, BATTLE_FIELD_WIDTH_IN_SQUARE, BATTLE_FIELD_HEIGHT_IN_SQUARE, 0.1, 0.05625);
+	//addFog(0.05, 0.3, BATTLE_FIELD_WIDTH_IN_SQUARE, BATTLE_FIELD_HEIGHT_IN_SQUARE, 0.1, 0.05625);
 	// 注册战场迷雾更新函数
-	this->schedule(schedule_selector(LayerBattleFieldDB::updateFrog), 1 / 60);
+	//this->schedule(schedule_selector(LayerBattleFieldDB::updateFrog), 1 / 60);
 
 	// 添加防线
 	addDefenseLine();

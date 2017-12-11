@@ -36,8 +36,8 @@ VOID CNetworkSession::RecvData()
 			onPT_BATTLE_SEARCH_ROOM_SUCC_U(packet);
 			break;
 
-		case PT_BATTLE_ARRANGE_WEAPON_SUCC_U:
-			onPT_ARRANGE_WEAPON_SUCC_U(packet);
+		case PT_BATTLE_ARRANGE_WEAPON_SUCC_M:
+			onPT_ARRANGE_WEAPON_SUCC_M(packet);
 			break;
 
 		case PT_BATTLE_START_GAME_M:

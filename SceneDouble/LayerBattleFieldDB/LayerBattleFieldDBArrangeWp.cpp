@@ -79,6 +79,8 @@ void LayerBattleFieldDB::arrangeWeaponWithAbsolutePosOnMoved(float posX, float p
 
 void LayerBattleFieldDB::arrangeWeaponWithAbsolutePosOnEnded(int discardTimes)
 {
+	CUserInstance* userInstance = CUserInstance::getInstance();
+
 	BFW_BasicClass* weaponToArrange = (BFW_BasicClass*)this->getChildByTag(discardTimes);
 	weaponToArrange->setOpacity(255);
 	weaponToArrange->scheduleUpdate();
@@ -96,6 +98,7 @@ void LayerBattleFieldDB::arrangeWeaponWithAbsolutePosOnEnded(int discardTimes)
 	ptBattleArrangeWeapon.POS_X = weaponToArrange->getAdpPosXWithAbsoluteValue();
 	ptBattleArrangeWeapon.POS_Y = weaponToArrange->getAdpPosYWithAbsoluteValue();
 	ptBattleArrangeWeapon.SPEED = weaponToArrange->getPropertyWp().SPEED;
+	ptBattleArrangeWeapon.TROOPS_IN = userInstance->getTroopsIn();
 
 	BYTE WriteBuffer[MAX_BUFFER_LENGTH] = { 0, };
 	CNetworkSession* networkSession = CNetworkInstance::getInstance()->getNetworkSession();

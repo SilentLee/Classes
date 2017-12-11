@@ -15,6 +15,7 @@ typedef enum BATTLE_PROTOCOL
 	INT							:		ROOM_TYPE
 	INT							:		ROOM_STATUS
 	INT							:		CURRENT_USER_COUNT
+	INT							:		SIDE_IN_GAME
 	*/
 	PT_BATTLE_SEARCH_ROOM_FAIL_U,
 	/*
@@ -22,27 +23,28 @@ typedef enum BATTLE_PROTOCOL
 	*/
 	PT_BATTLE_START_GAME_M,
 	/*
-	INT							:		ROOM_TYPE
-	INT64						:		START_TIME
 	INT							:		ROOM_STATUS
 	*/
 	PT_BATTLE_ARRANGE_WEAPON,
 	/*
-	INT							:	WEAPON_TYPE
-	INT							:	COORDINATE_X
-	INT							:	COORDINATE_Y
-	FLOAT					:	POS_X
-	FLOAT					:	POS_Y
-	INT							:	SPEED
+	INT							:		WEAPON_TYPE
+	INT							:		COORDINATE_X
+	INT							:		COORDINATE_Y
+	FLOAT					:		POS_X
+	FLOAT					:		POS_Y
+	INT							:		SPEED
+	INT							:		TROOPS_IN
 	*/
-	PT_BATTLE_ARRANGE_WEAPON_SUCC_U,
+	PT_BATTLE_ARRANGE_WEAPON_SUCC_M,
 	/*
-	INT							:	WEAPON_TYPE
-	INT							:	COORDINATE_X
-	INT							:	COORDINATE_Y
-	FLOAT					:	POS_X
-	FLOAT					:	POS_Y
-	INT							:	SPEED
+	INT							:		WEAPON_TYPE
+	INT							:		WEAPON_TAG
+	INT							:		COORDINATE_X
+	INT							:		COORDINATE_Y
+	FLOAT					:		POS_X
+	FLOAT					:		POS_Y
+	INT							:		SPEED
+	INT							:		TROOPS_IN
 	*/
 	PT_BATTLE_ARRANGE_WEAPON_FAIL_U,
 	/*

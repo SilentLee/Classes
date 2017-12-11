@@ -55,15 +55,55 @@ void LayerBattleFieldDB::updateBFSituation(float dt)
 	log("LayerBattleFieldDB::updateBFSituation");
 
 	COperInfoInstance* operInfoInstance = COperInfoInstance::getInstance();
+
+	// 接收到武器
 	if (operInfoInstance->getIsOperInfoRecv()) {
-		S_PT_BATTLE_ARRANGE_WEAPON_SUCC_U ptBattleArrangeWeaponSuccU = operInfoInstance->getPtBattleArrangeWeaponSuccU();
+		S_PT_BATTLE_ARRANGE_WEAPON_SUCC_M ptBattleArrangeWeaponSuccU = operInfoInstance->getPtBattleArrangeWeaponSuccM();
 		operInfoInstance->setIsOperInfoRecv(false);
-		log("load S_PT_BATTLE_ARRANGE_WEAPON_SUCC_U");
+		log("load S_PT_BATTLE_ARRANGE_WEAPON_SUCC_M");
 
 		int weaponType = ptBattleArrangeWeaponSuccU.WEAPON_TYPE;
 		float posX = ptBattleArrangeWeaponSuccU.POS_X;
 		float posY = ptBattleArrangeWeaponSuccU.POS_Y;
 
 		arrangeEnemyWeaponWithAbsolutePos(weaponType, posX, posY, 1000);
+	}
+
+
+	// 更新战场态势
+	if (operInfoInstance->getIsBattleFieldSituationUpdate()) {
+		S_PT_BATTLE_UPDATE_SITUATION_M ptBattleUpdateSituationM = operInfoInstance->getPtBattleUpdateSituationM();
+
+		// 读取游戏剩余时间
+		int RemainingTime = ptBattleUpdateSituationM.REMAINING_GAME_TIME;
+		// 读取蓝方兵力数据长度
+		int BlueTroopsDataLength = ptBattleUpdateSituationM.BLUE_TROOPS_DATA_LENGTH;
+		// 读取红方兵力数据长度
+		int RedTroopsDataLength = ptBattleUpdateSituationM.RED_TROOPS_DATA_LENGTH;
+		//// 读取蓝方兵力行为数据长度
+		//int BlueTroopsActionDataLength = recvData.BLUE_TROOPS_ACTION_DATA_LENGTH;
+		//// 读取红方兵力行为数据长度
+		//int RedTroopsActionDataLength = recvData.RED_TROOPS_ACTION_DATA_LENGTH;
+
+		// 计算需要开辟的数据缓冲区的长度
+		int SizeOfBlueTroopsData = BlueTroopsDataLength / sizeof(Weapon);
+		int SizeOfRedTroopsData = RedTroopsDataLength / sizeof(Weapon);
+
+		vector<Weapon> BlueTroopsData;
+		vector<Weapon> RedTroopsData;
+
+		if (BlueTroopsDataLength != 0) {
+			log("receive weapons blue");
+			BlueTroopsData.resize(SizeOfBlueTroopsData + 1);
+			memcpy(&BlueTroopsData[0], ptBattleUpdateSituationM.DATA, BlueTroopsDataLength);
+		}
+
+		if (RedTroopsDataLength != 0){
+			log("receive weapons red");
+			RedTroopsData.resize(SizeOfRedTroopsData + 1);
+			memcpy(&RedTroopsData[0], ptBattleUpdateSituationM.DATA + BlueTroopsDataLength, RedTroopsDataLength);
+		}
+
+		operInfoInstance->setIsBattleFieldSituationUpdate(false);
 	}
 }

@@ -4,8 +4,8 @@ CRoomInstance* CRoomInstance::roomInstance = NULL;
 
 bool CRoomInstance::init()
 {
-	mType = RM_NO_TYPE;
-	mStatus = RM_EMPTY;
+	mRoomType = RM_NO_TYPE;
+	mRoomStatus = RM_EMPTY;
 	mRoomID = 0;
 	mRemainingTime = DEFAULT_GAME_TIME;
 

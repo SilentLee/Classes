@@ -39,7 +39,7 @@ public:
 public:
 	// RecvProc1v1
 	void onPT_BATTLE_SEARCH_ROOM_SUCC_U(BYTE* packet);
-	void onPT_ARRANGE_WEAPON_SUCC_U(BYTE* packet);
+	void onPT_ARRANGE_WEAPON_SUCC_M(BYTE* packet);
 	void onPT_BATTLE_START_GAME_M(BYTE* packet);
 	void onPT_BATTLE_UPDATE_SITUATION_M(BYTE* packet);
 

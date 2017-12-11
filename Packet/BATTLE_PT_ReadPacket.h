@@ -19,6 +19,7 @@ inline VOID READ_PT_BATTLE_SEARCH_ROOM_SUCC_U(BYTE *buffer, S_PT_BATTLE_SEARCH_R
 	Stream->ReadInt32(&parameter.ROOM_TYPE);
 	Stream->ReadInt32(&parameter.ROOM_STATUS);
 	Stream->ReadInt32(&parameter.CURRENT_USER_COUNT);
+	Stream->ReadInt32(&parameter.SIDE_IN_GAME);
 }
 
 inline VOID READ_PT_BATTLE_SEARCH_ROOM_FAIL_U(BYTE *buffer, S_PT_BATTLE_SEARCH_ROOM_FAIL_U &parameter)
@@ -34,8 +35,6 @@ inline VOID READ_PT_BATTLE_START_GAME_M(BYTE *buffer, S_PT_BATTLE_START_GAME_M &
 	CStreamSP Stream;
 	Stream->SetBuffer(buffer);
 
-	Stream->ReadInt32(&parameter.ROOM_TYPE);
-	Stream->ReadInt64(&parameter.START_TIME);
 	Stream->ReadInt32(&parameter.ROOM_STATUS);
 }
 
@@ -50,19 +49,22 @@ inline VOID READ_PT_BATTLE_ARRANGE_WEAPON(BYTE *buffer, S_PT_BATTLE_ARRANGE_WEAP
 	Stream->ReadFloat(&parameter.POS_X);
 	Stream->ReadFloat(&parameter.POS_Y);
 	Stream->ReadInt32(&parameter.SPEED);
+	Stream->ReadInt32(&parameter.TROOPS_IN);
 }
 
-inline VOID READ_PT_BATTLE_ARRANGE_WEAPON_SUCC_U(BYTE *buffer, S_PT_BATTLE_ARRANGE_WEAPON_SUCC_U &parameter)
+inline VOID READ_PT_BATTLE_ARRANGE_WEAPON_SUCC_M(BYTE *buffer, S_PT_BATTLE_ARRANGE_WEAPON_SUCC_M &parameter)
 {
 	CStreamSP Stream;
 	Stream->SetBuffer(buffer);
 
 	Stream->ReadInt32(&parameter.WEAPON_TYPE);
+	Stream->ReadInt32(&parameter.WEAPON_TAG);
 	Stream->ReadInt32(&parameter.COORDINATE_X);
 	Stream->ReadInt32(&parameter.COORDINATE_Y);
 	Stream->ReadFloat(&parameter.POS_X);
 	Stream->ReadFloat(&parameter.POS_Y);
 	Stream->ReadInt32(&parameter.SPEED);
+	Stream->ReadInt32(&parameter.TROOPS_IN);
 }
 
 inline VOID READ_PT_BATTLE_ARRANGE_WEAPON_FAIL_U(BYTE *buffer, S_PT_BATTLE_ARRANGE_WEAPON_FAIL_U &parameter)

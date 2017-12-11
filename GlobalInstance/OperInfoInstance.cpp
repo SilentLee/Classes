@@ -17,6 +17,7 @@ COperInfoInstance::~COperInfoInstance()
 bool COperInfoInstance::init()
 {
 	mIsOperInfoRecv = false;
+	mIsBattleFieldSituationUpdate = false;
 
 	return true;
 }
