@@ -75,32 +75,12 @@ void LayerBattleFieldDB::updateBFSituation(float dt)
 		int weaponTag = ptBattleArrangeWeaponSuccU.WEAPON_TAG;
 		// 飞行速度
 		int speed = ptBattleArrangeWeaponSuccU.SPEED;
-
-		// 计算接收到的武器在客户端战场态势界面中的坐标
-		//if (troopsIn == TROOPS_BLUE) {
-		//	posX = posX;
-		//	posY = posY;
-		//}
-		//else if (troopsIn == TROOPS_RED) {
-		//	posX = posX;
-		//	posY = 2060 - posY;
-		//}
-
-		if (userInstance->getTroopsIn() == TROOPS_BLUE) {
-			posX = posX;
-			posY = posY;
-		}
-		else if (userInstance->getTroopsIn() == TROOPS_RED) {
-			posX = posX;
-			posY = 2060 - posY;
-		}
-
-		// 若加入武器与当前玩家属于同一方
+		
+		// 若武器与当前客户端玩家同属一方 加入本方阵营
 		if (troopsIn == userInstance->getTroopsIn()) {
 			arrangeOwnWeaponWithAbsolutePos(troopsIn, weaponType, posX, posY, weaponTag);
-			//arrangeEnemyWeaponWithAbsolutePos(troopsIn, weaponType, posX, posY, weaponTag);
 		}
-		// 若加入武器与当前玩家属于不同方
+		// 若武器与当前客户端玩家不同属一方 加入对方阵营
 		else {
 			arrangeEnemyWeaponWithAbsolutePos(troopsIn, weaponType, posX, posY, weaponTag);
 		}

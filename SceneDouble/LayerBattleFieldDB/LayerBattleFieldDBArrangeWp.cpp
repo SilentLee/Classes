@@ -125,6 +125,17 @@ void LayerBattleFieldDB::previewWeaponWithAbsolutePosCancelled()
 // 坐标需要转换一下 将武器由 从下向上飞行 转换为 从上向下飞行
 void LayerBattleFieldDB::arrangeEnemyWeaponWithAbsolutePos(ENUM_TROOPS troops, int weaponType, int posX, int posY, int weaponTag)
 {
+	// 根据玩家当前属于蓝方还是红方 重新计算加入武器在客户端战场态势显示中的位置坐标
+	CUserInstance* userInstance = CUserInstance::getInstance();
+	if (userInstance->getTroopsIn() == TROOPS_BLUE) {
+		posX = posX;
+		posY = posY;
+	}
+	else if (userInstance->getTroopsIn() == TROOPS_RED) {
+		posX = posX;
+		posY = 2060 - posY;
+	}
+
 	Node* enemyWeaponToArrange = NULL;
 
 	// 坐标转换
@@ -186,6 +197,17 @@ void LayerBattleFieldDB::arrangeEnemyWeaponWithAbsolutePos(ENUM_TROOPS troops, i
 // 高度 1920
 void LayerBattleFieldDB::arrangeOwnWeaponWithAbsolutePos(ENUM_TROOPS troops, int weaponType, int posX, int posY, int weaponTag)
 {
+	// 根据玩家当前属于蓝方还是红方 重新计算加入武器在客户端战场态势显示中的位置坐标
+	CUserInstance* userInstance = CUserInstance::getInstance();
+	if (userInstance->getTroopsIn() == TROOPS_BLUE) {
+		posX = posX;
+		posY = posY;
+	}
+	else if (userInstance->getTroopsIn() == TROOPS_RED) {
+		posX = posX;
+		posY = 2060 - posY;
+	}
+
 	Node* ownWeaponToArrange = NULL;
 
 	switch (weaponType)
