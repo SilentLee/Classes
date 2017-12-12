@@ -86,6 +86,15 @@ void LayerBattleFieldDB::updateBFSituation(float dt)
 		//	posY = 2060 - posY;
 		//}
 
+		if (userInstance->getTroopsIn() == TROOPS_BLUE) {
+			posX = posX;
+			posY = posY;
+		}
+		else if (userInstance->getTroopsIn() == TROOPS_RED) {
+			posX = posX;
+			posY = 2060 - posY;
+		}
+
 		// 若加入武器与当前玩家属于同一方
 		if (troopsIn == userInstance->getTroopsIn()) {
 			arrangeOwnWeaponWithAbsolutePos(troopsIn, weaponType, posX, posY, weaponTag);
