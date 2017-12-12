@@ -5,6 +5,8 @@
 #include "LibBattlefieldWeaponOppoApi.h"
 #include "GlobalInstanceApi.h"
 
+// 布设兵力预览函数
+// 与 onTouchBegan 配合使用
 void LayerBattleFieldDB::previewWeaponWithAbsolutePosOnBegan(int weaponType, int posX, int posY)
 {
 	Node* previewWeapon = NULL;
@@ -70,6 +72,8 @@ void LayerBattleFieldDB::previewWeaponWithAbsolutePosOnBegan(int weaponType, int
 	previewWeapon->setOpacity(150);
 }
 
+// 布设兵力预览函数
+// 与 onTouchMoved 配合使用
 void LayerBattleFieldDB::previewWeaponWithAbsolutePosOnMoved(float posX, float posY)
 {
 	BFW_BasicClass* previewWeapon = (BFW_BasicClass*)this->getChildByName("previewWeapon");
@@ -77,6 +81,8 @@ void LayerBattleFieldDB::previewWeaponWithAbsolutePosOnMoved(float posX, float p
 	previewWeapon->setPosInSquare(posX, posY);
 }
 
+// 布设兵力预览函数
+// 与 onTouchEnded 配合使用
 void LayerBattleFieldDB::previewWeaponWithAbsolutePosOnEnded()
 {
 	CUserInstance* userInstance = CUserInstance::getInstance();
@@ -105,6 +111,8 @@ void LayerBattleFieldDB::previewWeaponWithAbsolutePosOnEnded()
 	this->removeChild(previewWeapon);
 }
 
+// 布设兵力预览函数
+// 与 onTouchCancelled 配合使用
 void LayerBattleFieldDB::previewWeaponWithAbsolutePosCancelled()
 {
 	this->removeChildByName("previewWeapon");
@@ -119,52 +127,113 @@ void LayerBattleFieldDB::arrangeEnemyWeaponWithAbsolutePos(ENUM_TROOPS troops, i
 {
 	Node* enemyWeaponToArrange = NULL;
 
+	// 坐标转换
+	posY = 2060 - posY;
+
 	switch (weaponType)
 	{
-	case CARD_TYPE_FIGHTER_PLANE:
+	case WP_TYPE_FIGHTER_PLANE:
 		enemyWeaponToArrange = BFW_OPPO_FighterPlane::createWithAbsolutePos(IMG_URL_WEAPON_FIGHTER_PLANE_OPPO, posX, posY);
 		break;
 
-	case CARD_TYPE_BOMBING_PLANE:
+	case WP_TYPE_BOMBING_PLANE:
 		enemyWeaponToArrange = BFW_OPPO_BombingPlane::createWithAbsolutePos(IMG_URL_WEAPON_BOMBING_PLANE_OPPO, posX, posY);
 		break;
 
-	case CARD_TYPE_ANTI_AIRCRAFT_MISSILE:
+	case WP_TYPE_ANTI_AIRCRAFT_MISSILE:
 		enemyWeaponToArrange = BFW_OPPO_AntiAirCraftMissile::createWithAbsolutePos(IMG_URL_WEAPON_ANTI_AIRCRAFT_MISSILE_OPPO, posX, posY);
 		break;
 
-	case CARD_TYPE_EARLY_WARNING_PLANE:
+	case WP_TYPE_EARLY_WARNING_PLANE:
 		enemyWeaponToArrange = BFW_OPPO_EarlyWarningPlane::createWithAbsolutePos(IMG_URL_WEAPON_EARLY_WARNING_PLANE_OPPO, posX, posY);
 		break;
 
-	case CARD_TYPE_FLAK:
+	case WP_TYPE_FLAK:
 		enemyWeaponToArrange = BFW_OPPO_Flak::createWithAbsolutePos(IMG_URL_WEAPON_FLAK_OPPO, posX, posY);
 		break;
 
-	case CARD_TYPE_JAMMING_PLANE:
+	case WP_TYPE_JAMMING_PLANE:
 		enemyWeaponToArrange = BFW_OPPO_JammingPlane::createWithAbsolutePos(IMG_URL_WEAPON_JAMMING_PLANE_OPPO, posX, posY);
 		break;
 
-	case CARD_TYPE_RADAR:
+	case WP_TYPE_RADAR:
 		enemyWeaponToArrange = BFW_OPPO_Radar::createWithAbsolutePos(IMG_URL_WEAPON_RADAR_OPPO, posX, posY);
 		break;
 
-	case CARD_TYPE_8:
+	case WP_TYPE_8:
 		enemyWeaponToArrange = BFW_OPPO_8::createWithAbsolutePos(IMG_URL_WEAPON_8_OPPO, posX, posY);
 		break;
 
-	case CARD_TYPE_9:
+	case WP_TYPE_9:
 		enemyWeaponToArrange = BFW_OPPO_9::createWithAbsolutePos(IMG_URL_WEAPON_9_OPPO, posX, posY);
 		break;
 
-	case CARD_TYPE_10:
+	case WP_TYPE_10:
 		enemyWeaponToArrange = BFW_OPPO_10::createWithAbsolutePos(IMG_URL_WEAPON_10_OPPO, posX, posY);
 		break;
 
-	case CARD_TYPE_11:
+	case WP_TYPE_11:
 		enemyWeaponToArrange = BFW_OPPO_11::createWithAbsolutePos(IMG_URL_WEAPON_11_OPPO, posX, posY);
 		break;
 	}
 	this->addChild(enemyWeaponToArrange, 3, weaponTag);
 	enemyWeaponToArrange->scheduleUpdate();
+}
+
+// 布设本方兵力函数
+// 坐标幅度
+// 宽度 1080
+// 高度 1920
+void LayerBattleFieldDB::arrangeOwnWeaponWithAbsolutePos(ENUM_TROOPS troops, int weaponType, int posX, int posY, int weaponTag)
+{
+	Node* ownWeaponToArrange = NULL;
+
+	switch (weaponType)
+	{
+	case WP_TYPE_FIGHTER_PLANE:
+		ownWeaponToArrange = BFW_FighterPlane::createWithAbsolutePos(IMG_URL_WEAPON_FIGHTER_PLANE_OWN, posX, posY);
+		break;
+
+	case WP_TYPE_BOMBING_PLANE:
+		ownWeaponToArrange = BFW_BombingPlane::createWithAbsolutePos(IMG_URL_WEAPON_BOMBING_PLANE_OWN, posX, posY);
+		break;
+
+	case WP_TYPE_ANTI_AIRCRAFT_MISSILE:
+		ownWeaponToArrange = BFW_AntiAirCraftMissile::createWithAbsolutePos(IMG_URL_WEAPON_ANTI_AIRCRAFT_MISSILE_OWN, posX, posY);
+		break;
+
+	case WP_TYPE_EARLY_WARNING_PLANE:
+		ownWeaponToArrange = BFW_EarlyWarningPlane::createWithAbsolutePos(IMG_URL_WEAPON_EARLY_WARNING_PLANE_OWN, posX, posY);
+		break;
+
+	case WP_TYPE_FLAK:
+		ownWeaponToArrange = BFW_Flak::createWithAbsolutePos(IMG_URL_WEAPON_FLAK_OWN, posX, posY);
+		break;
+
+	case WP_TYPE_JAMMING_PLANE:
+		ownWeaponToArrange = BFW_JammingPlane::createWithAbsolutePos(IMG_URL_WEAPON_JAMMING_PLANE_OWN, posX, posY);
+		break;
+
+	case WP_TYPE_RADAR:
+		ownWeaponToArrange = BFW_Radar::createWithAbsolutePos(IMG_URL_WEAPON_RADAR_OWN, posX, posY);
+		break;
+
+	case WP_TYPE_8:
+		ownWeaponToArrange = BFW_8::createWithAbsolutePos(IMG_URL_WEAPON_8_OWN, posX, posY);
+		break;
+
+	case WP_TYPE_9:
+		ownWeaponToArrange = BFW_9::createWithAbsolutePos(IMG_URL_WEAPON_9_OWN, posX, posY);
+		break;
+
+	case WP_TYPE_10:
+		ownWeaponToArrange = BFW_10::createWithAbsolutePos(IMG_URL_WEAPON_10_OWN, posX, posY);
+		break;
+
+	case WP_TYPE_11:
+		ownWeaponToArrange = BFW_11::createWithAbsolutePos(IMG_URL_WEAPON_11_OWN, posX, posY);
+		break;
+	}
+	this->addChild(ownWeaponToArrange, 3, weaponTag);
+	ownWeaponToArrange->scheduleUpdate();
 }

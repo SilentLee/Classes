@@ -30,9 +30,6 @@ void LayerTouchDB::initTouchMode(LayerTouchDB* layerTouchDB)
 
 void LayerTouchDB::initCards()
 {
-	// 设置出牌次数
-	mDiscardTimes = 0;
-
 	// 卡牌选择开关置0
 	mCardBtnSwitch = BTN_CARD_NONE;
 

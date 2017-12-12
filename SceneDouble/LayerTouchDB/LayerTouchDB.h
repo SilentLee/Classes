@@ -20,7 +20,6 @@ class LayerTouchDB : public Layer
 {
 private:
 	int mCardBtnSwitch;
-	int mDiscardTimes;
 public:
 	//S_CARD_STRUCT_DOUBLE_BATTLE mCards[NUM_CARDS_IN_GROUP];
 	vector<S_CARD_STRUCT_DOUBLE_BATTLE> mStructCards;

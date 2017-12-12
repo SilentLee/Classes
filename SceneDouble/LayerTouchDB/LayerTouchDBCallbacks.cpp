@@ -32,7 +32,7 @@ void LayerTouchDB::onTouchesBegan(const std::vector<Touch*>& touches, Event *unu
 			int discardType = mBtnCards[mCardBtnSwitch]->getCardType();
 			LayerBattleFieldDB* layerBattleFieldDB = (LayerBattleFieldDB*)this->getParent()->getChildByName("layerBattleFieldDB");
 			
-			layerBattleFieldDB->arrangeWeaponWithAbsolutePosOnBegan(discardType, posX, posY, mDiscardTimes);
+			layerBattleFieldDB->previewWeaponWithAbsolutePosOnBegan(discardType, posX, posY);
 		}
 	}
 }
@@ -57,7 +57,7 @@ void LayerTouchDB::onTouchesMoved(const std::vector<Touch*>& touches, Event *unu
 		LayerBattleFieldDB* layerBattleFieldDB = (LayerBattleFieldDB*)this->getParent()->getChildByName("layerBattleFieldDB");
 
 		// 获取在战场中加入的武器并设置 透明度 位置
-		layerBattleFieldDB->arrangeWeaponWithAbsolutePosOnMoved(posX, posY, mDiscardTimes);
+		layerBattleFieldDB->previewWeaponWithAbsolutePosOnMoved(posX, posY);
 	}
 }
 
@@ -81,10 +81,7 @@ void LayerTouchDB::onTouchesEnded(const std::vector<Touch*>& touches, Event *unu
 		int discardType = discard();
 
 		LayerBattleFieldDB* layerBattleFieldDB = (LayerBattleFieldDB*)this->getParent()->getChildByName("layerBattleFieldDB");
-		layerBattleFieldDB->arrangeWeaponWithAbsolutePosOnEnded(mDiscardTimes);
-
-		// 出牌次数加1
-		mDiscardTimes++;
+		layerBattleFieldDB->previewWeaponWithAbsolutePosOnEnded();
 	}
 }
 
@@ -92,7 +89,7 @@ void LayerTouchDB::onTouchesCancelled(const std::vector<Touch*>&touches, Event *
 {
 	log("onTouchesCancelled");
 	LayerBattleFieldDB* layerBattleFieldDB = (LayerBattleFieldDB*)this->getParent()->getChildByName("layerBattleFieldDB");
-	layerBattleFieldDB->arrangeWeaponWithAbsolutePosCancelled(mDiscardTimes);
+	layerBattleFieldDB->previewWeaponWithAbsolutePosCancelled();
 }
 
 // 出牌处理函数

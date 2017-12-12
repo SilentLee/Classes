@@ -4,6 +4,7 @@
 #include "LibCommonGraphApi.h"
 #include "LibCommonUtilsApi.h"
 #include "LibBattleFieldGraphApi.h"
+#include "Weapon.h"
 
 
 USING_NS_CC;
@@ -50,6 +51,6 @@ public:
 	// 布置对方兵力函数
 	void arrangeEnemyWeaponWithAbsolutePos(ENUM_TROOPS troopsIn, int weaponType, int posX, int posY, int weaponTag);
 	// 布置本方兵力函数
-	void arrangeOwnWeaponWithAbsolutePos(int weaponType, int posX, int posY, int weaponTag);
+	void arrangeOwnWeaponWithAbsolutePos(ENUM_TROOPS troopsIn, int weaponType, int posX, int posY, int weaponTag);
 
 };

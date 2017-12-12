@@ -78,11 +78,11 @@ void LayerBattleFieldDB::updateBFSituation(float dt)
 
 		// 若加入武器与当前玩家属于同一方
 		if (troopsIn == userInstance->getTroopsIn()) {
-			arr
+			arrangeOwnWeaponWithAbsolutePos(troopsIn, weaponType, posX, posY, weaponTag);
 		}
 		// 若加入武器与当前玩家属于不同方
 		else {
-			arrangeEnemyWeaponWithAbsolutePos(weaponType, posX, posY, weaponTag);
+			arrangeEnemyWeaponWithAbsolutePos(troopsIn, weaponType, posX, posY, weaponTag);
 		}
 	}
 
