@@ -2,7 +2,7 @@
 #include "LibBattlefieldWeaponApi.h"
 #include "LibBattleFieldGraphApi.h"
 #include "LibBattlefieldWeaponApi.h"
-#include "OperInfoInstance.h"
+#include "GlobalInstanceApi.h"
 
 // 更新函数
 void LayerBattleFieldDB::updateFrog(float dt)
@@ -55,23 +55,42 @@ void LayerBattleFieldDB::updateBFSituation(float dt)
 	log("LayerBattleFieldDB::updateBFSituation");
 
 	COperInfoInstance* operInfoInstance = COperInfoInstance::getInstance();
+	CUserInstance* userInstance = CUserInstance::getInstance();
 
 	// 接收到武器
+	// onPT_ARRANGE_WEAPON_SUCC_M
 	if (operInfoInstance->getIsOperInfoRecv()) {
 		S_PT_BATTLE_ARRANGE_WEAPON_SUCC_M ptBattleArrangeWeaponSuccU = operInfoInstance->getPtBattleArrangeWeaponSuccM();
 		operInfoInstance->setIsOperInfoRecv(false);
 		log("load S_PT_BATTLE_ARRANGE_WEAPON_SUCC_M");
 
+		// 属于对战哪一方
+		ENUM_TROOPS troopsIn = (ENUM_TROOPS)ptBattleArrangeWeaponSuccU.TROOPS_IN;
+		// 武器类型
 		int weaponType = ptBattleArrangeWeaponSuccU.WEAPON_TYPE;
+		// 初始布设坐标
 		float posX = ptBattleArrangeWeaponSuccU.POS_X;
 		float posY = ptBattleArrangeWeaponSuccU.POS_Y;
+		// 在战场中的标签
+		int weaponTag = ptBattleArrangeWeaponSuccU.WEAPON_TAG;
+		// 飞行速度
+		int speed = ptBattleArrangeWeaponSuccU.SPEED;
 
-		arrangeEnemyWeaponWithAbsolutePos(weaponType, posX, posY, 1000);
+		// 若加入武器与当前玩家属于同一方
+		if (troopsIn == userInstance->getTroopsIn()) {
+			arr
+		}
+		// 若加入武器与当前玩家属于不同方
+		else {
+			arrangeEnemyWeaponWithAbsolutePos(weaponType, posX, posY, weaponTag);
+		}
 	}
 
 
 	// 更新战场态势
+	// onPT_BATTLE_UPDATE_SITUATION_M
 	if (operInfoInstance->getIsBattleFieldSituationUpdate()) {
+
 		S_PT_BATTLE_UPDATE_SITUATION_M ptBattleUpdateSituationM = operInfoInstance->getPtBattleUpdateSituationM();
 
 		// 读取游戏剩余时间

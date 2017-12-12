@@ -4,6 +4,7 @@
 
 USING_NS_CC;
 
+// 寻找到房间的消息处理函数
 void CNetworkSession::onPT_BATTLE_SEARCH_ROOM_SUCC_U(BYTE* packet)
 {
 	log("CNetworkSession::onPT__BATTLE_SEARCH_ROOM_SUCC_U");
@@ -12,20 +13,40 @@ void CNetworkSession::onPT_BATTLE_SEARCH_ROOM_SUCC_U(BYTE* packet)
 	CRoomInstance* roomInstance = CRoomInstance::getInstance();
 	CUserInstance* userInstance = CUserInstance::getInstance();
 
-	roomInstance->setRoomID(recvData.ROOM_ID);
-	roomInstance->setRoomType((ROOM_TYPE)recvData.ROOM_TYPE);
-	roomInstance->setRoomStatus((ROOM_STATUS)recvData.ROOM_STATUS);
-	roomInstance->setCurrentUserCount(recvData.CURRENT_USER_COUNT);
+	// 设置玩家在对战中属于哪一方
 	userInstance->setSideInGame((ENUM_SIDE_IN_GAME)recvData.SIDE_IN_GAME);
-
+	// 设置玩家兵力所属
 	if (recvData.SIDE_IN_GAME == SIDE_BLUE) {
 		userInstance->setTroopsIn(TROOPS_BLUE);
 	}
 	else if (recvData.SIDE_IN_GAME == SIDE_RED) {
 		userInstance->setTroopsIn(TROOPS_RED);
 	}
+
+	// 设置服务器房间指针
+	roomInstance->setRoomID(recvData.ROOM_ID);
+	// 设置房间类型
+	roomInstance->setRoomType((ROOM_TYPE)recvData.ROOM_TYPE);
+	// 设置当前有多少玩家在房间中
+	roomInstance->setCurrentUserCount(recvData.CURRENT_USER_COUNT);
+	// 设置房间状态
+	// 转到 SceneSelect::UpdateToBattle 中进行处理
+	roomInstance->setRoomStatus((ROOM_STATUS)recvData.ROOM_STATUS);
 }
 
+// 开始游戏的消息处理函数
+void CNetworkSession::onPT_BATTLE_START_GAME_M(BYTE* packet)
+{
+	log("CNetworkSession::onPT_BATTLE_START_GAME_M");
+	READ_PACKET(PT_BATTLE_START_GAME_M);
+
+	CRoomInstance* roomInstance = CRoomInstance::getInstance();
+
+	// 转到 SceneSelect::UpdateToBattle 中进行处理
+	roomInstance->setRoomStatus((ROOM_STATUS)recvData.ROOM_STATUS);
+}
+
+// 接收到武器布设成功的消息处理函数
 void CNetworkSession::onPT_ARRANGE_WEAPON_SUCC_M(BYTE* packet)
 {
 	log("CNetworkSession::onPT_ARRANGE_WEAPON_SUCC_M");
@@ -33,18 +54,12 @@ void CNetworkSession::onPT_ARRANGE_WEAPON_SUCC_M(BYTE* packet)
 
 	COperInfoInstance* operInfoInstance = COperInfoInstance::getInstance();
 	operInfoInstance->setPtBattleArrangeWeaponSuccM(recvData);
+
+	// 转到 LayerBattleFieldDB::updateBFSituation 中进行处理
 	operInfoInstance->setIsOperInfoRecv(true);
 }
 
-void CNetworkSession::onPT_BATTLE_START_GAME_M(BYTE* packet)
-{
-	log("CNetworkSession::onPT_BATTLE_START_GAME_M");
-	READ_PACKET(PT_BATTLE_START_GAME_M);
-
-	CRoomInstance* roomInstance = CRoomInstance::getInstance();
-	roomInstance->setRoomStatus((ROOM_STATUS)recvData.ROOM_STATUS);
-}
-
+// 战场态势更新的消息处理函数
 void CNetworkSession::onPT_BATTLE_UPDATE_SITUATION_M(BYTE* packet)
 {
 	log("CNetworkSession::onPT_BATTLE_UPDATE_SITUATION_M");
@@ -52,6 +67,8 @@ void CNetworkSession::onPT_BATTLE_UPDATE_SITUATION_M(BYTE* packet)
 
 	COperInfoInstance* operInfoInstance = COperInfoInstance::getInstance();
 	operInfoInstance->setPtBattleUpdateSituationM(recvData);
+
+	// 转到 LayerBattleFieldDB::updateBFSituation 中进行处理
 	operInfoInstance->setIsBattleFieldSituationUpdate(true);
 
 

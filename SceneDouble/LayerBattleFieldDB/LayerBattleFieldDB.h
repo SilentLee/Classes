@@ -41,12 +41,15 @@ public:
 	virtual void updateFrog(float dt);
 	virtual void updateBFSituation(float dt);
 
-	// 布置本方兵力函数
-	void arrangeWeaponWithAbsolutePosOnBegan(int weaponType, int posX, int posY, int discardTimes);
-	void arrangeWeaponWithAbsolutePosOnMoved(float posX, float posY, int mDiscardTimes);
-	void arrangeWeaponWithAbsolutePosOnEnded(int discardTimes);
-	void arrangeWeaponWithAbsolutePosCancelled(int discardTimes);
+	// 预览本方兵力放置效果函数
+	void previewWeaponWithAbsolutePosOnBegan(int weaponType, int posX, int posY);
+	void previewWeaponWithAbsolutePosOnMoved(float posX, float posY);
+	void previewWeaponWithAbsolutePosOnEnded();
+	void previewWeaponWithAbsolutePosCancelled();
 
 	// 布置对方兵力函数
-	void arrangeEnemyWeaponWithAbsolutePos(int weaponType, int posX, int posY, int enemyDiscardTimes);
+	void arrangeEnemyWeaponWithAbsolutePos(ENUM_TROOPS troopsIn, int weaponType, int posX, int posY, int weaponTag);
+	// 布置本方兵力函数
+	void arrangeOwnWeaponWithAbsolutePos(int weaponType, int posX, int posY, int weaponTag);
+
 };

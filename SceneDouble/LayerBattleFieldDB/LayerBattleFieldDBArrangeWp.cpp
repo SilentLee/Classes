@@ -5,99 +5,95 @@
 #include "LibBattlefieldWeaponOppoApi.h"
 #include "GlobalInstanceApi.h"
 
-void LayerBattleFieldDB::arrangeWeaponWithAbsolutePosOnBegan(int weaponType, int posX, int posY, int discardTimes)
+void LayerBattleFieldDB::previewWeaponWithAbsolutePosOnBegan(int weaponType, int posX, int posY)
 {
-	Node* weaponToArrange = NULL;
+	Node* previewWeapon = NULL;
 
 	switch (weaponType)
 	{
 	case CARD_TYPE_FIGHTER_PLANE:
-		weaponToArrange = BFW_FighterPlane::createWithPosInSquare(IMG_URL_WEAPON_FIGHTER_PLANE_OWN, posX, posY);
-		this->addChild(weaponToArrange, 0, discardTimes);
+		previewWeapon = BFW_FighterPlane::createWithPosInSquare(IMG_URL_WEAPON_FIGHTER_PLANE_OWN, posX, posY);
+		this->addChild(previewWeapon, 0, "previewWeapon");
 		break;
 
 	case CARD_TYPE_BOMBING_PLANE:
-		weaponToArrange = BFW_BombingPlane::createWithPosInSquare(IMG_URL_WEAPON_BOMBING_PLANE_OWN, posX, posY);
-		this->addChild(weaponToArrange, 0, discardTimes);
+		previewWeapon = BFW_BombingPlane::createWithPosInSquare(IMG_URL_WEAPON_BOMBING_PLANE_OWN, posX, posY);
+		this->addChild(previewWeapon, 0, "previewWeapon");
 		break;
 
 	case CARD_TYPE_ANTI_AIRCRAFT_MISSILE:
-		weaponToArrange = BFW_AntiAirCraftMissile::createWithPosInSquare(IMG_URL_WEAPON_ANTI_AIRCRAFT_MISSILE_OWN, posX, posY);
-		this->addChild(weaponToArrange, 0, discardTimes);
+		previewWeapon = BFW_AntiAirCraftMissile::createWithPosInSquare(IMG_URL_WEAPON_ANTI_AIRCRAFT_MISSILE_OWN, posX, posY);
+		this->addChild(previewWeapon, 0, "previewWeapon");
 		break;
 
 	case CARD_TYPE_EARLY_WARNING_PLANE:
-		weaponToArrange = BFW_EarlyWarningPlane::createWithPosInSquare(IMG_URL_WEAPON_EARLY_WARNING_PLANE_OWN, posX, posY);
-		this->addChild(weaponToArrange, 0, discardTimes);
+		previewWeapon = BFW_EarlyWarningPlane::createWithPosInSquare(IMG_URL_WEAPON_EARLY_WARNING_PLANE_OWN, posX, posY);
+		this->addChild(previewWeapon, 0, "previewWeapon");
 		break;
 
 	case CARD_TYPE_FLAK:
-		weaponToArrange = BFW_Flak::createWithPosInSquare(IMG_URL_WEAPON_FLAK_OWN, posX, posY);
-		this->addChild(weaponToArrange, 0, discardTimes);
+		previewWeapon = BFW_Flak::createWithPosInSquare(IMG_URL_WEAPON_FLAK_OWN, posX, posY);
+		this->addChild(previewWeapon, 0, "previewWeapon");
 		break;
 
 	case CARD_TYPE_JAMMING_PLANE:
-		weaponToArrange = BFW_JammingPlane::createWithPosInSquare(IMG_URL_WEAPON_JAMMING_PLANE_OWN, posX, posY);
-		this->addChild(weaponToArrange, 0, discardTimes);
+		previewWeapon = BFW_JammingPlane::createWithPosInSquare(IMG_URL_WEAPON_JAMMING_PLANE_OWN, posX, posY);
+		this->addChild(previewWeapon, 0, "previewWeapon");
 		break;
 
 	case CARD_TYPE_RADAR:
-		weaponToArrange = BFW_Radar::createWithPosInSquare(IMG_URL_WEAPON_RADAR_OWN, posX, posY);
-		this->addChild(weaponToArrange, 0, discardTimes);
+		previewWeapon = BFW_Radar::createWithPosInSquare(IMG_URL_WEAPON_RADAR_OWN, posX, posY);
+		this->addChild(previewWeapon, 0, "previewWeapon");
 		break;
 
 	case CARD_TYPE_8:
-		weaponToArrange = BFW_8::createWithPosInSquare(IMG_URL_WEAPON_8_OWN, posX, posY);
-		this->addChild(weaponToArrange, 0, discardTimes);
+		previewWeapon = BFW_8::createWithPosInSquare(IMG_URL_WEAPON_8_OWN, posX, posY);
+		this->addChild(previewWeapon, 0, "previewWeapon");
 		break;
 
 	case CARD_TYPE_9:
-		weaponToArrange = BFW_9::createWithPosInSquare(IMG_URL_WEAPON_9_OWN, posX, posY);
-		this->addChild(weaponToArrange, 0, discardTimes);
+		previewWeapon = BFW_9::createWithPosInSquare(IMG_URL_WEAPON_9_OWN, posX, posY);
+		this->addChild(previewWeapon, 0, "previewWeapon");
 		break;
 
 	case CARD_TYPE_10:
-		weaponToArrange = BFW_10::createWithPosInSquare(IMG_URL_WEAPON_10_OWN, posX, posY);
-		this->addChild(weaponToArrange, 0, discardTimes);
+		previewWeapon = BFW_10::createWithPosInSquare(IMG_URL_WEAPON_10_OWN, posX, posY);
+		this->addChild(previewWeapon, 0, "previewWeapon");
 		break;
 
 	case CARD_TYPE_11:
-		weaponToArrange = BFW_11::createWithPosInSquare(IMG_URL_WEAPON_11_OWN, posX, posY);
-		this->addChild(weaponToArrange, 0, discardTimes);
+		previewWeapon = BFW_11::createWithPosInSquare(IMG_URL_WEAPON_11_OWN, posX, posY);
+		this->addChild(previewWeapon, 0, "previewWeapon");
 		break;
 	}
 
-	weaponToArrange->setOpacity(150);
+	previewWeapon->setOpacity(150);
 }
 
-void LayerBattleFieldDB::arrangeWeaponWithAbsolutePosOnMoved(float posX, float posY, int discardTimes)
+void LayerBattleFieldDB::previewWeaponWithAbsolutePosOnMoved(float posX, float posY)
 {
-	BFW_BasicClass* weaponToArrange = (BFW_BasicClass*)this->getChildByTag(discardTimes);
-	weaponToArrange->setOpacity(150);
-	weaponToArrange->setPosInSquare(posX, posY);
+	BFW_BasicClass* previewWeapon = (BFW_BasicClass*)this->getChildByName("previewWeapon");
+	previewWeapon->setOpacity(150);
+	previewWeapon->setPosInSquare(posX, posY);
 }
 
-void LayerBattleFieldDB::arrangeWeaponWithAbsolutePosOnEnded(int discardTimes)
+void LayerBattleFieldDB::previewWeaponWithAbsolutePosOnEnded()
 {
 	CUserInstance* userInstance = CUserInstance::getInstance();
 
-	BFW_BasicClass* weaponToArrange = (BFW_BasicClass*)this->getChildByTag(discardTimes);
-	weaponToArrange->setOpacity(255);
-	weaponToArrange->scheduleUpdate();
-
-	mWeaponsOwn.push_back(weaponToArrange);
+	BFW_BasicClass* previewWeapon = (BFW_BasicClass*)this->getChildByName("previewWeapon");
 
 	S_PT_BATTLE_ARRANGE_WEAPON ptBattleArrangeWeapon;
 	memset(&ptBattleArrangeWeapon, 0, sizeof(ptBattleArrangeWeapon));
 
 
 	// 发送此时布设的卡牌
-	ptBattleArrangeWeapon.WEAPON_TYPE = weaponToArrange->getPropertyWp().WP_TYPE;
-	ptBattleArrangeWeapon.COORDINATE_X = weaponToArrange->getPosXInSquare();
-	ptBattleArrangeWeapon.COORDINATE_Y = weaponToArrange->getPosYInSquare();
-	ptBattleArrangeWeapon.POS_X = weaponToArrange->getAdpPosXWithAbsoluteValue();
-	ptBattleArrangeWeapon.POS_Y = weaponToArrange->getAdpPosYWithAbsoluteValue();
-	ptBattleArrangeWeapon.SPEED = weaponToArrange->getPropertyWp().SPEED;
+	ptBattleArrangeWeapon.WEAPON_TYPE = previewWeapon->getPropertyWp().WP_TYPE;
+	ptBattleArrangeWeapon.COORDINATE_X = previewWeapon->getPosXInSquare();
+	ptBattleArrangeWeapon.COORDINATE_Y = previewWeapon->getPosYInSquare();
+	ptBattleArrangeWeapon.POS_X = previewWeapon->getAdpPosXWithAbsoluteValue();
+	ptBattleArrangeWeapon.POS_Y = previewWeapon->getAdpPosYWithAbsoluteValue();
+	ptBattleArrangeWeapon.SPEED = previewWeapon->getPropertyWp().SPEED;
 	ptBattleArrangeWeapon.TROOPS_IN = userInstance->getTroopsIn();
 
 	BYTE WriteBuffer[MAX_BUFFER_LENGTH] = { 0, };
@@ -105,15 +101,21 @@ void LayerBattleFieldDB::arrangeWeaponWithAbsolutePosOnEnded(int discardTimes)
 	networkSession->WritePacket(PT_BATTLE_ARRANGE_WEAPON,
 		WriteBuffer,
 		WRITE_PT_BATTLE_ARRANGE_WEAPON(WriteBuffer, ptBattleArrangeWeapon));
+
+	this->removeChild(previewWeapon);
 }
 
-void LayerBattleFieldDB::arrangeWeaponWithAbsolutePosCancelled(int discardTimes)
+void LayerBattleFieldDB::previewWeaponWithAbsolutePosCancelled()
 {
-	this->removeChildByTag(discardTimes);
+	this->removeChildByName("previewWeapon");
 }
 
 // 布设对方兵力函数
-void LayerBattleFieldDB::arrangeEnemyWeaponWithAbsolutePos(int weaponType, int posX, int posY, int enemyDiscardTimes)
+// 坐标幅度
+// 宽度 1080
+// 高度 1920
+// 坐标需要转换一下 将武器由 从下向上飞行 转换为 从上向下飞行
+void LayerBattleFieldDB::arrangeEnemyWeaponWithAbsolutePos(ENUM_TROOPS troops, int weaponType, int posX, int posY, int weaponTag)
 {
 	Node* enemyWeaponToArrange = NULL;
 
@@ -163,6 +165,6 @@ void LayerBattleFieldDB::arrangeEnemyWeaponWithAbsolutePos(int weaponType, int p
 		enemyWeaponToArrange = BFW_OPPO_11::createWithAbsolutePos(IMG_URL_WEAPON_11_OPPO, posX, posY);
 		break;
 	}
-	this->addChild(enemyWeaponToArrange, 3, enemyDiscardTimes);
+	this->addChild(enemyWeaponToArrange, 3, weaponTag);
 	enemyWeaponToArrange->scheduleUpdate();
 }
