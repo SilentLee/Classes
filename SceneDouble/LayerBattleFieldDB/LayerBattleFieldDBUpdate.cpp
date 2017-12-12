@@ -113,14 +113,34 @@ void LayerBattleFieldDB::updateBFSituation(float dt)
 
 		if (BlueTroopsDataLength != 0) {
 			log("receive weapons blue");
-			BlueTroopsData.resize(SizeOfBlueTroopsData + 1);
+			BlueTroopsData.resize(SizeOfBlueTroopsData);
 			memcpy(&BlueTroopsData[0], ptBattleUpdateSituationM.DATA, BlueTroopsDataLength);
 		}
 
 		if (RedTroopsDataLength != 0){
 			log("receive weapons red");
-			RedTroopsData.resize(SizeOfRedTroopsData + 1);
+			RedTroopsData.resize(SizeOfRedTroopsData);
 			memcpy(&RedTroopsData[0], ptBattleUpdateSituationM.DATA + BlueTroopsDataLength, RedTroopsDataLength);
+		}
+
+		for (int i = 0; i < SizeOfBlueTroopsData; i++) {
+			this->removeChildByTag(BlueTroopsData[i].GetWeaponTag());
+			if (BlueTroopsData[i].GetTroopsIn() == userInstance->getTroopsIn()) {
+				arrangeOwnWeaponWithAbsolutePos((ENUM_TROOPS)BlueTroopsData[i].GetTroopsIn(), BlueTroopsData[i].GetProperty().WP_TYPE, BlueTroopsData[i].GetPosX(), BlueTroopsData[i].GetPosY(), BlueTroopsData[i].GetWeaponTag());
+			}
+			else {
+				arrangeEnemyWeaponWithAbsolutePos((ENUM_TROOPS)BlueTroopsData[i].GetTroopsIn(), BlueTroopsData[i].GetProperty().WP_TYPE, BlueTroopsData[i].GetPosX(), BlueTroopsData[i].GetPosY(), BlueTroopsData[i].GetWeaponTag());
+			}
+		}
+
+		for (int i = 0; i < SizeOfRedTroopsData; i++) {
+			this->removeChildByTag(RedTroopsData[i].GetWeaponTag());
+			if (RedTroopsData[i].GetTroopsIn() == userInstance->getTroopsIn()) {
+				arrangeOwnWeaponWithAbsolutePos((ENUM_TROOPS)RedTroopsData[i].GetTroopsIn(), RedTroopsData[i].GetProperty().WP_TYPE, RedTroopsData[i].GetPosX(), RedTroopsData[i].GetPosY(), RedTroopsData[i].GetWeaponTag());
+			}
+			else {
+				arrangeEnemyWeaponWithAbsolutePos((ENUM_TROOPS)RedTroopsData[i].GetTroopsIn(), RedTroopsData[i].GetProperty().WP_TYPE, RedTroopsData[i].GetPosX(), RedTroopsData[i].GetPosY(), RedTroopsData[i].GetWeaponTag());
+			}
 		}
 
 		operInfoInstance->setIsBattleFieldSituationUpdate(false);

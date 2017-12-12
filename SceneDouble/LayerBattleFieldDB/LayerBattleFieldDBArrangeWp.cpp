@@ -188,7 +188,7 @@ void LayerBattleFieldDB::arrangeEnemyWeaponWithAbsolutePos(ENUM_TROOPS troops, i
 		break;
 	}
 	this->addChild(enemyWeaponToArrange, 3, weaponTag);
-	enemyWeaponToArrange->scheduleUpdate();
+	//enemyWeaponToArrange->scheduleUpdate();
 }
 
 // 布设本方兵力函数
@@ -257,5 +257,5 @@ void LayerBattleFieldDB::arrangeOwnWeaponWithAbsolutePos(ENUM_TROOPS troops, int
 		break;
 	}
 	this->addChild(ownWeaponToArrange, 3, weaponTag);
-	ownWeaponToArrange->scheduleUpdate();
+	//ownWeaponToArrange->scheduleUpdate();
 }
