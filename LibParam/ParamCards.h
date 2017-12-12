@@ -6,18 +6,31 @@
 #define NUM_CARD_NEXT_CARD				1
 #define NUM_CARD_USED_CARD				1
 
+//// 卡牌武器速度参数
+//#define PARAM_SPEED_FIGHTER_PLANE								0.001f
+//#define PARAM_SPEED_BOMBING_PLANE							0.0005f
+//#define PARAM_SPEED_ANTI_AIRCRAFT_MISSILE				0.0f
+//#define PARAM_SPEED_EARLY_WARNING_PLANE				0.0005f
+//#define PARAM_SPEED_FLAK													0.0f
+//#define PARAM_SPEED_JAMMING_PLANE								0.0005f
+//#define PARAM_SPEED_RADAR												0.0f
+//#define PARAM_SPEED_TYPE_8												0.001f
+//#define PARAM_SPEED_TYPE_9												0.001f
+//#define PARAM_SPEED_TYPE_10												0.001f
+//#define PARAM_SPEED_TYPE_11												0.001f
+
 // 卡牌武器速度参数
-#define PARAM_SPEED_FIGHTER_PLANE								0.001f
-#define PARAM_SPEED_BOMBING_PLANE							0.0005f
-#define PARAM_SPEED_ANTI_AIRCRAFT_MISSILE				0.0f
-#define PARAM_SPEED_EARLY_WARNING_PLANE				0.0005f
+#define PARAM_SPEED_FIGHTER_PLANE								0.0015625f
+#define PARAM_SPEED_BOMBING_PLANE							0.0015625f
+#define PARAM_SPEED_ANTI_AIRCRAFT_MISSILE				0.0015625f
+#define PARAM_SPEED_EARLY_WARNING_PLANE				0.0015625f
 #define PARAM_SPEED_FLAK													0.0f
-#define PARAM_SPEED_JAMMING_PLANE								0.0005f
+#define PARAM_SPEED_JAMMING_PLANE								0.0015625f
 #define PARAM_SPEED_RADAR												0.0f
-#define PARAM_SPEED_TYPE_8												0.001f
-#define PARAM_SPEED_TYPE_9												0.001f
-#define PARAM_SPEED_TYPE_10												0.001f
-#define PARAM_SPEED_TYPE_11												0.001f
+#define PARAM_SPEED_TYPE_8												0.0015625f
+#define PARAM_SPEED_TYPE_9												0.0015625f
+#define PARAM_SPEED_TYPE_10												0.0015625f
+#define PARAM_SPEED_TYPE_11												0.0015625f
 
 // 卡牌探测范围参数
 #define PARAM_RANGE_DEC_REVISE_VALUE									-3
