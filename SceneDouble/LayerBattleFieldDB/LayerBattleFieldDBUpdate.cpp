@@ -1,7 +1,6 @@
 #include "LayerBattleFieldDB.h"
-#include "LibBattlefieldWeaponApi.h"
+#include "BattleFieldWeapon_OWN.h"
 #include "LibBattleFieldGraphApi.h"
-#include "LibBattlefieldWeaponApi.h"
 #include "GlobalInstanceApi.h"
 
 // 更新函数
@@ -38,8 +37,8 @@ void LayerBattleFieldDB::updateFrog(float dt)
 	}
 
 	// 用于测试迷雾功能的代码
-	for (vector<BFW_BasicClass*>::iterator iter = mWeaponsOwn.begin(); iter != mWeaponsOwn.end(); iter++) {
-		BFW_BasicClass* weapon = (BFW_BasicClass*)*iter;
+	for (vector<BattleFieldWeapon_OWN*>::iterator iter = mWeaponsOwn.begin(); iter != mWeaponsOwn.end(); iter++) {
+		BattleFieldWeapon_OWN* weapon = (BattleFieldWeapon_OWN*)*iter;
 		if (weapon->getPosYInSquare() == 10)
 		{
 			mWeaponsOwn.erase(iter);

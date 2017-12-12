@@ -1,7 +1,6 @@
 #include "LayerBattleFieldDB.h"
-#include "LibBattlefieldWeaponApi.h"
+#include "BattleFieldWeapon_OWN.h"
 #include "LibBattleFieldGraphApi.h"
-#include "LibBattlefieldWeaponApi.h"
 
 
 LayerBattleFieldDB* LayerBattleFieldDB::create()

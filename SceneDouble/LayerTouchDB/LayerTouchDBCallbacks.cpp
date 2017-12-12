@@ -1,15 +1,11 @@
 #include "LayerTouchDB.h"
 #include "LayerBattleFieldDB.h"
-#include "LibBattlefieldWeaponApi.h"
+#include "BattleFieldWeapon_OWN.h"
 #include "ProtocolHeader.h"
 
 void LayerTouchDB::BtnCardCallback(int key)
 {
 	mCardBtnSwitch = key;
-
-	/*BFW_AAM* bfwAAM = BFW_AAM::createWithAbsolutePos(CU_ImgLoader::getImg(IMG_URL_WEAPON_AAM_OWN), 540, 0);
-	LayerBattleFieldDB* layerBattleFieldDB = (LayerBattleFieldDB*)this->getParent()->getChildByName("layerBattleFieldDB");
-	layerBattleFieldDB->addChild(bfwAAM);*/
 }
 
 void LayerTouchDB::onTouchesBegan(const std::vector<Touch*>& touches, Event *unused_event)

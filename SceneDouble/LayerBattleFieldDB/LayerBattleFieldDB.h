@@ -8,7 +8,7 @@
 
 
 USING_NS_CC;
-extern class BFW_BasicClass;
+extern class BattleFieldWeapon_OWN;
 
 class LayerBattleFieldDB : public Layer
 {
@@ -17,8 +17,8 @@ private:
 	BFG_FrogOfWar* mFrogOfWarArray[BATTLE_FIELD_WIDTH_IN_SQUARE][BATTLE_FIELD_HEIGHT_IN_SQUARE];
 
 	// 对战双方存在于战场中的兵力
-	vector<BFW_BasicClass*> mWeaponsOwn;
-	vector<BFW_BasicClass*> mWeaponsOppo;
+	vector<BattleFieldWeapon_OWN*> mWeaponsOwn;
+	vector<BattleFieldWeapon_OWN*> mWeaponsOppo;
 
 	// 战争迷雾分界线
 	int mFrogLine[BATTLE_FIELD_WIDTH_IN_SQUARE];

@@ -4,6 +4,7 @@
 #include <string>
 #include <map>
 #include "LibParamApi.h"
+#include "Weapon.h"
 
 // 武器基本属性结构体
 typedef struct _PROPERTY_WP
