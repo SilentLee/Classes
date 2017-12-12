@@ -66,7 +66,6 @@ bool BFW_BasicClass::initWithAbsolutePos(const std::string& filename, int posX, 
 {
 	// 父类初始化
 	CG_Sprite::initWithAbsolutePos(filename, posX, posY);
-	this->setPosInSquare(posX, posY);
 	setPropertyWp(propertyWp);
 
 	// 设置 update 无效
