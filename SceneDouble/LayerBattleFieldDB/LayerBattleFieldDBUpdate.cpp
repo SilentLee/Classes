@@ -76,6 +76,16 @@ void LayerBattleFieldDB::updateBFSituation(float dt)
 		// 飞行速度
 		int speed = ptBattleArrangeWeaponSuccU.SPEED;
 
+		// 计算接收到的武器在客户端战场态势界面中的坐标
+		//if (troopsIn == TROOPS_BLUE) {
+		//	posX = posX;
+		//	posY = posY;
+		//}
+		//else if (troopsIn == TROOPS_RED) {
+		//	posX = posX;
+		//	posY = 2060 - posY;
+		//}
+
 		// 若加入武器与当前玩家属于同一方
 		if (troopsIn == userInstance->getTroopsIn()) {
 			arrangeOwnWeaponWithAbsolutePos(troopsIn, weaponType, posX, posY, weaponTag);

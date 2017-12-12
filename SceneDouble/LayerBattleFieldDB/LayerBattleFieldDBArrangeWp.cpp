@@ -128,7 +128,7 @@ void LayerBattleFieldDB::arrangeEnemyWeaponWithAbsolutePos(ENUM_TROOPS troops, i
 	Node* enemyWeaponToArrange = NULL;
 
 	// ×ø±ê×ª»»
-	posY = 2060 - posY;
+	//posY = 2060 - posY;
 
 	switch (weaponType)
 	{
