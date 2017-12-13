@@ -1,6 +1,5 @@
 #include "LayerBattleTouch.h"
 #include "LayerBattleField.h"
-#include "BattleFieldWeapon_OWN.h"
 #include "ProtocolHeader.h"
 
 void LayerBattleTouch::BtnCardCallback(int key)
