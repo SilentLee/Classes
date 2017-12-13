@@ -159,9 +159,14 @@ void BattleFieldWeapon_OWN::update(float dt)
 {
 	// 更新飞行位置
 	// 此处使用相对坐标
-	// 为与服务器统一 应当改成绝对坐标
-	Vec2 pos = this->getAdpPosWithRelativeValue();
-	this->setAdpPosWithRelativeValue(pos.x, pos.y + mPropertyWp.SPEED);
+	//Vec2 pos = this->getAdpPosWithRelativeValue();
+	//this->setAdpPosWithRelativeValue(pos.x, pos.y + mPropertyWp.SPEED);
+
+	// 更新飞行位置
+	// 此处使用绝对坐标
+	Vec2 pos = this->getAdpPosWithAbsoluteValue();
+	this->setAdpPosWithAbsoluteValue(pos.x, pos.y + mPropertyWp.SPEED);
+
 	this->setRotation(0);
 
 	log("CoordinateX = %d, CoordinateY = %d", (int)this->getCoordinateXInBF(), (int)this->getCoordinateYInBF());
