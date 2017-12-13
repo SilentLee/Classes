@@ -158,10 +158,6 @@ PROPERTY_WP BattleFieldWeapon_OPPO::getPropertyWp()
 void BattleFieldWeapon_OPPO::update(float dt)
 {
 	// 更新飞行位置
-	//Vec2 pos = this->getAdpPosWithRelativeValue();
-	//this->setAdpPosWithRelativeValue(pos.x, pos.y - mPropertyWp.SPEED);
-
-	// 更新飞行位置
 	// 此处使用绝对坐标
 	Vec2 pos = this->getAdpPosWithAbsoluteValue();
 	this->setAdpPosWithAbsoluteValue(pos.x, pos.y - mPropertyWp.SPEED);
