@@ -26,7 +26,7 @@ void LayerBattleTouch::onTouchesBegan(const std::vector<Touch*>& touches, Event 
 			int posY = touch->getLocation().y;
 
 			int discardType = mBtnCards[mCardBtnSwitch]->getCardType();
-			LayerBattleField* layerBattleField = (LayerBattleField*)this->getParent()->getChildByName("layerBattleFieldDB");
+			LayerBattleField* layerBattleField = (LayerBattleField*)this->getParent()->getChildByName("layerBattleField");
 			
 			layerBattleField->previewWeaponWithAbsolutePosOnBegan(discardType, posX, posY);
 		}
@@ -50,7 +50,7 @@ void LayerBattleTouch::onTouchesMoved(const std::vector<Touch*>& touches, Event 
 		int posX = touch->getLocation().x;
 		int posY = touch->getLocation().y;
 
-		LayerBattleField* layerBattleField = (LayerBattleField*)this->getParent()->getChildByName("layerBattleFieldDB");
+		LayerBattleField* layerBattleField = (LayerBattleField*)this->getParent()->getChildByName("layerBattleField");
 
 		// 获取在战场中加入的武器并设置 透明度 位置
 		layerBattleField->previewWeaponWithAbsolutePosOnMoved(posX, posY);
@@ -76,7 +76,7 @@ void LayerBattleTouch::onTouchesEnded(const std::vector<Touch*>& touches, Event 
 
 		int discardType = discard();
 
-		LayerBattleField* layerBattleField = (LayerBattleField*)this->getParent()->getChildByName("layerBattleFieldDB");
+		LayerBattleField* layerBattleField = (LayerBattleField*)this->getParent()->getChildByName("layerBattleField");
 		layerBattleField->previewWeaponWithAbsolutePosOnEnded();
 	}
 }
@@ -84,7 +84,7 @@ void LayerBattleTouch::onTouchesEnded(const std::vector<Touch*>& touches, Event 
 void LayerBattleTouch::onTouchesCancelled(const std::vector<Touch*>&touches, Event *unused_event)
 {
 	log("onTouchesCancelled");
-	LayerBattleField* layerBattleField = (LayerBattleField*)this->getParent()->getChildByName("layerBattleFieldDB");
+	LayerBattleField* layerBattleField = (LayerBattleField*)this->getParent()->getChildByName("layerBattleField");
 	layerBattleField->previewWeaponWithAbsolutePosCancelled();
 }
 
