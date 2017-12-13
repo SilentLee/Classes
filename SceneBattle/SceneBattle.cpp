@@ -1,9 +1,9 @@
-#include "SceneDoubleBattle.h"
+#include "SceneBattle.h"
 #include "SimpleAudioEngine.h"
 
 USING_NS_CC;
 
-Scene* SceneDoubleBattle::createScene()
+Scene* SceneBattle::createScene()
 {
 	auto scene = Scene::createWithPhysics();
 	PhysicsWorld* phyWorld = scene->getPhysicsWorld();
@@ -14,12 +14,12 @@ Scene* SceneDoubleBattle::createScene()
 	scene->addChild(bgDoubleBattleScene);
 
 	// 创建对战层
-	LayerBattleFieldDB* layerBattleFieldDB = LayerBattleFieldDB::create();
-	scene->addChild(layerBattleFieldDB, 1, "layerBattleFieldDB");
+	LayerBattleField* layerBattleField = LayerBattleField::create();
+	scene->addChild(layerBattleField, 1, "layerBattleField");
 
 	// 创建触控层
-	LayerTouchDB* layerTouchDB = LayerTouchDB::create();
-	scene->addChild(layerTouchDB, 2, "layerTouchDB");
+	LayerBattleTouch* layerBattleTouch = LayerBattleTouch::create();
+	scene->addChild(layerBattleTouch, 2, "layerTouchDB");
 
 	return scene;
 }
@@ -32,7 +32,7 @@ static void problemLoading(const char* filename)
 }
 
 // on "init" you need to initialize your instance
-bool SceneDoubleBattle::init()
+bool SceneBattle::init()
 {
     //////////////////////////////
     // 1. super init first

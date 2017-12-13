@@ -1,11 +1,11 @@
-#include "LayerBattleFieldDB.h"
+#include "LayerBattleField.h"
 #include "BattleFieldWeapon_OWN.h"
 #include "LibBattleFieldGraphApi.h"
 
 
-LayerBattleFieldDB* LayerBattleFieldDB::create()
+LayerBattleField* LayerBattleField::create()
 {
-	LayerBattleFieldDB* ret = new LayerBattleFieldDB();
+	LayerBattleField* ret = new LayerBattleField();
 	if (ret && ret->init());
 	{
 		ret->autorelease();
@@ -15,7 +15,7 @@ LayerBattleFieldDB* LayerBattleFieldDB::create()
 	return nullptr;
 }
 
-bool LayerBattleFieldDB::init()
+bool LayerBattleField::init()
 { 
 	Layer::init();
 	// 添加战场迷雾
@@ -30,12 +30,12 @@ bool LayerBattleFieldDB::init()
 	//registNotification();
 
 	// 注册战场态势更新函数
-	this->schedule(schedule_selector(LayerBattleFieldDB::updateBFSituation), 1 / 60);
+	this->schedule(schedule_selector(LayerBattleField::updateBFSituation), 1 / 60);
 	return true;
 };
 
 // 后续更改为坐标与长宽自适应方式？？？？？
-void LayerBattleFieldDB::addFog(float originX, float originY, int width, int height, float stepX, float stepY)
+void LayerBattleField::addFog(float originX, float originY, int width, int height, float stepX, float stepY)
 {
 	// 创建战场迷雾
 	for (int i = 0; i < width; i++)
@@ -51,7 +51,7 @@ void LayerBattleFieldDB::addFog(float originX, float originY, int width, int hei
 	}
 }
 
-void LayerBattleFieldDB::addDefenseLine()
+void LayerBattleField::addDefenseLine()
 {
 	// 创建我方防线
 	CG_Sprite* defenseLineOwn = CG_Sprite::createWithRelativePos(CU_ImgLoader::getImg(IMG_URL_DEFENSE_LINE).c_str(), 0.5, 0.15);
@@ -62,26 +62,26 @@ void LayerBattleFieldDB::addDefenseLine()
 	this->addChild(defenseLineOppo);
 }
 
-void LayerBattleFieldDB::registNotification()
+void LayerBattleField::registNotification()
 {
 	// 注册卡牌布置到战场时的通知函数
 	//__NotificationCenter::getInstance()->addObserver(this, callfuncO_selector(LayerBattleFieldDB::arrangeCardCallback), MSG_ARRANGE_CARD, NULL);
 }
 
-void LayerBattleFieldDB::onEnter()
+void LayerBattleField::onEnter()
 {
 	Layer::onEnter();
 
 	// 注册碰撞检测监听事件
 	EventListenerPhysicsContact* contactListener = EventListenerPhysicsContact::create();
-	contactListener->onContactBegin = CC_CALLBACK_1(LayerBattleFieldDB::onContact, this);
+	contactListener->onContactBegin = CC_CALLBACK_1(LayerBattleField::onContact, this);
 	EventDispatcher* eventDispatcher = Director::getInstance()->getEventDispatcher();
 	eventDispatcher->addEventListenerWithFixedPriority(contactListener, 1);
 
 }
 
 // 碰撞检测回调函数
-bool LayerBattleFieldDB::onContact(PhysicsContact& contact)
+bool LayerBattleField::onContact(PhysicsContact& contact)
 {
 	log("onContact");
 

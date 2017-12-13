@@ -1,10 +1,10 @@
-#include "LayerBattleFieldDB.h"
+#include "LayerBattleField.h"
 #include "BattleFieldWeapon_OWN.h"
 #include "LibBattleFieldGraphApi.h"
 #include "GlobalInstanceApi.h"
 
 // 更新函数
-void LayerBattleFieldDB::updateFrog(float dt)
+void LayerBattleField::updateFrog(float dt)
 {
 	// 计算迷雾分界线所在位置
 	memset(mFrogLine, 0, sizeof(int) * BATTLE_FIELD_WIDTH_IN_SQUARE);
@@ -49,7 +49,7 @@ void LayerBattleFieldDB::updateFrog(float dt)
 	}
 }
 
-void LayerBattleFieldDB::updateBFSituation(float dt)
+void LayerBattleField::updateBFSituation(float dt)
 {
 	log("LayerBattleFieldDB::updateBFSituation");
 

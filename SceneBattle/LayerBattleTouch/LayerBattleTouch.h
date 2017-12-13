@@ -16,7 +16,7 @@ public:
 	int CARD_STATUS;
 } S_CARD_STRUCT_DOUBLE_BATTLE;
 
-class LayerTouchDB : public Layer
+class LayerBattleTouch : public Layer
 {
 private:
 	int mCardBtnSwitch;
@@ -27,9 +27,9 @@ public:
 	CG_Sprite* mNextCard;
 
 public:
-	static LayerTouchDB* create();
+	static LayerBattleTouch* create();
 	bool init();
-	void initTouchMode(LayerTouchDB* layerTouchDB);
+	void initTouchMode(LayerBattleTouch* layerTouchDB);
 
 	// ³õÊ¼»¯¿¨ÅÆ
 	void initCards();

@@ -1,6 +1,6 @@
 #include "SceneSelect.h"
 #include "GlobalInstanceApi.h"
-#include "SceneDoubleBattle.h"
+#include "SceneBattle.h"
 static int a = 0;
 void SceneSelect::UpdateToBattle(float dt)
 {
@@ -18,7 +18,7 @@ void SceneSelect::UpdateToBattle(float dt)
 	else if (roomInstance->getRoomStatus() == RM_GAME_START) {
 		roomInstance->setRoomStatus(RM_GAME_IN_PROGRESS);
 		auto director = Director::getInstance();
-		auto SceneBattle = SceneDoubleBattle::createScene();
+		auto SceneBattle = SceneBattle::createScene();
 		director->pushScene(SceneBattle);
 	}
 }

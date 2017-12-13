@@ -1,7 +1,7 @@
 #pragma once
 #include "LibCommonGraphApi.h"
 #include "LibCommonUtilsApi.h"
-#include"LayerBattleFieldDB.h"
+#include"LayerBattleField.h"
 
 class BattleFieldWeapon_OWN : public CG_Sprite
 {

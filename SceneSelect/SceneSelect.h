@@ -3,8 +3,8 @@
 #include "cocos2d.h"
 #include "LibCommonGraphApi.h"
 #include "LibCommonUtilsApi.h"
-#include "LayerBattleFieldDB.h"
-#include "LayerTouchDB.h"
+#include "LayerBattleField.h"
+#include "LayerBattleTouch.h"
 #include "GlobalInstanceApi.h"
 
 class SceneSelect : public cocos2d::Scene

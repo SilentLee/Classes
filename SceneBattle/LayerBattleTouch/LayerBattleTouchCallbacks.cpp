@@ -1,14 +1,14 @@
-#include "LayerTouchDB.h"
-#include "LayerBattleFieldDB.h"
+#include "LayerBattleTouch.h"
+#include "LayerBattleField.h"
 #include "BattleFieldWeapon_OWN.h"
 #include "ProtocolHeader.h"
 
-void LayerTouchDB::BtnCardCallback(int key)
+void LayerBattleTouch::BtnCardCallback(int key)
 {
 	mCardBtnSwitch = key;
 }
 
-void LayerTouchDB::onTouchesBegan(const std::vector<Touch*>& touches, Event *unused_event)
+void LayerBattleTouch::onTouchesBegan(const std::vector<Touch*>& touches, Event *unused_event)
 {
 	log("touch began");
 
@@ -26,14 +26,14 @@ void LayerTouchDB::onTouchesBegan(const std::vector<Touch*>& touches, Event *unu
 			int posY = touch->getLocation().y;
 
 			int discardType = mBtnCards[mCardBtnSwitch]->getCardType();
-			LayerBattleFieldDB* layerBattleFieldDB = (LayerBattleFieldDB*)this->getParent()->getChildByName("layerBattleFieldDB");
+			LayerBattleField* layerBattleField = (LayerBattleField*)this->getParent()->getChildByName("layerBattleFieldDB");
 			
-			layerBattleFieldDB->previewWeaponWithAbsolutePosOnBegan(discardType, posX, posY);
+			layerBattleField->previewWeaponWithAbsolutePosOnBegan(discardType, posX, posY);
 		}
 	}
 }
 
-void LayerTouchDB::onTouchesMoved(const std::vector<Touch*>& touches, Event *unused_event)
+void LayerBattleTouch::onTouchesMoved(const std::vector<Touch*>& touches, Event *unused_event)
 {
 	log("touch move");
 
@@ -50,14 +50,14 @@ void LayerTouchDB::onTouchesMoved(const std::vector<Touch*>& touches, Event *unu
 		int posX = touch->getLocation().x;
 		int posY = touch->getLocation().y;
 
-		LayerBattleFieldDB* layerBattleFieldDB = (LayerBattleFieldDB*)this->getParent()->getChildByName("layerBattleFieldDB");
+		LayerBattleField* layerBattleField = (LayerBattleField*)this->getParent()->getChildByName("layerBattleFieldDB");
 
 		// 获取在战场中加入的武器并设置 透明度 位置
-		layerBattleFieldDB->previewWeaponWithAbsolutePosOnMoved(posX, posY);
+		layerBattleField->previewWeaponWithAbsolutePosOnMoved(posX, posY);
 	}
 }
 
-void LayerTouchDB::onTouchesEnded(const std::vector<Touch*>& touches, Event *unused_event)
+void LayerBattleTouch::onTouchesEnded(const std::vector<Touch*>& touches, Event *unused_event)
 {
 	log("touch end");
 
@@ -76,20 +76,20 @@ void LayerTouchDB::onTouchesEnded(const std::vector<Touch*>& touches, Event *unu
 
 		int discardType = discard();
 
-		LayerBattleFieldDB* layerBattleFieldDB = (LayerBattleFieldDB*)this->getParent()->getChildByName("layerBattleFieldDB");
-		layerBattleFieldDB->previewWeaponWithAbsolutePosOnEnded();
+		LayerBattleField* layerBattleField = (LayerBattleField*)this->getParent()->getChildByName("layerBattleFieldDB");
+		layerBattleField->previewWeaponWithAbsolutePosOnEnded();
 	}
 }
 
-void LayerTouchDB::onTouchesCancelled(const std::vector<Touch*>&touches, Event *unused_event)
+void LayerBattleTouch::onTouchesCancelled(const std::vector<Touch*>&touches, Event *unused_event)
 {
 	log("onTouchesCancelled");
-	LayerBattleFieldDB* layerBattleFieldDB = (LayerBattleFieldDB*)this->getParent()->getChildByName("layerBattleFieldDB");
-	layerBattleFieldDB->previewWeaponWithAbsolutePosCancelled();
+	LayerBattleField* layerBattleField = (LayerBattleField*)this->getParent()->getChildByName("layerBattleFieldDB");
+	layerBattleField->previewWeaponWithAbsolutePosCancelled();
 }
 
 // 出牌处理函数
-int LayerTouchDB::discard()
+int LayerBattleTouch::discard()
 {
 	if (mCardBtnSwitch == BTN_CARD_NONE)
 	{

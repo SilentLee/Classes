@@ -1,6 +1,6 @@
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
-#include "SceneDoubleBattle.h"
+#include "SceneBattle.h"
 #include "SceneSelect.h"
 #include "GlobalInstanceApi.h"
 

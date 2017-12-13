@@ -1,4 +1,4 @@
-#include "LayerBattleFieldDB.h"
+#include "LayerBattleField.h"
 #include "BattleFieldWeapon_OWN.h"
 #include "LibBattleFieldGraphApi.h"
 #include "BattleFieldWeapon_OPPO.h"
@@ -6,7 +6,7 @@
 
 // 布设兵力预览函数
 // 与 onTouchBegan 配合使用
-void LayerBattleFieldDB::previewWeaponWithAbsolutePosOnBegan(int weaponType, int posX, int posY)
+void LayerBattleField::previewWeaponWithAbsolutePosOnBegan(int weaponType, int posX, int posY)
 {
 	Node* previewWeapon = NULL;
 
@@ -73,7 +73,7 @@ void LayerBattleFieldDB::previewWeaponWithAbsolutePosOnBegan(int weaponType, int
 
 // 布设兵力预览函数
 // 与 onTouchMoved 配合使用
-void LayerBattleFieldDB::previewWeaponWithAbsolutePosOnMoved(float posX, float posY)
+void LayerBattleField::previewWeaponWithAbsolutePosOnMoved(float posX, float posY)
 {
 	BattleFieldWeapon_OWN* previewWeapon = (BattleFieldWeapon_OWN*)this->getChildByName("previewWeapon");
 	previewWeapon->setOpacity(150);
@@ -82,7 +82,7 @@ void LayerBattleFieldDB::previewWeaponWithAbsolutePosOnMoved(float posX, float p
 
 // 布设兵力预览函数
 // 与 onTouchEnded 配合使用
-void LayerBattleFieldDB::previewWeaponWithAbsolutePosOnEnded()
+void LayerBattleField::previewWeaponWithAbsolutePosOnEnded()
 {
 	CUserInstance* userInstance = CUserInstance::getInstance();
 
@@ -112,7 +112,7 @@ void LayerBattleFieldDB::previewWeaponWithAbsolutePosOnEnded()
 
 // 布设兵力预览函数
 // 与 onTouchCancelled 配合使用
-void LayerBattleFieldDB::previewWeaponWithAbsolutePosCancelled()
+void LayerBattleField::previewWeaponWithAbsolutePosCancelled()
 {
 	this->removeChildByName("previewWeapon");
 }
@@ -122,7 +122,7 @@ void LayerBattleFieldDB::previewWeaponWithAbsolutePosCancelled()
 // 宽度 1080
 // 高度 1920
 // 坐标需要转换一下 将武器由 从下向上飞行 转换为 从上向下飞行
-void LayerBattleFieldDB::arrangeEnemyWeaponWithAbsolutePos(ENUM_TROOPS troops, int weaponType, int posX, int posY, int weaponTag)
+void LayerBattleField::arrangeEnemyWeaponWithAbsolutePos(ENUM_TROOPS troops, int weaponType, int posX, int posY, int weaponTag)
 {
 	// 根据玩家当前属于蓝方还是红方 重新计算加入武器在客户端战场态势显示中的位置坐标
 	CUserInstance* userInstance = CUserInstance::getInstance();
@@ -194,7 +194,7 @@ void LayerBattleFieldDB::arrangeEnemyWeaponWithAbsolutePos(ENUM_TROOPS troops, i
 // 坐标幅度
 // 宽度 1080
 // 高度 1920
-void LayerBattleFieldDB::arrangeOwnWeaponWithAbsolutePos(ENUM_TROOPS troops, int weaponType, int posX, int posY, int weaponTag)
+void LayerBattleField::arrangeOwnWeaponWithAbsolutePos(ENUM_TROOPS troops, int weaponType, int posX, int posY, int weaponTag)
 {
 	// 根据玩家当前属于蓝方还是红方 重新计算加入武器在客户端战场态势显示中的位置坐标
 	CUserInstance* userInstance = CUserInstance::getInstance();

@@ -3,10 +3,10 @@
 #include "cocos2d.h"
 #include "LibCommonGraphApi.h"
 #include "LibCommonUtilsApi.h"
-#include "LayerBattleFieldDB.h"
-#include "LayerTouchDB.h"
+#include "LayerBattleField.h"
+#include "LayerBattleTouch.h"
 
-class SceneDoubleBattle : public cocos2d::Scene
+class SceneBattle : public cocos2d::Scene
 {
 public:
     static cocos2d::Scene* createScene();
@@ -14,5 +14,5 @@ public:
     virtual bool init();
     
     // implement the "static create()" method manually
-    CREATE_FUNC(SceneDoubleBattle);
+    CREATE_FUNC(SceneBattle);
 };

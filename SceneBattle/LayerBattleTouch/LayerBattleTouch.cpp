@@ -1,8 +1,8 @@
-#include "LayerTouchDB.h"
+#include "LayerBattleTouch.h"
 
-LayerTouchDB* LayerTouchDB::create()
+LayerBattleTouch* LayerBattleTouch::create()
 {
-	LayerTouchDB* ret = new LayerTouchDB();
+	LayerBattleTouch* ret = new LayerBattleTouch();
 	if (ret && ret->init());
 	{
 		ret->autorelease();
@@ -12,7 +12,7 @@ LayerTouchDB* LayerTouchDB::create()
 	return nullptr;
 }
 
-bool LayerTouchDB::init()
+bool LayerBattleTouch::init()
 {
 	Layer::init();
 	initTouchMode(this);
@@ -22,13 +22,13 @@ bool LayerTouchDB::init()
 };
 
 // 设置触控模式
-void LayerTouchDB::initTouchMode(LayerTouchDB* layerTouchDB)
+void LayerBattleTouch::initTouchMode(LayerBattleTouch* layerTouchDB)
 {
 	layerTouchDB->setTouchEnabled(true);
 	setTouchMode(Touch::DispatchMode::ALL_AT_ONCE);
 }
 
-void LayerTouchDB::initCards()
+void LayerBattleTouch::initCards()
 {
 	// 卡牌选择开关置0
 	mCardBtnSwitch = BTN_CARD_NONE;
@@ -49,7 +49,7 @@ void LayerTouchDB::initCards()
 		mBtnCards[i] = BFG_BtnCard::createWithRelativePos(mStructCards[i].CARD_TYPE, 0.33 + i * 0.15, 0.05);
 		mBtnCards[i]->setCardType(mStructCards[i].CARD_TYPE);
 		mStructCards[i].CARD_STATUS = CARD_STATUS_OCCUPIED;
-		mBtnCards[i]->addClickEventListener(CC_CALLBACK_0(LayerTouchDB::BtnCardCallback, this, i));
+		mBtnCards[i]->addClickEventListener(CC_CALLBACK_0(LayerBattleTouch::BtnCardCallback, this, i));
 		this->addChild(mBtnCards[i], 1, i);
 	}
 
