@@ -5,6 +5,7 @@
 
 // 战场方格大小
 #define BATTLE_FIELD_SQUARE_WIDTH							108.0f
+//#define BATTLE_FIELD_SQUARE_WIDTH							216.0f
 
 // 战场方格幅度
 #define BATTLE_FIELD_WIDTH_IN_SQUARE							10

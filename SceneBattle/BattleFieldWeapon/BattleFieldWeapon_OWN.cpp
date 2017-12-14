@@ -78,40 +78,40 @@ void BattleFieldWeapon_OWN::initPhysicsBody()
 }
 
 // 获取战场坐标
-Vec2 BattleFieldWeapon_OWN::getCoordinateInBF()
+Vec2 BattleFieldWeapon_OWN::getCoordinate()
 {
 	// 刷新战场坐标
 	Vec2 pos = this->getAdpPosWithAbsoluteValue();
 	pos.add(Vec2(0, -3 * BATTLE_FIELD_SQUARE_WIDTH));
 	int mCoordinateXInBF = pos.x / BATTLE_FIELD_SQUARE_WIDTH;
 	int mCoordinateYInBF = pos.y / BATTLE_FIELD_SQUARE_WIDTH;
-	mCoordinateInBF = Vec2(mCoordinateXInBF, mCoordinateYInBF);
+	mCoordinate = Vec2(mCoordinateXInBF, mCoordinateYInBF);
 
-	return mCoordinateInBF;
+	return mCoordinate;
 }
 
-float BattleFieldWeapon_OWN::getCoordinateXInBF()
+float BattleFieldWeapon_OWN::getCoordinateX()
 {
 	// 刷新战场坐标
 	Vec2 pos = this->getAdpPosWithAbsoluteValue();
 	pos.add(Vec2(0, -3 * BATTLE_FIELD_SQUARE_WIDTH));
 	int mCoordinateXInBF = pos.x / BATTLE_FIELD_SQUARE_WIDTH;
 	int mCoordinateYInBF = pos.y / BATTLE_FIELD_SQUARE_WIDTH;
-	mCoordinateInBF = Vec2(mCoordinateXInBF, mCoordinateYInBF);
+	mCoordinate = Vec2(mCoordinateXInBF, mCoordinateYInBF);
 
-	return mCoordinateInBF.x;
+	return mCoordinate.x;
 }
 
-float BattleFieldWeapon_OWN::getCoordinateYInBF()
+float BattleFieldWeapon_OWN::getCoordinateY()
 {
 	// 刷新战场坐标
 	Vec2 pos = this->getAdpPosWithAbsoluteValue();
 	pos.add(Vec2(0, -3 * BATTLE_FIELD_SQUARE_WIDTH));
 	int mCoordinateXInBF = pos.x / BATTLE_FIELD_SQUARE_WIDTH;
 	int mCoordinateYInBF = pos.y / BATTLE_FIELD_SQUARE_WIDTH;
-	mCoordinateInBF = Vec2(mCoordinateXInBF, mCoordinateYInBF);
+	mCoordinate = Vec2(mCoordinateXInBF, mCoordinateYInBF);
 
-	return mCoordinateInBF.y;
+	return mCoordinate.y;
 }
 
 // 设置方格坐标
@@ -164,7 +164,7 @@ void BattleFieldWeapon_OWN::update(float dt)
 
 	this->setRotation(0);
 
-	log("CoordinateX = %d, CoordinateY = %d", (int)this->getCoordinateXInBF(), (int)this->getCoordinateYInBF());
+	log("CoordinateX = %d, CoordinateY = %d", (int)this->getCoordinateX(), (int)this->getCoordinateY());
 
 	return;
 }
