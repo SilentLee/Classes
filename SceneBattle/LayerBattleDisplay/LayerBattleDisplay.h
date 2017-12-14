@@ -10,7 +10,7 @@
 USING_NS_CC;
 extern class BattleFieldWeapon_OWN;
 
-class LayerBattleField : public Layer
+class LayerBattleDisplay : public Layer
 {
 private:
 	// ’Ω≥°√‘ŒÌ
@@ -24,7 +24,7 @@ private:
 	int mFrogLine[BATTLE_FIELD_WIDTH_IN_SQUARE];
 
 public:
-	static LayerBattleField* create();
+	static LayerBattleDisplay* create();
 	bool init();
 	void onEnter();
 

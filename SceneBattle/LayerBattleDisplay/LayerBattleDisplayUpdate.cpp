@@ -4,7 +4,7 @@
 #include "GlobalInstanceApi.h"
 
 // 更新函数
-void LayerBattleField::updateFrog(float dt)
+void LayerBattleDisplay::updateFrog(float dt)
 {
 	// 计算迷雾分界线所在位置
 	memset(mFrogLine, 0, sizeof(int) * BATTLE_FIELD_WIDTH_IN_SQUARE);
@@ -49,7 +49,7 @@ void LayerBattleField::updateFrog(float dt)
 	}
 }
 
-void LayerBattleField::updateBFSituation(float dt)
+void LayerBattleDisplay::updateBFSituation(float dt)
 {
 	log("LayerBattleFieldDB::updateBFSituation");
 

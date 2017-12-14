@@ -14,8 +14,8 @@ Scene* SceneBattle::createScene()
 	scene->addChild(bgDoubleBattleScene);
 
 	// 创建对战层
-	LayerBattleField* layerBattleField = LayerBattleField::create();
-	scene->addChild(layerBattleField, 1, "layerBattleField");
+	LayerBattleDisplay* layerBattleDisplay = LayerBattleDisplay::create();
+	scene->addChild(layerBattleDisplay, 1, "layerBattleDisplay");
 
 	// 创建触控层
 	LayerBattleTouch* layerBattleTouch = LayerBattleTouch::create();

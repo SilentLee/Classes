@@ -3,9 +3,9 @@
 #include "LibBattleFieldGraphApi.h"
 
 
-LayerBattleField* LayerBattleField::create()
+LayerBattleDisplay* LayerBattleDisplay::create()
 {
-	LayerBattleField* ret = new LayerBattleField();
+	LayerBattleDisplay* ret = new LayerBattleDisplay();
 	if (ret && ret->init());
 	{
 		ret->autorelease();
@@ -15,13 +15,13 @@ LayerBattleField* LayerBattleField::create()
 	return nullptr;
 }
 
-bool LayerBattleField::init()
+bool LayerBattleDisplay::init()
 { 
 	Layer::init();
 	// 添加战场迷雾
 	addFog(0.05, 0.3, BATTLE_FIELD_WIDTH_IN_SQUARE, BATTLE_FIELD_HEIGHT_IN_SQUARE, 0.1, 0.05625);
 	// 注册战场迷雾更新函数
-	this->schedule(schedule_selector(LayerBattleField::updateFrog), 1 / 60);
+	this->schedule(schedule_selector(LayerBattleDisplay::updateFrog), 1 / 60);
 
 	// 添加防线
 	addDefenseLine();
@@ -30,12 +30,12 @@ bool LayerBattleField::init()
 	//registNotification();
 
 	// 注册战场态势更新函数
-	this->schedule(schedule_selector(LayerBattleField::updateBFSituation), 1 / 60);
+	this->schedule(schedule_selector(LayerBattleDisplay::updateBFSituation), 1 / 60);
 	return true;
 };
 
 // 后续更改为坐标与长宽自适应方式？？？？？
-void LayerBattleField::addFog(float originX, float originY, int width, int height, float stepX, float stepY)
+void LayerBattleDisplay::addFog(float originX, float originY, int width, int height, float stepX, float stepY)
 {
 	// 创建战场迷雾
 	for (int i = 0; i < width; i++)
@@ -51,7 +51,7 @@ void LayerBattleField::addFog(float originX, float originY, int width, int heigh
 	}
 }
 
-void LayerBattleField::addDefenseLine()
+void LayerBattleDisplay::addDefenseLine()
 {
 	// 创建我方防线
 	CG_Sprite* defenseLineOwn = CG_Sprite::createWithRelativePos(CU_ImgLoader::getImg(IMG_URL_DEFENSE_LINE).c_str(), 0.5, 0.15);
@@ -62,26 +62,26 @@ void LayerBattleField::addDefenseLine()
 	this->addChild(defenseLineOppo);
 }
 
-void LayerBattleField::registNotification()
+void LayerBattleDisplay::registNotification()
 {
 	// 注册卡牌布置到战场时的通知函数
 	//__NotificationCenter::getInstance()->addObserver(this, callfuncO_selector(LayerBattleFieldDB::arrangeCardCallback), MSG_ARRANGE_CARD, NULL);
 }
 
-void LayerBattleField::onEnter()
+void LayerBattleDisplay::onEnter()
 {
 	Layer::onEnter();
 
 	// 注册碰撞检测监听事件
 	EventListenerPhysicsContact* contactListener = EventListenerPhysicsContact::create();
-	contactListener->onContactBegin = CC_CALLBACK_1(LayerBattleField::onContact, this);
+	contactListener->onContactBegin = CC_CALLBACK_1(LayerBattleDisplay::onContact, this);
 	EventDispatcher* eventDispatcher = Director::getInstance()->getEventDispatcher();
 	eventDispatcher->addEventListenerWithFixedPriority(contactListener, 1);
 
 }
 
 // 碰撞检测回调函数
-bool LayerBattleField::onContact(PhysicsContact& contact)
+bool LayerBattleDisplay::onContact(PhysicsContact& contact)
 {
 	log("onContact");
 

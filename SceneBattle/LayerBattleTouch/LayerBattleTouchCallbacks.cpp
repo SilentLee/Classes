@@ -1,5 +1,5 @@
 #include "LayerBattleTouch.h"
-#include "LayerBattleField.h"
+#include "LayerBattleDisplay.h"
 #include "ProtocolHeader.h"
 
 void LayerBattleTouch::BtnCardCallback(int key)
@@ -25,9 +25,9 @@ void LayerBattleTouch::onTouchesBegan(const std::vector<Touch*>& touches, Event 
 			int posY = touch->getLocation().y;
 
 			int discardType = mBtnCards[mCardBtnSwitch]->getCardType();
-			LayerBattleField* layerBattleField = (LayerBattleField*)this->getParent()->getChildByName("layerBattleField");
+			LayerBattleDisplay* layerBattleDisplay = (LayerBattleDisplay*)this->getParent()->getChildByName("layerBattleDisplay");
 			
-			layerBattleField->previewWeaponWithAbsolutePosOnBegan(discardType, posX, posY);
+			layerBattleDisplay->previewWeaponWithAbsolutePosOnBegan(discardType, posX, posY);
 		}
 	}
 }
@@ -49,10 +49,10 @@ void LayerBattleTouch::onTouchesMoved(const std::vector<Touch*>& touches, Event 
 		int posX = touch->getLocation().x;
 		int posY = touch->getLocation().y;
 
-		LayerBattleField* layerBattleField = (LayerBattleField*)this->getParent()->getChildByName("layerBattleField");
+		LayerBattleDisplay* layerBattleDisplay = (LayerBattleDisplay*)this->getParent()->getChildByName("layerBattleDisplay");
 
 		// 获取在战场中加入的武器并设置 透明度 位置
-		layerBattleField->previewWeaponWithAbsolutePosOnMoved(posX, posY);
+		layerBattleDisplay->previewWeaponWithAbsolutePosOnMoved(posX, posY);
 	}
 }
 
@@ -75,16 +75,16 @@ void LayerBattleTouch::onTouchesEnded(const std::vector<Touch*>& touches, Event 
 
 		int discardType = discard();
 
-		LayerBattleField* layerBattleField = (LayerBattleField*)this->getParent()->getChildByName("layerBattleField");
-		layerBattleField->previewWeaponWithAbsolutePosOnEnded();
+		LayerBattleDisplay* layerBattleDisplay = (LayerBattleDisplay*)this->getParent()->getChildByName("layerBattleDisplay");
+		layerBattleDisplay->previewWeaponWithAbsolutePosOnEnded();
 	}
 }
 
 void LayerBattleTouch::onTouchesCancelled(const std::vector<Touch*>&touches, Event *unused_event)
 {
 	log("onTouchesCancelled");
-	LayerBattleField* layerBattleField = (LayerBattleField*)this->getParent()->getChildByName("layerBattleField");
-	layerBattleField->previewWeaponWithAbsolutePosCancelled();
+	LayerBattleDisplay* layerBattleDisplay = (LayerBattleDisplay*)this->getParent()->getChildByName("layerBattleDisplay");
+	layerBattleDisplay->previewWeaponWithAbsolutePosCancelled();
 }
 
 // 出牌处理函数
