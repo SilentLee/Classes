@@ -13,13 +13,18 @@ Scene* SceneBattle::createScene()
 	CG_Background* bgDoubleBattleScene = CG_Background::create(CU_ImgLoader::getImg(IMG_URL_DB_SCENE_BG).c_str());
 	scene->addChild(bgDoubleBattleScene);
 
-	// 创建对战层
+	// 创建仿真层
+	LayerBattleSimulation* layerBattleSimulation = LayerBattleSimulation::create();
+	scene->addChild(layerBattleSimulation, 1, "layerBattleSimulation");
+	
+
+	// 创建显示层
 	LayerBattleDisplay* layerBattleDisplay = LayerBattleDisplay::create();
-	scene->addChild(layerBattleDisplay, 1, "layerBattleDisplay");
+	scene->addChild(layerBattleDisplay, 2, "layerBattleDisplay");
 
 	// 创建触控层
 	LayerBattleTouch* layerBattleTouch = LayerBattleTouch::create();
-	scene->addChild(layerBattleTouch, 2, "layerTouchDB");
+	scene->addChild(layerBattleTouch, 3, "layerTouchDB");
 
 	return scene;
 }

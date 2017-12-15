@@ -26,6 +26,7 @@ public:
 public:
 	bool initWithPosInSquare(const std::string& filename, int posX, int posY, ENUM_WEAPON_TYPE weaponType);
 	bool initWithAbsolutePos(const std::string& filename, int posX, int posY, ENUM_WEAPON_TYPE weaponType);
+
 	// 初始化物理属性参数
 	void initPhysicsBody();
 

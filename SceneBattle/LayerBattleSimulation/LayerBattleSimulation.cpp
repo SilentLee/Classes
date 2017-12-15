@@ -17,6 +17,9 @@ bool LayerBattleSimulation::init()
 	Layer::init();
 	
 	// 初始化战场地图
+	initSimulationMap();
+
+	
 
 	return true;
 };
@@ -26,7 +29,7 @@ void LayerBattleSimulation::initSimulationMap()
 {
 	for (int index_width = 0; index_width < WIDTH_OF_BATTLE_SIMULATION_MAP; index_width++)
 	{
-		for (int index_height = 0; index_height < HEIGHT_OF_BATTLE_SIMULATION_MAP; index_width++)
+		for (int index_height = 0; index_height < HEIGHT_OF_BATTLE_SIMULATION_MAP; index_height++)
 		{
 			// 创建地图方格
 			mBattleSimulationMapCellArray[index_width][index_height] = CBattleSimulationMapCell::createWithCoordinate(index_width, index_height);

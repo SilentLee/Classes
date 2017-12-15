@@ -39,11 +39,10 @@ private:
 
 public:
 	// 创建函数
-	//static CBattleSimulationMapCell* createWithAbsolutePos(float posX, float posY);
 	static CBattleSimulationMapCell* createWithCoordinate(int coordinateX, int coordinateY);
 	// 初始化函数
 	// 在战场显示坐标系下进行坐标设定 1920 * 1080
-	bool initWithAbsolutePos(float posX, float posY);
+	bool initWithCoordinate(int coordinateX, int coordinateY);
 
 // 存取函数
 public:

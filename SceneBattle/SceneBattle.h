@@ -5,6 +5,7 @@
 #include "LibCommonUtilsApi.h"
 #include "LayerBattleDisplay.h"
 #include "LayerBattleTouch.h"
+#include "LayerBattleSimulation.h"
 
 class SceneBattle : public cocos2d::Scene
 {

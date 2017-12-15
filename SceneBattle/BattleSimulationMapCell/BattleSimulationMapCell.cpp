@@ -19,10 +19,7 @@ CBattleSimulationMapCell* CBattleSimulationMapCell::createWithCoordinate(int coo
 {
 	CBattleSimulationMapCell* ret = new CBattleSimulationMapCell();
 
-	float posX = (coordinateX + 0.5) * WIDTH_OF_MAP_CELL;
-	float posY = (coordinateY + 0, 5) * WIDTH_OF_MAP_CELL;
-
-	if (ret && ret->initWithAbsolutePos(posX, posY))
+	if (ret && ret->initWithCoordinate(coordinateX, coordinateY))
 	{
 		ret->autorelease();
 		return ret;
@@ -33,17 +30,25 @@ CBattleSimulationMapCell* CBattleSimulationMapCell::createWithCoordinate(int coo
 
 // 初始化函数
 // 在战场显示坐标系下进行坐标设定 1920 * 1080
-bool CBattleSimulationMapCell::initWithAbsolutePos(float posX, float posY)
+bool CBattleSimulationMapCell::initWithCoordinate(int coordinateX, int coordinateY)
 {
 	// 适配器初始化
 	node = this;
 
+	// 计算战场显示坐标系下的坐标
+	float posX = (coordinateX + 0.5) * WIDTH_OF_MAP_CELL;
+	float posY = (coordinateY + 0.5) * WIDTH_OF_MAP_CELL;
+
 	// 父类初始化
 	CG_Sprite::initWithAbsolutePos(CU_ImgLoader::getFogImg(1).c_str(), posX, posY);
 
+	// 根据战场仿真地图大小 对地图方格进行缩放
+	float SizeFactor = WIDTH_OF_MAP_CELL / this->getContentSize().width;
+	this->setSizeAdp(SizeFactor);
+
 	// 设置战场方格的仿真坐标
-	mCoordinate.x = posX / WIDTH_OF_MAP_CELL;
-	mCoordinate.y = posY / WIDTH_OF_MAP_CELL;
+	mCoordinate.x = coordinateX;
+	mCoordinate.y = coordinateY;
 
 	// 重置位于方格兵力的武器类型
 	mWeaponType = WP_TYPE_NONE;
