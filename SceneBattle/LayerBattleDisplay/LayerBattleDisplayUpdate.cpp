@@ -4,50 +4,50 @@
 #include "GlobalInstanceApi.h"
 
 // 更新函数
-void LayerBattleDisplay::updateFrog(float dt)
-{
-	// 计算迷雾分界线所在位置
-	memset(mFrogLine, 0, sizeof(int) * BATTLE_FIELD_WIDTH_IN_SQUARE);
-
-	for (int i = 0; i < mWeaponsOwn.size(); i++)
-	{
-		int posX = mWeaponsOwn[i]->getPosXInSquare();
-		int posY = mWeaponsOwn[i]->getPosYInSquare();
-		int rangeDec = mWeaponsOwn[i]->getPropertyWp().RANGE_DEC;
-
-		mFrogLine[max(0, posX - 1)] = max(mFrogLine[max(0, posX - 1)], posY + PARAM_RANGE_DEC_REVISE_VALUE + rangeDec);
-		mFrogLine[posX] = max(mFrogLine[posX], posY + PARAM_RANGE_DEC_REVISE_VALUE + rangeDec);
-		mFrogLine[min(posX + 1, BATTLE_FIELD_WIDTH_IN_SQUARE)] =
-			max(mFrogLine[min(posX + 1, BATTLE_FIELD_WIDTH_IN_SQUARE)], posY + PARAM_RANGE_DEC_REVISE_VALUE + rangeDec);
-	}
-
-	// 设置战场迷雾显示范围
-	for (int indexX = 0; indexX < BATTLE_FIELD_WIDTH_IN_SQUARE; indexX++)
-	{
-		for (int indexY = 0; indexY < BATTLE_FIELD_HEIGHT_IN_SQUARE; indexY++)
-		{
-			if (indexY <= mFrogLine[indexX])
-			{
-				mFrogOfWarArray[indexX][indexY]->setVisible(false);
-			}
-			else {
-				mFrogOfWarArray[indexX][indexY]->setVisible(true);
-			}
-		}
-	}
-
-	// 用于测试迷雾功能的代码
-	for (vector<BattleFieldWeapon_OWN*>::iterator iter = mWeaponsOwn.begin(); iter != mWeaponsOwn.end(); iter++) {
-		BattleFieldWeapon_OWN* weapon = (BattleFieldWeapon_OWN*)*iter;
-		if (weapon->getPosYInSquare() == 10)
-		{
-			mWeaponsOwn.erase(iter);
-			//weapon->retain();
-			weapon->removeFromParent();
-			return;
-		}
-	}
-}
+//void LayerBattleDisplay::updateFrog(float dt)
+//{
+//	// 计算迷雾分界线所在位置
+//	memset(mFrogLine, 0, sizeof(int) * BATTLE_FIELD_WIDTH_IN_SQUARE);
+//
+//	for (int i = 0; i < mWeaponsOwn.size(); i++)
+//	{
+//		int posX = mWeaponsOwn[i]->GetCoordinate().x;
+//		int posY = mWeaponsOwn[i]->GetCoordinate().y;
+//		int rangeDec = mWeaponsOwn[i]->GetPropertyWp().RANGE_DEC;
+//
+//		mFrogLine[max(0, posX - 1)] = max(mFrogLine[max(0, posX - 1)], posY + PARAM_RANGE_DEC_REVISE_VALUE + rangeDec);
+//		mFrogLine[posX] = max(mFrogLine[posX], posY + PARAM_RANGE_DEC_REVISE_VALUE + rangeDec);
+//		mFrogLine[min(posX + 1, BATTLE_FIELD_WIDTH_IN_SQUARE)] =
+//			max(mFrogLine[min(posX + 1, BATTLE_FIELD_WIDTH_IN_SQUARE)], posY + PARAM_RANGE_DEC_REVISE_VALUE + rangeDec);
+//	}
+//
+//	// 设置战场迷雾显示范围
+//	for (int indexX = 0; indexX < BATTLE_FIELD_WIDTH_IN_SQUARE; indexX++)
+//	{
+//		for (int indexY = 0; indexY < BATTLE_FIELD_HEIGHT_IN_SQUARE; indexY++)
+//		{
+//			if (indexY <= mFrogLine[indexX])
+//			{
+//				mFrogOfWarArray[indexX][indexY]->setVisible(false);
+//			}
+//			else {
+//				mFrogOfWarArray[indexX][indexY]->setVisible(true);
+//			}
+//		}
+//	}
+//
+//	// 用于测试迷雾功能的代码
+//	for (vector<BattleFieldWeapon_OWN*>::iterator iter = mWeaponsOwn.begin(); iter != mWeaponsOwn.end(); iter++) {
+//		BattleFieldWeapon_OWN* weapon = (BattleFieldWeapon_OWN*)*iter;
+//		if (weapon->GetCoordinate().y == 10)
+//		{
+//			mWeaponsOwn.erase(iter);
+//			//weapon->retain();
+//			weapon->removeFromParent();
+//			return;
+//		}
+//	}
+//}
 
 void LayerBattleDisplay::updateBFSituation(float dt)
 {
@@ -77,11 +77,11 @@ void LayerBattleDisplay::updateBFSituation(float dt)
 		
 		// 若武器与当前客户端玩家同属一方 加入本方阵营
 		if (troopsIn == userInstance->getTroopsIn()) {
-			arrangeOwnWeaponWithAbsolutePos(troopsIn, weaponType, posX, posY, weaponTag);
+			arrangeOwnWeaponWithPosition(troopsIn, weaponType, posX, posY, weaponTag);
 		}
 		// 若武器与当前客户端玩家不同属一方 加入对方阵营
 		else {
-			arrangeEnemyWeaponWithAbsolutePos(troopsIn, weaponType, posX, posY, weaponTag);
+			arrangeEnemyWeaponWithPosition(troopsIn, weaponType, posX, posY, weaponTag);
 		}
 	}
 
@@ -125,20 +125,20 @@ void LayerBattleDisplay::updateBFSituation(float dt)
 		for (int i = 0; i < SizeOfBlueTroopsData; i++) {
 			this->removeChildByTag(BlueTroopsData[i].GetWeaponTag());
 			if (BlueTroopsData[i].GetTroopsIn() == userInstance->getTroopsIn()) {
-				arrangeOwnWeaponWithAbsolutePos((ENUM_TROOPS)BlueTroopsData[i].GetTroopsIn(), BlueTroopsData[i].GetProperty().WP_TYPE, BlueTroopsData[i].GetPosX(), BlueTroopsData[i].GetPosY(), BlueTroopsData[i].GetWeaponTag());
+				arrangeOwnWeaponWithPosition((ENUM_TROOPS)BlueTroopsData[i].GetTroopsIn(), BlueTroopsData[i].GetProperty().WP_TYPE, BlueTroopsData[i].GetPosX(), BlueTroopsData[i].GetPosY(), BlueTroopsData[i].GetWeaponTag());
 			}
 			else {
-				arrangeEnemyWeaponWithAbsolutePos((ENUM_TROOPS)BlueTroopsData[i].GetTroopsIn(), BlueTroopsData[i].GetProperty().WP_TYPE, BlueTroopsData[i].GetPosX(), BlueTroopsData[i].GetPosY(), BlueTroopsData[i].GetWeaponTag());
+				arrangeEnemyWeaponWithPosition((ENUM_TROOPS)BlueTroopsData[i].GetTroopsIn(), BlueTroopsData[i].GetProperty().WP_TYPE, BlueTroopsData[i].GetPosX(), BlueTroopsData[i].GetPosY(), BlueTroopsData[i].GetWeaponTag());
 			}
 		}
 
 		for (int i = 0; i < SizeOfRedTroopsData; i++) {
 			this->removeChildByTag(RedTroopsData[i].GetWeaponTag());
 			if (RedTroopsData[i].GetTroopsIn() == userInstance->getTroopsIn()) {
-				arrangeOwnWeaponWithAbsolutePos((ENUM_TROOPS)RedTroopsData[i].GetTroopsIn(), RedTroopsData[i].GetProperty().WP_TYPE, RedTroopsData[i].GetPosX(), RedTroopsData[i].GetPosY(), RedTroopsData[i].GetWeaponTag());
+				arrangeOwnWeaponWithPosition((ENUM_TROOPS)RedTroopsData[i].GetTroopsIn(), RedTroopsData[i].GetProperty().WP_TYPE, RedTroopsData[i].GetPosX(), RedTroopsData[i].GetPosY(), RedTroopsData[i].GetWeaponTag());
 			}
 			else {
-				arrangeEnemyWeaponWithAbsolutePos((ENUM_TROOPS)RedTroopsData[i].GetTroopsIn(), RedTroopsData[i].GetProperty().WP_TYPE, RedTroopsData[i].GetPosX(), RedTroopsData[i].GetPosY(), RedTroopsData[i].GetWeaponTag());
+				arrangeEnemyWeaponWithPosition((ENUM_TROOPS)RedTroopsData[i].GetTroopsIn(), RedTroopsData[i].GetProperty().WP_TYPE, RedTroopsData[i].GetPosX(), RedTroopsData[i].GetPosY(), RedTroopsData[i].GetWeaponTag());
 			}
 		}
 

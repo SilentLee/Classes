@@ -21,13 +21,13 @@ void LayerBattleTouch::onTouchesBegan(const std::vector<Touch*>& touches, Event 
 	{
 		auto touch = item;
 		if (touch) {
-			int posX = touch->getLocation().x;
-			int posY = touch->getLocation().y;
+			float posX = transTouch(touch).x;
+			float posY = transTouch(touch).y;
 
 			int discardType = mBtnCards[mCardBtnSwitch]->getCardType();
 			LayerBattleDisplay* layerBattleDisplay = (LayerBattleDisplay*)this->getParent()->getChildByName("layerBattleDisplay");
 			
-			layerBattleDisplay->previewWeaponWithAbsolutePosOnBegan(discardType, posX, posY);
+			layerBattleDisplay->previewWeaponWithPositionOnBegan(discardType, posX, posY);
 		}
 	}
 }
@@ -46,13 +46,13 @@ void LayerBattleTouch::onTouchesMoved(const std::vector<Touch*>& touches, Event 
 	{
 		auto touch = item;
 
-		int posX = touch->getLocation().x;
-		int posY = touch->getLocation().y;
+		float posX = transTouch(touch).x;
+		float posY = transTouch(touch).y;
 
 		LayerBattleDisplay* layerBattleDisplay = (LayerBattleDisplay*)this->getParent()->getChildByName("layerBattleDisplay");
 
 		// 获取在战场中加入的武器并设置 透明度 位置
-		layerBattleDisplay->previewWeaponWithAbsolutePosOnMoved(posX, posY);
+		layerBattleDisplay->previewWeaponWithPositionOnMoved(posX, posY);
 	}
 }
 
@@ -70,13 +70,10 @@ void LayerBattleTouch::onTouchesEnded(const std::vector<Touch*>& touches, Event 
 	{
 		auto touch = item;
 
-		int posX = touch->getLocation().x;
-		int posY = touch->getLocation().y;
-
 		int discardType = discard();
 
 		LayerBattleDisplay* layerBattleDisplay = (LayerBattleDisplay*)this->getParent()->getChildByName("layerBattleDisplay");
-		layerBattleDisplay->previewWeaponWithAbsolutePosOnEnded();
+		layerBattleDisplay->previewWeaponWithPositionOnEnded();
 	}
 }
 
@@ -84,7 +81,7 @@ void LayerBattleTouch::onTouchesCancelled(const std::vector<Touch*>&touches, Eve
 {
 	log("onTouchesCancelled");
 	LayerBattleDisplay* layerBattleDisplay = (LayerBattleDisplay*)this->getParent()->getChildByName("layerBattleDisplay");
-	layerBattleDisplay->previewWeaponWithAbsolutePosCancelled();
+	layerBattleDisplay->previewWeaponWithPositionCancelled();
 }
 
 // 出牌处理函数
@@ -102,7 +99,7 @@ int LayerBattleTouch::discard()
 		if (discardType == mStructCards[i].CARD_TYPE)
 		{
 			// 将使用过的卡牌放置到队尾
-			S_CARD_STRUCT_DOUBLE_BATTLE cardStruct = S_CARD_STRUCT_DOUBLE_BATTLE{ mStructCards[i].CARD_TYPE, CARD_STATUS_FREE };
+			S_CARD_STRUCT_BATTLE cardStruct = S_CARD_STRUCT_BATTLE{ mStructCards[i].CARD_TYPE, CARD_STATUS_FREE };
 			mStructCards.erase(mStructCards.begin() + i);
 			mStructCards.push_back(cardStruct);
 

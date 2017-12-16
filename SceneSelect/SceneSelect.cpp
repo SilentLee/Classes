@@ -1,6 +1,8 @@
 #include "SceneSelect.h"
 #include "SimpleAudioEngine.h"
 #include "LibCommonGraphApi.h"
+#include "LayerSelectButton.h"
+#include "LayerSelectBackground.h"
 
 USING_NS_CC;
 
@@ -29,16 +31,12 @@ bool SceneSelect::init()
 	}
 
 	// 创建场景背景
-	CG_Background* bgSelectScene = CG_Background::create(CU_ImgLoader::getImg(IMG_URL_SELECT_SCENE_BG).c_str());
-	this->addChild(bgSelectScene);
+	LayerSelectBackground* layerSelectBackground = LayerSelectBackground::create();
+	this->addChild(layerSelectBackground);
 
-	// 添加对战按钮
-	CG_Button* BtnStart = CG_Button::createWithRelativePos(CU_ImgLoader::getImg(IMG_URL_BTN_START).c_str(), 0.5, 0.5);
-	//BtnStart->addClickEventListener(CC_CALLBACK_0(SceneSelect::BtnStartCallback, this));
-	BtnStart->addClickEventListener(CC_CALLBACK_0(SceneSelect::BtnStartCallback, this, RM_TYPE_1V1));
-	this->addChild(BtnStart);
-
-	this->schedule(schedule_selector(SceneSelect::UpdateToBattle), 1 / 60);
+	// 创建按钮层
+	LayerSelectButton* layerSelectButton = LayerSelectButton::create();
+	this->addChild(layerSelectButton);
 
 	return true;
 }

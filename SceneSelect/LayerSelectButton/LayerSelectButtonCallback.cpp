@@ -1,7 +1,6 @@
-#include "SceneSelect.h"
-#include "GlobalInstanceApi.h"
+#include "LayerSelectButton.h"
 
-void SceneSelect::BtnStartCallback(ROOM_TYPE roomType)
+void LayerSelectButton::BtnStartCallback(ROOM_TYPE roomType)
 {
 	log("SceneSelect::BtnStartCallback");
 

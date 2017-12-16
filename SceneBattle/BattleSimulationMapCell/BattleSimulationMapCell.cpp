@@ -1,19 +1,5 @@
 #include "BattleSimulationMapCell.h"
 
-//// 创建函数
-//CBattleSimulationMapCell* CBattleSimulationMapCell::createWithAbsolutePos(float posX, float posY)
-//{
-//	CBattleSimulationMapCell* ret = new CBattleSimulationMapCell();
-//	
-//	if (ret && ret->initWithAbsolutePos(posX, posY))
-//	{
-//		ret->autorelease();
-//		return ret;
-//	}
-//	CC_SAFE_DELETE(ret);
-//	return nullptr;
-//}
-
 // 创建函数 使用仿真地图坐标
 CBattleSimulationMapCell* CBattleSimulationMapCell::createWithCoordinate(int coordinateX, int coordinateY)
 {
@@ -32,19 +18,21 @@ CBattleSimulationMapCell* CBattleSimulationMapCell::createWithCoordinate(int coo
 // 在战场显示坐标系下进行坐标设定 1920 * 1080
 bool CBattleSimulationMapCell::initWithCoordinate(int coordinateX, int coordinateY)
 {
-	// 适配器初始化
-	node = this;
-
 	// 计算战场显示坐标系下的坐标
-	float posX = (coordinateX + 0.5) * WIDTH_OF_MAP_CELL;
-	float posY = (coordinateY + 0.5) * WIDTH_OF_MAP_CELL;
+	float posX = (coordinateX + 0.5) * WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
+	float posY = (coordinateY + 0.5) * WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
+
+	//float posX = 540;
+	//float posY = 960;
 
 	// 父类初始化
-	CG_Sprite::initWithAbsolutePos(CU_ImgLoader::getFogImg(1).c_str(), posX, posY);
+	Sprite::initWithFile(CU_ImgLoader::getFogImg(1).c_str());
+	// 设置位置
+	this->setPosition(posX, posY);
 
-	// 根据战场仿真地图大小 对地图方格进行缩放
-	float SizeFactor = WIDTH_OF_MAP_CELL / this->getContentSize().width;
-	this->setSizeAdp(SizeFactor);
+	// 自适应设置方格大小
+	float sizeFactor = WIDTH_OF_BATTLE_SIMULATION_MAP_CELL / this->getContentSize().width;
+	this->setScale(sizeFactor);
 
 	// 设置战场方格的仿真坐标
 	mCoordinate.x = coordinateX;

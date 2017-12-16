@@ -1,9 +1,9 @@
 #include "BattleFieldWeapon_OWN.h"
 
-BattleFieldWeapon_OWN* BattleFieldWeapon_OWN::createWithPosInSquare(std::string fileName, int posX, int posY, ENUM_WEAPON_TYPE weaponType)
+BattleFieldWeapon_OWN* BattleFieldWeapon_OWN::createWithCoordinate(std::string fileName, Vec2 coordinate, ENUM_WEAPON_TYPE weaponType)
 {
 	BattleFieldWeapon_OWN* ret = new BattleFieldWeapon_OWN();
-	if (ret && ret->initWithPosInSquare(fileName.c_str(), posX, posY, weaponType))
+	if (ret && ret->initWithCoordinate(fileName.c_str(), coordinate, weaponType))
 	{
 		ret->autorelease();
 		return ret;
@@ -12,10 +12,10 @@ BattleFieldWeapon_OWN* BattleFieldWeapon_OWN::createWithPosInSquare(std::string 
 	return nullptr;
 }
 
-BattleFieldWeapon_OWN* BattleFieldWeapon_OWN::createWithAbsolutePos(std::string fileName, int posX, int posY, ENUM_WEAPON_TYPE weaponType)
+BattleFieldWeapon_OWN* BattleFieldWeapon_OWN::createWithPosition(std::string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType)
 {
 	BattleFieldWeapon_OWN* ret = new BattleFieldWeapon_OWN();
-	if (ret && ret->initWithAbsolutePos(fileName.c_str(), posX, posY, weaponType))
+	if (ret && ret->initWithPosition(fileName.c_str(), position, weaponType))
 	{
 		ret->autorelease();
 		return ret;
@@ -25,18 +25,23 @@ BattleFieldWeapon_OWN* BattleFieldWeapon_OWN::createWithAbsolutePos(std::string 
 }
 
 // 初始化函数
-bool BattleFieldWeapon_OWN::initWithPosInSquare(const std::string& filename, int posX, int posY, ENUM_WEAPON_TYPE weaponType)
+bool BattleFieldWeapon_OWN::initWithCoordinate(std::string fileName, Vec2 coordinate, ENUM_WEAPON_TYPE weaponType)
 {
-	// 载入卡牌参数
-	PROPERTY_WP propertyWp = CU_CardLoader::getCardParam(weaponType);
-
 	// 父类初始化
-	CG_Sprite::initWithPosInSquare(filename, posX, posY);
-	this->setPosInSquare(posX, posY);
-	setPropertyWp(propertyWp);
+	Sprite::initWithFile(fileName);
+	// 设置锚点为 Vec2::ANCHOR_MIDDLE
+	this->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+	// 将 战场态势仿真地图坐标 转换为 战场态势显示地图坐标
+	float posX = (coordinate.x + 0.5) * WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
+	float posY = (coordinate.y + 0.5) * WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
+	// 设置武器在战场态势显示地图中的位置
+	this->setPosition(posX, posY);
 
-	// 初始化物理属性
-	initPhysicsBody();
+	// 加载武器参数
+	PROPERTY_WP propertyWp = CU_CardLoader::getCardParam(weaponType);
+	SetPropertyWp(propertyWp);
+	// 加载位置参数
+	mCoordinate = coordinate;
 
 	// 创建时设置 update 无效
 	// 在接收到服务器布设消息的处理函数中将 update 设置为有效
@@ -45,126 +50,56 @@ bool BattleFieldWeapon_OWN::initWithPosInSquare(const std::string& filename, int
 	return true;
 }
 
-bool BattleFieldWeapon_OWN::initWithAbsolutePos(const std::string& filename, int posX, int posY, ENUM_WEAPON_TYPE weaponType)
+bool BattleFieldWeapon_OWN::initWithPosition(std::string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType)
 {
-	// 载入卡牌参数
-	PROPERTY_WP propertyWp = CU_CardLoader::getCardParam(weaponType);
-
 	// 父类初始化
-	CG_Sprite::initWithAbsolutePos(filename, posX, posY);
-	setPropertyWp(propertyWp);
+	Sprite::initWithFile(fileName);
+	// 设置锚点为 Vec2::ANCHOR_MIDDLE
+	this->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
 
-	// 初始化物理属性
-	initPhysicsBody();
+	// 将 战场态势显示地图坐标 与 战场态势仿真地图坐标 对齐
+	mCoordinate.x = (int)position.x / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
+	mCoordinate.y = (int)position.y / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
+
+	float posX = (mCoordinate.x + 0.5) * WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
+	float posY = (mCoordinate.y + 0.5) * WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
+
+	// 设置武器在战场态势显示地图中的位置
+	this->setPosition(posX, posY);
+	// 加载卡牌参数
+	PROPERTY_WP propertyWp = CU_CardLoader::getCardParam(weaponType);
+	SetPropertyWp(propertyWp);
 
 	// 创建时设置 update 无效
 	// 在接收到服务器布设消息的处理函数中将 update 设置为有效
 	this->unscheduleUpdate();
 
 	return true;
-}
-
-// 初始化物理属性参数
-void BattleFieldWeapon_OWN::initPhysicsBody()
-{
-	//auto body = PhysicsBody::createCircle(this->getContentSize().width / 2);
-	auto body = PhysicsBody::createBox(this->getContentSize());
-	//body->setGravityEnable(false);
-
-	body->setCategoryBitmask(BIT_MASK_CATEGORY_FIGHTER_PLANE); // 设定物体类别掩码
-	body->setCollisionBitmask(BIT_MASK_COLLISION_FIGHTER_PLANE); // 设定碰撞掩码 执行碰撞反应
-	body->setContactTestBitmask(BIT_MASK_CONTACT_TEST_FIGHTER_PLANE); // 设定接触掩码 执行碰撞事件
-	this->setPhysicsBody(body);
-}
-
-// 获取战场坐标
-Vec2 BattleFieldWeapon_OWN::getCoordinate()
-{
-	// 刷新战场坐标
-	Vec2 pos = this->getAdpPosWithAbsoluteValue();
-	pos.add(Vec2(0, -3 * BATTLE_FIELD_SQUARE_WIDTH));
-	int mCoordinateXInBF = pos.x / BATTLE_FIELD_SQUARE_WIDTH;
-	int mCoordinateYInBF = pos.y / BATTLE_FIELD_SQUARE_WIDTH;
-	mCoordinate = Vec2(mCoordinateXInBF, mCoordinateYInBF);
-
-	return mCoordinate;
-}
-
-float BattleFieldWeapon_OWN::getCoordinateX()
-{
-	// 刷新战场坐标
-	Vec2 pos = this->getAdpPosWithAbsoluteValue();
-	pos.add(Vec2(0, -3 * BATTLE_FIELD_SQUARE_WIDTH));
-	int mCoordinateXInBF = pos.x / BATTLE_FIELD_SQUARE_WIDTH;
-	int mCoordinateYInBF = pos.y / BATTLE_FIELD_SQUARE_WIDTH;
-	mCoordinate = Vec2(mCoordinateXInBF, mCoordinateYInBF);
-
-	return mCoordinate.x;
-}
-
-float BattleFieldWeapon_OWN::getCoordinateY()
-{
-	// 刷新战场坐标
-	Vec2 pos = this->getAdpPosWithAbsoluteValue();
-	pos.add(Vec2(0, -3 * BATTLE_FIELD_SQUARE_WIDTH));
-	int mCoordinateXInBF = pos.x / BATTLE_FIELD_SQUARE_WIDTH;
-	int mCoordinateYInBF = pos.y / BATTLE_FIELD_SQUARE_WIDTH;
-	mCoordinate = Vec2(mCoordinateXInBF, mCoordinateYInBF);
-
-	return mCoordinate.y;
-}
-
-// 设置方格坐标
-void BattleFieldWeapon_OWN::setPosInSquare(float posX, float posY)
-{
-	// 获取全局屏幕缩放因子
-	float PosAdjustFactor = CG_ResolutionAdapter::getPosAdjustFactor();
-
-	// 将武器布设坐标放置在屏幕底部向上数 3 到 5 个方格之间
-	posY = min(max(posY, BATTLE_FIELD_SQUARE_WIDTH * PosAdjustFactor * 3), BATTLE_FIELD_SQUARE_WIDTH * PosAdjustFactor * 5);
-	
-	// 将坐标归纳到方格内
-	CG_ResolutionAdapter::setPosInSquare(posX, posY);
-}
-
-void BattleFieldWeapon_OWN::setPosXInSquare(float posX)
-{
-	CG_ResolutionAdapter::setPosXInSquare(posX);
-}
-
-void BattleFieldWeapon_OWN::setPosYInSquare(float posY)
-{
-	float PosAdjustFactor = CG_ResolutionAdapter::getPosAdjustFactor();
-
-	// 将武器布设坐标放置在屏幕底部向上数 3 到 5 个方格之间
-	posY = min(max(posY, BATTLE_FIELD_SQUARE_WIDTH * 3), BATTLE_FIELD_SQUARE_WIDTH * 5);
-
-	// 将坐标归纳到方格内
-	CG_ResolutionAdapter::setPosYInSquare(posY);
-}
-
-// 设置武器属性
-void BattleFieldWeapon_OWN::setPropertyWp(PROPERTY_WP propertyWp)
-{
-	memcpy(&mPropertyWp, &propertyWp, sizeof(PROPERTY_WP));
-}
-// 获取武器属性
-PROPERTY_WP BattleFieldWeapon_OWN::getPropertyWp()
-{
-	return mPropertyWp;
 }
 
 // 更新函数
 void BattleFieldWeapon_OWN::update(float dt)
 {
-	// 更新飞行位置
-	// 此处使用绝对坐标
-	Vec2 pos = this->getAdpPosWithAbsoluteValue();
-	this->setAdpPosWithAbsoluteValue(pos.x, pos.y + mPropertyWp.SPEED);
+	// 更新战场态势显示地图坐标
+	Vec2 position = this->getPosition();
+	this->setPosition(position.x, position.y + mPropertyWp.SPEED);
+
+	// 更新战场态势仿真地图坐标
+	mCoordinate.x = (int)position.x / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
+	mCoordinate.y = (int)position.y / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
 
 	this->setRotation(0);
 
-	log("CoordinateX = %d, CoordinateY = %d", (int)this->getCoordinateX(), (int)this->getCoordinateY());
+	log("CoordinateX = %d, CoordinateY = %d", (int)this->GetCoordinate().x, (int)this->GetCoordinate().y);
 
 	return;
 }
+
+void BattleFieldWeapon_OWN::SetCoordinate(Vec2 coordinate) 
+{ 
+	mCoordinate = coordinate;
+	// 根据当前战场态势仿真坐标 重新计算战场态势显示坐标
+	float posX = (mCoordinate.x + 0.5) * WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
+	float posY = (mCoordinate.y + 0.5) * WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
+	this->setPosition(Vec2(posX, posY));
+};

@@ -1,8 +1,9 @@
 #pragma once
 #include "LibCommonGraphApi.h"
 #include "LibCommonUtilsApi.h"
+#include "BattleSimulationMapCell.h"
 
-class BattleFieldWeapon_OPPO : public CG_Sprite
+class BattleFieldWeapon_OPPO : public Sprite
 {
 // 武器属性
 private:
@@ -14,16 +15,15 @@ protected:
 
 // 生成函数
 public:
-	static BattleFieldWeapon_OPPO* createWithPosInSquare(std::string fileName, int posX, int posY, ENUM_WEAPON_TYPE weaponType);
-	static BattleFieldWeapon_OPPO* createWithAbsolutePos(std::string fileName, int posX, int posY, ENUM_WEAPON_TYPE weaponType);
+	// 使用战场态势仿真地图坐标的创建函数
+	static BattleFieldWeapon_OPPO* createWithCoordinate(std::string fileName, Vec2 coordinate, ENUM_WEAPON_TYPE weaponType);
+	// 使用战场态势显示地图位置的创建函数
+	static BattleFieldWeapon_OPPO* createWithPosition(std::string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType);
 
 // 初始化函数
 public:
-	bool initWithPosInSquare(const std::string& filename, int posX, int posY, ENUM_WEAPON_TYPE weaponType);
-	bool initWithAbsolutePos(const std::string& filename, int posX, int posY, ENUM_WEAPON_TYPE weaponType);
-
-	// 初始化物理属性参数
-	void initPhysicsBody();
+	bool initWithCoordinate(std::string fileName, Vec2 coordinate, ENUM_WEAPON_TYPE weaponType);
+	bool initWithPosition(std::string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType);
 
 // 更新函数
 public:
@@ -31,17 +31,11 @@ public:
 
 public:
 	// 获取战场坐标
-	Vec2 getCoordinate();
-	float getCoordinateX();
-	float getCoordinateY();
-
-	// 设置方格坐标
-	void setPosInSquare(float posX, float posY);
-	void setPosXInSquare(float posX);
-	void setPosYInSquare(float posY);
+	void SetCoordinate(Vec2 coordinate) { mCoordinate = coordinate; };
+	Vec2 GetCoordinate() { return mCoordinate; };
 
 	// 武器属性存取函数
 public:
-	void setPropertyWp(PROPERTY_WP propertyWp);
-	PROPERTY_WP getPropertyWp();
+	void SetPropertyWp(PROPERTY_WP propertyWp) { mPropertyWp = propertyWp; };
+	PROPERTY_WP GetPropertyWp() { return mPropertyWp; };
 };

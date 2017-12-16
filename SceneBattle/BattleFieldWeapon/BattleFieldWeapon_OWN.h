@@ -1,53 +1,46 @@
 #pragma once
 #include "LibCommonGraphApi.h"
 #include "LibCommonUtilsApi.h"
+#include "BattleSimulationMapCell.h"
 
 // BattleFieldWeapon 类中
-// Coordinate 为虚拟战场坐标
-// Position 为物理显示位置
+// Coordinate 为 战场态势仿真地图坐标
+// Position 为 战场态势显示地图坐标
 // Coordinate 随着 Position 的改变而刷新
 
-class BattleFieldWeapon_OWN : public CG_Sprite
+class BattleFieldWeapon_OWN : public Sprite
 {
-// 武器属性
+	// 武器属性
 private:
 	PROPERTY_WP mPropertyWp;
 
-// 战场坐标
+	// 战场坐标
 protected:
 	Vec2 mCoordinate;
 
-// 生成函数
+	// 生成函数
 public:
-	static BattleFieldWeapon_OWN* createWithPosInSquare(std::string fileName, int posX, int posY, ENUM_WEAPON_TYPE weaponType);
-	static BattleFieldWeapon_OWN* createWithAbsolutePos(std::string fileName, int posX, int posY, ENUM_WEAPON_TYPE weaponType);
+	// 使用战场态势仿真地图坐标的创建函数
+	static BattleFieldWeapon_OWN* createWithCoordinate(std::string fileName, Vec2 coordinate, ENUM_WEAPON_TYPE weaponType);
+	// 使用战场态势显示地图位置的创建函数
+	static BattleFieldWeapon_OWN* createWithPosition(std::string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType);
 
-// 初始化函数
+	// 初始化函数
 public:
-	bool initWithPosInSquare(const std::string& filename, int posX, int posY, ENUM_WEAPON_TYPE weaponType);
-	bool initWithAbsolutePos(const std::string& filename, int posX, int posY, ENUM_WEAPON_TYPE weaponType);
+	bool initWithCoordinate(std::string fileName, Vec2 coordinate, ENUM_WEAPON_TYPE weaponType);
+	bool initWithPosition(std::string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType);
 
-	// 初始化物理属性参数
-	void initPhysicsBody();
-
-// 更新函数
+	// 更新函数
 public:
 	virtual void update(float dt);
 
-// 存取函数
 public:
 	// 获取战场坐标
-	Vec2 getCoordinate();
-	float getCoordinateX();
-	float getCoordinateY();
-
-	// 设置方格坐标
-	void setPosInSquare(float posX, float posY);
-	void setPosXInSquare(float posX);
-	void setPosYInSquare(float posY);
+	void SetCoordinate(Vec2 coordinate);
+	Vec2 GetCoordinate() { return mCoordinate; };
 
 	// 武器属性存取函数
 public:
-	void setPropertyWp(PROPERTY_WP propertyWp);
-	PROPERTY_WP getPropertyWp();
+	void SetPropertyWp(PROPERTY_WP propertyWp) { mPropertyWp = propertyWp; };
+	PROPERTY_WP GetPropertyWp() { return mPropertyWp; };
 };

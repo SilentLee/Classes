@@ -12,14 +12,6 @@ public:
 
 	virtual bool init();
 
-	// 按钮回调函数
-public:
-	void BtnStartCallback(ROOM_TYPE roomType);
-
-// 更新函数
-public:
-	void UpdateToBattle(float dt);
-
 	// implement the "static create()" method manually
 	CREATE_FUNC(SceneSelect);
 };

@@ -1,5 +1,6 @@
 #include "SceneBattle.h"
 #include "SimpleAudioEngine.h"
+#include "LayerBattleBackground.h"
 
 USING_NS_CC;
 
@@ -10,13 +11,14 @@ Scene* SceneBattle::createScene()
 	phyWorld->setGravity(Vec2(0, 0));
 
 	// 创建场景背景
-	CG_Background* bgDoubleBattleScene = CG_Background::create(CU_ImgLoader::getImg(IMG_URL_DB_SCENE_BG).c_str());
-	scene->addChild(bgDoubleBattleScene);
+	//CG_Background* bgDoubleBattleScene = CG_Background::create(CU_ImgLoader::getImg(IMG_URL_DB_SCENE_BG).c_str());
+	//scene->addChild(bgDoubleBattleScene);
+	LayerBattleBackground* layerBattleBackground = LayerBattleBackground::create();
+	scene->addChild(layerBattleBackground);
 
 	// 创建仿真层
-	LayerBattleSimulation* layerBattleSimulation = LayerBattleSimulation::create();
-	scene->addChild(layerBattleSimulation, 1, "layerBattleSimulation");
-	
+	//LayerBattleSimulation* layerBattleSimulation = LayerBattleSimulation::create();
+	//scene->addChild(layerBattleSimulation, 1, "layerBattleSimulation");
 
 	// 创建显示层
 	LayerBattleDisplay* layerBattleDisplay = LayerBattleDisplay::create();

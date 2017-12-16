@@ -27,8 +27,8 @@ float CG_ResolutionAdapter::getSizeAdjustFactor()
 
 void CG_ResolutionAdapter::init()
 {
-	auto director = Director::getInstance();
-	VisibleSize = director->getVisibleSize();
+	// 获取屏幕可视分辨率
+	Size VisibleSize = Director::getInstance()->getVisibleSize();
 
 	SizeAdjustFactor = VisibleSize.width / designResolutionSize.width;
 	PosAdjustFactor = VisibleSize.width / designResolutionSize.width;

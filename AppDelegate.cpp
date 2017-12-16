@@ -72,9 +72,6 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0f / 60);
 
-	// 分辨率适配器初始化
-	CG_ResolutionAdapter::init();
-
 	// 加载图片资源路径
 	CU_ImgLoader::loadImg();
 
@@ -94,7 +91,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	// 创建游戏入口场景
     // create a scene. it's an autorelease object
     //auto scene = HelloWorld::createScene();
-	//auto scene = SceneDoubleBattle::createScene();
+	//auto scene = SceneBattle::createScene();
 	auto scene = SceneSelect::createScene();
 
     // run

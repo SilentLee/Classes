@@ -1,8 +1,7 @@
-#include "SceneSelect.h"
-#include "GlobalInstanceApi.h"
+#include "LayerSelectButton.h"
 #include "SceneBattle.h"
-static int a = 0;
-void SceneSelect::UpdateToBattle(float dt)
+
+void LayerSelectButton::UpdateToBattle(float dt)
 {
 	CRoomInstance* roomInstance = CRoomInstance::getInstance();
 
@@ -11,7 +10,7 @@ void SceneSelect::UpdateToBattle(float dt)
 
 	}
 	// 房间内人数不足 等待新的玩家进入
-	else if (roomInstance->getRoomStatus() == RM_WAITING){
+	else if (roomInstance->getRoomStatus() == RM_WAITING) {
 
 	}
 	// 游戏开始 进入游戏对战界面

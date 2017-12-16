@@ -3,14 +3,15 @@
 #include "LibCommonUtilsApi.h"
 
 // 战场模拟地图方格宽度
-#define WIDTH_OF_MAP_CELL			54.0f
-
-// 战场模拟
-#define WIDTH_OF_BATTLE_SIMULATION_MAP			20
-#define HEIGHT_OF_BATTLE_SIMULATION_MAP		30
-
-#define WIDTH_OF_BATTLE_DISPLAY							1080.0f
-#define HEIGHT_OF_BATTLE_DISPLAY							1620.0f
+#define WIDTH_OF_BATTLE_SIMULATION_MAP_CELL			54.0f
+// 战场态势仿真地图宽度
+#define WIDTH_OF_BATTLE_SIMULATION_MAP							20
+// 战场态势仿真地图高度
+#define HEIGHT_OF_BATTLE_SIMULATION_MAP						30
+// 战场态势显示地图宽度
+#define WIDTH_OF_BATTLE_DISPLAY_MAP								1080.0f
+// 战场态势显示地图高度
+#define HEIGHT_OF_BATTLE_DISPLAY_MAP								1620.0f
 
 typedef struct _S_HERTZ_WAVE {
 	// 电平
@@ -21,7 +22,7 @@ typedef struct _S_HERTZ_WAVE {
 	int DIRECTION_FROM;
 } S_HERTZ_WAVE;
 
-class CBattleSimulationMapCell : public CG_Sprite
+class CBattleSimulationMapCell : public Sprite
 {
 private:
 	// 地图方格坐标

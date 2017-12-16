@@ -4,27 +4,29 @@
 #include "LibCommonGraphApi.h"
 #include "LibCommonUtilsApi.h"
 #include "LibBattleFieldGraphApi.h"
+#include "LayerEx.h"
 #include <vector>
+#include "BtnCard.h"
 
 USING_NS_CC;
 using namespace std;
 
-typedef struct _CARD_STRUCT_DOUBLE_BATTLE
+typedef struct _CARD_STRUCT_BATTLE
 {
 public:
-	int CARD_TYPE;
+	ENUM_CARD_TYPE CARD_TYPE;
 	int CARD_STATUS;
-} S_CARD_STRUCT_DOUBLE_BATTLE;
+} S_CARD_STRUCT_BATTLE;
 
-class LayerBattleTouch : public Layer
+class LayerBattleTouch : public LayerEx
 {
 private:
 	int mCardBtnSwitch;
 public:
 	//S_CARD_STRUCT_DOUBLE_BATTLE mCards[NUM_CARDS_IN_GROUP];
-	vector<S_CARD_STRUCT_DOUBLE_BATTLE> mStructCards;
-	BFG_BtnCard* mBtnCards[NUM_CARD_BUTTONS];
-	CG_Sprite* mNextCard;
+	vector<S_CARD_STRUCT_BATTLE> mStructCards;
+	BtnCard* mBtnCards[NUM_CARD_BUTTONS];
+	Sprite* mNextCard;
 
 public:
 	static LayerBattleTouch* create();
