@@ -80,8 +80,8 @@ void LayerBattleDisplay::previewWeaponWithPositionOnMoved(float posX, float posY
 	BattleFieldWeapon_OWN* previewWeapon = (BattleFieldWeapon_OWN*)this->getChildByName("previewWeapon");
 	previewWeapon->setOpacity(150);
 	// 在移动拟布设武器时 首先计算当前武器的战场态势仿真坐标
-	int coordinateX = (int)posX / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
-	int coordinateY = (int)posY / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
+	int coordinateX = (int)(posX / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL);
+	int coordinateY = (int)(posY / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL);
 	// 在 SetCoordinate 中设置战场态势仿真坐标 
 	// 同时在 SetCoordinate 中更新修正后的战场态势显示坐标 posX posY
 	previewWeapon->SetCoordinate(Vec2(coordinateX, coordinateY));

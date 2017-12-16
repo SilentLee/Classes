@@ -58,8 +58,8 @@ bool BattleFieldWeapon_OWN::initWithPosition(std::string fileName, Vec2 position
 	this->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
 
 	// 将 战场态势显示地图坐标 与 战场态势仿真地图坐标 对齐
-	mCoordinate.x = (int)position.x / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
-	mCoordinate.y = (int)position.y / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
+	mCoordinate.x = (int)(position.x / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL);
+	mCoordinate.y = (int)(position.y / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL);
 
 	float posX = (mCoordinate.x + 0.5) * WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
 	float posY = (mCoordinate.y + 0.5) * WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
@@ -85,8 +85,8 @@ void BattleFieldWeapon_OWN::update(float dt)
 	this->setPosition(position.x, position.y + mPropertyWp.SPEED);
 
 	// 更新战场态势仿真地图坐标
-	mCoordinate.x = (int)position.x / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
-	mCoordinate.y = (int)position.y / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
+	mCoordinate.x = (int)(position.x / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL);
+	mCoordinate.y = (int)(position.y / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL);
 
 	this->setRotation(0);
 
