@@ -22,19 +22,13 @@ protected:
 public:
 	// 使用战场态势仿真地图坐标的创建函数
 	static BattleFieldWeapon_OWN* createWithCoordinate(std::string fileName, Vec2 coordinate, ENUM_WEAPON_TYPE weaponType);
-	// 使用本地操作数据的战场态势显示地图位置的创建函数
-	static BattleFieldWeapon_OWN* createWithLocalOperationPosData(std::string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType);
-	// 使用接受服务器数据的战场态势显示地图位置的创建函数
-	static BattleFieldWeapon_OWN* createWithRecvServerPosData(std::string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType);
+	// 使用战场态势显示地图位置的创建函数
+	static BattleFieldWeapon_OWN* createWithPosition(std::string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType);
 
 	// 初始化函数
 public:
-	// 使用战场态势仿真地图坐标的初始化函数
 	bool initWithCoordinate(std::string fileName, Vec2 coordinate, ENUM_WEAPON_TYPE weaponType);
-	// 使用本地操作数据的战场态势显示地图位置的初始化函数
-	bool initWithLocalOperationPosData(std::string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType);
-	// 使用接受服务器数据的战场态势显示地图位置的初始化函数
-	bool initWithRecvServerPosData(std::string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType);
+	bool initWithPosition(std::string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType);
 
 	// 更新函数
 public:
