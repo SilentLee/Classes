@@ -12,10 +12,24 @@ BattleFieldWeapon_OPPO* BattleFieldWeapon_OPPO::createWithCoordinate(std::string
 	return nullptr;
 }
 
-BattleFieldWeapon_OPPO* BattleFieldWeapon_OPPO::createWithPosition(std::string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType)
+// 使用本地操作数据的战场态势显示地图位置的创建函数
+BattleFieldWeapon_OPPO* BattleFieldWeapon_OPPO::createWithLocalOperationPosData(std::string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType)
 {
 	BattleFieldWeapon_OPPO* ret = new BattleFieldWeapon_OPPO();
-	if (ret && ret->initWithPosition(fileName.c_str(), position, weaponType))
+	if (ret && ret->initWithLocalOperationPosData(fileName.c_str(), position, weaponType))
+	{
+		ret->autorelease();
+		return ret;
+	}
+	CC_SAFE_DELETE(ret);
+	return nullptr;
+}
+
+// 使用接受服务器数据的战场态势显示地图位置的创建函数
+BattleFieldWeapon_OPPO* BattleFieldWeapon_OPPO::createWithRecvServerPosData(std::string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType)
+{
+	BattleFieldWeapon_OPPO* ret = new BattleFieldWeapon_OPPO();
+	if (ret && ret->initWithRecvServerPosData(fileName.c_str(), position, weaponType))
 	{
 		ret->autorelease();
 		return ret;
@@ -50,7 +64,36 @@ bool BattleFieldWeapon_OPPO::initWithCoordinate(std::string fileName, Vec2 coord
 	return true;
 }
 
-bool BattleFieldWeapon_OPPO::initWithPosition(std::string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType)
+// 使用本地操作数据的战场态势显示地图位置的初始化函数
+bool BattleFieldWeapon_OPPO::initWithLocalOperationPosData(std::string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType)
+{
+	// 父类初始化
+	Sprite::initWithFile(fileName);
+	// 设置锚点为 Vec2::ANCHOR_MIDDLE
+	this->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+
+	// 将 战场态势显示地图坐标 与 战场态势仿真地图坐标 对齐
+	mCoordinate.x = (int)(position.x / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL);
+	mCoordinate.y = (int)(position.y / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL);
+
+	float posX = (mCoordinate.x + 0.5) * WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
+	float posY = (mCoordinate.y + 0.5) * WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
+
+	// 设置武器在战场态势显示地图中的位置
+	this->setPosition(posX, posY);
+	// 加载卡牌参数
+	PROPERTY_WP propertyWp = CU_CardLoader::getCardParam(weaponType);
+	SetPropertyWp(propertyWp);
+
+	// 创建时设置 update 无效
+	// 在接收到服务器布设消息的处理函数中将 update 设置为有效
+	this->unscheduleUpdate();
+
+	return true;
+}
+
+// 使用接受服务器数据的战场态势显示地图位置的初始化函数
+bool BattleFieldWeapon_OPPO::initWithRecvServerPosData(std::string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType)
 {
 	// 父类初始化
 	Sprite::initWithFile(fileName);
