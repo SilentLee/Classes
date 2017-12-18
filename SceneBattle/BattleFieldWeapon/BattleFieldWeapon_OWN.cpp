@@ -77,14 +77,12 @@ bool BattleFieldWeapon_OWN::initWithRecvServerData(std::string fileName, Vec2 po
 void BattleFieldWeapon_OWN::update(float dt)
 {
 	// 更新战场态势显示地图坐标
-	Vec2 position = this->getPosition();
-	this->setPosition(position.x, position.y + mPropertyWp.SPEED);
-
+	float posX = this->getPositionX();
+	float posY = this->getPositionY();
+	posY = min(HEIGHT_OF_BATTLE_DISPLAY_MAP, posY + mPropertyWp.SPEED);
 	this->setRotation(0);
 
-	if (position.y >= HEIGHT_OF_BATTLE_DISPLAY_MAP) {
-		position.y = HEIGHT_OF_BATTLE_DISPLAY_MAP;
-	}
+	this->setPosition(Vec2(posX, posY));
 
 	log("CoordinateX = %d, CoordinateY = %d", (int)this->GetCoordinate().x, (int)this->GetCoordinate().y);
 

@@ -77,14 +77,12 @@ bool BattleFieldWeapon_OPPO::initWithRecvServerData(std::string fileName, Vec2 p
 void BattleFieldWeapon_OPPO::update(float dt)
 {
 	// 更新战场态势显示地图坐标
-	Vec2 position = this->getPosition();
-	this->setPosition(position.x, position.y - mPropertyWp.SPEED);
-
+	float posX = this->getPositionX();
+	float posY = this->getPositionY();
+	posY = max(0.0f, posY - mPropertyWp.SPEED);
 	this->setRotation(0);
 
-	if (position.y <= 0) {
-		position.y = 0;
-	}
+	this->setPosition(Vec2(posX, posY));
 
 	log("CoordinateX = %d, CoordinateY = %d", (int)this->GetCoordinate().x, (int)this->GetCoordinate().y);
 
