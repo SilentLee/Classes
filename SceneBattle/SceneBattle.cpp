@@ -1,6 +1,7 @@
 #include "SceneBattle.h"
 #include "SimpleAudioEngine.h"
 #include "LayerBattleBackground.h"
+#include "LayerBattleButton.h"
 
 USING_NS_CC;
 
@@ -17,19 +18,23 @@ Scene* SceneBattle::createScene()
 	LayerBattleBackground* layerBattleBackground = LayerBattleBackground::create();
 	scene->addChild(layerBattleBackground);
 
+	// 创建按钮层
+	LayerBattleButton* layerBattleButton = LayerBattleButton::create();
+	scene->addChild(layerBattleButton, 1, "layerBattleButton");
+
 	// 创建仿真层
 	//LayerBattleSimulation* layerBattleSimulation = LayerBattleSimulation::create();
-	//scene->addChild(layerBattleSimulation, 1, "layerBattleSimulation");
+	//scene->addChild(layerBattleSimulation, 2, "layerBattleSimulation");
 
 	// 创建显示层
 	LayerBattleDisplay* layerBattleDisplay = LayerBattleDisplay::create();
 	layerBattleDisplay->setPosition(0, 54 * 4 * factor);
-	scene->addChild(layerBattleDisplay, 2, "layerBattleDisplay");
+	scene->addChild(layerBattleDisplay, 3, "layerBattleDisplay");
 
 	// 创建触控层
 	LayerBattleTouch* layerBattleTouch = LayerBattleTouch::create();
 	layerBattleTouch->setPosition(0, 54 * 4 * factor);
-	scene->addChild(layerBattleTouch, 3, "layerTouchDB");
+	scene->addChild(layerBattleTouch, 4, "layerTouchDB");
 
 	return scene;
 }
