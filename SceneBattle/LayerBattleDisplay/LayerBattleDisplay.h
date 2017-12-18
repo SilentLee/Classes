@@ -8,6 +8,7 @@
 #include "LayerEx.h"
 #include "BattleSimulationMapCell.h"
 
+#define HEIGHT_OF_RANGE_TO_ARRANGE_WEAPON_ON_SIMULATION_MAP		5
 
 USING_NS_CC;
 extern class BattleFieldWeapon_OWN;
@@ -37,7 +38,7 @@ public:
 	virtual void updateBFSituation(float dt);
 
 	// 预览本方兵力放置效果函数
-	void previewWeaponWithPositionOnBegan(int weaponType, int posX, int posY);
+	void previewWeaponWithPositionOnBegan(int weaponType, float posX, float posY);
 	void previewWeaponWithPositionOnMoved(float posX, float posY);
 	void previewWeaponWithPositionOnEnded();
 	void previewWeaponWithPositionCancelled();

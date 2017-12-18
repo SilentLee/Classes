@@ -9,10 +9,11 @@ Scene* SceneBattle::createScene()
 	auto scene = Scene::createWithPhysics();
 	PhysicsWorld* phyWorld = scene->getPhysicsWorld();
 	phyWorld->setGravity(Vec2(0, 0));
+	
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+	float factor = visibleSize.width / designResolutionSize.width;
 
 	// 创建场景背景
-	//CG_Background* bgDoubleBattleScene = CG_Background::create(CU_ImgLoader::getImg(IMG_URL_DB_SCENE_BG).c_str());
-	//scene->addChild(bgDoubleBattleScene);
 	LayerBattleBackground* layerBattleBackground = LayerBattleBackground::create();
 	scene->addChild(layerBattleBackground);
 
@@ -22,10 +23,12 @@ Scene* SceneBattle::createScene()
 
 	// 创建显示层
 	LayerBattleDisplay* layerBattleDisplay = LayerBattleDisplay::create();
+	layerBattleDisplay->setPosition(0, 54 * 4 * factor);
 	scene->addChild(layerBattleDisplay, 2, "layerBattleDisplay");
 
 	// 创建触控层
 	LayerBattleTouch* layerBattleTouch = LayerBattleTouch::create();
+	layerBattleTouch->setPosition(0, 54 * 4 * factor);
 	scene->addChild(layerBattleTouch, 3, "layerTouchDB");
 
 	return scene;

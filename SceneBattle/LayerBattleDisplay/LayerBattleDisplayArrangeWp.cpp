@@ -3,12 +3,19 @@
 #include "LibBattleFieldGraphApi.h"
 #include "BattleFieldWeapon_OPPO.h"
 #include "GlobalInstanceApi.h"
+//#include "stdlib.h"
+//
+//using namespace std;
 
 // 布设兵力预览函数
 // 与 onTouchBegan 配合使用
-void LayerBattleDisplay::previewWeaponWithPositionOnBegan(int weaponType, int posX, int posY)
+void LayerBattleDisplay::previewWeaponWithPositionOnBegan(int weaponType, float posX, float posY)
 {
 	Node* previewWeapon = NULL;
+
+	// 将 posY 限制在允许防止武器的区域中
+	posY = min(posY, HEIGHT_OF_RANGE_TO_ARRANGE_WEAPON_ON_SIMULATION_MAP * WIDTH_OF_BATTLE_SIMULATION_MAP_CELL);
+	posY = max(posY, 0.0f);
 
 	Vec2 position = Vec2(posX, posY);
 
@@ -79,6 +86,10 @@ void LayerBattleDisplay::previewWeaponWithPositionOnMoved(float posX, float posY
 {
 	BattleFieldWeapon_OWN* previewWeapon = (BattleFieldWeapon_OWN*)this->getChildByName("previewWeapon");
 	previewWeapon->setOpacity(150);
+
+	// 将 posY 限制在允许防止武器的区域中
+	posY = min(posY, HEIGHT_OF_RANGE_TO_ARRANGE_WEAPON_ON_SIMULATION_MAP * WIDTH_OF_BATTLE_SIMULATION_MAP_CELL);
+	posY = max(posY, 0.0f);
 
 	posX = ((int)(posX / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL) + 0.5) * WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
 	posY = ((int)(posY / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL) + 0.5) * WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
