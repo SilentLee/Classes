@@ -149,13 +149,10 @@ void LayerBattleDisplay::arrangeEnemyWeaponWithPosition(ENUM_TROOPS troops, int 
 	}
 	else if (userInstance->getTroopsIn() == TROOPS_RED) {
 		posX = posX;
-		posY = 2060 - posY;
+		posY = HEIGHT_OF_BATTLE_DISPLAY_MAP - posY;
 	}
 
 	Node* enemyWeaponToArrange = NULL;
-
-	// ×ø±ê×ª»»
-	//posY = 2060 - posY;
 
 	Vec2 position = Vec2(posX, posY);
 
@@ -223,7 +220,7 @@ void LayerBattleDisplay::arrangeOwnWeaponWithPosition(ENUM_TROOPS troops, int we
 	}
 	else if (userInstance->getTroopsIn() == TROOPS_RED) {
 		posX = posX;
-		posY = 2060 - posY;
+		posY = HEIGHT_OF_BATTLE_DISPLAY_MAP - posY;
 	}
 
 	Vec2 position = Vec2(posX, posY);

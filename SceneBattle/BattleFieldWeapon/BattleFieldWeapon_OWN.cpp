@@ -82,6 +82,10 @@ void BattleFieldWeapon_OWN::update(float dt)
 
 	this->setRotation(0);
 
+	if (position.y >= HEIGHT_OF_BATTLE_DISPLAY_MAP) {
+		position.y = HEIGHT_OF_BATTLE_DISPLAY_MAP;
+	}
+
 	log("CoordinateX = %d, CoordinateY = %d", (int)this->GetCoordinate().x, (int)this->GetCoordinate().y);
 
 	return;

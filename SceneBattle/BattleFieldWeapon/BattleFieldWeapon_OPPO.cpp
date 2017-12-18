@@ -82,6 +82,10 @@ void BattleFieldWeapon_OPPO::update(float dt)
 
 	this->setRotation(0);
 
+	if (position.y <= 0) {
+		position.y = 0;
+	}
+
 	log("CoordinateX = %d, CoordinateY = %d", (int)this->GetCoordinate().x, (int)this->GetCoordinate().y);
 
 	return;
