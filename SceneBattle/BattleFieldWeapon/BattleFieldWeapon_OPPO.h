@@ -12,37 +12,43 @@ using namespace std;
 
 class BattleFieldWeapon_OPPO : public Sprite
 {
-	// 武器属性
 private:
+	// 武器属性
 	PROPERTY_WP mPropertyWp;
+	// 武器在战场态势仿真地图中的大小
+	Size mWeaponSize;
 
-	// 战场坐标
 protected:
 
-	// 生成函数
+// 生成函数
 public:
 	// 使用本地操作数据
 	static BattleFieldWeapon_OPPO* createWithLocalOperationData(string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType);
 	// 使用服务器接受数据
 	static BattleFieldWeapon_OPPO* createWithRecvServerData(string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType);
 
-	// 初始化函数
+// 初始化函数
 public:
 	// 使用本地操作数据
 	bool initWithLocalOperationData(string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType);
 	// 使用服务器接收数据
 	bool initWithRecvServerData(string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType);
+	// 初始化武器在战场态势仿真地图中的大小
+	void initWeaponSize();
 
-	// 更新函数
+// 更新函数
 public:
 	virtual void update(float dt);
 
 public:
-	// 获取战场坐标
+	// 获取战场态势仿真地图坐标
 	Vec2 GetCoordinate();
 
-	// 武器属性存取函数
+// 存取函数
 public:
+	// 武器属性
 	void SetPropertyWp(PROPERTY_WP propertyWp) { mPropertyWp = propertyWp; };
 	PROPERTY_WP GetPropertyWp() { return mPropertyWp; };
+	// 武器在战场态势仿真地图中的大小
+	Size GetWeaponSize();
 };

@@ -44,6 +44,9 @@ bool BattleFieldWeapon_OPPO::initWithLocalOperationData(std::string fileName, Ve
 	PROPERTY_WP propertyWp = CU_CardLoader::getCardParam(weaponType);
 	SetPropertyWp(propertyWp);
 
+	// 初始化战场态势仿真地图中的武器大小
+	initWeaponSize();
+
 	// 创建时设置 update 无效
 	// 在接收到服务器布设消息的处理函数中将 update 设置为有效
 	this->unscheduleUpdate();
@@ -66,11 +69,26 @@ bool BattleFieldWeapon_OPPO::initWithRecvServerData(std::string fileName, Vec2 p
 	PROPERTY_WP propertyWp = CU_CardLoader::getCardParam(weaponType);
 	SetPropertyWp(propertyWp);
 
+	// 初始化战场态势仿真地图中的武器大小
+	initWeaponSize();
+
 	// 创建时设置 update 无效
 	// 在接收到服务器布设消息的处理函数中将 update 设置为有效
 	this->unscheduleUpdate();
 
 	return true;
+}
+
+
+// 初始化武器在战场态势仿真地图中的尺寸
+void BattleFieldWeapon_OPPO::initWeaponSize()
+{
+	Size weaponSize = this->getContentSize();
+
+	int weaponSizeWidth = weaponSize.width / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
+	int weaponSizeHeight = weaponSize.height / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
+
+	mWeaponSize = Size(weaponSizeWidth, weaponSizeHeight);
 }
 
 // 更新函数
@@ -89,10 +107,17 @@ void BattleFieldWeapon_OPPO::update(float dt)
 	return;
 }
 
+// 获取战场态势仿真地图坐标
 Vec2 BattleFieldWeapon_OPPO::GetCoordinate()
 {
 	int coordinateX = this->getPosition().x / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
 	int coordinateY = this->getPosition().y / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
 
 	return Vec2(coordinateX, coordinateY);
+}
+
+// 获取武器在战场态势仿真地图中的大小
+Size BattleFieldWeapon_OPPO::GetWeaponSize()
+{
+	return mWeaponSize;
 }
