@@ -7,7 +7,7 @@ bool CRoomInstance::init()
 	mRoomType = RM_NO_TYPE;
 	mRoomStatus = RM_EMPTY;
 	mRoomID = 0;
-	mRemainingTime = DEFAULT_GAME_TIME;
+	mRemainingTime = 0;
 
 	mUsersInBlueTeam.clear();
 	mUsersInRedTeam.clear();

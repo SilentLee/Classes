@@ -23,7 +23,7 @@ private:
 	vector<BattleFieldWeapon_OWN*> mWeaponsOppo;
 
 	// 战争迷雾分界线
-	int mFrogLine[BATTLE_FIELD_WIDTH_IN_SQUARE];
+	//int mFrogLine[BATTLE_FIELD_WIDTH_IN_SQUARE];
 
 public:
 	static LayerBattleDisplay* create();
