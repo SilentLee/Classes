@@ -3,36 +3,43 @@
 #include "LibCommonUtilsApi.h"
 #include "BattleSimulationMapCell.h"
 
+using namespace std;
+
+// BattleFieldWeapon 类中
+// Coordinate 为 战场态势仿真地图坐标
+// Position 为 战场态势显示地图坐标
+// Coordinate 随着 Position 的改变而刷新
+
 class BattleFieldWeapon_OPPO : public Sprite
 {
-// 武器属性
+	// 武器属性
 private:
 	PROPERTY_WP mPropertyWp;
 
 	// 战场坐标
 protected:
-	Vec2 mCoordinate;
 
-// 生成函数
+	// 生成函数
 public:
-	// 使用战场态势仿真地图坐标的创建函数
-	static BattleFieldWeapon_OPPO* createWithCoordinate(std::string fileName, Vec2 coordinate, ENUM_WEAPON_TYPE weaponType);
-	// 使用战场态势显示地图位置的创建函数
-	static BattleFieldWeapon_OPPO* createWithPosition(std::string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType);
+	// 使用本地操作数据
+	static BattleFieldWeapon_OPPO* createWithLocalOperationData(string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType);
+	// 使用服务器接受数据
+	static BattleFieldWeapon_OPPO* createWithRecvServerData(string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType);
 
-// 初始化函数
+	// 初始化函数
 public:
-	bool initWithCoordinate(std::string fileName, Vec2 coordinate, ENUM_WEAPON_TYPE weaponType);
-	bool initWithPosition(std::string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType);
+	// 使用本地操作数据
+	bool initWithLocalOperationData(string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType);
+	// 使用服务器接收数据
+	bool initWithRecvServerData(string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType);
 
-// 更新函数
+	// 更新函数
 public:
 	virtual void update(float dt);
 
 public:
 	// 获取战场坐标
-	void SetCoordinate(Vec2 coordinate) { mCoordinate = coordinate; };
-	Vec2 GetCoordinate() { return mCoordinate; };
+	Vec2 GetCoordinate();
 
 	// 武器属性存取函数
 public:

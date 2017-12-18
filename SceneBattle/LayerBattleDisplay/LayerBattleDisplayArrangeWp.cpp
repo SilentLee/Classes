@@ -15,57 +15,57 @@ void LayerBattleDisplay::previewWeaponWithPositionOnBegan(int weaponType, int po
 	switch (weaponType)
 	{
 	case WP_TYPE_FIGHTER_PLANE:
-		previewWeapon = BattleFieldWeapon_OWN::createWithPosition(IMG_URL_WEAPON_FIGHTER_PLANE_OWN, position, WP_TYPE_FIGHTER_PLANE);
+		previewWeapon = BattleFieldWeapon_OWN::createWithLocalOperationData(IMG_URL_WEAPON_FIGHTER_PLANE_OWN, position, WP_TYPE_FIGHTER_PLANE);
 		this->addChild(previewWeapon, 0, "previewWeapon");
 		break;
 
 	case WP_TYPE_BOMBING_PLANE:
-		previewWeapon = BattleFieldWeapon_OWN::createWithPosition(IMG_URL_WEAPON_BOMBING_PLANE_OWN, position, WP_TYPE_BOMBING_PLANE);
+		previewWeapon = BattleFieldWeapon_OWN::createWithLocalOperationData(IMG_URL_WEAPON_BOMBING_PLANE_OWN, position, WP_TYPE_BOMBING_PLANE);
 		this->addChild(previewWeapon, 0, "previewWeapon");
 		break;
 
 	case WP_TYPE_ANTI_AIRCRAFT_MISSILE:
-		previewWeapon = BattleFieldWeapon_OWN::createWithPosition(IMG_URL_WEAPON_ANTI_AIRCRAFT_MISSILE_OWN, position, WP_TYPE_ANTI_AIRCRAFT_MISSILE);
+		previewWeapon = BattleFieldWeapon_OWN::createWithLocalOperationData(IMG_URL_WEAPON_ANTI_AIRCRAFT_MISSILE_OWN, position, WP_TYPE_ANTI_AIRCRAFT_MISSILE);
 		this->addChild(previewWeapon, 0, "previewWeapon");
 		break;
 
 	case WP_TYPE_EARLY_WARNING_PLANE:
-		previewWeapon = BattleFieldWeapon_OWN::createWithPosition(IMG_URL_WEAPON_EARLY_WARNING_PLANE_OWN, position, WP_TYPE_EARLY_WARNING_PLANE);
+		previewWeapon = BattleFieldWeapon_OWN::createWithLocalOperationData(IMG_URL_WEAPON_EARLY_WARNING_PLANE_OWN, position, WP_TYPE_EARLY_WARNING_PLANE);
 		this->addChild(previewWeapon, 0, "previewWeapon");
 		break;
 
 	case WP_TYPE_FLAK:
-		previewWeapon = BattleFieldWeapon_OWN::createWithPosition(IMG_URL_WEAPON_FLAK_OWN, position, WP_TYPE_FLAK);
+		previewWeapon = BattleFieldWeapon_OWN::createWithLocalOperationData(IMG_URL_WEAPON_FLAK_OWN, position, WP_TYPE_FLAK);
 		this->addChild(previewWeapon, 0, "previewWeapon");
 		break;
 
 	case WP_TYPE_JAMMING_PLANE:
-		previewWeapon = BattleFieldWeapon_OWN::createWithPosition(IMG_URL_WEAPON_JAMMING_PLANE_OWN, position, WP_TYPE_JAMMING_PLANE);
+		previewWeapon = BattleFieldWeapon_OWN::createWithLocalOperationData(IMG_URL_WEAPON_JAMMING_PLANE_OWN, position, WP_TYPE_JAMMING_PLANE);
 		this->addChild(previewWeapon, 0, "previewWeapon");
 		break;
 
 	case WP_TYPE_RADAR:
-		previewWeapon = BattleFieldWeapon_OWN::createWithPosition(IMG_URL_WEAPON_RADAR_OWN, position, WP_TYPE_RADAR);
+		previewWeapon = BattleFieldWeapon_OWN::createWithLocalOperationData(IMG_URL_WEAPON_RADAR_OWN, position, WP_TYPE_RADAR);
 		this->addChild(previewWeapon, 0, "previewWeapon");
 		break;
 
 	case WP_TYPE_8:
-		previewWeapon = BattleFieldWeapon_OWN::createWithPosition(IMG_URL_WEAPON_8_OWN, position, WP_TYPE_8);
+		previewWeapon = BattleFieldWeapon_OWN::createWithLocalOperationData(IMG_URL_WEAPON_8_OWN, position, WP_TYPE_8);
 		this->addChild(previewWeapon, 0, "previewWeapon");
 		break;
 
 	case WP_TYPE_9:
-		previewWeapon = BattleFieldWeapon_OWN::createWithPosition(IMG_URL_WEAPON_9_OWN, position, WP_TYPE_9);
+		previewWeapon = BattleFieldWeapon_OWN::createWithLocalOperationData(IMG_URL_WEAPON_9_OWN, position, WP_TYPE_9);
 		this->addChild(previewWeapon, 0, "previewWeapon");
 		break;
 
 	case WP_TYPE_10:
-		previewWeapon = BattleFieldWeapon_OWN::createWithPosition(IMG_URL_WEAPON_10_OWN, position, WP_TYPE_10);
+		previewWeapon = BattleFieldWeapon_OWN::createWithLocalOperationData(IMG_URL_WEAPON_10_OWN, position, WP_TYPE_10);
 		this->addChild(previewWeapon, 0, "previewWeapon");
 		break;
 
 	case WP_TYPE_11:
-		previewWeapon = BattleFieldWeapon_OWN::createWithPosition(IMG_URL_WEAPON_11_OWN, position, WP_TYPE_11);
+		previewWeapon = BattleFieldWeapon_OWN::createWithLocalOperationData(IMG_URL_WEAPON_11_OWN, position, WP_TYPE_11);
 		this->addChild(previewWeapon, 0, "previewWeapon");
 		break;
 	}
@@ -79,12 +79,11 @@ void LayerBattleDisplay::previewWeaponWithPositionOnMoved(float posX, float posY
 {
 	BattleFieldWeapon_OWN* previewWeapon = (BattleFieldWeapon_OWN*)this->getChildByName("previewWeapon");
 	previewWeapon->setOpacity(150);
-	// 在移动拟布设武器时 首先计算当前武器的战场态势仿真坐标
-	int coordinateX = (int)(posX / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL);
-	int coordinateY = (int)(posY / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL);
-	// 在 SetCoordinate 中设置战场态势仿真坐标 
-	// 同时在 SetCoordinate 中更新修正后的战场态势显示坐标 posX posY
-	previewWeapon->SetCoordinate(Vec2(coordinateX, coordinateY));
+
+	posX = ((int)(posX / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL) + 0.5) * WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
+	posY = ((int)(posY / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL) + 0.5) * WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
+
+	previewWeapon->setPosition(posX, posY);
 }
 
 // 布设兵力预览函数
@@ -152,47 +151,47 @@ void LayerBattleDisplay::arrangeEnemyWeaponWithPosition(ENUM_TROOPS troops, int 
 	switch (weaponType)
 	{
 	case WP_TYPE_FIGHTER_PLANE:
-		enemyWeaponToArrange = BattleFieldWeapon_OPPO::createWithPosition(IMG_URL_WEAPON_FIGHTER_PLANE_OPPO, position, WP_TYPE_FIGHTER_PLANE);
+		enemyWeaponToArrange = BattleFieldWeapon_OPPO::createWithRecvServerData(IMG_URL_WEAPON_FIGHTER_PLANE_OPPO, position, WP_TYPE_FIGHTER_PLANE);
 		break;
 
 	case WP_TYPE_BOMBING_PLANE:
-		enemyWeaponToArrange = BattleFieldWeapon_OPPO::createWithPosition(IMG_URL_WEAPON_BOMBING_PLANE_OPPO, position, WP_TYPE_BOMBING_PLANE);
+		enemyWeaponToArrange = BattleFieldWeapon_OPPO::createWithRecvServerData(IMG_URL_WEAPON_BOMBING_PLANE_OPPO, position, WP_TYPE_BOMBING_PLANE);
 		break;
 
 	case WP_TYPE_ANTI_AIRCRAFT_MISSILE:
-		enemyWeaponToArrange = BattleFieldWeapon_OPPO::createWithPosition(IMG_URL_WEAPON_ANTI_AIRCRAFT_MISSILE_OPPO, position, WP_TYPE_ANTI_AIRCRAFT_MISSILE);
+		enemyWeaponToArrange = BattleFieldWeapon_OPPO::createWithRecvServerData(IMG_URL_WEAPON_ANTI_AIRCRAFT_MISSILE_OPPO, position, WP_TYPE_ANTI_AIRCRAFT_MISSILE);
 		break;
 
 	case WP_TYPE_EARLY_WARNING_PLANE:
-		enemyWeaponToArrange = BattleFieldWeapon_OPPO::createWithPosition(IMG_URL_WEAPON_EARLY_WARNING_PLANE_OPPO, position, WP_TYPE_EARLY_WARNING_PLANE);
+		enemyWeaponToArrange = BattleFieldWeapon_OPPO::createWithRecvServerData(IMG_URL_WEAPON_EARLY_WARNING_PLANE_OPPO, position, WP_TYPE_EARLY_WARNING_PLANE);
 		break;
 
 	case WP_TYPE_FLAK:
-		enemyWeaponToArrange = BattleFieldWeapon_OPPO::createWithPosition(IMG_URL_WEAPON_FLAK_OPPO, position, WP_TYPE_FLAK);
+		enemyWeaponToArrange = BattleFieldWeapon_OPPO::createWithRecvServerData(IMG_URL_WEAPON_FLAK_OPPO, position, WP_TYPE_FLAK);
 		break;
 
 	case WP_TYPE_JAMMING_PLANE:
-		enemyWeaponToArrange = BattleFieldWeapon_OPPO::createWithPosition(IMG_URL_WEAPON_JAMMING_PLANE_OPPO, position, WP_TYPE_JAMMING_PLANE);
+		enemyWeaponToArrange = BattleFieldWeapon_OPPO::createWithRecvServerData(IMG_URL_WEAPON_JAMMING_PLANE_OPPO, position, WP_TYPE_JAMMING_PLANE);
 		break;
 
 	case WP_TYPE_RADAR:
-		enemyWeaponToArrange = BattleFieldWeapon_OPPO::createWithPosition(IMG_URL_WEAPON_RADAR_OPPO, position, WP_TYPE_RADAR);
+		enemyWeaponToArrange = BattleFieldWeapon_OPPO::createWithRecvServerData(IMG_URL_WEAPON_RADAR_OPPO, position, WP_TYPE_RADAR);
 		break;
 
 	case WP_TYPE_8:
-		enemyWeaponToArrange = BattleFieldWeapon_OPPO::createWithPosition(IMG_URL_WEAPON_8_OPPO, position, WP_TYPE_8);
+		enemyWeaponToArrange = BattleFieldWeapon_OPPO::createWithRecvServerData(IMG_URL_WEAPON_8_OPPO, position, WP_TYPE_8);
 		break;
 
 	case WP_TYPE_9:
-		enemyWeaponToArrange = BattleFieldWeapon_OPPO::createWithPosition(IMG_URL_WEAPON_9_OPPO, position, WP_TYPE_9);
+		enemyWeaponToArrange = BattleFieldWeapon_OPPO::createWithRecvServerData(IMG_URL_WEAPON_9_OPPO, position, WP_TYPE_9);
 		break;
 
 	case WP_TYPE_10:
-		enemyWeaponToArrange = BattleFieldWeapon_OPPO::createWithPosition(IMG_URL_WEAPON_10_OPPO, position, WP_TYPE_10);
+		enemyWeaponToArrange = BattleFieldWeapon_OPPO::createWithRecvServerData(IMG_URL_WEAPON_10_OPPO, position, WP_TYPE_10);
 		break;
 
 	case WP_TYPE_11:
-		enemyWeaponToArrange = BattleFieldWeapon_OPPO::createWithPosition(IMG_URL_WEAPON_11_OPPO, position, WP_TYPE_11);
+		enemyWeaponToArrange = BattleFieldWeapon_OPPO::createWithRecvServerData(IMG_URL_WEAPON_11_OPPO, position, WP_TYPE_11);
 		break;
 	}
 	this->addChild(enemyWeaponToArrange, 3, weaponTag);
@@ -223,47 +222,47 @@ void LayerBattleDisplay::arrangeOwnWeaponWithPosition(ENUM_TROOPS troops, int we
 	switch (weaponType)
 	{
 	case WP_TYPE_FIGHTER_PLANE:
-		ownWeaponToArrange = BattleFieldWeapon_OWN::createWithPosition(IMG_URL_WEAPON_FIGHTER_PLANE_OWN, position, WP_TYPE_FIGHTER_PLANE);
+		ownWeaponToArrange = BattleFieldWeapon_OWN::createWithRecvServerData(IMG_URL_WEAPON_FIGHTER_PLANE_OWN, position, WP_TYPE_FIGHTER_PLANE);
 		break;
 
 	case WP_TYPE_BOMBING_PLANE:
-		ownWeaponToArrange = BattleFieldWeapon_OWN::createWithPosition(IMG_URL_WEAPON_BOMBING_PLANE_OWN, position, WP_TYPE_BOMBING_PLANE);
+		ownWeaponToArrange = BattleFieldWeapon_OWN::createWithRecvServerData(IMG_URL_WEAPON_BOMBING_PLANE_OWN, position, WP_TYPE_BOMBING_PLANE);
 		break;
 
 	case WP_TYPE_ANTI_AIRCRAFT_MISSILE:
-		ownWeaponToArrange = BattleFieldWeapon_OWN::createWithPosition(IMG_URL_WEAPON_ANTI_AIRCRAFT_MISSILE_OWN, position, WP_TYPE_ANTI_AIRCRAFT_MISSILE);
+		ownWeaponToArrange = BattleFieldWeapon_OWN::createWithRecvServerData(IMG_URL_WEAPON_ANTI_AIRCRAFT_MISSILE_OWN, position, WP_TYPE_ANTI_AIRCRAFT_MISSILE);
 		break;
 
 	case WP_TYPE_EARLY_WARNING_PLANE:
-		ownWeaponToArrange = BattleFieldWeapon_OWN::createWithPosition(IMG_URL_WEAPON_EARLY_WARNING_PLANE_OWN, position, WP_TYPE_EARLY_WARNING_PLANE);
+		ownWeaponToArrange = BattleFieldWeapon_OWN::createWithRecvServerData(IMG_URL_WEAPON_EARLY_WARNING_PLANE_OWN, position, WP_TYPE_EARLY_WARNING_PLANE);
 		break;
 
 	case WP_TYPE_FLAK:
-		ownWeaponToArrange = BattleFieldWeapon_OWN::createWithPosition(IMG_URL_WEAPON_FLAK_OWN, position, WP_TYPE_FLAK);
+		ownWeaponToArrange = BattleFieldWeapon_OWN::createWithRecvServerData(IMG_URL_WEAPON_FLAK_OWN, position, WP_TYPE_FLAK);
 		break;
 
 	case WP_TYPE_JAMMING_PLANE:
-		ownWeaponToArrange = BattleFieldWeapon_OWN::createWithPosition(IMG_URL_WEAPON_JAMMING_PLANE_OWN, position, WP_TYPE_JAMMING_PLANE);
+		ownWeaponToArrange = BattleFieldWeapon_OWN::createWithRecvServerData(IMG_URL_WEAPON_JAMMING_PLANE_OWN, position, WP_TYPE_JAMMING_PLANE);
 		break;
 
 	case WP_TYPE_RADAR:
-		ownWeaponToArrange = BattleFieldWeapon_OWN::createWithPosition(IMG_URL_WEAPON_RADAR_OWN, position, WP_TYPE_RADAR);
+		ownWeaponToArrange = BattleFieldWeapon_OWN::createWithRecvServerData(IMG_URL_WEAPON_RADAR_OWN, position, WP_TYPE_RADAR);
 		break;
 
 	case WP_TYPE_8:
-		ownWeaponToArrange = BattleFieldWeapon_OWN::createWithPosition(IMG_URL_WEAPON_8_OWN, position, WP_TYPE_8);
+		ownWeaponToArrange = BattleFieldWeapon_OWN::createWithRecvServerData(IMG_URL_WEAPON_8_OWN, position, WP_TYPE_8);
 		break;
 
 	case WP_TYPE_9:
-		ownWeaponToArrange = BattleFieldWeapon_OWN::createWithPosition(IMG_URL_WEAPON_9_OWN, position, WP_TYPE_9);
+		ownWeaponToArrange = BattleFieldWeapon_OWN::createWithRecvServerData(IMG_URL_WEAPON_9_OWN, position, WP_TYPE_9);
 		break;
 
 	case WP_TYPE_10:
-		ownWeaponToArrange = BattleFieldWeapon_OWN::createWithPosition(IMG_URL_WEAPON_10_OWN, position, WP_TYPE_10);
+		ownWeaponToArrange = BattleFieldWeapon_OWN::createWithRecvServerData(IMG_URL_WEAPON_10_OWN, position, WP_TYPE_10);
 		break;
 
 	case WP_TYPE_11:
-		ownWeaponToArrange = BattleFieldWeapon_OWN::createWithPosition(IMG_URL_WEAPON_11_OWN, position, WP_TYPE_11);
+		ownWeaponToArrange = BattleFieldWeapon_OWN::createWithRecvServerData(IMG_URL_WEAPON_11_OWN, position, WP_TYPE_11);
 		break;
 	}
 	this->addChild(ownWeaponToArrange, 3, weaponTag);
