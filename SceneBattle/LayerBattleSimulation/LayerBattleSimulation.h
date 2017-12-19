@@ -12,12 +12,17 @@ private:
 public:
 	// 创建函数
 	static LayerBattleSimulation* create();
+
+public:
 	// 初始化函数
 	bool init();
-
 	// 初始化战场仿真地图
 	void initSimulationMap();
 
 public:
 	//void updateFrog(float dt);
+
+public:
+	void insertWeaponOwnInBattleSimulation();
+	void insertWeaponOppoInBattleSimulation();
 };

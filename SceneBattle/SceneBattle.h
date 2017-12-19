@@ -3,7 +3,7 @@
 #include "cocos2d.h"
 #include "LibCommonGraphApi.h"
 #include "LibCommonUtilsApi.h"
-#include "LayerBattleDisplay.h"
+#include "LayerBattleSituation.h"
 #include "LayerBattleTouch.h"
 #include "LayerBattleSimulation.h"
 

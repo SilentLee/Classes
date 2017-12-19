@@ -1,55 +1,45 @@
-#include "LayerBattleDisplay.h"
+#include "LayerBattleSituation.h"
 #include "BattleFieldWeapon_OWN.h"
+#include "BattleFieldWeapon_OPPO.h"
 #include "LibBattleFieldGraphApi.h"
 #include "GlobalInstanceApi.h"
 
 // 更新函数
-//void LayerBattleDisplay::updateFrog(float dt)
-//{
-//	// 计算迷雾分界线所在位置
-//	memset(mFrogLine, 0, sizeof(int) * BATTLE_FIELD_WIDTH_IN_SQUARE);
-//
-//	for (int i = 0; i < mWeaponsOwn.size(); i++)
-//	{
-//		int posX = mWeaponsOwn[i]->GetCoordinate().x;
-//		int posY = mWeaponsOwn[i]->GetCoordinate().y;
-//		int rangeDec = mWeaponsOwn[i]->GetPropertyWp().RANGE_DEC;
-//
-//		mFrogLine[max(0, posX - 1)] = max(mFrogLine[max(0, posX - 1)], posY + PARAM_RANGE_DEC_REVISE_VALUE + rangeDec);
-//		mFrogLine[posX] = max(mFrogLine[posX], posY + PARAM_RANGE_DEC_REVISE_VALUE + rangeDec);
-//		mFrogLine[min(posX + 1, BATTLE_FIELD_WIDTH_IN_SQUARE)] =
-//			max(mFrogLine[min(posX + 1, BATTLE_FIELD_WIDTH_IN_SQUARE)], posY + PARAM_RANGE_DEC_REVISE_VALUE + rangeDec);
-//	}
-//
-//	// 设置战场迷雾显示范围
-//	for (int indexX = 0; indexX < BATTLE_FIELD_WIDTH_IN_SQUARE; indexX++)
-//	{
-//		for (int indexY = 0; indexY < BATTLE_FIELD_HEIGHT_IN_SQUARE; indexY++)
-//		{
-//			if (indexY <= mFrogLine[indexX])
-//			{
-//				mFrogOfWarArray[indexX][indexY]->setVisible(false);
-//			}
-//			else {
-//				mFrogOfWarArray[indexX][indexY]->setVisible(true);
-//			}
-//		}
-//	}
-//
-//	// 用于测试迷雾功能的代码
-//	for (vector<BattleFieldWeapon_OWN*>::iterator iter = mWeaponsOwn.begin(); iter != mWeaponsOwn.end(); iter++) {
-//		BattleFieldWeapon_OWN* weapon = (BattleFieldWeapon_OWN*)*iter;
-//		if (weapon->GetCoordinate().y == 10)
-//		{
-//			mWeaponsOwn.erase(iter);
-//			//weapon->retain();
-//			weapon->removeFromParent();
-//			return;
-//		}
-//	}
-//}
+void LayerBattleSituation::updateFrog(float dt)
+{
+	// 计算迷雾分界线所在位置
+	memset(mFrogLine, 0, sizeof(int) * WIDTH_OF_BATTLE_SIMULATION_MAP);
 
-void LayerBattleDisplay::updateBFSituation(float dt)
+	for (int i = 0; i < mWeaponsOwn.size(); i++)
+	{
+		int posX = mWeaponsOwn[i]->GetCoordinate().x;
+		int posY = mWeaponsOwn[i]->GetCoordinate().y;
+		int rangeDec = mWeaponsOwn[i]->GetPropertyWp().RANGE_DEC;
+
+		mFrogLine[max(0, posX - 1)] = max(mFrogLine[max(0, posX - 1)], posY + PARAM_RANGE_DEC_REVISE_VALUE + rangeDec);
+		mFrogLine[posX] = max(mFrogLine[posX], posY + PARAM_RANGE_DEC_REVISE_VALUE + rangeDec);
+		mFrogLine[min(posX + 1, WIDTH_OF_BATTLE_SIMULATION_MAP)] =
+			max(mFrogLine[min(posX + 1, WIDTH_OF_BATTLE_SIMULATION_MAP)], posY + PARAM_RANGE_DEC_REVISE_VALUE + rangeDec);
+	}
+
+	// 设置战场迷雾显示范围
+	for (int indexX = 0; indexX < WIDTH_OF_BATTLE_SIMULATION_MAP; indexX++)
+	{
+		for (int indexY = 0; indexY < WIDTH_OF_BATTLE_SIMULATION_MAP; indexY++)
+		{
+			if (indexY <= mFrogLine[indexX])
+			{
+				mBattleSimulationMapCellArray[indexX][indexY]->setVisible(false);
+			}
+			else {
+				mBattleSimulationMapCellArray[indexX][indexY]->setVisible(true);
+			}
+		}
+	}
+}
+
+// 检测服务器战场态势更新数据并更新客户端战场态势显示的更新函数
+void LayerBattleSituation::updateBFSituation(float dt)
 {
 	log("LayerBattleFieldDB::updateBFSituation");
 
@@ -122,6 +112,11 @@ void LayerBattleDisplay::updateBFSituation(float dt)
 			memcpy(&RedTroopsData[0], ptBattleUpdateSituationM.DATA + BlueTroopsDataLength, RedTroopsDataLength);
 		}
 
+		// 清除对战双方仿真兵力存储动态数组
+		mWeaponsOwn.clear();
+		mWeaponsOppo.clear();
+
+		// 刷新蓝方兵力
 		for (int i = 0; i < SizeOfBlueTroopsData; i++) {
 			this->removeChildByTag(BlueTroopsData[i].GetWeaponTag());
 			if (BlueTroopsData[i].GetTroopsIn() == userInstance->getTroopsIn()) {
@@ -132,6 +127,7 @@ void LayerBattleDisplay::updateBFSituation(float dt)
 			}
 		}
 
+		// 刷新红方兵力
 		for (int i = 0; i < SizeOfRedTroopsData; i++) {
 			this->removeChildByTag(RedTroopsData[i].GetWeaponTag());
 			if (RedTroopsData[i].GetTroopsIn() == userInstance->getTroopsIn()) {
@@ -141,7 +137,23 @@ void LayerBattleDisplay::updateBFSituation(float dt)
 				arrangeEnemyWeaponWithPosition((ENUM_TROOPS)RedTroopsData[i].GetTroopsIn(), RedTroopsData[i].GetProperty().WP_TYPE, RedTroopsData[i].GetPosX(), RedTroopsData[i].GetPosY(), RedTroopsData[i].GetWeaponTag());
 			}
 		}
-
 		operInfoInstance->setIsBattleFieldSituationUpdate(false);
+	}
+}
+
+// 本地战场态势更新函数 用于平滑
+void LayerBattleSituation::updateLocalSituation(float dt)
+{
+	if (mWeaponsOwn.size() > 0) {
+		for (int index = 0; index < mWeaponsOwn.size(); index++) {
+			mWeaponsOwn[index]->Move(mBattleSimulationMapCellArray);
+			mWeaponsOwn[index]->Detect(mBattleSimulationMapCellArray);
+		}
+	}
+
+	if (mWeaponsOppo.size() > 0) {
+		for (int index = 0; index < mWeaponsOppo.size(); index++) {
+			mWeaponsOppo[index]->Move();
+		}
 	}
 }

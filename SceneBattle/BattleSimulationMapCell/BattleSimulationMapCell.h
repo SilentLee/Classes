@@ -3,11 +3,11 @@
 #include "LibCommonUtilsApi.h"
 
 // 战场模拟地图方格宽度
-#define WIDTH_OF_BATTLE_SIMULATION_MAP_CELL			54.0f
+#define WIDTH_OF_BATTLE_SIMULATION_MAP_CELL			27.0f
 // 战场态势仿真地图宽度
-#define WIDTH_OF_BATTLE_SIMULATION_MAP							20
+#define WIDTH_OF_BATTLE_SIMULATION_MAP							40
 // 战场态势仿真地图高度
-#define HEIGHT_OF_BATTLE_SIMULATION_MAP						30
+#define HEIGHT_OF_BATTLE_SIMULATION_MAP						60
 // 战场态势显示地图宽度
 #define WIDTH_OF_BATTLE_DISPLAY_MAP								1080.0f
 // 战场态势显示地图高度
@@ -55,6 +55,7 @@ public:
 
 	void SetWeaponTag(int weaponTag) { mWeaponTag = weaponTag; };
 	int GetWeaponTag() { return mWeaponTag; };
+	void resetWeaponTag() { mWeaponTag = -1; };
 
 	void SetFogAgainstBlueEn(bool fogAgainstBlueEn) { mFogAgainstBlueEn = fogAgainstBlueEn; };
 	int GetFogAgainstBlueEn() { return mFogAgainstBlueEn; };

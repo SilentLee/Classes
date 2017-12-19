@@ -45,7 +45,7 @@ bool BattleFieldWeapon_OPPO::initWithLocalOperationData(std::string fileName, Ve
 	SetPropertyWp(propertyWp);
 
 	// 初始化战场态势仿真地图中的武器大小
-	initWeaponSize();
+	initSizeInSimulationMap();
 
 	// 创建时设置 update 无效
 	// 在接收到服务器布设消息的处理函数中将 update 设置为有效
@@ -70,42 +70,35 @@ bool BattleFieldWeapon_OPPO::initWithRecvServerData(std::string fileName, Vec2 p
 	SetPropertyWp(propertyWp);
 
 	// 初始化战场态势仿真地图中的武器大小
-	initWeaponSize();
+	initSizeInSimulationMap();
 
 	// 创建时设置 update 无效
 	// 在接收到服务器布设消息的处理函数中将 update 设置为有效
-	this->unscheduleUpdate();
+	//this->unscheduleUpdate();
 
 	return true;
 }
 
-
-// 初始化武器在战场态势仿真地图中的尺寸
-void BattleFieldWeapon_OPPO::initWeaponSize()
+// 设置武器在战场态势仿真地图中的尺寸
+void BattleFieldWeapon_OPPO::initSizeInSimulationMap()
 {
 	Size weaponSize = this->getContentSize();
 
 	int weaponSizeWidth = weaponSize.width / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
 	int weaponSizeHeight = weaponSize.height / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
 
-	mWeaponSize = Size(weaponSizeWidth, weaponSizeHeight);
+	mSizeInSimulationMap = Size(weaponSizeWidth, weaponSizeHeight);
 }
 
 // 更新函数
-void BattleFieldWeapon_OPPO::update(float dt)
-{
-	// 更新战场态势显示地图坐标
-	float posX = this->getPositionX();
-	float posY = this->getPositionY();
-	posY = max(0.0f, posY - mPropertyWp.SPEED);
-	this->setRotation(0);
-
-	this->setPosition(Vec2(posX, posY));
-
-	log("CoordinateX = %d, CoordinateY = %d", (int)this->GetCoordinate().x, (int)this->GetCoordinate().y);
-
-	return;
-}
+//void BattleFieldWeapon_OPPO::update(float dt)
+//{
+//	// 更新战场态势显示地图坐标
+//	this->Move();
+//	this->Detect();
+//
+//	return;
+//}
 
 // 获取战场态势仿真地图坐标
 Vec2 BattleFieldWeapon_OPPO::GetCoordinate()
@@ -117,7 +110,56 @@ Vec2 BattleFieldWeapon_OPPO::GetCoordinate()
 }
 
 // 获取武器在战场态势仿真地图中的大小
-Size BattleFieldWeapon_OPPO::GetWeaponSize()
+Size BattleFieldWeapon_OPPO::GetSizeInSimulationMap()
 {
-	return mWeaponSize;
+	return mSizeInSimulationMap;
+}
+
+// 行为函数
+// 移动
+void BattleFieldWeapon_OPPO::Move()
+{
+	// 获取当前战场态势显示坐标
+	float posX = this->getPositionX();
+	float posY = this->getPositionY();
+	// 计算移动后的战场态势显示坐标
+	posY = max(0.0f, posY - mPropertyWp.SPEED);
+	// 设置移动后的战场态势显示坐标
+	this->setPosition(Vec2(posX, posY));
+}
+// 探测
+void BattleFieldWeapon_OPPO::Detect(CBattleSimulationMapCell* (&BattleSimulationMapCellArray)[WIDTH_OF_BATTLE_SIMULATION_MAP][HEIGHT_OF_BATTLE_SIMULATION_MAP])
+{
+	// 获取战场态势仿真坐标
+	Vec2 Coordinate = this->GetCoordinate();
+	int DetectDistance = mPropertyWp.RANGE_DEC;
+
+	int BorderlineLeft = Coordinate.x - mSizeInSimulationMap.width / 2 - mPropertyWp.RANGE_DEC;
+	int BorderlineRight = Coordinate.x + mSizeInSimulationMap.width / 2 + mPropertyWp.RANGE_DEC;
+	int BorderlineBottom = Coordinate.y - mSizeInSimulationMap.height / 2 - mPropertyWp.RANGE_DEC;
+	int BorderlineTop = Coordinate.y + mSizeInSimulationMap.height / 2 + mPropertyWp.RANGE_DEC;
+
+	// 遍历战场态势仿真地图中处于探测区域中的每一个点
+	for (int indexX = BorderlineLeft; indexX <= BorderlineRight; indexX++) {
+		for (int indexY = BorderlineBottom; indexY <= BorderlineTop; indexY++) {
+			// 当前遍历点在战场态势仿真地图中的坐标
+			int mapCellX = indexX;
+			int mapCellY = indexY;
+			// 将探测区域遍历的点限制在战场态势仿真地图范围内
+			mapCellX = max(0, min(indexX, WIDTH_OF_BATTLE_SIMULATION_MAP - 1));
+			mapCellY = max(0, min(indexY, HEIGHT_OF_BATTLE_SIMULATION_MAP - 1));
+
+			BattleSimulationMapCellArray[mapCellX][mapCellY]->setVisible(false);
+		}
+	}
+}
+// 攻击
+void BattleFieldWeapon_OPPO::Attack()
+{
+
+}
+// 被攻击
+int BattleFieldWeapon_OPPO::BeAttacked()
+{
+	return 0;
 }

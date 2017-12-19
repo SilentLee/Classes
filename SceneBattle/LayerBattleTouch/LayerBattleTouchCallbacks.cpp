@@ -1,5 +1,5 @@
 #include "LayerBattleTouch.h"
-#include "LayerBattleDisplay.h"
+#include "LayerBattleSituation.h"
 #include "LayerBattleButton.h"
 #include "ProtocolHeader.h"
 
@@ -23,9 +23,9 @@ void LayerBattleTouch::onTouchesBegan(const std::vector<Touch*>& touches, Event 
 			float posY = transTouch(touch).y;
 
 			int discardType = layerBattleButton->getCardType();
-			LayerBattleDisplay* layerBattleDisplay = (LayerBattleDisplay*)this->getParent()->getChildByName("layerBattleDisplay");
+			LayerBattleSituation* layerBattleSituation = (LayerBattleSituation*)this->getParent()->getChildByName("layerBattleSituation");
 			
-			layerBattleDisplay->previewWeaponWithPositionOnBegan(discardType, posX, posY);
+			layerBattleSituation->previewWeaponWithPositionOnBegan(discardType, posX, posY);
 		}
 	}
 }
@@ -49,10 +49,10 @@ void LayerBattleTouch::onTouchesMoved(const std::vector<Touch*>& touches, Event 
 		float posX = transTouch(touch).x;
 		float posY = transTouch(touch).y;
 
-		LayerBattleDisplay* layerBattleDisplay = (LayerBattleDisplay*)this->getParent()->getChildByName("layerBattleDisplay");
+		LayerBattleSituation* layerBattleSituation = (LayerBattleSituation*)this->getParent()->getChildByName("layerBattleSituation");
 
 		// 获取在战场中加入的武器并设置 透明度 位置
-		layerBattleDisplay->previewWeaponWithPositionOnMoved(posX, posY);
+		layerBattleSituation->previewWeaponWithPositionOnMoved(posX, posY);
 	}
 }
 
@@ -75,14 +75,14 @@ void LayerBattleTouch::onTouchesEnded(const std::vector<Touch*>& touches, Event 
 		// 出牌同时计算下一张待出卡牌
 		int discardType = layerBattleButton->discard();
 
-		LayerBattleDisplay* layerBattleDisplay = (LayerBattleDisplay*)this->getParent()->getChildByName("layerBattleDisplay");
-		layerBattleDisplay->previewWeaponWithPositionOnEnded();
+		LayerBattleSituation* layerBattleSituation = (LayerBattleSituation*)this->getParent()->getChildByName("layerBattleSituation");
+		layerBattleSituation->previewWeaponWithPositionOnEnded();
 	}
 }
 
 void LayerBattleTouch::onTouchesCancelled(const std::vector<Touch*>&touches, Event *unused_event)
 {
 	log("onTouchesCancelled");
-	LayerBattleDisplay* layerBattleDisplay = (LayerBattleDisplay*)this->getParent()->getChildByName("layerBattleDisplay");
-	layerBattleDisplay->previewWeaponWithPositionCancelled();
+	LayerBattleSituation* layerBattleSituation = (LayerBattleSituation*)this->getParent()->getChildByName("layerBattleSituation");
+	layerBattleSituation->previewWeaponWithPositionCancelled();
 }

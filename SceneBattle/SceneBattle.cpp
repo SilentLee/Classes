@@ -24,12 +24,13 @@ Scene* SceneBattle::createScene()
 
 	// 创建仿真层
 	//LayerBattleSimulation* layerBattleSimulation = LayerBattleSimulation::create();
+	//layerBattleSimulation->setPosition(0, 54 * 4 * factor);
 	//scene->addChild(layerBattleSimulation, 2, "layerBattleSimulation");
 
 	// 创建显示层
-	LayerBattleDisplay* layerBattleDisplay = LayerBattleDisplay::create();
-	layerBattleDisplay->setPosition(0, 54 * 4 * factor);
-	scene->addChild(layerBattleDisplay, 3, "layerBattleDisplay");
+	LayerBattleSituation* layerBattleSituation = LayerBattleSituation::create();
+	layerBattleSituation->setPosition(0, 54 * 4 * factor);
+	scene->addChild(layerBattleSituation, 3, "layerBattleSituation");
 
 	// 创建触控层
 	LayerBattleTouch* layerBattleTouch = LayerBattleTouch::create();

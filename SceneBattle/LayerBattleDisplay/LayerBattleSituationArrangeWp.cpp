@@ -1,15 +1,12 @@
-#include "LayerBattleDisplay.h"
+#include "LayerBattleSituation.h"
 #include "BattleFieldWeapon_OWN.h"
 #include "LibBattleFieldGraphApi.h"
 #include "BattleFieldWeapon_OPPO.h"
 #include "GlobalInstanceApi.h"
-//#include "stdlib.h"
-//
-//using namespace std;
 
 // 布设兵力预览函数
 // 与 onTouchBegan 配合使用
-void LayerBattleDisplay::previewWeaponWithPositionOnBegan(int weaponType, float posX, float posY)
+void LayerBattleSituation::previewWeaponWithPositionOnBegan(int weaponType, float posX, float posY)
 {
 	Node* previewWeapon = NULL;
 
@@ -82,7 +79,7 @@ void LayerBattleDisplay::previewWeaponWithPositionOnBegan(int weaponType, float 
 
 // 布设兵力预览函数
 // 与 onTouchMoved 配合使用
-void LayerBattleDisplay::previewWeaponWithPositionOnMoved(float posX, float posY)
+void LayerBattleSituation::previewWeaponWithPositionOnMoved(float posX, float posY)
 {
 	BattleFieldWeapon_OWN* previewWeapon = (BattleFieldWeapon_OWN*)this->getChildByName("previewWeapon");
 	previewWeapon->setOpacity(150);
@@ -99,7 +96,7 @@ void LayerBattleDisplay::previewWeaponWithPositionOnMoved(float posX, float posY
 
 // 布设兵力预览函数
 // 与 onTouchEnded 配合使用
-void LayerBattleDisplay::previewWeaponWithPositionOnEnded()
+void LayerBattleSituation::previewWeaponWithPositionOnEnded()
 {
 	CUserInstance* userInstance = CUserInstance::getInstance();
 
@@ -129,7 +126,7 @@ void LayerBattleDisplay::previewWeaponWithPositionOnEnded()
 
 // 布设兵力预览函数
 // 与 onTouchCancelled 配合使用
-void LayerBattleDisplay::previewWeaponWithPositionCancelled()
+void LayerBattleSituation::previewWeaponWithPositionCancelled()
 {
 	this->removeChildByName("previewWeapon");
 }
@@ -139,7 +136,7 @@ void LayerBattleDisplay::previewWeaponWithPositionCancelled()
 // 宽度 1080
 // 高度 1920
 // 坐标需要转换一下 将武器由 从下向上飞行 转换为 从上向下飞行
-void LayerBattleDisplay::arrangeEnemyWeaponWithPosition(ENUM_TROOPS troops, int weaponType, int posX, int posY, int weaponTag)
+void LayerBattleSituation::arrangeEnemyWeaponWithPosition(ENUM_TROOPS troops, int weaponType, int posX, int posY, int weaponTag)
 {
 	// 根据玩家当前属于蓝方还是红方 重新计算加入武器在客户端战场态势显示中的位置坐标
 	CUserInstance* userInstance = CUserInstance::getInstance();
@@ -152,7 +149,7 @@ void LayerBattleDisplay::arrangeEnemyWeaponWithPosition(ENUM_TROOPS troops, int 
 		posY = HEIGHT_OF_BATTLE_DISPLAY_MAP - posY;
 	}
 
-	Node* enemyWeaponToArrange = NULL;
+	BattleFieldWeapon_OPPO* enemyWeaponToArrange = NULL;
 
 	Vec2 position = Vec2(posX, posY);
 
@@ -202,15 +199,18 @@ void LayerBattleDisplay::arrangeEnemyWeaponWithPosition(ENUM_TROOPS troops, int 
 		enemyWeaponToArrange = BattleFieldWeapon_OPPO::createWithRecvServerData(IMG_URL_WEAPON_11_OPPO, position, WP_TYPE_11);
 		break;
 	}
+	// 将武器加入兵力存储数组
+	mWeaponsOppo.push_back(enemyWeaponToArrange);
+	// 将武器添加到战场态势显示层
 	this->addChild(enemyWeaponToArrange, 3, weaponTag);
-	enemyWeaponToArrange->scheduleUpdate();
+	//enemyWeaponToArrange->scheduleUpdate();
 }
 
 // 布设本方兵力函数
 // 坐标幅度
 // 宽度 1080
 // 高度 1920
-void LayerBattleDisplay::arrangeOwnWeaponWithPosition(ENUM_TROOPS troops, int weaponType, int posX, int posY, int weaponTag)
+void LayerBattleSituation::arrangeOwnWeaponWithPosition(ENUM_TROOPS troops, int weaponType, int posX, int posY, int weaponTag)
 {
 	// 根据玩家当前属于蓝方还是红方 重新计算加入武器在客户端战场态势显示中的位置坐标
 	CUserInstance* userInstance = CUserInstance::getInstance();
@@ -225,7 +225,7 @@ void LayerBattleDisplay::arrangeOwnWeaponWithPosition(ENUM_TROOPS troops, int we
 
 	Vec2 position = Vec2(posX, posY);
 
-	Node* ownWeaponToArrange = NULL;
+	BattleFieldWeapon_OWN* ownWeaponToArrange = NULL;
 
 	switch (weaponType)
 	{
@@ -273,6 +273,9 @@ void LayerBattleDisplay::arrangeOwnWeaponWithPosition(ENUM_TROOPS troops, int we
 		ownWeaponToArrange = BattleFieldWeapon_OWN::createWithRecvServerData(IMG_URL_WEAPON_11_OWN, position, WP_TYPE_11);
 		break;
 	}
+	// 将武器加入兵力存储数组
+	mWeaponsOwn.push_back(ownWeaponToArrange);
+	// 将武器添加到战场态势显示层
 	this->addChild(ownWeaponToArrange, 3, weaponTag);
-	ownWeaponToArrange->scheduleUpdate();
+	//ownWeaponToArrange->scheduleUpdate();
 }

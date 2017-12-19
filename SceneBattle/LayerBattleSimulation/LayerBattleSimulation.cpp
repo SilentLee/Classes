@@ -15,17 +15,9 @@ LayerBattleSimulation* LayerBattleSimulation::create()
 bool LayerBattleSimulation::init()
 {
 	LayerEx::init();
-
-	this->GetSizeAdjustFactor();
-	this->GetVisibleSize();
 	
 	// 初始化战场地图
 	initSimulationMap();
-
-	Sprite* a = Sprite::create(CU_ImgLoader::getFogImg(1).c_str());
-	this->addChild(a);
-	a->setPosition(1080, 1920);
-
 
 	return true;
 };
