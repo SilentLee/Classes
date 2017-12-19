@@ -1,10 +1,10 @@
-#include "BattleFieldWeapon_OWN.h"
+#include "BattleFieldWeapon.h"
 
 // 创建函数 使用本地操作数据
-BattleFieldWeapon_OWN* BattleFieldWeapon_OWN::createWithLocalOperationData(std::string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType)
+BattleFieldWeapon* BattleFieldWeapon::createWithLocalOperationData(std::string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType, ENUM_IFF IFF)
 {
-	BattleFieldWeapon_OWN* ret = new BattleFieldWeapon_OWN();
-	if (ret && ret->initWithLocalOperationData(fileName.c_str(), position, weaponType))
+	BattleFieldWeapon* ret = new BattleFieldWeapon();
+	if (ret && ret->initWithLocalOperationData(fileName.c_str(), position, weaponType, IFF))
 	{
 		ret->autorelease();
 		return ret;
@@ -13,10 +13,10 @@ BattleFieldWeapon_OWN* BattleFieldWeapon_OWN::createWithLocalOperationData(std::
 	return nullptr;
 }
 // 创建函数 使用服务器接收数据
-BattleFieldWeapon_OWN* BattleFieldWeapon_OWN::createWithRecvServerData(std::string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType)
+BattleFieldWeapon* BattleFieldWeapon::createWithRecvServerData(std::string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType, ENUM_IFF IFF)
 {
-	BattleFieldWeapon_OWN* ret = new BattleFieldWeapon_OWN();
-	if (ret && ret->initWithRecvServerData(fileName.c_str(), position, weaponType))
+	BattleFieldWeapon* ret = new BattleFieldWeapon();
+	if (ret && ret->initWithRecvServerData(fileName.c_str(), position, weaponType, IFF))
 	{
 		ret->autorelease();
 		return ret;
@@ -26,7 +26,7 @@ BattleFieldWeapon_OWN* BattleFieldWeapon_OWN::createWithRecvServerData(std::stri
 }
 
 // 初始化函数 使用本地操作数据
-bool BattleFieldWeapon_OWN::initWithLocalOperationData(std::string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType)
+bool BattleFieldWeapon::initWithLocalOperationData(std::string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType, ENUM_IFF IFF)
 {
 	// 父类初始化
 	Sprite::initWithFile(fileName);
@@ -47,15 +47,14 @@ bool BattleFieldWeapon_OWN::initWithLocalOperationData(std::string fileName, Vec
 	// 初始化战场态势仿真地图中的武器大小
 	initSizeInSimulationMap();
 
-	// 创建时设置 update 无效
-	// 在接收到服务器布设消息的处理函数中将 update 设置为有效
-	this->unscheduleUpdate();
+	// 设定敌我
+	mIFF = IFF;
 
 	return true;
 }
 
 // 初始化函数 使用服务器接收数据
-bool BattleFieldWeapon_OWN::initWithRecvServerData(std::string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType)
+bool BattleFieldWeapon::initWithRecvServerData(std::string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType, ENUM_IFF IFF)
 {
 	// 父类初始化
 	Sprite::initWithFile(fileName);
@@ -72,15 +71,14 @@ bool BattleFieldWeapon_OWN::initWithRecvServerData(std::string fileName, Vec2 po
 	// 初始化战场态势仿真地图中的武器大小
 	initSizeInSimulationMap();
 
-	// 创建时设置 update 无效
-	// 在接收到服务器布设消息的处理函数中将 update 设置为有效
-	//this->unscheduleUpdate();
+	// 设定敌我识别
+	mIFF = IFF;
 
 	return true;
 }
 
 // 设置武器在战场态势仿真地图中的尺寸
-void BattleFieldWeapon_OWN::initSizeInSimulationMap()
+void BattleFieldWeapon::initSizeInSimulationMap()
 {
 	Size weaponSize = this->getContentSize();
 
@@ -90,18 +88,8 @@ void BattleFieldWeapon_OWN::initSizeInSimulationMap()
 	mSizeInSimulationMap = Size(weaponSizeWidth, weaponSizeHeight);
 }
 
-// 更新函数
-//void BattleFieldWeapon_OWN::update(float dt)
-//{
-//	// 更新战场态势显示地图坐标
-//	this->Move();
-//	this->Detect();
-//
-//	return;
-//}
-
 // 获取战场态势仿真地图坐标
-Vec2 BattleFieldWeapon_OWN::GetCoordinate()
+Vec2 BattleFieldWeapon::GetCoordinate()
 {
 	int coordinateX = this->getPosition().x / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
 	int coordinateY = this->getPosition().y / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
@@ -110,14 +98,14 @@ Vec2 BattleFieldWeapon_OWN::GetCoordinate()
 }
 
 // 获取武器在战场态势仿真地图中的大小
-Size BattleFieldWeapon_OWN::GetSizeInSimulationMap()
+Size BattleFieldWeapon::GetSizeInSimulationMap()
 {
 	return mSizeInSimulationMap;
 }
 
 // 行为函数
-// 移动
-void BattleFieldWeapon_OWN::Move(CBattleSimulationMapCell* (&BattleSimulationMapCellArray)[WIDTH_OF_BATTLE_SIMULATION_MAP][HEIGHT_OF_BATTLE_SIMULATION_MAP])
+// 移动函数
+void BattleFieldWeapon::Move(CBattleSimulationMapCell* (&BattleSimulationMapCellArray)[WIDTH_OF_BATTLE_SIMULATION_MAP][HEIGHT_OF_BATTLE_SIMULATION_MAP])
 {
 	// 获取武器在战场态势仿真地图中的坐标
 	Vec2 Coordinate = this->GetCoordinate();
@@ -127,8 +115,17 @@ void BattleFieldWeapon_OWN::Move(CBattleSimulationMapCell* (&BattleSimulationMap
 	// 获取当前战场态势显示坐标
 	float posX = this->getPositionX();
 	float posY = this->getPositionY();
-	// 计算移动后的战场态势显示坐标
-	posY = min(HEIGHT_OF_BATTLE_DISPLAY_MAP, posY + mPropertyWp.SPEED);
+
+	// 判断当前武器敌我属性 计算移动后的战场态势显示坐标
+	if (mIFF == IFF_FRIEND) {
+		// 武器属于本方 从屏幕下方向上方飞行 最大不能越过 HEIGHT_OF_BATTLE_DISPLAY_MAP
+		posY = min(HEIGHT_OF_BATTLE_DISPLAY_MAP, posY + mPropertyWp.SPEED);
+	}
+	else if (mIFF == IFF_FOE) {
+		// 武器属于对方 从屏幕上方向下方飞行 最小不能越过 0
+		posY = max(0.0f, posY - mPropertyWp.SPEED);
+	}
+
 	// 设置移动后的战场态势显示坐标
 	this->setPosition(Vec2(posX, posY));
 	// 移动后再次读取武器在战场态势仿真地图中的坐标
@@ -136,13 +133,13 @@ void BattleFieldWeapon_OWN::Move(CBattleSimulationMapCell* (&BattleSimulationMap
 	// 设置战场态势仿真地图中对应的方格坐标的武器标签
 	BattleSimulationMapCellArray[(int)Coordinate.x][(int)Coordinate.y]->SetWeaponTag(this->getTag());
 }
-// 探测
-void BattleFieldWeapon_OWN::Detect(CBattleSimulationMapCell* (&BattleSimulationMapCellArray)[WIDTH_OF_BATTLE_SIMULATION_MAP][HEIGHT_OF_BATTLE_SIMULATION_MAP])
+// 探测函数
+void BattleFieldWeapon::Detect(CBattleSimulationMapCell* (&BattleSimulationMapCellArray)[WIDTH_OF_BATTLE_SIMULATION_MAP][HEIGHT_OF_BATTLE_SIMULATION_MAP])
 {
 	// 获取战场态势仿真坐标
 	Vec2 Coordinate = this->GetCoordinate();
 	int DetectDistance = mPropertyWp.RANGE_DEC;
-
+	// 计算探测范围
 	int BorderlineLeft = Coordinate.x - mSizeInSimulationMap.width / 2 - mPropertyWp.RANGE_DEC;
 	int BorderlineRight = Coordinate.x + mSizeInSimulationMap.width / 2 + mPropertyWp.RANGE_DEC;
 	int BorderlineBottom = Coordinate.y - mSizeInSimulationMap.height / 2 - mPropertyWp.RANGE_DEC;
@@ -162,13 +159,13 @@ void BattleFieldWeapon_OWN::Detect(CBattleSimulationMapCell* (&BattleSimulationM
 		}
 	}
 }
-// 攻击
-void BattleFieldWeapon_OWN::Attack()
+// 攻击函数
+void BattleFieldWeapon::Attack()
 {
 
 }
-// 被攻击
-int BattleFieldWeapon_OWN::BeAttacked()
+// 被攻击函数
+int BattleFieldWeapon::BeAttacked()
 {
 	return 0;
 }

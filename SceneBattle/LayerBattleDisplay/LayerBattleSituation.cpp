@@ -1,5 +1,4 @@
 #include "LayerBattleSituation.h"
-#include "BattleFieldWeapon_OWN.h"
 #include "LibBattleFieldGraphApi.h"
 
 

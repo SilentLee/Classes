@@ -11,15 +11,14 @@
 #define HEIGHT_OF_RANGE_TO_ARRANGE_WEAPON_ON_SIMULATION_MAP		5
 
 USING_NS_CC;
-extern class BattleFieldWeapon_OWN;
-extern class BattleFieldWeapon_OPPO;
+extern class BattleFieldWeapon;
 
 class LayerBattleSituation : public LayerEx
 {
 private:
 	// 对战双方存在于战场中的兵力
-	vector<BattleFieldWeapon_OWN*> mWeaponsOwn;
-	vector<BattleFieldWeapon_OPPO*> mWeaponsOppo;
+	vector<BattleFieldWeapon*> mWeaponsOwn;
+	vector<BattleFieldWeapon*> mWeaponsOppo;
 
 // 数据仿真变量
 private:

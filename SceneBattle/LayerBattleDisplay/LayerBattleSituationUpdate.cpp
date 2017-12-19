@@ -1,5 +1,5 @@
 #include "LayerBattleSituation.h"
-#include "BattleFieldWeapon_OWN.h"
+#include "BattleFieldWeapon.h"
 #include "BattleFieldWeapon_OPPO.h"
 #include "LibBattleFieldGraphApi.h"
 #include "GlobalInstanceApi.h"
@@ -144,16 +144,17 @@ void LayerBattleSituation::updateBFSituation(float dt)
 // 本地战场态势更新函数 用于平滑
 void LayerBattleSituation::updateLocalSituation(float dt)
 {
+	// 刷新本方兵力
 	if (mWeaponsOwn.size() > 0) {
 		for (int index = 0; index < mWeaponsOwn.size(); index++) {
 			mWeaponsOwn[index]->Move(mBattleSimulationMapCellArray);
 			mWeaponsOwn[index]->Detect(mBattleSimulationMapCellArray);
 		}
 	}
-
+	// 刷新对方兵力
 	if (mWeaponsOppo.size() > 0) {
 		for (int index = 0; index < mWeaponsOppo.size(); index++) {
-			mWeaponsOppo[index]->Move();
+			mWeaponsOppo[index]->Move(mBattleSimulationMapCellArray);
 		}
 	}
 }
