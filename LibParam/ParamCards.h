@@ -7,17 +7,28 @@
 #define NUM_CARD_USED_CARD				1
 
 // ¿¨ÅÆÎäÆ÷ËÙ¶È²ÎÊý
-#define PARAM_SPEED_FIGHTER_PLANE								3.0f
-#define PARAM_SPEED_BOMBING_PLANE							3.0f
-#define PARAM_SPEED_ANTI_AIRCRAFT_MISSILE				3.0f
-#define PARAM_SPEED_EARLY_WARNING_PLANE				3.0f
-#define PARAM_SPEED_FLAK													0.0f
-#define PARAM_SPEED_JAMMING_PLANE								3.0f
-#define PARAM_SPEED_RADAR												0.0f
-#define PARAM_SPEED_TYPE_8												3.0f
-#define PARAM_SPEED_TYPE_9												3.0f
-#define PARAM_SPEED_TYPE_10												3.0f
-#define PARAM_SPEED_TYPE_11												3.0f
+#define PARAM_SPEED_FIGHTER_PLANE									3.0f
+#define PARAM_SPEED_BOMBING_PLANE								3.0f
+#define PARAM_SPEED_ANTI_AIRCRAFT_MISSILE					3.0f
+#define PARAM_SPEED_EARLY_WARNING_PLANE					3.0f
+#define PARAM_SPEED_FLAK														0.0f
+#define PARAM_SPEED_JAMMING_PLANE									3.0f
+#define PARAM_SPEED_RADAR													0.0f
+#define PARAM_SPEED_TYPE_8													3.0f
+#define PARAM_SPEED_TYPE_9													3.0f
+#define PARAM_SPEED_TYPE_10													3.0f
+#define PARAM_SPEED_TYPE_11													3.0f
+//#define PARAM_SPEED_FIGHTER_PLANE								6.0f
+//#define PARAM_SPEED_BOMBING_PLANE							6.0f
+//#define PARAM_SPEED_ANTI_AIRCRAFT_MISSILE				6.0f
+//#define PARAM_SPEED_EARLY_WARNING_PLANE				6.0f
+//#define PARAM_SPEED_FLAK													0.0f
+//#define PARAM_SPEED_JAMMING_PLANE								6.0f
+//#define PARAM_SPEED_RADAR												0.0f
+//#define PARAM_SPEED_TYPE_8												6.0f
+//#define PARAM_SPEED_TYPE_9												6.0f
+//#define PARAM_SPEED_TYPE_10												6.0f
+//#define PARAM_SPEED_TYPE_11												6.0f
 
 // ¿¨ÅÆÌ½²â·¶Î§²ÎÊý
 #define PARAM_RANGE_DEC_REVISE_VALUE									-3
