@@ -2,50 +2,50 @@
 #include "LibCommonGraphApi.h"
 #include "LibCommonUtilsApi.h"
 
-// Õ½³¡Ä£ÄâµØÍ¼·½¸ñ¿í¶È
+// æˆ˜åœºæ¨¡æ‹Ÿåœ°å›¾æ–¹æ ¼å®½åº¦
 #define WIDTH_OF_BATTLE_SIMULATION_MAP_CELL			27.0f
-// Õ½³¡Ì¬ÊÆ·ÂÕæµØÍ¼¿í¶È
+// æˆ˜åœºæ€åŠ¿ä»¿çœŸåœ°å›¾å®½åº¦
 #define WIDTH_OF_BATTLE_SIMULATION_MAP							40
-// Õ½³¡Ì¬ÊÆ·ÂÕæµØÍ¼¸ß¶È
+// æˆ˜åœºæ€åŠ¿ä»¿çœŸåœ°å›¾é«˜åº¦
 #define HEIGHT_OF_BATTLE_SIMULATION_MAP						60
-// Õ½³¡Ì¬ÊÆÏÔÊ¾µØÍ¼¿í¶È
+// æˆ˜åœºæ€åŠ¿æ˜¾ç¤ºåœ°å›¾å®½åº¦
 #define WIDTH_OF_BATTLE_DISPLAY_MAP								1080.0f
-// Õ½³¡Ì¬ÊÆÏÔÊ¾µØÍ¼¸ß¶È
+// æˆ˜åœºæ€åŠ¿æ˜¾ç¤ºåœ°å›¾é«˜åº¦
 #define HEIGHT_OF_BATTLE_DISPLAY_MAP								1620.0f
 
 typedef struct _S_HERTZ_WAVE {
-	// µçÆ½
+	// ç”µå¹³
 	float LEVEL;
-	// ·¢ÉäÆ½Ì¨ÎäÆ÷±êÇ©
+	// å‘å°„å¹³å°æ­¦å™¨æ ‡ç­¾
 	int TAG;
-	// ·¢Éä·½Ïò
+	// å‘å°„æ–¹å‘
 	int DIRECTION_FROM;
 } S_HERTZ_WAVE;
 
 class CBattleSimulationMapCell : public Sprite
 {
 private:
-	// µØÍ¼·½¸ñ×ø±ê
+	// åœ°å›¾æ–¹æ ¼åæ ‡
 	Vec2 mCoordinate;
-	// ´¦ÓÚµ±Ç°·½¸ñ¿Õ¼äÖĞµÄÎäÆ÷ÀàĞÍ
+	// å¤„äºå½“å‰æ–¹æ ¼ç©ºé—´ä¸­çš„æ­¦å™¨ç±»å‹
 	ENUM_WEAPON_TYPE mWeaponType;
-	// ´¦ÓÚµ±Ç°·½¸ñ¿Õ¼äÖĞµÄÎäÆ÷±êÇ©
+	// å¤„äºå½“å‰æ–¹æ ¼ç©ºé—´ä¸­çš„æ­¦å™¨æ ‡ç­¾
 	int mWeaponTag;
-	// À¶·½Ãæ¶ÔµÄÕ½ÕùÃÔÎíÊ¹ÄÜ
+	// è“æ–¹é¢å¯¹çš„æˆ˜äº‰è¿·é›¾ä½¿èƒ½
 	bool mFogAgainstBlueEn;
-	// ºì·½Ãæ¶ÔµÄÕ½ÕùÃÔÎíÊ¹ÄÜ
+	// çº¢æ–¹é¢å¯¹çš„æˆ˜äº‰è¿·é›¾ä½¿èƒ½
 	bool mFogAgainstRedEn;
-	// ³ä³âÓÚµ±Ç°·½¸ñ¿Õ¼äÖĞµÄµç´Å²¨ĞòÁĞ
+	// å……æ–¥äºå½“å‰æ–¹æ ¼ç©ºé—´ä¸­çš„ç”µç£æ³¢åºåˆ—
 	vector<S_HERTZ_WAVE> mHertzWaveVec;
 
 public:
-	// ´´½¨º¯Êı
+	// åˆ›å»ºå‡½æ•°
 	static CBattleSimulationMapCell* createWithCoordinate(int coordinateX, int coordinateY);
-	// ³õÊ¼»¯º¯Êı
-	// ÔÚÕ½³¡ÏÔÊ¾×ø±êÏµÏÂ½øĞĞ×ø±êÉè¶¨ 1920 * 1080
+	// åˆå§‹åŒ–å‡½æ•°
+	// åœ¨æˆ˜åœºæ˜¾ç¤ºåæ ‡ç³»ä¸‹è¿›è¡Œåæ ‡è®¾å®š 1920 * 1080
 	bool initWithCoordinate(int coordinateX, int coordinateY);
 
-// ´æÈ¡º¯Êı
+// å­˜å–å‡½æ•°
 public:
 	void SetCoordinate(Vec2 coordinate) { mCoordinate = coordinate; };
 	Vec2 GetCoordinate() { return mCoordinate; };

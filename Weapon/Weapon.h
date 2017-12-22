@@ -5,16 +5,16 @@
 
 using namespace std;
 
-// ÎäÆ÷ÀàÐÍ
+// æ­¦å™¨ç±»åž‹
 enum ENUM_WEAPON_TYPE {
 	WP_TYPE_NONE = 0,
 
-	/************ÒÔÏÂÎª½¨ÖþÀàÐÍÎäÆ÷ ²»ÄÜÒÆ¶¯*************/
+	/************ä»¥ä¸‹ä¸ºå»ºç­‘ç±»åž‹æ­¦å™¨ ä¸èƒ½ç§»åŠ¨*************/
 	WP_TYPE_ANTI_AIRCRAFT_MISSILE,
-	WP_TYPE_FLAK, // ¸ßÉäÅÚ
+	WP_TYPE_FLAK, // é«˜å°„ç‚®
 	WP_TYPE_RADAR,
 
-	/************ÒÔÏÂÎª·É»úÀàÐÍÎäÆ÷ ¿ÉÒÔÒÆ¶¯*************/
+	/************ä»¥ä¸‹ä¸ºé£žæœºç±»åž‹æ­¦å™¨ å¯ä»¥ç§»åŠ¨*************/
 	WP_TYPE_FIGHTER_PLANE,
 	WP_TYPE_BOMBING_PLANE,
 	WP_TYPE_EARLY_WARNING_PLANE,
@@ -24,7 +24,7 @@ enum ENUM_WEAPON_TYPE {
 	WP_TYPE_10,
 	WP_TYPE_11,
 
-	/********ÒÔÏÂÎª»úÔØÀàÐÍÎäÆ÷ ¿ÉÒÔÒÆ¶¯ ²»ÄÜ²¼Éè********/
+	/********ä»¥ä¸‹ä¸ºæœºè½½ç±»åž‹æ­¦å™¨ å¯ä»¥ç§»åŠ¨ ä¸èƒ½å¸ƒè®¾********/
 	WP_TYPE_AAM,
 
 	WP_TYPE_END
@@ -70,31 +70,31 @@ typedef struct _S_PROPERTY_WP
 class Weapon
 {
 public:
-	// ¹¹Ôìº¯Êý Óë Îö¹¹º¯Êý
+	// æž„é€ å‡½æ•° ä¸Ž æžæž„å‡½æ•°
 	Weapon();
 	~Weapon();
 
-	// ³õÊ¼»¯º¯Êý
+	// åˆå§‹åŒ–å‡½æ•°
 	void init(ENUM_TROOPS troops, S_PROPERTY_WP propertyWp, float posX, float posY, int weaponTag);
 
 protected:
 	int mTroopsIn;
 
-	// ÎäÆ÷ÐÍºÅ
+	// æ­¦å™¨åž‹å·
 	S_PROPERTY_WP mPropertyWp;
 
-	// ÎäÆ÷Î»ÖÃ
+	// æ­¦å™¨ä½ç½®
 	float mPosX;
 	float mPosY;
 
-	// ÎäÆ÷×´Ì¬
+	// æ­¦å™¨çŠ¶æ€
 	int mStatus;
 
-	// ÎäÆ÷ÔÚÕ½³¡ÖÐµÄ±êÇ©ÐòºÅ
+	// æ­¦å™¨åœ¨æˆ˜åœºä¸­çš„æ ‡ç­¾åºå·
 	int mWeaponTag;
 
 public:
-	// ´æÈ¡º¯Êý
+	// å­˜å–å‡½æ•°
 	void SetTroopsIn(int troopsIn){ mTroopsIn = troopsIn; };
 	void SetProperty(S_PROPERTY_WP propertyWp){ memcpy(&mPropertyWp, &propertyWp, sizeof(S_PROPERTY_WP)); };
 	void SetPosX(float posX){ mPosX = posX; };

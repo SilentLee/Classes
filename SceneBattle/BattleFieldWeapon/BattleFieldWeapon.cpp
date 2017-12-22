@@ -1,6 +1,6 @@
 #include "BattleFieldWeapon.h"
 
-// ´´½¨º¯Êı Ê¹ÓÃ±¾µØ²Ù×÷Êı¾İ
+// åˆ›å»ºå‡½æ•° ä½¿ç”¨æœ¬åœ°æ“ä½œæ•°æ®
 BattleFieldWeapon* BattleFieldWeapon::createWithLocalOperationData(std::string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType, ENUM_IFF IFF)
 {
 	BattleFieldWeapon* ret = new BattleFieldWeapon();
@@ -12,7 +12,7 @@ BattleFieldWeapon* BattleFieldWeapon::createWithLocalOperationData(std::string f
 	CC_SAFE_DELETE(ret);
 	return nullptr;
 }
-// ´´½¨º¯Êı Ê¹ÓÃ·şÎñÆ÷½ÓÊÕÊı¾İ
+// åˆ›å»ºå‡½æ•° ä½¿ç”¨æœåŠ¡å™¨æ¥æ”¶æ•°æ®
 BattleFieldWeapon* BattleFieldWeapon::createWithRecvServerData(std::string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType, ENUM_IFF IFF)
 {
 	BattleFieldWeapon* ret = new BattleFieldWeapon();
@@ -25,59 +25,59 @@ BattleFieldWeapon* BattleFieldWeapon::createWithRecvServerData(std::string fileN
 	return nullptr;
 }
 
-// ³õÊ¼»¯º¯Êı Ê¹ÓÃ±¾µØ²Ù×÷Êı¾İ
+// åˆå§‹åŒ–å‡½æ•° ä½¿ç”¨æœ¬åœ°æ“ä½œæ•°æ®
 bool BattleFieldWeapon::initWithLocalOperationData(std::string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType, ENUM_IFF IFF)
 {
-	// ¸¸Àà³õÊ¼»¯
+	// çˆ¶ç±»åˆå§‹åŒ–
 	Sprite::initWithFile(fileName);
-	// ÉèÖÃÃªµãÎª Vec2::ANCHOR_MIDDLE
+	// è®¾ç½®é”šç‚¹ä¸º Vec2::ANCHOR_MIDDLE
 	this->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
 
-	// ÉèÖÃÕ½³¡Ì¬ÊÆÏÔÊ¾×ø±ê
+	// è®¾ç½®æˆ˜åœºæ€åŠ¿æ˜¾ç¤ºåæ ‡
 	float posX = ((int)(position.x / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL) + 0.5) * WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
 	float posY = ((int)(position.y / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL) + 0.5) * WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
 
-	// ÉèÖÃÎäÆ÷ÔÚÕ½³¡Ì¬ÊÆÏÔÊ¾µØÍ¼ÖĞµÄÎ»ÖÃ
+	// è®¾ç½®æ­¦å™¨åœ¨æˆ˜åœºæ€åŠ¿æ˜¾ç¤ºåœ°å›¾ä¸­çš„ä½ç½®
 	this->setPosition(posX, posY);
 
-	// ¼ÓÔØ¿¨ÅÆ²ÎÊı
+	// åŠ è½½å¡ç‰Œå‚æ•°
 	PROPERTY_WP propertyWp = CU_CardLoader::getCardParam(weaponType);
 	SetPropertyWp(propertyWp);
 
-	// ³õÊ¼»¯Õ½³¡Ì¬ÊÆ·ÂÕæµØÍ¼ÖĞµÄÎäÆ÷´óĞ¡
+	// åˆå§‹åŒ–æˆ˜åœºæ€åŠ¿ä»¿çœŸåœ°å›¾ä¸­çš„æ­¦å™¨å¤§å°
 	initSizeInSimulationMap();
 
-	// Éè¶¨µĞÎÒ
+	// è®¾å®šæ•Œæˆ‘
 	mIFF = IFF;
 
 	return true;
 }
 
-// ³õÊ¼»¯º¯Êı Ê¹ÓÃ·şÎñÆ÷½ÓÊÕÊı¾İ
+// åˆå§‹åŒ–å‡½æ•° ä½¿ç”¨æœåŠ¡å™¨æ¥æ”¶æ•°æ®
 bool BattleFieldWeapon::initWithRecvServerData(std::string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType, ENUM_IFF IFF)
 {
-	// ¸¸Àà³õÊ¼»¯
+	// çˆ¶ç±»åˆå§‹åŒ–
 	Sprite::initWithFile(fileName);
-	// ÉèÖÃÃªµãÎª Vec2::ANCHOR_MIDDLE
+	// è®¾ç½®é”šç‚¹ä¸º Vec2::ANCHOR_MIDDLE
 	this->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
 
-	// ÉèÖÃÎäÆ÷ÔÚÕ½³¡Ì¬ÊÆÏÔÊ¾µØÍ¼ÖĞµÄÎ»ÖÃ
+	// è®¾ç½®æ­¦å™¨åœ¨æˆ˜åœºæ€åŠ¿æ˜¾ç¤ºåœ°å›¾ä¸­çš„ä½ç½®
 	this->setPosition(position.x, position.y);
 
-	// ¼ÓÔØ¿¨ÅÆ²ÎÊı
+	// åŠ è½½å¡ç‰Œå‚æ•°
 	PROPERTY_WP propertyWp = CU_CardLoader::getCardParam(weaponType);
 	SetPropertyWp(propertyWp);
 
-	// ³õÊ¼»¯Õ½³¡Ì¬ÊÆ·ÂÕæµØÍ¼ÖĞµÄÎäÆ÷´óĞ¡
+	// åˆå§‹åŒ–æˆ˜åœºæ€åŠ¿ä»¿çœŸåœ°å›¾ä¸­çš„æ­¦å™¨å¤§å°
 	initSizeInSimulationMap();
 
-	// Éè¶¨µĞÎÒÊ¶±ğ
+	// è®¾å®šæ•Œæˆ‘è¯†åˆ«
 	mIFF = IFF;
 
 	return true;
 }
 
-// ÉèÖÃÎäÆ÷ÔÚÕ½³¡Ì¬ÊÆ·ÂÕæµØÍ¼ÖĞµÄ³ß´ç
+// è®¾ç½®æ­¦å™¨åœ¨æˆ˜åœºæ€åŠ¿ä»¿çœŸåœ°å›¾ä¸­çš„å°ºå¯¸
 void BattleFieldWeapon::initSizeInSimulationMap()
 {
 	Size weaponSize = this->getContentSize();
@@ -88,7 +88,7 @@ void BattleFieldWeapon::initSizeInSimulationMap()
 	mSizeInSimulationMap = Size(weaponSizeWidth, weaponSizeHeight);
 }
 
-// »ñÈ¡Õ½³¡Ì¬ÊÆ·ÂÕæµØÍ¼×ø±ê
+// è·å–æˆ˜åœºæ€åŠ¿ä»¿çœŸåœ°å›¾åæ ‡
 Vec2 BattleFieldWeapon::GetCoordinate()
 {
 	int coordinateX = this->getPosition().x / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
@@ -97,61 +97,61 @@ Vec2 BattleFieldWeapon::GetCoordinate()
 	return Vec2(coordinateX, coordinateY);
 }
 
-// »ñÈ¡ÎäÆ÷ÔÚÕ½³¡Ì¬ÊÆ·ÂÕæµØÍ¼ÖĞµÄ´óĞ¡
+// è·å–æ­¦å™¨åœ¨æˆ˜åœºæ€åŠ¿ä»¿çœŸåœ°å›¾ä¸­çš„å¤§å°
 Size BattleFieldWeapon::GetSizeInSimulationMap()
 {
 	return mSizeInSimulationMap;
 }
 
-// ĞĞÎªº¯Êı
-// ÒÆ¶¯º¯Êı
+// è¡Œä¸ºå‡½æ•°
+// ç§»åŠ¨å‡½æ•°
 void BattleFieldWeapon::Move(CBattleSimulationMapCell* (&BattleSimulationMapCellArray)[WIDTH_OF_BATTLE_SIMULATION_MAP][HEIGHT_OF_BATTLE_SIMULATION_MAP])
 {
-	// »ñÈ¡ÎäÆ÷ÔÚÕ½³¡Ì¬ÊÆ·ÂÕæµØÍ¼ÖĞµÄ×ø±ê
+	// è·å–æ­¦å™¨åœ¨æˆ˜åœºæ€åŠ¿ä»¿çœŸåœ°å›¾ä¸­çš„åæ ‡
 	Vec2 Coordinate = this->GetCoordinate();
-	// ÖØÖÃµØÍ¼·½¸ñÖĞµÄÎäÆ÷±êÇ©
+	// é‡ç½®åœ°å›¾æ–¹æ ¼ä¸­çš„æ­¦å™¨æ ‡ç­¾
 	BattleSimulationMapCellArray[(int)Coordinate.x][(int)Coordinate.y]->resetWeaponTag();
 
-	// »ñÈ¡µ±Ç°Õ½³¡Ì¬ÊÆÏÔÊ¾×ø±ê
+	// è·å–å½“å‰æˆ˜åœºæ€åŠ¿æ˜¾ç¤ºåæ ‡
 	float posX = this->getPositionX();
 	float posY = this->getPositionY();
 
-	// ÅĞ¶Ïµ±Ç°ÎäÆ÷µĞÎÒÊôĞÔ ¼ÆËãÒÆ¶¯ºóµÄÕ½³¡Ì¬ÊÆÏÔÊ¾×ø±ê
+	// åˆ¤æ–­å½“å‰æ­¦å™¨æ•Œæˆ‘å±æ€§ è®¡ç®—ç§»åŠ¨åçš„æˆ˜åœºæ€åŠ¿æ˜¾ç¤ºåæ ‡
 	if (mIFF == IFF_FRIEND) {
-		// ÎäÆ÷ÊôÓÚ±¾·½ ´ÓÆÁÄ»ÏÂ·½ÏòÉÏ·½·ÉĞĞ ×î´ó²»ÄÜÔ½¹ı HEIGHT_OF_BATTLE_DISPLAY_MAP
+		// æ­¦å™¨å±äºæœ¬æ–¹ ä»å±å¹•ä¸‹æ–¹å‘ä¸Šæ–¹é£è¡Œ æœ€å¤§ä¸èƒ½è¶Šè¿‡ HEIGHT_OF_BATTLE_DISPLAY_MAP
 		posY = min(HEIGHT_OF_BATTLE_DISPLAY_MAP, posY + mPropertyWp.SPEED);
 	}
 	else if (mIFF == IFF_FOE) {
-		// ÎäÆ÷ÊôÓÚ¶Ô·½ ´ÓÆÁÄ»ÉÏ·½ÏòÏÂ·½·ÉĞĞ ×îĞ¡²»ÄÜÔ½¹ı 0
+		// æ­¦å™¨å±äºå¯¹æ–¹ ä»å±å¹•ä¸Šæ–¹å‘ä¸‹æ–¹é£è¡Œ æœ€å°ä¸èƒ½è¶Šè¿‡ 0
 		posY = max(0.0f, posY - mPropertyWp.SPEED);
 	}
 
-	// ÉèÖÃÒÆ¶¯ºóµÄÕ½³¡Ì¬ÊÆÏÔÊ¾×ø±ê
+	// è®¾ç½®ç§»åŠ¨åçš„æˆ˜åœºæ€åŠ¿æ˜¾ç¤ºåæ ‡
 	this->setPosition(Vec2(posX, posY));
-	// ÒÆ¶¯ºóÔÙ´Î¶ÁÈ¡ÎäÆ÷ÔÚÕ½³¡Ì¬ÊÆ·ÂÕæµØÍ¼ÖĞµÄ×ø±ê
+	// ç§»åŠ¨åå†æ¬¡è¯»å–æ­¦å™¨åœ¨æˆ˜åœºæ€åŠ¿ä»¿çœŸåœ°å›¾ä¸­çš„åæ ‡
 	Coordinate = this->GetCoordinate();
-	// ÉèÖÃÕ½³¡Ì¬ÊÆ·ÂÕæµØÍ¼ÖĞ¶ÔÓ¦µÄ·½¸ñ×ø±êµÄÎäÆ÷±êÇ©
+	// è®¾ç½®æˆ˜åœºæ€åŠ¿ä»¿çœŸåœ°å›¾ä¸­å¯¹åº”çš„æ–¹æ ¼åæ ‡çš„æ­¦å™¨æ ‡ç­¾
 	BattleSimulationMapCellArray[(int)Coordinate.x][(int)Coordinate.y]->SetWeaponTag(this->getTag());
 }
-// Ì½²âº¯Êı
+// æ¢æµ‹å‡½æ•°
 void BattleFieldWeapon::Detect(CBattleSimulationMapCell* (&BattleSimulationMapCellArray)[WIDTH_OF_BATTLE_SIMULATION_MAP][HEIGHT_OF_BATTLE_SIMULATION_MAP])
 {
-	// »ñÈ¡Õ½³¡Ì¬ÊÆ·ÂÕæ×ø±ê
+	// è·å–æˆ˜åœºæ€åŠ¿ä»¿çœŸåæ ‡
 	Vec2 Coordinate = this->GetCoordinate();
 	int DetectDistance = mPropertyWp.RANGE_DEC;
-	// ¼ÆËãÌ½²â·¶Î§
+	// è®¡ç®—æ¢æµ‹èŒƒå›´
 	int BorderlineLeft = Coordinate.x - mSizeInSimulationMap.width / 2 - mPropertyWp.RANGE_DEC;
 	int BorderlineRight = Coordinate.x + mSizeInSimulationMap.width / 2 + mPropertyWp.RANGE_DEC;
 	int BorderlineBottom = Coordinate.y - mSizeInSimulationMap.height / 2 - mPropertyWp.RANGE_DEC;
 	int BorderlineTop = Coordinate.y + mSizeInSimulationMap.height / 2 + mPropertyWp.RANGE_DEC;
 
-	// ±éÀúÕ½³¡Ì¬ÊÆ·ÂÕæµØÍ¼ÖĞ´¦ÓÚÌ½²âÇøÓòÖĞµÄÃ¿Ò»¸öµã
+	// éå†æˆ˜åœºæ€åŠ¿ä»¿çœŸåœ°å›¾ä¸­å¤„äºæ¢æµ‹åŒºåŸŸä¸­çš„æ¯ä¸€ä¸ªç‚¹
 	for (int indexX = BorderlineLeft; indexX <= BorderlineRight; indexX++) {
 		for (int indexY = BorderlineBottom; indexY <= BorderlineTop; indexY++) {
-			// µ±Ç°±éÀúµãÔÚÕ½³¡Ì¬ÊÆ·ÂÕæµØÍ¼ÖĞµÄ×ø±ê
+			// å½“å‰éå†ç‚¹åœ¨æˆ˜åœºæ€åŠ¿ä»¿çœŸåœ°å›¾ä¸­çš„åæ ‡
 			int mapCellX = indexX;
 			int mapCellY = indexY;
-			// ½«Ì½²âÇøÓò±éÀúµÄµãÏŞÖÆÔÚÕ½³¡Ì¬ÊÆ·ÂÕæµØÍ¼·¶Î§ÄÚ
+			// å°†æ¢æµ‹åŒºåŸŸéå†çš„ç‚¹é™åˆ¶åœ¨æˆ˜åœºæ€åŠ¿ä»¿çœŸåœ°å›¾èŒƒå›´å†…
 			mapCellX = max(0, min(indexX, WIDTH_OF_BATTLE_SIMULATION_MAP - 1));
 			mapCellY = max(0, min(indexY, HEIGHT_OF_BATTLE_SIMULATION_MAP - 1));
 
@@ -159,12 +159,12 @@ void BattleFieldWeapon::Detect(CBattleSimulationMapCell* (&BattleSimulationMapCe
 		}
 	}
 }
-// ¹¥»÷º¯Êı
+// æ”»å‡»å‡½æ•°
 void BattleFieldWeapon::Attack()
 {
 
 }
-// ±»¹¥»÷º¯Êı
+// è¢«æ”»å‡»å‡½æ•°
 int BattleFieldWeapon::BeAttacked()
 {
 	return 0;

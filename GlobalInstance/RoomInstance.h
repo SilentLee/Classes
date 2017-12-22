@@ -3,7 +3,7 @@
 #include "LibParamApi.h"
 #include <list>
 
-#include "BATTLE_Protocol.h" // Ê¹ÓÃ ProtocolHeader.h »á±¨´í
+#include "BATTLE_Protocol.h" // ä½¿ç”¨ ProtocolHeader.h ä¼šæŠ¥é”™
 #include "BATTLE_PT_Structure.h"
 
 using namespace std;
@@ -30,7 +30,7 @@ typedef enum ROOM_TYPE
 
 class CRoomInstance
 {
-// µ¥ÀıÄ£Ê½µÄ±ØÒªº¯Êı
+// å•ä¾‹æ¨¡å¼çš„å¿…è¦å‡½æ•°
 private:
 	CRoomInstance(){};
 	virtual ~CRoomInstance(){};
@@ -38,35 +38,35 @@ private:
 	static CRoomInstance* roomInstance;
 	CRoomInstance* mRoomInstance;
 
-// µ¥ÀıÄ£Ê½µÄ±ØÒªº¯Êı
+// å•ä¾‹æ¨¡å¼çš„å¿…è¦å‡½æ•°
 public:
 	static CRoomInstance* getInstance();
 	void setRoomInstance(CRoomInstance* roomInstance) { mRoomInstance = roomInstance; };
 
 private:
-	// ·¿¼äÀàĞÍ
+	// æˆ¿é—´ç±»å‹
 	ROOM_TYPE mRoomType;
-	// ·¿¼äµ±Ç°×´Ì¬
+	// æˆ¿é—´å½“å‰çŠ¶æ€
 	ROOM_STATUS mRoomStatus;
-	// ·¿¼äÔÚ·şÎñÆ÷ÖĞµÄÖ¸ÕëµØÖ·
+	// æˆ¿é—´åœ¨æœåŠ¡å™¨ä¸­çš„æŒ‡é’ˆåœ°å€
 	DWORD_PTR mRoomID;
-	// µ±Ç°Íæ¼ÒÊıÁ¿
+	// å½“å‰ç©å®¶æ•°é‡
 	int mCurrentUserCount;
 
-	// µ±Ç°ËùÊ£ÓÎÏ·Ê±¼ä
+	// å½“å‰æ‰€å‰©æ¸¸æˆæ—¶é—´
 	int mRemainingTime;
-	// ÓÎÏ·¿ªÊ¼±êÖ¾Î»
+	// æ¸¸æˆå¼€å§‹æ ‡å¿—ä½
 	//bool mHasGameBegan;
 
-	// À¶¶ÓÍæ¼ÒÁĞ±í
+	// è“é˜Ÿç©å®¶åˆ—è¡¨
 	list<S_USER*> mUsersInBlueTeam;
 	list<S_USER*> mUsersInRedTeam;
 
 public:
-	// ·¿¼ä¸´Î»º¯Êı
+	// æˆ¿é—´å¤ä½å‡½æ•°
 	bool resetRoom(){ return init(); };
 
-// ´æÈ¡º¯Êı
+// å­˜å–å‡½æ•°
 public:
 	void setRoomType(ROOM_TYPE type){ mRoomType = type; };
 	ROOM_TYPE geRoomtType(){ return mRoomType; };

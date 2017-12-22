@@ -6,7 +6,7 @@
 #include "LibParamApi.h"
 #include "Weapon.h"
 
-// 武器基本属性结构体
+// 姝﹀櫒鍩烘湰灞炴�х粨鏋勪綋
 typedef struct _PROPERTY_WP
 {
 	ENUM_WEAPON_TYPE WP_TYPE;

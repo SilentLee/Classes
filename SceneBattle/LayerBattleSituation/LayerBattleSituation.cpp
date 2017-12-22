@@ -17,38 +17,38 @@ LayerBattleSituation* LayerBattleSituation::create()
 bool LayerBattleSituation::init()
 { 
 	LayerEx::init();
-	//// Ìí¼ÓÕ½³¡ÃÔÎí
+	//// æ·»åŠ æˆ˜åœºè¿·é›¾
 	//addFog(0.05, 0.3, BATTLE_FIELD_WIDTH_IN_SQUARE, BATTLE_FIELD_HEIGHT_IN_SQUARE, 0.1, 0.05625);
-	//// ×¢²áÕ½³¡ÃÔÎí¸üĞÂº¯Êı
+	//// æ³¨å†Œæˆ˜åœºè¿·é›¾æ›´æ–°å‡½æ•°
 	//this->schedule(schedule_selector(LayerBattleDisplay::updateFrog), 1 / 60);
 
-	// ³õÊ¼»¯Õ½³¡Ì¬ÊÆ·ÂÕæµØÍ¼
+	// åˆå§‹åŒ–æˆ˜åœºæ€åŠ¿ä»¿çœŸåœ°å›¾
 	initBattleSimulationMap();
 
-	// Ìí¼Ó·ÀÏß
+	// æ·»åŠ é˜²çº¿
 	initDefenseLine();
 
-	// ×¢²áÍ¨Öª¼àÌıº¯Êı
+	// æ³¨å†Œé€šçŸ¥ç›‘å¬å‡½æ•°
 	//registNotification();
 
-	// ×¢²áÓÃÓÚ¼ì²â·şÎñÆ÷Õ½³¡Ì¬ÊÆ¸üĞÂÊı¾İ²¢¸üĞÂ¿Í»§¶ËÕ½³¡Ì¬ÊÆÏÔÊ¾µÄ¸üĞÂº¯Êı
+	// æ³¨å†Œç”¨äºæ£€æµ‹æœåŠ¡å™¨æˆ˜åœºæ€åŠ¿æ›´æ–°æ•°æ®å¹¶æ›´æ–°å®¢æˆ·ç«¯æˆ˜åœºæ€åŠ¿æ˜¾ç¤ºçš„æ›´æ–°å‡½æ•°
 	this->schedule(schedule_selector(LayerBattleSituation::updateBFSituation), 1 / 60);
-	// ×¢²áÓÃÓÚ±¾µØÕ½³¡Ì¬ÊÆ¸üĞÂº¯Êı Æğµ½Æ½»¬µÄ×÷ÓÃ
+	// æ³¨å†Œç”¨äºæœ¬åœ°æˆ˜åœºæ€åŠ¿æ›´æ–°å‡½æ•° èµ·åˆ°å¹³æ»‘çš„ä½œç”¨
 	this->schedule(schedule_selector(LayerBattleSituation::updateLocalSituation), 1 / 60);
 
 	return true;
 };
 
-// ³õÊ¼»¯Õ½³¡Ì¬ÊÆ·ÂÕæµØÍ¼
+// åˆå§‹åŒ–æˆ˜åœºæ€åŠ¿ä»¿çœŸåœ°å›¾
 void LayerBattleSituation::initBattleSimulationMap()
 {
 	for (int index_width = 0; index_width < WIDTH_OF_BATTLE_SIMULATION_MAP; index_width++)
 	{
 		for (int index_height = 0; index_height < HEIGHT_OF_BATTLE_SIMULATION_MAP; index_height++)
 		{
-			// ´´½¨µØÍ¼·½¸ñ
+			// åˆ›å»ºåœ°å›¾æ–¹æ ¼
 			mBattleSimulationMapCellArray[index_width][index_height] = CBattleSimulationMapCell::createWithCoordinate(index_width, index_height);
-			// ½«µØÍ¼·½¸ñÌí¼Óµ½Õ½³¡·ÂÕæµØÍ¼
+			// å°†åœ°å›¾æ–¹æ ¼æ·»åŠ åˆ°æˆ˜åœºä»¿çœŸåœ°å›¾
 			this->addChild(mBattleSimulationMapCellArray[index_width][index_height]);
 		}
 	}
@@ -56,12 +56,12 @@ void LayerBattleSituation::initBattleSimulationMap()
 
 void LayerBattleSituation::initDefenseLine()
 {
-	// ´´½¨ÎÒ·½·ÀÏß
+	// åˆ›å»ºæˆ‘æ–¹é˜²çº¿
 	Sprite* defenseLineOwn = Sprite::create(CU_ImgLoader::getImg(IMG_URL_DEFENSE_LINE).c_str());
 	defenseLineOwn->setPosition(WIDTH_OF_BATTLE_DISPLAY_MAP / 2, WIDTH_OF_BATTLE_SIMULATION_MAP_CELL);
 	this->addChild(defenseLineOwn);
 
-	// ´´½¨¶ÔÊÖ·ÀÏß
+	// åˆ›å»ºå¯¹æ‰‹é˜²çº¿
 	Sprite* defenseLineOppo = CG_Sprite::create(CU_ImgLoader::getImg(IMG_URL_DEFENSE_LINE).c_str());
 	defenseLineOppo->setPosition(WIDTH_OF_BATTLE_DISPLAY_MAP / 2, HEIGHT_OF_BATTLE_DISPLAY_MAP - WIDTH_OF_BATTLE_SIMULATION_MAP_CELL);
 	this->addChild(defenseLineOppo);

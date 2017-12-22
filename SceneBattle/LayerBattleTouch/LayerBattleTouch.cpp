@@ -20,7 +20,7 @@ bool LayerBattleTouch::init()
 	return true;
 };
 
-// ÉèÖÃ´¥¿ØÄ£Ê½
+// è®¾ç½®è§¦æŽ§æ¨¡å¼
 void LayerBattleTouch::initTouchMode(LayerBattleTouch* layerTouchDB)
 {
 	layerTouchDB->setTouchEnabled(true);

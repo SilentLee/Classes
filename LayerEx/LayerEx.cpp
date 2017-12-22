@@ -17,12 +17,12 @@ bool LayerEx::init()
 {
 	Layer::init();
 
-	// »ñÈ¡ÆÁÄ»¿ÉÊÓ·Ö±æÂÊ
+	// èŽ·å–å±å¹•å¯è§†åˆ†è¾¨çŽ‡
 	mVisibleSize = Director::getInstance()->getVisibleSize();
-	// ¼ÆËãËõ·ÅÒò×Ó
+	// è®¡ç®—ç¼©æ”¾å› å­
 	mSizeAdjustFactor = mVisibleSize.width / designResolutionSize.width;
 
-	// transTouch º¯ÊýÔÚÃªµãÎª ANCHOR_BOTTOM_LEFT ×ª»»²ÅÊÇ×¼È·µÄ
+	// transTouch å‡½æ•°åœ¨é”šç‚¹ä¸º ANCHOR_BOTTOM_LEFT è½¬æ¢æ‰æ˜¯å‡†ç¡®çš„
 	this->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
 
 	this->setScale(mSizeAdjustFactor);
@@ -30,8 +30,8 @@ bool LayerEx::init()
 	return true;
 }
 
-// ÃªµãÎª ANCHOR_BOTTOM_LEFT
-// ¸ù¾Ýµ±Ç° Layer Ëõ·ÅÂÊ ×ª»» touch ×ø±ê
+// é”šç‚¹ä¸º ANCHOR_BOTTOM_LEFT
+// æ ¹æ®å½“å‰ Layer ç¼©æ”¾çŽ‡ è½¬æ¢ touch åæ ‡
 Vec2 LayerEx::transTouch(Touch* touch)
 {
 	if (this->getAnchorPoint() == Vec2::ANCHOR_BOTTOM_LEFT) {

@@ -1,7 +1,7 @@
 #pragma once
 //#include "DataType.h"
 #include "Global.h"
-//#include "BATTLE_Protocol.h" // Ê¹ÓÃ ProtocolHeader.h »á±¨´í
+//#include "BATTLE_Protocol.h" // ä½¿ç”¨ ProtocolHeader.h ä¼šæŠ¥é”™
 //#include "BATTLE_PT_Structure.h"
 #include "Weapon.h"
 
@@ -13,7 +13,7 @@ typedef enum ENUM_SIDE_IN_GAME {
 
 class CUserInstance
 {
-// ¶ÔÕ½Ê±µÄ²ÎÊı
+// å¯¹æˆ˜æ—¶çš„å‚æ•°
 private:
 	ENUM_SIDE_IN_GAME mSideInGame;
 	ENUM_TROOPS mTroopsIn;

@@ -1,4 +1,4 @@
-#include "AppDelegate.h"
+ï»¿#include "AppDelegate.h"
 #include "HelloWorldScene.h"
 #include "SceneBattle.h"
 #include "SceneSelect.h"
@@ -72,23 +72,24 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0f / 60);
 
-	// ¼ÓÔØÍ¼Æ¬×ÊÔ´Â·¾¶
+	// åŠ è½½å›¾ç‰‡èµ„æºè·¯å¾„
 	CU_ImgLoader::loadImg();
 
-	// ¼ÓÔØ¿¨ÅÆ¼°»úÔØÎäÆ÷²ÎÊı
+	// åŠ è½½å¡ç‰ŒåŠæœºè½½æ­¦å™¨å‚æ•°
 	CU_CardLoader::loadCardParams();
 	CU_CardLoader::loadAirborneWeaponParams();
 
-	// Á¬½Ó·şÎñÆ÷
-	if (!connectServer()) 
-		log("Á¬½Ó·şÎñÆ÷Ê§°Ü");
+	// è¿æ¥æœåŠ¡å™¨
+	if (!connectServer()) {
+		log("Server connection fail");
+	}
 
 	CNetworkInstance* networkInstance = CNetworkInstance::getInstance();
 	networkInstance->setNetworkSession(mNetWorkSession);
 
     register_all_packages();
 
-	// ´´½¨ÓÎÏ·Èë¿Ú³¡¾°
+	// åˆ›å»ºæ¸¸æˆå…¥å£åœºæ™¯
     // create a scene. it's an autorelease object
     //auto scene = HelloWorld::createScene();
 	//auto scene = SceneBattle::createScene();
@@ -124,7 +125,7 @@ void AppDelegate::applicationWillEnterForeground() {
 #endif
 }
 
-// ·şÎñÆ÷Á¬½Óº¯Êı
+// æœåŠ¡å™¨è¿æ¥å‡½æ•°
 bool AppDelegate::connectServer()
 {
 	mNetWorkSession = new CNetworkSession();

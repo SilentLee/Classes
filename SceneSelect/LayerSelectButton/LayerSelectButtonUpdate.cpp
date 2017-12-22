@@ -5,15 +5,15 @@ void LayerSelectButton::UpdateToBattle(float dt)
 {
 	CRoomInstance* roomInstance = CRoomInstance::getInstance();
 
-	// ·¿¼äÄÚÈËÊýÒÑÂú ×¼±¸¿ªÊ¼ÓÎÏ·
+	// æˆ¿é—´å†…äººæ•°å·²æ»¡ å‡†å¤‡å¼€å§‹æ¸¸æˆ
 	if (roomInstance->getRoomStatus() == RM_READY) {
 
 	}
-	// ·¿¼äÄÚÈËÊý²»×ã µÈ´ýÐÂµÄÍæ¼Ò½øÈë
+	// æˆ¿é—´å†…äººæ•°ä¸è¶³ ç­‰å¾…æ–°çš„çŽ©å®¶è¿›å…¥
 	else if (roomInstance->getRoomStatus() == RM_WAITING) {
 
 	}
-	// ÓÎÏ·¿ªÊ¼ ½øÈëÓÎÏ·¶ÔÕ½½çÃæ
+	// æ¸¸æˆå¼€å§‹ è¿›å…¥æ¸¸æˆå¯¹æˆ˜ç•Œé¢
 	else if (roomInstance->getRoomStatus() == RM_GAME_START) {
 		roomInstance->setRoomStatus(RM_GAME_IN_PROGRESS);
 		auto director = Director::getInstance();

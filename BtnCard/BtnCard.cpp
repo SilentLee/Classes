@@ -1,6 +1,6 @@
 #include "BtnCard.h"
 
-// ´´½¨º¯Êý
+// åˆ›å»ºå‡½æ•°
 BtnCard* BtnCard::create(ENUM_CARD_TYPE cardType, float posX, float posY)
 {
 	BtnCard* ret = new BtnCard();
@@ -13,30 +13,30 @@ BtnCard* BtnCard::create(ENUM_CARD_TYPE cardType, float posX, float posY)
 	return nullptr;
 }
 
-// ³õÊ¼»¯º¯Êý
+// åˆå§‹åŒ–å‡½æ•°
 bool BtnCard::init(ENUM_CARD_TYPE cardType, float posX, float posY)
 {
-	// µ÷ÓÃ¸¸Àà³õÊ¼»¯º¯Êý
+	// è°ƒç”¨çˆ¶ç±»åˆå§‹åŒ–å‡½æ•°
 	Button::init(CU_ImgLoader::getCardImg(cardType).c_str());
-	// ÉèÖÃÎ»ÖÃ
+	// è®¾ç½®ä½ç½®
 	this->setPosition(Vec2(posX, posY));
 
 	return true;
 }
 
-// ËÉ¿ª°´Å¥µÄ»Øµ÷º¯Êý
+// æ¾å¼€æŒ‰é’®çš„å›žè°ƒå‡½æ•°
 void BtnCard::onPressStateChangedToNormal()
 {
 	this->setScale(1.0f);
 }
 
-// °´ÏÂ°´Å¥µÄ»Øµ÷º¯Êý
+// æŒ‰ä¸‹æŒ‰é’®çš„å›žè°ƒå‡½æ•°
 void BtnCard::onPressStateChangedToPressed()
 {
 	this->setScale(0.8f);
 }
 
-// ÉèÖÃ°´Å¥Í¼Æ¬
+// è®¾ç½®æŒ‰é’®å›¾ç‰‡
 void BtnCard::setButtonImage(std::string filename)
 {
 	this->loadTextures(filename, filename, filename);

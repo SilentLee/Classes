@@ -3,13 +3,13 @@
 #include "LibBattleFieldGraphApi.h"
 #include "GlobalInstanceApi.h"
 
-// ²¼Éè±øÁ¦Ô¤ÀÀº¯Êý
-// Óë onTouchBegan ÅäºÏÊ¹ÓÃ
+// å¸ƒè®¾å…µåŠ›é¢„è§ˆå‡½æ•°
+// ä¸Ž onTouchBegan é…åˆä½¿ç”¨
 void LayerBattleSituation::previewWeaponWithPositionOnBegan(int weaponType, float posX, float posY)
 {
 	Node* previewWeapon = NULL;
 
-	// ½« posY ÏÞÖÆÔÚÔÊÐí·ÀÖ¹ÎäÆ÷µÄÇøÓòÖÐ
+	// å°† posY é™åˆ¶åœ¨å…è®¸é˜²æ­¢æ­¦å™¨çš„åŒºåŸŸä¸­
 	posY = min(posY, HEIGHT_OF_RANGE_TO_ARRANGE_WEAPON_ON_SIMULATION_MAP * WIDTH_OF_BATTLE_SIMULATION_MAP_CELL);
 	posY = max(posY, 0.0f);
 
@@ -76,14 +76,14 @@ void LayerBattleSituation::previewWeaponWithPositionOnBegan(int weaponType, floa
 	previewWeapon->setOpacity(150);
 }
 
-// ²¼Éè±øÁ¦Ô¤ÀÀº¯Êý
-// Óë onTouchMoved ÅäºÏÊ¹ÓÃ
+// å¸ƒè®¾å…µåŠ›é¢„è§ˆå‡½æ•°
+// ä¸Ž onTouchMoved é…åˆä½¿ç”¨
 void LayerBattleSituation::previewWeaponWithPositionOnMoved(float posX, float posY)
 {
 	BattleFieldWeapon* previewWeapon = (BattleFieldWeapon*)this->getChildByName("previewWeapon");
 	previewWeapon->setOpacity(150);
 
-	// ½« posY ÏÞÖÆÔÚÔÊÐí·ÀÖ¹ÎäÆ÷µÄÇøÓòÖÐ
+	// å°† posY é™åˆ¶åœ¨å…è®¸é˜²æ­¢æ­¦å™¨çš„åŒºåŸŸä¸­
 	posY = min(posY, HEIGHT_OF_RANGE_TO_ARRANGE_WEAPON_ON_SIMULATION_MAP * WIDTH_OF_BATTLE_SIMULATION_MAP_CELL);
 	posY = max(posY, 0.0f);
 
@@ -93,8 +93,8 @@ void LayerBattleSituation::previewWeaponWithPositionOnMoved(float posX, float po
 	previewWeapon->setPosition(posX, posY);
 }
 
-// ²¼Éè±øÁ¦Ô¤ÀÀº¯Êý
-// Óë onTouchEnded ÅäºÏÊ¹ÓÃ
+// å¸ƒè®¾å…µåŠ›é¢„è§ˆå‡½æ•°
+// ä¸Ž onTouchEnded é…åˆä½¿ç”¨
 void LayerBattleSituation::previewWeaponWithPositionOnEnded()
 {
 	CUserInstance* userInstance = CUserInstance::getInstance();
@@ -105,7 +105,7 @@ void LayerBattleSituation::previewWeaponWithPositionOnEnded()
 	memset(&ptBattleArrangeWeapon, 0, sizeof(ptBattleArrangeWeapon));
 
 
-	// ·¢ËÍ´ËÊ±²¼ÉèµÄ¿¨ÅÆ
+	// å‘é€æ­¤æ—¶å¸ƒè®¾çš„å¡ç‰Œ
 	ptBattleArrangeWeapon.WEAPON_TYPE = previewWeapon->GetPropertyWp().WP_TYPE;
 	ptBattleArrangeWeapon.COORDINATE_X = previewWeapon->GetCoordinate().x;
 	ptBattleArrangeWeapon.COORDINATE_Y = previewWeapon->GetCoordinate().y;
@@ -123,21 +123,21 @@ void LayerBattleSituation::previewWeaponWithPositionOnEnded()
 	this->removeChild(previewWeapon);
 }
 
-// ²¼Éè±øÁ¦Ô¤ÀÀº¯Êý
-// Óë onTouchCancelled ÅäºÏÊ¹ÓÃ
+// å¸ƒè®¾å…µåŠ›é¢„è§ˆå‡½æ•°
+// ä¸Ž onTouchCancelled é…åˆä½¿ç”¨
 void LayerBattleSituation::previewWeaponWithPositionCancelled()
 {
 	this->removeChildByName("previewWeapon");
 }
 
-// ²¼Éè¶Ô·½±øÁ¦º¯Êý
-// ×ø±ê·ù¶È
-// ¿í¶È 1080
-// ¸ß¶È 1920
-// ×ø±êÐèÒª×ª»»Ò»ÏÂ ½«ÎäÆ÷ÓÉ ´ÓÏÂÏòÉÏ·ÉÐÐ ×ª»»Îª ´ÓÉÏÏòÏÂ·ÉÐÐ
+// å¸ƒè®¾å¯¹æ–¹å…µåŠ›å‡½æ•°
+// åæ ‡å¹…åº¦
+// å®½åº¦ 1080
+// é«˜åº¦ 1920
+// åæ ‡éœ€è¦è½¬æ¢ä¸€ä¸‹ å°†æ­¦å™¨ç”± ä»Žä¸‹å‘ä¸Šé£žè¡Œ è½¬æ¢ä¸º ä»Žä¸Šå‘ä¸‹é£žè¡Œ
 void LayerBattleSituation::arrangeEnemyWeaponWithPosition(ENUM_TROOPS troops, int weaponType, int posX, int posY, int weaponTag)
 {
-	// ¸ù¾ÝÍæ¼Òµ±Ç°ÊôÓÚÀ¶·½»¹ÊÇºì·½ ÖØÐÂ¼ÆËã¼ÓÈëÎäÆ÷ÔÚ¿Í»§¶ËÕ½³¡Ì¬ÊÆÏÔÊ¾ÖÐµÄÎ»ÖÃ×ø±ê
+	// æ ¹æ®çŽ©å®¶å½“å‰å±žäºŽè“æ–¹è¿˜æ˜¯çº¢æ–¹ é‡æ–°è®¡ç®—åŠ å…¥æ­¦å™¨åœ¨å®¢æˆ·ç«¯æˆ˜åœºæ€åŠ¿æ˜¾ç¤ºä¸­çš„ä½ç½®åæ ‡
 	CUserInstance* userInstance = CUserInstance::getInstance();
 	if (userInstance->getTroopsIn() == TROOPS_BLUE) {
 		posX = posX;
@@ -198,20 +198,20 @@ void LayerBattleSituation::arrangeEnemyWeaponWithPosition(ENUM_TROOPS troops, in
 		enemyWeaponToArrange = BattleFieldWeapon::createWithRecvServerData(IMG_URL_WEAPON_11_OPPO, position, WP_TYPE_11, IFF_FOE);
 		break;
 	}
-	// ½«ÎäÆ÷¼ÓÈë±øÁ¦´æ´¢Êý×é
+	// å°†æ­¦å™¨åŠ å…¥å…µåŠ›å­˜å‚¨æ•°ç»„
 	mWeaponsOppo.push_back(enemyWeaponToArrange);
-	// ½«ÎäÆ÷Ìí¼Óµ½Õ½³¡Ì¬ÊÆÏÔÊ¾²ã
+	// å°†æ­¦å™¨æ·»åŠ åˆ°æˆ˜åœºæ€åŠ¿æ˜¾ç¤ºå±‚
 	this->addChild(enemyWeaponToArrange, 3, weaponTag);
 	//enemyWeaponToArrange->scheduleUpdate();
 }
 
-// ²¼Éè±¾·½±øÁ¦º¯Êý
-// ×ø±ê·ù¶È
-// ¿í¶È 1080
-// ¸ß¶È 1920
+// å¸ƒè®¾æœ¬æ–¹å…µåŠ›å‡½æ•°
+// åæ ‡å¹…åº¦
+// å®½åº¦ 1080
+// é«˜åº¦ 1920
 void LayerBattleSituation::arrangeOwnWeaponWithPosition(ENUM_TROOPS troops, int weaponType, int posX, int posY, int weaponTag)
 {
-	// ¸ù¾ÝÍæ¼Òµ±Ç°ÊôÓÚÀ¶·½»¹ÊÇºì·½ ÖØÐÂ¼ÆËã¼ÓÈëÎäÆ÷ÔÚ¿Í»§¶ËÕ½³¡Ì¬ÊÆÏÔÊ¾ÖÐµÄÎ»ÖÃ×ø±ê
+	// æ ¹æ®çŽ©å®¶å½“å‰å±žäºŽè“æ–¹è¿˜æ˜¯çº¢æ–¹ é‡æ–°è®¡ç®—åŠ å…¥æ­¦å™¨åœ¨å®¢æˆ·ç«¯æˆ˜åœºæ€åŠ¿æ˜¾ç¤ºä¸­çš„ä½ç½®åæ ‡
 	CUserInstance* userInstance = CUserInstance::getInstance();
 	if (userInstance->getTroopsIn() == TROOPS_BLUE) {
 		posX = posX;
@@ -272,9 +272,9 @@ void LayerBattleSituation::arrangeOwnWeaponWithPosition(ENUM_TROOPS troops, int 
 		ownWeaponToArrange = BattleFieldWeapon::createWithRecvServerData(IMG_URL_WEAPON_11_OWN, position, WP_TYPE_11, IFF_FRIEND);
 		break;
 	}
-	// ½«ÎäÆ÷¼ÓÈë±øÁ¦´æ´¢Êý×é
+	// å°†æ­¦å™¨åŠ å…¥å…µåŠ›å­˜å‚¨æ•°ç»„
 	mWeaponsOwn.push_back(ownWeaponToArrange);
-	// ½«ÎäÆ÷Ìí¼Óµ½Õ½³¡Ì¬ÊÆÏÔÊ¾²ã
+	// å°†æ­¦å™¨æ·»åŠ åˆ°æˆ˜åœºæ€åŠ¿æ˜¾ç¤ºå±‚
 	this->addChild(ownWeaponToArrange, 3, weaponTag);
 	//ownWeaponToArrange->scheduleUpdate();
 }

@@ -15,7 +15,7 @@ bool LayerBattleButton::init()
 {
 	LayerEx::init();
 
-	// ³õÊ¼»¯¿¨ÅÆ
+	// åˆå§‹åŒ–å¡ç‰Œ
 	initCards();
 
 	return true;
@@ -23,23 +23,23 @@ bool LayerBattleButton::init()
 
 void LayerBattleButton::initCards()
 {
-	// ¿¨ÅÆÑ¡Ôñ¿ª¹ØÖÃ0
+	// å¡ç‰Œé€‰æ‹©å¼€å…³ç½®0
 	mCardBtnSwitch = BTN_CARD_NONE;
 
-	// ¼ÓÔØ¿¨×é
+	// åŠ è½½å¡ç»„
 	for (int i = CARD_TYPE_FIGHTER_PLANE; i <= NUM_CARDS_IN_GROUP; i++)
 	{
 		S_CARD_STRUCT_BATTLE card = S_CARD_STRUCT_BATTLE{ (ENUM_CARD_TYPE)i, CARD_STATUS_FREE };
 		mStructCards.push_back(card);
 	}
 
-	// Ï´ÅÆ
+	// æ´—ç‰Œ
 	random_shuffle(mStructCards.begin(), mStructCards.end());
 
-	// ·¢ÅÆ
+	// å‘ç‰Œ
 	for (int i = 0; i < NUM_CARD_BUTTONS; i++)
 	{
-		// ´Ë´¦Ó¦½« create º¯ÊıÖĞµ÷ÓÃ²ÎÊıÖĞ³öÏÖµÄÊıÖµ ¼´ 356 162 96 ¸ü»»³Éºê¶¨ÒåµÄ²ÎÊı ±ãÓÚºóÆÚÖ±½Ó¸ü¸Ä
+		// æ­¤å¤„åº”å°† create å‡½æ•°ä¸­è°ƒç”¨å‚æ•°ä¸­å‡ºç°çš„æ•°å€¼ å³ 356 162 96 æ›´æ¢æˆå®å®šä¹‰çš„å‚æ•° ä¾¿äºåæœŸç›´æ¥æ›´æ”¹
 		mBtnCards[i] = BtnCard::create(mStructCards[i].CARD_TYPE, 356 + i * 162, 96);
 		mBtnCards[i]->setCardType(mStructCards[i].CARD_TYPE);
 		mStructCards[i].CARD_STATUS = CARD_STATUS_OCCUPIED;
@@ -47,9 +47,9 @@ void LayerBattleButton::initCards()
 		this->addChild(mBtnCards[i], 1, i);
 	}
 
-	// ´´½¨ÏÂÒ»ÕÅ¿¨ÅÆÏÔÊ¾À¸
+	// åˆ›å»ºä¸‹ä¸€å¼ å¡ç‰Œæ˜¾ç¤ºæ 
 	mNextCard = Sprite::create(CU_ImgLoader::getCardImg(mStructCards[NUM_CARD_BUTTONS].CARD_TYPE).c_str());
-	// ´Ë´¦Ó¦½« setPosition º¯ÊıÖĞµ÷ÓÃ²ÎÊıÖĞ³öÏÖµÄÊıÖµ ¼´ 108 96 ¸ü»»³Éºê¶¨ÒåµÄ²ÎÊı ±ãÓÚºóÆÚÖ±½Ó¸ü¸Ä
+	// æ­¤å¤„åº”å°† setPosition å‡½æ•°ä¸­è°ƒç”¨å‚æ•°ä¸­å‡ºç°çš„æ•°å€¼ å³ 108 96 æ›´æ¢æˆå®å®šä¹‰çš„å‚æ•° ä¾¿äºåæœŸç›´æ¥æ›´æ”¹
 	mNextCard->setPosition(108, 96);
 	mStructCards[NUM_CARD_BUTTONS].CARD_STATUS = CARD_STATUS_NEXT_CARD;
 	this->addChild(mNextCard, 1, "nextCard");
@@ -60,7 +60,7 @@ void LayerBattleButton::BtnCardCallback(int key)
 	mCardBtnSwitch = key;
 }
 
-// ³öÅÆ´¦Àíº¯Êı
+// å‡ºç‰Œå¤„ç†å‡½æ•°
 int LayerBattleButton::discard()
 {
 	if (mCardBtnSwitch == BTN_CARD_NONE)
@@ -74,21 +74,21 @@ int LayerBattleButton::discard()
 	{
 		if (discardType == mStructCards[i].CARD_TYPE)
 		{
-			// ½«Ê¹ÓÃ¹ıµÄ¿¨ÅÆ·ÅÖÃµ½¶ÓÎ²
+			// å°†ä½¿ç”¨è¿‡çš„å¡ç‰Œæ”¾ç½®åˆ°é˜Ÿå°¾
 			S_CARD_STRUCT_BATTLE cardStruct = S_CARD_STRUCT_BATTLE{ mStructCards[i].CARD_TYPE, CARD_STATUS_FREE };
 			mStructCards.erase(mStructCards.begin() + i);
 			mStructCards.push_back(cardStruct);
 
-			// ½«ÏÂÒ»ÕÅ¿¨ÅÆ·ÅÖÃµ½¿¨ÅÆÑ¡Ôñ°´Å¥ÖĞ
+			// å°†ä¸‹ä¸€å¼ å¡ç‰Œæ”¾ç½®åˆ°å¡ç‰Œé€‰æ‹©æŒ‰é’®ä¸­
 			mBtnCards[mCardBtnSwitch]->setCardType(mStructCards[NUM_CARD_BUTTONS - 1].CARD_TYPE);
 			mStructCards[NUM_CARD_BUTTONS - 1].CARD_STATUS = CARD_STATUS_OCCUPIED;
 			mBtnCards[mCardBtnSwitch]->setButtonImage(CU_ImgLoader::getCardImg(mStructCards[NUM_CARD_BUTTONS - 1].CARD_TYPE).c_str());
 
-			// ÉèÖÃÏÂÒ»ÕÅ¿¨ÅÆ
+			// è®¾ç½®ä¸‹ä¸€å¼ å¡ç‰Œ
 			mNextCard->setTexture(CU_ImgLoader::getCardImg(mStructCards[NUM_CARD_BUTTONS].CARD_TYPE).c_str());
 			mStructCards[NUM_CARD_BUTTONS].CARD_STATUS = CARD_STATUS_NEXT_CARD;
 
-			// Ï´ÅÆ
+			// æ´—ç‰Œ
 			random_shuffle(mStructCards.begin() + NUM_CARD_BUTTONS + 1, mStructCards.end() - NUM_CARD_USED_CARD);
 			break;
 		}

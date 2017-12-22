@@ -9,11 +9,11 @@ public:
 	static LayerSelectButton * create();
 	bool init();
 
-// 按钮回调函数
+// 鎸夐挳鍥炶皟鍑芥暟
 public:
 	void BtnStartCallback(ROOM_TYPE roomType);
 
-	// 更新函数
+	// 鏇存柊鍑芥暟
 public:
 	void UpdateToBattle(float dt);
 };

@@ -7,9 +7,9 @@ USING_NS_CC;
 class LayerEx : public Layer
 {
 private:
-	// 尺寸自适应调节因子
+	// 灏哄鑷�傚簲璋冭妭鍥犲瓙
 	float mSizeAdjustFactor;
-	// 屏幕可视尺寸
+	// 灞忓箷鍙灏哄
 	Size mVisibleSize;
 
 public:
@@ -17,7 +17,7 @@ public:
 	bool init();
 	Vec2 transTouch(Touch* touch);
 
-// 存取函数
+// 瀛樺彇鍑芥暟
 public:
 	float GetSizeAdjustFactor() { return mSizeAdjustFactor; };
 	Size GetVisibleSize() { return mVisibleSize; };

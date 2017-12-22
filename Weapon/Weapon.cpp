@@ -1,6 +1,6 @@
 #include "Weapon.h"
 
-// ¹¹Ôìº¯Êı
+// æ„é€ å‡½æ•°
 Weapon::Weapon()
 {
 	mTroopsIn = TROOPS_NONE;
@@ -11,7 +11,7 @@ Weapon::Weapon()
 	mWeaponTag = 0;
 }
 
-// Îö¹¹º¯Êı
+// ææ„å‡½æ•°
 Weapon::~Weapon()
 {
 	mTroopsIn = TROOPS_NONE;
@@ -22,7 +22,7 @@ Weapon::~Weapon()
 	mWeaponTag = 0;
 }
 
-// ³õÊ¼»¯º¯Êı
+// åˆå§‹åŒ–å‡½æ•°
 void Weapon::init(ENUM_TROOPS troops, S_PROPERTY_WP propertyWp, float posX, float posY, int weaponTag)
 {
 	mTroopsIn = troops;
@@ -30,11 +30,11 @@ void Weapon::init(ENUM_TROOPS troops, S_PROPERTY_WP propertyWp, float posX, floa
 	mPosX = posX;
 	mPosY = posY;
 
-	// ÉèÖÃÎäÆ÷±êÇ©
+	// è®¾ç½®æ­¦å™¨æ ‡ç­¾
 	mWeaponTag = weaponTag;
 
-	// ½¨ÖşÀàÎäÆ÷½«×´Ì¬ÉèÖÃÎª STATUS_WP_STOP 
-	// ·É»úÀàÎäÆ÷½«×´Ì¬ÉèÖÃÎª STATUS_WP_MOVE_FORWARD
+	// å»ºç­‘ç±»æ­¦å™¨å°†çŠ¶æ€è®¾ç½®ä¸º STATUS_WP_STOP 
+	// é£æœºç±»æ­¦å™¨å°†çŠ¶æ€è®¾ç½®ä¸º STATUS_WP_MOVE_FORWARD
 	if (propertyWp.WP_TYPE <= WP_TYPE_RADAR) {
 		mStatus = WP_STATUS_STOP;
 	}
@@ -43,35 +43,35 @@ void Weapon::init(ENUM_TROOPS troops, S_PROPERTY_WP propertyWp, float posX, floa
 	}
 }
 
-// ÎäÆ÷ÒÆ¶¯
+// æ­¦å™¨ç§»åŠ¨
 void Weapon::Move()
 {
-	// ÎäÆ÷ÀàĞÍÎŞĞ§ »ò ÎäÆ÷Îª½¨ÖşÀà ²»ÄÜÒÆ¶¯ º¯Êı·µ»Ø
+	// æ­¦å™¨ç±»å‹æ— æ•ˆ æˆ– æ­¦å™¨ä¸ºå»ºç­‘ç±» ä¸èƒ½ç§»åŠ¨ å‡½æ•°è¿”å›
 	if (mPropertyWp.WP_TYPE <= WP_TYPE_RADAR) {
 		return;
 	}
 
 	switch (mTroopsIn)
 	{
-		// À¶·½ËùÊô±øÁ¦ ×ÔÕ½³¡ÏÂ·½ÏòÉÏÔË¶¯
+		// è“æ–¹æ‰€å±å…µåŠ› è‡ªæˆ˜åœºä¸‹æ–¹å‘ä¸Šè¿åŠ¨
 	case TROOPS_BLUE:
 		this->mPosY += mPropertyWp.SPEED;
 		break;
 
-		// ºì·½ËùÊô±øÁ¦ ×ÔÕ½³¡ÉÏ·½ÏòÏÂÔË¶¯
+		// çº¢æ–¹æ‰€å±å…µåŠ› è‡ªæˆ˜åœºä¸Šæ–¹å‘ä¸‹è¿åŠ¨
 	case TROOPS_RED:
 		mPosY = max(0.0f, mPosY - mPropertyWp.SPEED);
 		break;
 	}
 }
 
-// ÎäÆ÷¹¥»÷
+// æ­¦å™¨æ”»å‡»
 void Weapon::Attack()
 {
 
 }
 
-// Ôâµ½¹¥»÷
+// é­åˆ°æ”»å‡»
 int Weapon::BeAttacked(int DP)
 {
 	return mPropertyWp.HP = max(0, mPropertyWp.HP - DP);

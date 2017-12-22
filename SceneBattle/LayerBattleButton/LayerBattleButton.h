@@ -20,7 +20,7 @@ public:
 
 
 private:
-	// µ±Ç°µãÑ¡µÄ¿¨ÅÆ°´Å¥
+	// å½“å‰ç‚¹é€‰çš„å¡ç‰ŒæŒ‰é’®
 	int mCardBtnSwitch;
 
 public:
@@ -29,14 +29,14 @@ public:
 	Sprite* mNextCard;	
 
 public:
-	// ³õÊ¼»¯¿¨ÅÆ
+	// åˆå§‹åŒ–å¡ç‰Œ
 	void initCards();
-	// ¿¨ÅÆ°´Å¥»Øµ÷º¯Êý
+	// å¡ç‰ŒæŒ‰é’®å›žè°ƒå‡½æ•°
 	void BtnCardCallback(int key);
-	// ³öÅÆ´¦Àíº¯Êý
+	// å‡ºç‰Œå¤„ç†å‡½æ•°
 	int discard();
 
-// ´æÈ¡º¯Êý
+// å­˜å–å‡½æ•°
 public:
 	int getCardBtnSwitch() { return mCardBtnSwitch; };
 	int getCardType() { return mBtnCards[mCardBtnSwitch]->getCardType(); };

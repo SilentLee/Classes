@@ -134,7 +134,7 @@ BOOL CNetworkSession::GetPacket(DWORD &protocol, BYTE *packet, DWORD &packetLeng
 		DWORD PacketNumber	= 0;
 		DWORD Protocol		= 0;
 
-		memcpy(&PacketNumber, mPacketBuffer + sizeof(DWORD)/*LENGTH*/, sizeof(DWORD)); // 获取数据包的编号
+		memcpy(&PacketNumber, mPacketBuffer + sizeof(DWORD)/*LENGTH*/, sizeof(DWORD)); // 鑾峰彇鏁版嵁鍖呯殑缂栧彿
 		memcpy(&Protocol, mPacketBuffer + 
 			sizeof(DWORD)/*LENGTH*/ + 
 			sizeof(DWORD)/*PACKETNUMBER*/, sizeof(DWORD));

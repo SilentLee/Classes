@@ -5,7 +5,7 @@
 
 using namespace std;
 
-// µĞÎÒÊ¶±ğ
+// æ•Œæˆ‘è¯†åˆ«
 // identification friend or foe
 typedef enum ENUM_IFF {
 	IFF_NONE,
@@ -13,63 +13,63 @@ typedef enum ENUM_IFF {
 	IFF_FOE
 };
 
-// BattleFieldWeapon ÀàÖĞ
-// Coordinate Îª Õ½³¡Ì¬ÊÆ·ÂÕæµØÍ¼×ø±ê
-// Position Îª Õ½³¡Ì¬ÊÆÏÔÊ¾µØÍ¼×ø±ê
-// Coordinate Ëæ×Å Position µÄ¸Ä±ä¶øË¢ĞÂ
+// BattleFieldWeapon ç±»ä¸­
+// Coordinate ä¸º æˆ˜åœºæ€åŠ¿ä»¿çœŸåœ°å›¾åæ ‡
+// Position ä¸º æˆ˜åœºæ€åŠ¿æ˜¾ç¤ºåœ°å›¾åæ ‡
+// Coordinate éšç€ Position çš„æ”¹å˜è€Œåˆ·æ–°
 
 class BattleFieldWeapon : public Sprite
 {
 private:
-	// ÎäÆ÷ÊôĞÔ
+	// æ­¦å™¨å±æ€§
 	PROPERTY_WP mPropertyWp;
-	// ÎäÆ÷ÔÚÕ½³¡Ì¬ÊÆ·ÂÕæµØÍ¼ÖĞµÄ´óĞ¡
+	// æ­¦å™¨åœ¨æˆ˜åœºæ€åŠ¿ä»¿çœŸåœ°å›¾ä¸­çš„å¤§å°
 	Size mSizeInSimulationMap;
-	// µĞÎÒÊ¶±ğ±êÖ¾
+	// æ•Œæˆ‘è¯†åˆ«æ ‡å¿—
 	ENUM_IFF mIFF;
 
-// Éú³Éº¯Êı
+// ç”Ÿæˆå‡½æ•°
 public:
-	// Ê¹ÓÃ±¾µØ²Ù×÷Êı¾İ
+	// ä½¿ç”¨æœ¬åœ°æ“ä½œæ•°æ®
 	static BattleFieldWeapon* createWithLocalOperationData(string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType, ENUM_IFF IFF);
-	// Ê¹ÓÃ·şÎñÆ÷½ÓÊÜÊı¾İ
+	// ä½¿ç”¨æœåŠ¡å™¨æ¥å—æ•°æ®
 	static BattleFieldWeapon* createWithRecvServerData(string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType, ENUM_IFF IFF);
 
-// ³õÊ¼»¯º¯Êı
+// åˆå§‹åŒ–å‡½æ•°
 public:
-	// Ê¹ÓÃ±¾µØ²Ù×÷Êı¾İ
+	// ä½¿ç”¨æœ¬åœ°æ“ä½œæ•°æ®
 	bool initWithLocalOperationData(string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType, ENUM_IFF IFF);
-	// Ê¹ÓÃ·şÎñÆ÷½ÓÊÕÊı¾İ
+	// ä½¿ç”¨æœåŠ¡å™¨æ¥æ”¶æ•°æ®
 	bool initWithRecvServerData(string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType, ENUM_IFF IFF);
-	// ³õÊ¼»¯ÎäÆ÷ÔÚÕ½³¡Ì¬ÊÆ·ÂÕæµØÍ¼ÖĞµÄ´óĞ¡
+	// åˆå§‹åŒ–æ­¦å™¨åœ¨æˆ˜åœºæ€åŠ¿ä»¿çœŸåœ°å›¾ä¸­çš„å¤§å°
 	void initSizeInSimulationMap();
 
-// ¸üĞÂº¯Êı
+// æ›´æ–°å‡½æ•°
 public:
 	//virtual void update(float dt);
 
 public:
-	// »ñÈ¡Õ½³¡Ì¬ÊÆ·ÂÕæµØÍ¼×ø±ê
+	// è·å–æˆ˜åœºæ€åŠ¿ä»¿çœŸåœ°å›¾åæ ‡
 	Vec2 GetCoordinate();
-// ĞĞÎªº¯Êı
+// è¡Œä¸ºå‡½æ•°
 public:
-	// ÒÆ¶¯º¯Êı
+	// ç§»åŠ¨å‡½æ•°
 	void Move(CBattleSimulationMapCell* (&BattleSimulationMapCellArray)[WIDTH_OF_BATTLE_SIMULATION_MAP][HEIGHT_OF_BATTLE_SIMULATION_MAP]);
-	// Ì½²âº¯Êı
+	// æ¢æµ‹å‡½æ•°
 	void Detect(CBattleSimulationMapCell* (&BattleSimulationMapCellArray)[WIDTH_OF_BATTLE_SIMULATION_MAP][HEIGHT_OF_BATTLE_SIMULATION_MAP]);
-	// ¹¥»÷º¯Êı
+	// æ”»å‡»å‡½æ•°
 	void Attack();
-	// ±»¹¥»÷º¯Êı
+	// è¢«æ”»å‡»å‡½æ•°
 	int BeAttacked();
 
-// ´æÈ¡º¯Êı
+// å­˜å–å‡½æ•°
 public:
-	// ÎäÆ÷ÊôĞÔ
+	// æ­¦å™¨å±æ€§
 	void SetPropertyWp(PROPERTY_WP propertyWp) { mPropertyWp = propertyWp; };
 	PROPERTY_WP GetPropertyWp() { return mPropertyWp; };
-	// ÎäÆ÷ÔÚÕ½³¡Ì¬ÊÆ·ÂÕæµØÍ¼ÖĞµÄ´óĞ¡
+	// æ­¦å™¨åœ¨æˆ˜åœºæ€åŠ¿ä»¿çœŸåœ°å›¾ä¸­çš„å¤§å°
 	Size GetSizeInSimulationMap();
-	// µĞÎÒÊ¶±ğ±êÖ¾
+	// æ•Œæˆ‘è¯†åˆ«æ ‡å¿—
 	void SetIFF(ENUM_IFF IFF) { mIFF = IFF; };
 	ENUM_IFF GetIFF() { return mIFF; };
 };

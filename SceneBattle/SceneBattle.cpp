@@ -14,25 +14,25 @@ Scene* SceneBattle::createScene()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	float factor = visibleSize.width / designResolutionSize.width;
 
-	// ´´½¨³¡¾°±³¾°
+	// åˆ›å»ºåœºæ™¯èƒŒæ™¯
 	LayerBattleBackground* layerBattleBackground = LayerBattleBackground::create();
 	scene->addChild(layerBattleBackground);
 
-	// ´´½¨°´Å¥²ã
+	// åˆ›å»ºæŒ‰é’®å±‚
 	LayerBattleButton* layerBattleButton = LayerBattleButton::create();
 	scene->addChild(layerBattleButton, 1, "layerBattleButton");
 
-	// ´´½¨·ÂÕæ²ã
+	// åˆ›å»ºä»¿çœŸå±‚
 	//LayerBattleSimulation* layerBattleSimulation = LayerBattleSimulation::create();
 	//layerBattleSimulation->setPosition(0, 54 * 4 * factor);
 	//scene->addChild(layerBattleSimulation, 2, "layerBattleSimulation");
 
-	// ´´½¨ÏÔÊ¾²ã
+	// åˆ›å»ºæ˜¾ç¤ºå±‚
 	LayerBattleSituation* layerBattleSituation = LayerBattleSituation::create();
 	layerBattleSituation->setPosition(0, 54 * 4 * factor);
 	scene->addChild(layerBattleSituation, 3, "layerBattleSituation");
 
-	// ´´½¨´¥¿Ø²ã
+	// åˆ›å»ºè§¦æŽ§å±‚
 	LayerBattleTouch* layerBattleTouch = LayerBattleTouch::create();
 	layerBattleTouch->setPosition(0, 54 * 4 * factor);
 	scene->addChild(layerBattleTouch, 4, "layerTouchDB");

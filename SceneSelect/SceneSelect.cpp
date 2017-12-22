@@ -30,11 +30,11 @@ bool SceneSelect::init()
 		return false;
 	}
 
-	// ´´½¨³¡¾°±³¾°
+	// åˆ›å»ºåœºæ™¯èƒŒæ™¯
 	LayerSelectBackground* layerSelectBackground = LayerSelectBackground::create();
 	this->addChild(layerSelectBackground);
 
-	// ´´½¨°´Å¥²ã
+	// åˆ›å»ºæŒ‰é’®å±‚
 	LayerSelectButton* layerSelectButton = LayerSelectButton::create();
 	this->addChild(layerSelectButton);
 

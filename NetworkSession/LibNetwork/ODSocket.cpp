@@ -1,4 +1,4 @@
-﻿/* 
+/* 
  * Source file about portable socket class.  
  * 
  * design:odison 

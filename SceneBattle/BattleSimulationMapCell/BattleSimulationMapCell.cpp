@@ -1,6 +1,6 @@
 #include "BattleSimulationMapCell.h"
 
-// ´´½¨º¯Êı Ê¹ÓÃ·ÂÕæµØÍ¼×ø±ê
+// åˆ›å»ºå‡½æ•° ä½¿ç”¨ä»¿çœŸåœ°å›¾åæ ‡
 CBattleSimulationMapCell* CBattleSimulationMapCell::createWithCoordinate(int coordinateX, int coordinateY)
 {
 	CBattleSimulationMapCell* ret = new CBattleSimulationMapCell();
@@ -14,40 +14,40 @@ CBattleSimulationMapCell* CBattleSimulationMapCell::createWithCoordinate(int coo
 	return nullptr;
 }
 
-// ³õÊ¼»¯º¯Êı
-// ÔÚÕ½³¡ÏÔÊ¾×ø±êÏµÏÂ½øĞĞ×ø±êÉè¶¨ 1920 * 1080
+// åˆå§‹åŒ–å‡½æ•°
+// åœ¨æˆ˜åœºæ˜¾ç¤ºåæ ‡ç³»ä¸‹è¿›è¡Œåæ ‡è®¾å®š 1920 * 1080
 bool CBattleSimulationMapCell::initWithCoordinate(int coordinateX, int coordinateY)
 {
-	// ¼ÆËãÕ½³¡ÏÔÊ¾×ø±êÏµÏÂµÄ×ø±ê
+	// è®¡ç®—æˆ˜åœºæ˜¾ç¤ºåæ ‡ç³»ä¸‹çš„åæ ‡
 	float posX = (coordinateX + 0.5) * WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
 	float posY = (coordinateY + 0.5) * WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
 
 	//float posX = 540;
 	//float posY = 960;
 
-	// ¸¸Àà³õÊ¼»¯
+	// çˆ¶ç±»åˆå§‹åŒ–
 	Sprite::initWithFile(CU_ImgLoader::getFogImg(1).c_str());
-	// ÉèÖÃÎ»ÖÃ
+	// è®¾ç½®ä½ç½®
 	this->setPosition(posX, posY);
 
-	// ×ÔÊÊÓ¦ÉèÖÃ·½¸ñ´óĞ¡
+	// è‡ªé€‚åº”è®¾ç½®æ–¹æ ¼å¤§å°
 	float sizeFactor = WIDTH_OF_BATTLE_SIMULATION_MAP_CELL / this->getContentSize().width;
 	this->setScale(sizeFactor);
 
-	// ÉèÖÃÕ½³¡·½¸ñµÄ·ÂÕæ×ø±ê
+	// è®¾ç½®æˆ˜åœºæ–¹æ ¼çš„ä»¿çœŸåæ ‡
 	mCoordinate.x = coordinateX;
 	mCoordinate.y = coordinateY;
 
-	// ÖØÖÃÎ»ÓÚ·½¸ñ±øÁ¦µÄÎäÆ÷ÀàĞÍ
+	// é‡ç½®ä½äºæ–¹æ ¼å…µåŠ›çš„æ­¦å™¨ç±»å‹
 	mWeaponType = WP_TYPE_NONE;
-	// ÖØÖÃÎ»ÓÚ·½¸ñ±øÁ¦µÄÎäÆ÷±êÇ©
+	// é‡ç½®ä½äºæ–¹æ ¼å…µåŠ›çš„æ­¦å™¨æ ‡ç­¾
 	mWeaponTag = -1;
 
-	// ÖØÖÃ¶ÔÕ½Ë«·½·Ö±ğÃæ¶ÔµÄÕ½ÕùÃÔÎí
+	// é‡ç½®å¯¹æˆ˜åŒæ–¹åˆ†åˆ«é¢å¯¹çš„æˆ˜äº‰è¿·é›¾
 	mFogAgainstBlueEn = true;
 	mFogAgainstRedEn = true;
 
-	// Çå¿Õµç´Å²¨´«Êä¶¯Ì¬Êı×é
+	// æ¸…ç©ºç”µç£æ³¢ä¼ è¾“åŠ¨æ€æ•°ç»„
 	mHertzWaveVec.clear();
 
 	return true;

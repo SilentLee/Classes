@@ -9,7 +9,7 @@ void LayerBattleTouch::onTouchesBegan(const std::vector<Touch*>& touches, Event 
 
 	LayerBattleButton* layerBattleButton = (LayerBattleButton*)this->getParent()->getChildByName("layerBattleButton");
 
-	// ÈôÉÐÎ´Ñ¡Ôñ¿¨ÅÆ º¯ÊýÍË³ö
+	// è‹¥å°šæœªé€‰æ‹©å¡ç‰Œ å‡½æ•°é€€å‡º
 	if (layerBattleButton->getCardBtnSwitch() == BTN_CARD_NONE)
 	{
 		return;
@@ -36,7 +36,7 @@ void LayerBattleTouch::onTouchesMoved(const std::vector<Touch*>& touches, Event 
 
 	LayerBattleButton* layerBattleButton = (LayerBattleButton*)this->getParent()->getChildByName("layerBattleButton");
 
-	// ÈôÉÐÎ´Ñ¡Ôñ¿¨ÅÆ º¯ÊýÍË³ö
+	// è‹¥å°šæœªé€‰æ‹©å¡ç‰Œ å‡½æ•°é€€å‡º
 	if (layerBattleButton->getCardBtnSwitch() == BTN_CARD_NONE)
 	{
 		return;
@@ -51,7 +51,7 @@ void LayerBattleTouch::onTouchesMoved(const std::vector<Touch*>& touches, Event 
 
 		LayerBattleSituation* layerBattleSituation = (LayerBattleSituation*)this->getParent()->getChildByName("layerBattleSituation");
 
-		// »ñÈ¡ÔÚÕ½³¡ÖÐ¼ÓÈëµÄÎäÆ÷²¢ÉèÖÃ Í¸Ã÷¶È Î»ÖÃ
+		// èŽ·å–åœ¨æˆ˜åœºä¸­åŠ å…¥çš„æ­¦å™¨å¹¶è®¾ç½® é€æ˜Žåº¦ ä½ç½®
 		layerBattleSituation->previewWeaponWithPositionOnMoved(posX, posY);
 	}
 }
@@ -62,7 +62,7 @@ void LayerBattleTouch::onTouchesEnded(const std::vector<Touch*>& touches, Event 
 
 	LayerBattleButton* layerBattleButton = (LayerBattleButton*)this->getParent()->getChildByName("layerBattleButton");
 
-	// ÈôÉÐÎ´Ñ¡Ôñ¿¨ÅÆ º¯ÊýÍË³ö
+	// è‹¥å°šæœªé€‰æ‹©å¡ç‰Œ å‡½æ•°é€€å‡º
 	if (layerBattleButton->getCardBtnSwitch() == BTN_CARD_NONE)
 	{
 		return;
@@ -72,7 +72,7 @@ void LayerBattleTouch::onTouchesEnded(const std::vector<Touch*>& touches, Event 
 	{
 		auto touch = item;
 
-		// ³öÅÆÍ¬Ê±¼ÆËãÏÂÒ»ÕÅ´ý³ö¿¨ÅÆ
+		// å‡ºç‰ŒåŒæ—¶è®¡ç®—ä¸‹ä¸€å¼ å¾…å‡ºå¡ç‰Œ
 		int discardType = layerBattleButton->discard();
 
 		LayerBattleSituation* layerBattleSituation = (LayerBattleSituation*)this->getParent()->getChildByName("layerBattleSituation");

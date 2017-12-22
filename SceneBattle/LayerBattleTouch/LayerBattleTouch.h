@@ -16,7 +16,7 @@ public:
 	bool init();
 	void initTouchMode(LayerBattleTouch* layerTouchDB);
 
-	// ´¥¿Ø»Øµ÷º¯Êý
+	// è§¦æŽ§å›žè°ƒå‡½æ•°
 	virtual void onTouchesBegan(const std::vector<Touch*>& touches, Event *unused_event);
 	virtual void onTouchesMoved(const std::vector<Touch*>& touches, Event *unused_event);
 	virtual void onTouchesEnded(const std::vector<Touch*>& touches, Event *unused_event);

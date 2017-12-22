@@ -4,7 +4,7 @@
 
 USING_NS_CC;
 
-// Ñ°ÕÒµ½·¿¼äµÄÏûÏ¢´¦Àíº¯Êý
+// å¯»æ‰¾åˆ°æˆ¿é—´çš„æ¶ˆæ¯å¤„ç†å‡½æ•°
 void CNetworkSession::onPT_BATTLE_SEARCH_ROOM_SUCC_U(BYTE* packet)
 {
 	log("CNetworkSession::onPT__BATTLE_SEARCH_ROOM_SUCC_U");
@@ -13,9 +13,9 @@ void CNetworkSession::onPT_BATTLE_SEARCH_ROOM_SUCC_U(BYTE* packet)
 	CRoomInstance* roomInstance = CRoomInstance::getInstance();
 	CUserInstance* userInstance = CUserInstance::getInstance();
 
-	// ÉèÖÃÍæ¼ÒÔÚ¶ÔÕ½ÖÐÊôÓÚÄÄÒ»·½
+	// è®¾ç½®çŽ©å®¶åœ¨å¯¹æˆ˜ä¸­å±žäºŽå“ªä¸€æ–¹
 	userInstance->setSideInGame((ENUM_SIDE_IN_GAME)recvData.SIDE_IN_GAME);
-	// ÉèÖÃÍæ¼Ò±øÁ¦ËùÊô
+	// è®¾ç½®çŽ©å®¶å…µåŠ›æ‰€å±ž
 	if (recvData.SIDE_IN_GAME == SIDE_BLUE) {
 		userInstance->setTroopsIn(TROOPS_BLUE);
 	}
@@ -23,18 +23,18 @@ void CNetworkSession::onPT_BATTLE_SEARCH_ROOM_SUCC_U(BYTE* packet)
 		userInstance->setTroopsIn(TROOPS_RED);
 	}
 
-	// ÉèÖÃ·þÎñÆ÷·¿¼äÖ¸Õë
+	// è®¾ç½®æœåŠ¡å™¨æˆ¿é—´æŒ‡é’ˆ
 	roomInstance->setRoomID(recvData.ROOM_ID);
-	// ÉèÖÃ·¿¼äÀàÐÍ
+	// è®¾ç½®æˆ¿é—´ç±»åž‹
 	roomInstance->setRoomType((ROOM_TYPE)recvData.ROOM_TYPE);
-	// ÉèÖÃµ±Ç°ÓÐ¶àÉÙÍæ¼ÒÔÚ·¿¼äÖÐ
+	// è®¾ç½®å½“å‰æœ‰å¤šå°‘çŽ©å®¶åœ¨æˆ¿é—´ä¸­
 	roomInstance->setCurrentUserCount(recvData.CURRENT_USER_COUNT);
-	// ÉèÖÃ·¿¼ä×´Ì¬
-	// ×ªµ½ SceneSelect::UpdateToBattle ÖÐ½øÐÐ´¦Àí
+	// è®¾ç½®æˆ¿é—´çŠ¶æ€
+	// è½¬åˆ° SceneSelect::UpdateToBattle ä¸­è¿›è¡Œå¤„ç†
 	roomInstance->setRoomStatus((ROOM_STATUS)recvData.ROOM_STATUS);
 }
 
-// ¿ªÊ¼ÓÎÏ·µÄÏûÏ¢´¦Àíº¯Êý
+// å¼€å§‹æ¸¸æˆçš„æ¶ˆæ¯å¤„ç†å‡½æ•°
 void CNetworkSession::onPT_BATTLE_START_GAME_M(BYTE* packet)
 {
 	log("CNetworkSession::onPT_BATTLE_START_GAME_M");
@@ -42,11 +42,11 @@ void CNetworkSession::onPT_BATTLE_START_GAME_M(BYTE* packet)
 
 	CRoomInstance* roomInstance = CRoomInstance::getInstance();
 
-	// ×ªµ½ SceneSelect::UpdateToBattle ÖÐ½øÐÐ´¦Àí
+	// è½¬åˆ° SceneSelect::UpdateToBattle ä¸­è¿›è¡Œå¤„ç†
 	roomInstance->setRoomStatus((ROOM_STATUS)recvData.ROOM_STATUS);
 }
 
-// ½ÓÊÕµ½ÎäÆ÷²¼Éè³É¹¦µÄÏûÏ¢´¦Àíº¯Êý
+// æŽ¥æ”¶åˆ°æ­¦å™¨å¸ƒè®¾æˆåŠŸçš„æ¶ˆæ¯å¤„ç†å‡½æ•°
 void CNetworkSession::onPT_ARRANGE_WEAPON_SUCC_M(BYTE* packet)
 {
 	log("CNetworkSession::onPT_ARRANGE_WEAPON_SUCC_M");
@@ -55,11 +55,11 @@ void CNetworkSession::onPT_ARRANGE_WEAPON_SUCC_M(BYTE* packet)
 	COperInfoInstance* operInfoInstance = COperInfoInstance::getInstance();
 	operInfoInstance->setPtBattleArrangeWeaponSuccM(recvData);
 
-	// ×ªµ½ LayerBattleFieldDB::updateBFSituation ÖÐ½øÐÐ´¦Àí
+	// è½¬åˆ° LayerBattleFieldDB::updateBFSituation ä¸­è¿›è¡Œå¤„ç†
 	operInfoInstance->setIsOperInfoRecv(true);
 }
 
-// Õ½³¡Ì¬ÊÆ¸üÐÂµÄÏûÏ¢´¦Àíº¯Êý
+// æˆ˜åœºæ€åŠ¿æ›´æ–°çš„æ¶ˆæ¯å¤„ç†å‡½æ•°
 void CNetworkSession::onPT_BATTLE_UPDATE_SITUATION_M(BYTE* packet)
 {
 	log("CNetworkSession::onPT_BATTLE_UPDATE_SITUATION_M");
@@ -68,7 +68,7 @@ void CNetworkSession::onPT_BATTLE_UPDATE_SITUATION_M(BYTE* packet)
 	COperInfoInstance* operInfoInstance = COperInfoInstance::getInstance();
 	operInfoInstance->setPtBattleUpdateSituationM(recvData);
 
-	// ×ªµ½ LayerBattleFieldDB::updateBFSituation ÖÐ½øÐÐ´¦Àí
+	// è½¬åˆ° LayerBattleFieldDB::updateBFSituation ä¸­è¿›è¡Œå¤„ç†
 	operInfoInstance->setIsBattleFieldSituationUpdate(true);
 
 
@@ -78,18 +78,18 @@ void CNetworkSession::onPT_BATTLE_UPDATE_SITUATION_M(BYTE* packet)
 	//log("CNetworkSession::onPT_BATTLE_UPDATE_SITUATION_M");
 	//READ_PACKET(PT_BATTLE_UPDATE_SITUATION_M);
 
-	//// ¶ÁÈ¡ÓÎÏ·Ê£ÓàÊ±¼ä
+	//// è¯»å–æ¸¸æˆå‰©ä½™æ—¶é—´
 	//int RemainingTime = recvData.REMAINING_GAME_TIME;
-	//// ¶ÁÈ¡À¶·½±øÁ¦Êý¾Ý³¤¶È
+	//// è¯»å–è“æ–¹å…µåŠ›æ•°æ®é•¿åº¦
 	//int BlueTroopsDataLength = recvData.BLUE_TROOPS_DATA_LENGTH;
-	//// ¶ÁÈ¡ºì·½±øÁ¦Êý¾Ý³¤¶È
+	//// è¯»å–çº¢æ–¹å…µåŠ›æ•°æ®é•¿åº¦
 	//int RedTroopsDataLength = recvData.RED_TROOPS_DATA_LENGTH;
-	////// ¶ÁÈ¡À¶·½±øÁ¦ÐÐÎªÊý¾Ý³¤¶È
+	////// è¯»å–è“æ–¹å…µåŠ›è¡Œä¸ºæ•°æ®é•¿åº¦
 	////int BlueTroopsActionDataLength = recvData.BLUE_TROOPS_ACTION_DATA_LENGTH;
-	////// ¶ÁÈ¡ºì·½±øÁ¦ÐÐÎªÊý¾Ý³¤¶È
+	////// è¯»å–çº¢æ–¹å…µåŠ›è¡Œä¸ºæ•°æ®é•¿åº¦
 	////int RedTroopsActionDataLength = recvData.RED_TROOPS_ACTION_DATA_LENGTH;
 
-	//// ¼ÆËãÐèÒª¿ª±ÙµÄÊý¾Ý»º³åÇøµÄ³¤¶È
+	//// è®¡ç®—éœ€è¦å¼€è¾Ÿçš„æ•°æ®ç¼“å†²åŒºçš„é•¿åº¦
 	//int SizeOfBlueTroopsData = BlueTroopsDataLength / sizeof(Weapon);
 	//int SizeOfRedTroopsData = RedTroopsDataLength / sizeof(Weapon);
 

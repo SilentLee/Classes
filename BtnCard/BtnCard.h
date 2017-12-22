@@ -12,23 +12,23 @@ using namespace std;
 
 class BtnCard : public Button
 {
-// ¿¨ÅÆÀàĞÍ
+// å¡ç‰Œç±»å‹
 private:
 	int mCardType;
 
 public:
-	// ´´½¨º¯Êı
+	// åˆ›å»ºå‡½æ•°
 	static BtnCard* create(ENUM_CARD_TYPE cardType, float posX, float posY);
-	// ³õÊ¼»¯º¯Êı
+	// åˆå§‹åŒ–å‡½æ•°
 	bool init(ENUM_CARD_TYPE cardType, float posX, float posY);
-	// ËÉ¿ª°´Å¥µÄ»Øµ÷º¯Êı
+	// æ¾å¼€æŒ‰é’®çš„å›è°ƒå‡½æ•°
 	virtual void onPressStateChangedToNormal();
-	// °´ÏÂ°´Å¥µÄ»Øµ÷º¯Êı
+	// æŒ‰ä¸‹æŒ‰é’®çš„å›è°ƒå‡½æ•°
 	virtual void onPressStateChangedToPressed();
-	// ÉèÖÃ°´Å¥Í¼Æ¬
+	// è®¾ç½®æŒ‰é’®å›¾ç‰‡
 	void setButtonImage(std::string filename);
 
-// ´æÈ¡º¯Êı
+// å­˜å–å‡½æ•°
 public:
 	void setCardType(int cardType) { mCardType = cardType; };
 	int getCardType() { return mCardType; };

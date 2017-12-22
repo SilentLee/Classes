@@ -1,12 +1,12 @@
 #pragma once
 
-// ¿¨ÅÆÊýÁ¿ÉèÖÃ
+// å¡ç‰Œæ•°é‡è®¾ç½®
 #define NUM_CARDS_IN_GROUP				10
 #define NUM_CARD_BUTTONS					5
 #define NUM_CARD_NEXT_CARD				1
 #define NUM_CARD_USED_CARD				1
 
-// ¿¨ÅÆÎäÆ÷ËÙ¶È²ÎÊý
+// å¡ç‰Œæ­¦å™¨é€Ÿåº¦å‚æ•°
 #define PARAM_SPEED_FIGHTER_PLANE									3.0f
 #define PARAM_SPEED_BOMBING_PLANE								3.0f
 #define PARAM_SPEED_ANTI_AIRCRAFT_MISSILE					3.0f
@@ -30,7 +30,7 @@
 //#define PARAM_SPEED_TYPE_10												6.0f
 //#define PARAM_SPEED_TYPE_11												6.0f
 
-// ¿¨ÅÆÌ½²â·¶Î§²ÎÊý
+// å¡ç‰ŒæŽ¢æµ‹èŒƒå›´å‚æ•°
 #define PARAM_RANGE_DEC_REVISE_VALUE									-3
 #define PARAM_RANGE_DEC_FIGHTER_PLANE								2
 #define PARAM_RANGE_DEC_BOMBING_PLANE								2
@@ -44,7 +44,7 @@
 #define PARAM_RANGE_DEC_TYPE_10												2
 #define PARAM_RANGE_DEC_TYPE_11												2
 
-// ¿¨ÅÆÉä³Ì²ÎÊý
+// å¡ç‰Œå°„ç¨‹å‚æ•°
 //#define PARAM_RANGE_FIRE_REVISE_VALUE									-3
 #define PARAM_RANGE_FIRE_FIGHTER_PLANE								2
 #define PARAM_RANGE_FIRE_BOMBING_PLANE								2
@@ -58,7 +58,7 @@
 #define PARAM_RANGE_FIRE_TYPE_10												0
 #define PARAM_RANGE_FIRE_TYPE_11												0
 
-// ¿¨ÅÆÉúÃüÖµ²ÎÊý
+// å¡ç‰Œç”Ÿå‘½å€¼å‚æ•°
 #define PARAM_HP_FIGHTER_PLANE								10
 #define PARAM_HP_BOMBING_PLANE								30
 #define PARAM_HP_ANTI_AIRCRAFT_MISSILE				30
@@ -72,7 +72,7 @@
 #define PARAM_HP_TYPE_11												30
 
 
-// ¿¨ÅÆ¹¥»÷Öµ²ÎÊý
+// å¡ç‰Œæ”»å‡»å€¼å‚æ•°
 #define PARAM_DP_FIGHTER_PLANE								6
 #define PARAM_DP_BOMBING_PLANE							7
 #define PARAM_DP_ANTI_AIRCRAFT_MISSILE				6
@@ -85,30 +85,30 @@
 #define PARAM_DP_TYPE_10												3
 #define PARAM_DP_TYPE_11												3
 
-// »úÔØÎäÆ÷ËÙ¶È²ÎÊý
+// æœºè½½æ­¦å™¨é€Ÿåº¦å‚æ•°
 #define PARAM_SPEED_AAM												0.003f
 
-// »úÔØÎäÆ÷Ì½²â·¶Î§²ÎÊý
+// æœºè½½æ­¦å™¨æŽ¢æµ‹èŒƒå›´å‚æ•°
 #define PARAM_RANGE_DEC_AAM									2
 
-// »úÔØÎäÆ÷Éä³Ì²ÎÊý
+// æœºè½½æ­¦å™¨å°„ç¨‹å‚æ•°
 #define PARAM_RANGE_FIRE_AAM									4
 
-// »úÔØÎäÆ÷ÉúÃüÖµ²ÎÊý
+// æœºè½½æ­¦å™¨ç”Ÿå‘½å€¼å‚æ•°
 #define PARAM_HP_AAM														0
 
-// »úÔØÎäÆ÷¹¥»÷Öµ²ÎÊý
+// æœºè½½æ­¦å™¨æ”»å‡»å€¼å‚æ•°
 #define PARAM_DP_AAM														10
 
 enum ENUM_CARD_TYPE {
 	CARD_NO_TYPE = 0,
 
-	/************ÒÔÏÂÎª½¨ÖþÀàÐÍÎäÆ÷ ²»ÄÜÒÆ¶¯*************/
+	/************ä»¥ä¸‹ä¸ºå»ºç­‘ç±»åž‹æ­¦å™¨ ä¸èƒ½ç§»åŠ¨*************/
 	CARD_TYPE_ANTI_AIRCRAFT_MISSILE,
 	CARD_TYPE_FLAK,
 	CARD_TYPE_RADAR,
 
-	/************ÒÔÏÂÎª·É»úÀàÐÍÎäÆ÷ ¿ÉÒÔÒÆ¶¯*************/
+	/************ä»¥ä¸‹ä¸ºé£žæœºç±»åž‹æ­¦å™¨ å¯ä»¥ç§»åŠ¨*************/
 	CARD_TYPE_FIGHTER_PLANE,
 	CARD_TYPE_BOMBING_PLANE,
 	CARD_TYPE_EARLY_WARNING_PLANE,

@@ -3,10 +3,10 @@
 #include "LibBattleFieldGraphApi.h"
 #include "GlobalInstanceApi.h"
 
-// ¸üĞÂº¯Êı
+// æ›´æ–°å‡½æ•°
 void LayerBattleSituation::updateFrog(float dt)
 {
-	// ¼ÆËãÃÔÎí·Ö½çÏßËùÔÚÎ»ÖÃ
+	// è®¡ç®—è¿·é›¾åˆ†ç•Œçº¿æ‰€åœ¨ä½ç½®
 	memset(mFrogLine, 0, sizeof(int) * WIDTH_OF_BATTLE_SIMULATION_MAP);
 
 	for (int i = 0; i < mWeaponsOwn.size(); i++)
@@ -21,7 +21,7 @@ void LayerBattleSituation::updateFrog(float dt)
 			max(mFrogLine[min(posX + 1, WIDTH_OF_BATTLE_SIMULATION_MAP)], posY + PARAM_RANGE_DEC_REVISE_VALUE + rangeDec);
 	}
 
-	// ÉèÖÃÕ½³¡ÃÔÎíÏÔÊ¾·¶Î§
+	// è®¾ç½®æˆ˜åœºè¿·é›¾æ˜¾ç¤ºèŒƒå›´
 	for (int indexX = 0; indexX < WIDTH_OF_BATTLE_SIMULATION_MAP; indexX++)
 	{
 		for (int indexY = 0; indexY < WIDTH_OF_BATTLE_SIMULATION_MAP; indexY++)
@@ -37,7 +37,7 @@ void LayerBattleSituation::updateFrog(float dt)
 	}
 }
 
-// ¼ì²â·şÎñÆ÷Õ½³¡Ì¬ÊÆ¸üĞÂÊı¾İ²¢¸üĞÂ¿Í»§¶ËÕ½³¡Ì¬ÊÆÏÔÊ¾µÄ¸üĞÂº¯Êı
+// æ£€æµ‹æœåŠ¡å™¨æˆ˜åœºæ€åŠ¿æ›´æ–°æ•°æ®å¹¶æ›´æ–°å®¢æˆ·ç«¯æˆ˜åœºæ€åŠ¿æ˜¾ç¤ºçš„æ›´æ–°å‡½æ•°
 void LayerBattleSituation::updateBFSituation(float dt)
 {
 	log("LayerBattleFieldDB::updateBFSituation");
@@ -45,54 +45,54 @@ void LayerBattleSituation::updateBFSituation(float dt)
 	COperInfoInstance* operInfoInstance = COperInfoInstance::getInstance();
 	CUserInstance* userInstance = CUserInstance::getInstance();
 
-	// ½ÓÊÕµ½ÎäÆ÷
+	// æ¥æ”¶åˆ°æ­¦å™¨
 	// onPT_ARRANGE_WEAPON_SUCC_M
 	if (operInfoInstance->getIsOperInfoRecv()) {
 		S_PT_BATTLE_ARRANGE_WEAPON_SUCC_M ptBattleArrangeWeaponSuccU = operInfoInstance->getPtBattleArrangeWeaponSuccM();
 		operInfoInstance->setIsOperInfoRecv(false);
 		log("load S_PT_BATTLE_ARRANGE_WEAPON_SUCC_M");
 
-		// ÊôÓÚ¶ÔÕ½ÄÄÒ»·½
+		// å±äºå¯¹æˆ˜å“ªä¸€æ–¹
 		ENUM_TROOPS troopsIn = (ENUM_TROOPS)ptBattleArrangeWeaponSuccU.TROOPS_IN;
-		// ÎäÆ÷ÀàĞÍ
+		// æ­¦å™¨ç±»å‹
 		int weaponType = ptBattleArrangeWeaponSuccU.WEAPON_TYPE;
-		// ³õÊ¼²¼Éè×ø±ê
+		// åˆå§‹å¸ƒè®¾åæ ‡
 		float posX = ptBattleArrangeWeaponSuccU.POS_X;
 		float posY = ptBattleArrangeWeaponSuccU.POS_Y;
-		// ÔÚÕ½³¡ÖĞµÄ±êÇ©
+		// åœ¨æˆ˜åœºä¸­çš„æ ‡ç­¾
 		int weaponTag = ptBattleArrangeWeaponSuccU.WEAPON_TAG;
-		// ·ÉĞĞËÙ¶È
+		// é£è¡Œé€Ÿåº¦
 		int speed = ptBattleArrangeWeaponSuccU.SPEED;
 		
-		// ÈôÎäÆ÷Óëµ±Ç°¿Í»§¶ËÍæ¼ÒÍ¬ÊôÒ»·½ ¼ÓÈë±¾·½ÕóÓª
+		// è‹¥æ­¦å™¨ä¸å½“å‰å®¢æˆ·ç«¯ç©å®¶åŒå±ä¸€æ–¹ åŠ å…¥æœ¬æ–¹é˜µè¥
 		if (troopsIn == userInstance->getTroopsIn()) {
 			arrangeOwnWeaponWithPosition(troopsIn, weaponType, posX, posY, weaponTag);
 		}
-		// ÈôÎäÆ÷Óëµ±Ç°¿Í»§¶ËÍæ¼Ò²»Í¬ÊôÒ»·½ ¼ÓÈë¶Ô·½ÕóÓª
+		// è‹¥æ­¦å™¨ä¸å½“å‰å®¢æˆ·ç«¯ç©å®¶ä¸åŒå±ä¸€æ–¹ åŠ å…¥å¯¹æ–¹é˜µè¥
 		else {
 			arrangeEnemyWeaponWithPosition(troopsIn, weaponType, posX, posY, weaponTag);
 		}
 	}
 
 
-	// ¸üĞÂÕ½³¡Ì¬ÊÆ
+	// æ›´æ–°æˆ˜åœºæ€åŠ¿
 	// onPT_BATTLE_UPDATE_SITUATION_M
 	if (operInfoInstance->getIsBattleFieldSituationUpdate()) {
 
 		S_PT_BATTLE_UPDATE_SITUATION_M ptBattleUpdateSituationM = operInfoInstance->getPtBattleUpdateSituationM();
 
-		// ¶ÁÈ¡ÓÎÏ·Ê£ÓàÊ±¼ä
+		// è¯»å–æ¸¸æˆå‰©ä½™æ—¶é—´
 		int RemainingTime = ptBattleUpdateSituationM.REMAINING_GAME_TIME;
-		// ¶ÁÈ¡À¶·½±øÁ¦Êı¾İ³¤¶È
+		// è¯»å–è“æ–¹å…µåŠ›æ•°æ®é•¿åº¦
 		int BlueTroopsDataLength = ptBattleUpdateSituationM.BLUE_TROOPS_DATA_LENGTH;
-		// ¶ÁÈ¡ºì·½±øÁ¦Êı¾İ³¤¶È
+		// è¯»å–çº¢æ–¹å…µåŠ›æ•°æ®é•¿åº¦
 		int RedTroopsDataLength = ptBattleUpdateSituationM.RED_TROOPS_DATA_LENGTH;
-		//// ¶ÁÈ¡À¶·½±øÁ¦ĞĞÎªÊı¾İ³¤¶È
+		//// è¯»å–è“æ–¹å…µåŠ›è¡Œä¸ºæ•°æ®é•¿åº¦
 		//int BlueTroopsActionDataLength = recvData.BLUE_TROOPS_ACTION_DATA_LENGTH;
-		//// ¶ÁÈ¡ºì·½±øÁ¦ĞĞÎªÊı¾İ³¤¶È
+		//// è¯»å–çº¢æ–¹å…µåŠ›è¡Œä¸ºæ•°æ®é•¿åº¦
 		//int RedTroopsActionDataLength = recvData.RED_TROOPS_ACTION_DATA_LENGTH;
 
-		// ¼ÆËãĞèÒª¿ª±ÙµÄÊı¾İ»º³åÇøµÄ³¤¶È
+		// è®¡ç®—éœ€è¦å¼€è¾Ÿçš„æ•°æ®ç¼“å†²åŒºçš„é•¿åº¦
 		int SizeOfBlueTroopsData = BlueTroopsDataLength / sizeof(Weapon);
 		int SizeOfRedTroopsData = RedTroopsDataLength / sizeof(Weapon);
 
@@ -111,11 +111,11 @@ void LayerBattleSituation::updateBFSituation(float dt)
 			memcpy(&RedTroopsData[0], ptBattleUpdateSituationM.DATA + BlueTroopsDataLength, RedTroopsDataLength);
 		}
 
-		// Çå³ı¶ÔÕ½Ë«·½·ÂÕæ±øÁ¦´æ´¢¶¯Ì¬Êı×é
+		// æ¸…é™¤å¯¹æˆ˜åŒæ–¹ä»¿çœŸå…µåŠ›å­˜å‚¨åŠ¨æ€æ•°ç»„
 		mWeaponsOwn.clear();
 		mWeaponsOppo.clear();
 
-		// Ë¢ĞÂÀ¶·½±øÁ¦
+		// åˆ·æ–°è“æ–¹å…µåŠ›
 		for (int i = 0; i < SizeOfBlueTroopsData; i++) {
 			this->removeChildByTag(BlueTroopsData[i].GetWeaponTag());
 			if (BlueTroopsData[i].GetTroopsIn() == userInstance->getTroopsIn()) {
@@ -126,7 +126,7 @@ void LayerBattleSituation::updateBFSituation(float dt)
 			}
 		}
 
-		// Ë¢ĞÂºì·½±øÁ¦
+		// åˆ·æ–°çº¢æ–¹å…µåŠ›
 		for (int i = 0; i < SizeOfRedTroopsData; i++) {
 			this->removeChildByTag(RedTroopsData[i].GetWeaponTag());
 			if (RedTroopsData[i].GetTroopsIn() == userInstance->getTroopsIn()) {
@@ -140,17 +140,17 @@ void LayerBattleSituation::updateBFSituation(float dt)
 	}
 }
 
-// ±¾µØÕ½³¡Ì¬ÊÆ¸üĞÂº¯Êı ÓÃÓÚÆ½»¬
+// æœ¬åœ°æˆ˜åœºæ€åŠ¿æ›´æ–°å‡½æ•° ç”¨äºå¹³æ»‘
 void LayerBattleSituation::updateLocalSituation(float dt)
 {
-	// Ë¢ĞÂ±¾·½±øÁ¦
+	// åˆ·æ–°æœ¬æ–¹å…µåŠ›
 	if (mWeaponsOwn.size() > 0) {
 		for (int index = 0; index < mWeaponsOwn.size(); index++) {
 			mWeaponsOwn[index]->Move(mBattleSimulationMapCellArray);
 			mWeaponsOwn[index]->Detect(mBattleSimulationMapCellArray);
 		}
 	}
-	// Ë¢ĞÂ¶Ô·½±øÁ¦
+	// åˆ·æ–°å¯¹æ–¹å…µåŠ›
 	if (mWeaponsOppo.size() > 0) {
 		for (int index = 0; index < mWeaponsOppo.size(); index++) {
 			mWeaponsOppo[index]->Move(mBattleSimulationMapCellArray);

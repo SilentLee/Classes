@@ -7,7 +7,7 @@ void CU_CardLoader::loadCardParams()
 {
 	PROPERTY_WP propertyWp;
 
-	// ×°ÔØÕ½¶·»ú¿¨ÅÆ²ÎÊı
+	// è£…è½½æˆ˜æ–—æœºå¡ç‰Œå‚æ•°
 	propertyWp.WP_TYPE = WP_TYPE_FIGHTER_PLANE;
 	propertyWp.LEVEL = 1;
 	propertyWp.SPEED = PARAM_SPEED_FIGHTER_PLANE;
@@ -16,7 +16,7 @@ void CU_CardLoader::loadCardParams()
 	propertyWp.DP = PARAM_DP_FIGHTER_PLANE;
 	cardParams.insert(make_pair(CARD_TYPE_FIGHTER_PLANE, propertyWp));
 
-	// ×°ÔØºäÕ¨»ú¿¨ÅÆ²ÎÊı
+	// è£…è½½è½°ç‚¸æœºå¡ç‰Œå‚æ•°
 	propertyWp.WP_TYPE = WP_TYPE_BOMBING_PLANE;
 	propertyWp.LEVEL = 1;
 	propertyWp.SPEED = PARAM_SPEED_BOMBING_PLANE;
@@ -25,7 +25,7 @@ void CU_CardLoader::loadCardParams()
 	propertyWp.DP = PARAM_DP_BOMBING_PLANE;
 	cardParams.insert(make_pair(CARD_TYPE_BOMBING_PLANE, propertyWp));
 
-	// ×°ÔØ·À¿Õµ¼µ¯¿¨ÅÆ²ÎÊı
+	// è£…è½½é˜²ç©ºå¯¼å¼¹å¡ç‰Œå‚æ•°
 	propertyWp.WP_TYPE = WP_TYPE_ANTI_AIRCRAFT_MISSILE;
 	propertyWp.LEVEL = 1;
 	propertyWp.SPEED = PARAM_SPEED_ANTI_AIRCRAFT_MISSILE;
@@ -34,7 +34,7 @@ void CU_CardLoader::loadCardParams()
 	propertyWp.DP = PARAM_DP_ANTI_AIRCRAFT_MISSILE;
 	cardParams.insert(make_pair(CARD_TYPE_ANTI_AIRCRAFT_MISSILE, propertyWp));
 
-	// ×°ÔØÔ¤¾¯»ú¿¨ÅÆ²ÎÊı
+	// è£…è½½é¢„è­¦æœºå¡ç‰Œå‚æ•°
 	propertyWp.WP_TYPE = WP_TYPE_EARLY_WARNING_PLANE;
 	propertyWp.LEVEL = 1;
 	propertyWp.SPEED = PARAM_SPEED_EARLY_WARNING_PLANE;
@@ -43,7 +43,7 @@ void CU_CardLoader::loadCardParams()
 	propertyWp.DP = PARAM_DP_EARLY_WARNING_PLANE;
 	cardParams.insert(make_pair(CARD_TYPE_EARLY_WARNING_PLANE, propertyWp));
 
-	// ×°ÔØ¸ßÉäÅÚ¿¨ÅÆ²ÎÊı
+	// è£…è½½é«˜å°„ç‚®å¡ç‰Œå‚æ•°
 	propertyWp.WP_TYPE = WP_TYPE_FLAK;
 	propertyWp.LEVEL = 1;
 	propertyWp.SPEED = PARAM_SPEED_FLAK;
@@ -52,7 +52,7 @@ void CU_CardLoader::loadCardParams()
 	propertyWp.DP = PARAM_DP_FLAK;
 	cardParams.insert(make_pair(CARD_TYPE_FLAK, propertyWp));
 
-	// ×°ÔØ¸ÉÈÅ»ú¿¨ÅÆ²ÎÊı
+	// è£…è½½å¹²æ‰°æœºå¡ç‰Œå‚æ•°
 	propertyWp.WP_TYPE = WP_TYPE_JAMMING_PLANE;
 	propertyWp.LEVEL = 1;
 	propertyWp.SPEED = PARAM_SPEED_JAMMING_PLANE;
@@ -61,7 +61,7 @@ void CU_CardLoader::loadCardParams()
 	propertyWp.DP = PARAM_DP_JAMMING_PLANE;
 	cardParams.insert(make_pair(CARD_TYPE_JAMMING_PLANE, propertyWp));
 
-	// ×°ÔØÀ×´ï¿¨ÅÆ²ÎÊı
+	// è£…è½½é›·è¾¾å¡ç‰Œå‚æ•°
 	propertyWp.WP_TYPE = WP_TYPE_RADAR;
 	propertyWp.LEVEL = 1;
 	propertyWp.SPEED = PARAM_SPEED_RADAR;
@@ -70,7 +70,7 @@ void CU_CardLoader::loadCardParams()
 	propertyWp.DP = PARAM_DP_RADAR;
 	cardParams.insert(make_pair(CARD_TYPE_RADAR, propertyWp));
 
-	// ×°ÔØ¿¨ÅÆ8²ÎÊı
+	// è£…è½½å¡ç‰Œ8å‚æ•°
 	propertyWp.WP_TYPE = WP_TYPE_8;
 	propertyWp.LEVEL = 1;
 	propertyWp.SPEED = PARAM_SPEED_TYPE_8;
@@ -79,7 +79,7 @@ void CU_CardLoader::loadCardParams()
 	propertyWp.DP = PARAM_DP_TYPE_8;
 	cardParams.insert(make_pair(CARD_TYPE_8, propertyWp));
 
-	// ×°ÔØ¿¨ÅÆ9²ÎÊı
+	// è£…è½½å¡ç‰Œ9å‚æ•°
 	propertyWp.WP_TYPE = WP_TYPE_9;
 	propertyWp.LEVEL = 1;
 	propertyWp.SPEED = PARAM_SPEED_TYPE_9;
@@ -88,7 +88,7 @@ void CU_CardLoader::loadCardParams()
 	propertyWp.DP = PARAM_DP_TYPE_9;
 	cardParams.insert(make_pair(CARD_TYPE_9, propertyWp));
 
-	// ×°ÔØ¿¨ÅÆ10²ÎÊı
+	// è£…è½½å¡ç‰Œ10å‚æ•°
 	propertyWp.WP_TYPE = WP_TYPE_10;
 	propertyWp.LEVEL = 1;
 	propertyWp.SPEED = PARAM_SPEED_TYPE_10;
@@ -97,7 +97,7 @@ void CU_CardLoader::loadCardParams()
 	propertyWp.DP = PARAM_DP_TYPE_10;
 	cardParams.insert(make_pair(CARD_TYPE_10, propertyWp));
 
-	// ×°ÔØ¿¨ÅÆ11²ÎÊı
+	// è£…è½½å¡ç‰Œ11å‚æ•°
 	propertyWp.WP_TYPE = WP_TYPE_11;
 	propertyWp.LEVEL = 1;
 	propertyWp.SPEED = PARAM_SPEED_TYPE_11;
@@ -116,7 +116,7 @@ void CU_CardLoader::loadAirborneWeaponParams()
 {
 	PROPERTY_WP propertyWp;
 
-	// ×°ÔØ¿Õ¿Õµ¼µ¯²ÎÊı
+	// è£…è½½ç©ºç©ºå¯¼å¼¹å‚æ•°
 	propertyWp.WP_TYPE = WP_TYPE_AAM;
 	propertyWp.LEVEL = 1;
 	propertyWp.SPEED = PARAM_SPEED_AAM;

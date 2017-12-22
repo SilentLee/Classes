@@ -1,9 +1,9 @@
 #pragma once
 
-// ¶ÔÕ½³¡¾°±³¾°
+// å¯¹æˆ˜åœºæ™¯èƒŒæ™¯
 #define IMG_URL_DB_SCENE_BG													"SceneBattle/BgDoubleBattleScene.png"
 
-// ¶ÔÕ½¿¨ÅÆ
+// å¯¹æˆ˜å¡ç‰Œ
 #define IMG_URL_CARD_FIGHTER_PLANE									"SceneBattle/CardFighterPlane.png"
 #define IMG_URL_CARD_BOMBING_PLANE								"SceneBattle/CardBombingPlane.png"
 #define IMG_URL_CARD_ANTI_AIRCRAFT_MISSILE					"SceneBattle/CardAntiAircraftMissile.png"
@@ -16,17 +16,17 @@
 #define IMG_URL_CARD_10																"SceneBattle/Card10.png"
 #define IMG_URL_CARD_11																"SceneBattle/Card11.png"
 
-// ¶ÔÕ½³¡¾°·ÀÏß
+// å¯¹æˆ˜åœºæ™¯é˜²çº¿
 #define IMG_URL_DEFENSE_LINE													"SceneBattle/DefenseLine.png"
 
-// Õ½³¡ÃÔÎí ÔÆ²Ê
+// æˆ˜åœºè¿·é›¾ äº‘å½©
 #define IMG_URL_FOG_0																	"SceneBattle/Fog0.png"
 #define IMG_URL_FOG_1																	"SceneBattle/Fog1.png"
 #define IMG_URL_FOG_2																	"SceneBattle/Fog2.png"
 #define IMG_URL_FOG_3																	"SceneBattle/Fog3.png"
 #define IMG_URL_FOG_4																	"SceneBattle/Fog4.png"
 
-// ¶ÔÕ½ÎäÆ÷
+// å¯¹æˆ˜æ­¦å™¨
 #define IMG_URL_WEAPON_FIGHTER_PLANE_OWN									"SceneBattle/WeaponFighterPlaneOwn.png"
 #define IMG_URL_WEAPON_BOMBING_PLANE_OWN									"SceneBattle/WeaponBombingPlaneOwn.png"
 #define IMG_URL_WEAPON_ANTI_AIRCRAFT_MISSILE_OWN					"SceneBattle/CardAntiAircraftMissile.png"
@@ -52,11 +52,11 @@
 #define IMG_URL_WEAPON_10_OPPO																"SceneBattle/Card10Oppo.png"
 #define IMG_URL_WEAPON_11_OPPO																"SceneBattle/Card11Oppo.png"
 
-// »úÔØÎäÆ÷
+// æœºè½½æ­¦å™¨
 #define IMG_URL_WEAPON_AAM_OWN										"SceneBattle/WeaponAAMOwn.png"
 #define IMG_URL_WEAPON_AAM_OPPO										"SceneBattle/WeaponAAMOppo.png"
 
-// Ñ¡Ôñ³¡¾°±³¾°
+// é€‰æ‹©åœºæ™¯èƒŒæ™¯
 #define IMG_URL_SELECT_SCENE_BG									"SceneSelect/BgSelectScene.png"
-// ¶ÔÕ½¿ªÊ¼°´Å¥
+// å¯¹æˆ˜å¼€å§‹æŒ‰é’®
 #define IMG_URL_BTN_START														"SceneSelect/BtnStart.png"

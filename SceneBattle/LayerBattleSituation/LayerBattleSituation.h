@@ -16,48 +16,48 @@ extern class BattleFieldWeapon;
 class LayerBattleSituation : public LayerEx
 {
 private:
-	// ¶ÔÕ½Ë«·½´æÔÚÓÚÕ½³¡ÖĞµÄ±øÁ¦
+	// å¯¹æˆ˜åŒæ–¹å­˜åœ¨äºæˆ˜åœºä¸­çš„å…µåŠ›
 	vector<BattleFieldWeapon*> mWeaponsOwn;
 	vector<BattleFieldWeapon*> mWeaponsOppo;
 
-// Êı¾İ·ÂÕæ±äÁ¿
+// æ•°æ®ä»¿çœŸå˜é‡
 private:
-	// Õ½³¡Ì¬ÊÆ·ÂÕæµØÍ¼ Êı×é
+	// æˆ˜åœºæ€åŠ¿ä»¿çœŸåœ°å›¾ æ•°ç»„
 	CBattleSimulationMapCell* mBattleSimulationMapCellArray[WIDTH_OF_BATTLE_SIMULATION_MAP][HEIGHT_OF_BATTLE_SIMULATION_MAP];
-	// Õ½ÕùÃÔÎí·Ö½çÏß
+	// æˆ˜äº‰è¿·é›¾åˆ†ç•Œçº¿
 	int mFrogLine[WIDTH_OF_BATTLE_SIMULATION_MAP];
 
-// ´´½¨º¯Êı
+// åˆ›å»ºå‡½æ•°
 public:
 	static LayerBattleSituation* create();
 
-// ³õÊ¼»¯º¯Êı
+// åˆå§‹åŒ–å‡½æ•°
 public:
-	// ³õÊ¼»¯Õ½³¡Ì¬ÊÆ²ã
+	// åˆå§‹åŒ–æˆ˜åœºæ€åŠ¿å±‚
 	bool init();
-	// ³õÊ¼»¯Õ½³¡Ì¬ÊÆ·ÂÕæµØÍ¼
+	// åˆå§‹åŒ–æˆ˜åœºæ€åŠ¿ä»¿çœŸåœ°å›¾
 	void initBattleSimulationMap();
-	// ³õÊ¼»¯·ÀÏß
+	// åˆå§‹åŒ–é˜²çº¿
 	void initDefenseLine();
 
-// ¸üĞÂº¯Êı
+// æ›´æ–°å‡½æ•°
 public:
-	// ¸üĞÂÕ½³¡ÃÔÎí
+	// æ›´æ–°æˆ˜åœºè¿·é›¾
 	void updateFrog(float dt);
-	// ¼ì²â·şÎñÆ÷Õ½³¡Ì¬ÊÆ¸üĞÂÊı¾İ²¢¸üĞÂ¿Í»§¶ËÕ½³¡Ì¬ÊÆÏÔÊ¾µÄ¸üĞÂº¯Êı ÓÃÓÚÍ¬²½
+	// æ£€æµ‹æœåŠ¡å™¨æˆ˜åœºæ€åŠ¿æ›´æ–°æ•°æ®å¹¶æ›´æ–°å®¢æˆ·ç«¯æˆ˜åœºæ€åŠ¿æ˜¾ç¤ºçš„æ›´æ–°å‡½æ•° ç”¨äºåŒæ­¥
 	void updateBFSituation(float dt);
-	// ±¾µØÕ½³¡Ì¬ÊÆ¸üĞÂº¯Êı ÓÃÓÚÆ½»¬
+	// æœ¬åœ°æˆ˜åœºæ€åŠ¿æ›´æ–°å‡½æ•° ç”¨äºå¹³æ»‘
 	void updateLocalSituation(float dt);
 
-// ±øÁ¦²Ù×÷º¯Êı
+// å…µåŠ›æ“ä½œå‡½æ•°
 public:
-	// ²Ù×÷¹ı³ÌÖĞ±¾·½±øÁ¦·ÅÖÃĞ§¹ûÔ¤ÀÀº¯Êı
+	// æ“ä½œè¿‡ç¨‹ä¸­æœ¬æ–¹å…µåŠ›æ”¾ç½®æ•ˆæœé¢„è§ˆå‡½æ•°
 	void previewWeaponWithPositionOnBegan(int weaponType, float posX, float posY);
 	void previewWeaponWithPositionOnMoved(float posX, float posY);
 	void previewWeaponWithPositionOnEnded();
 	void previewWeaponWithPositionCancelled();
-	// ¶Ô·½±øÁ¦²¼Éèº¯Êı
+	// å¯¹æ–¹å…µåŠ›å¸ƒè®¾å‡½æ•°
 	void arrangeEnemyWeaponWithPosition(ENUM_TROOPS troopsIn, int weaponType, int posX, int posY, int weaponTag);
-	// ±¾·½±øÁ¦²¼Éèº¯Êı
+	// æœ¬æ–¹å…µåŠ›å¸ƒè®¾å‡½æ•°
 	void arrangeOwnWeaponWithPosition(ENUM_TROOPS troopsIn, int weaponType, int posX, int posY, int weaponTag);
 };

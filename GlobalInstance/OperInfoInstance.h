@@ -1,24 +1,24 @@
 #pragma once
 //#include "DataType.h"
 #include "Global.h"
-#include "BATTLE_Protocol.h" // Ê¹ÓÃ ProtocolHeader.h »á±¨´í
+#include "BATTLE_Protocol.h" // ä½¿ç”¨ ProtocolHeader.h ä¼šæŠ¥é”™
 #include "BATTLE_PT_Structure.h"
 #include "Weapon.h"
 
 
 class COperInfoInstance
 {
-// Êı¾İ½ÓÊÕ³É¹¦µÄÖ¸Ê¾±êÖ¾
+// æ•°æ®æ¥æ”¶æˆåŠŸçš„æŒ‡ç¤ºæ ‡å¿—
 private:
 	bool mIsOperInfoRecv;
-	// Õ½³¡Ì¬ÊÆ¸üĞÂÖ¸Ê¾
+	// æˆ˜åœºæ€åŠ¿æ›´æ–°æŒ‡ç¤º
 	bool mIsBattleFieldSituationUpdate;
 
-// ½ÓÊÕÊı¾İµÄ»º³åÇø
+// æ¥æ”¶æ•°æ®çš„ç¼“å†²åŒº
 private:
-	// ½ÓÊÕÎäÆ÷²¼Éè³É¹¦ÏûÏ¢µÄÊı¾İ»º³åÇø
+	// æ¥æ”¶æ­¦å™¨å¸ƒè®¾æˆåŠŸæ¶ˆæ¯çš„æ•°æ®ç¼“å†²åŒº
 	S_PT_BATTLE_ARRANGE_WEAPON_SUCC_M mPtBattleArrangeWeaponSuccM;
-	// ½ÓÊÕ·şÕ½³¡Ì¬ÊÆ¸üĞÂÏûÏ¢µÄÊı¾İ»º³åÇø
+	// æ¥æ”¶æœæˆ˜åœºæ€åŠ¿æ›´æ–°æ¶ˆæ¯çš„æ•°æ®ç¼“å†²åŒº
 	S_PT_BATTLE_UPDATE_SITUATION_M mPtBattleUpdateSituationM;
 
 public:
@@ -32,11 +32,11 @@ private:
 	static COperInfoInstance* operInfoInstance;
 	COperInfoInstance* mOperInfoInstance;
 
-// ±êÖ¾Î»´æÈ¡º¯Êı
+// æ ‡å¿—ä½å­˜å–å‡½æ•°
 public:
 	void setIsOperInfoRecv(bool isOperInfoRecv) { mIsOperInfoRecv = isOperInfoRecv; }
 	bool getIsOperInfoRecv() { return mIsOperInfoRecv; }
-	// Õ½³¡Ì¬ÊÆ¸üĞÂÖ¸Ê¾
+	// æˆ˜åœºæ€åŠ¿æ›´æ–°æŒ‡ç¤º
 	void setIsBattleFieldSituationUpdate(bool isBattleFieldSituationUpdate){ mIsBattleFieldSituationUpdate = isBattleFieldSituationUpdate; };
 	bool getIsBattleFieldSituationUpdate(){ return mIsBattleFieldSituationUpdate; };
 
@@ -44,13 +44,13 @@ public:
 	static COperInfoInstance* getInstance();
 	void setOperInfoInstance(COperInfoInstance* operInfoInstance) { mOperInfoInstance = operInfoInstance; };
 
-// Êı¾İ»º³åÇø´æÈ¡º¯Êı
+// æ•°æ®ç¼“å†²åŒºå­˜å–å‡½æ•°
 public:
-	// ½ÓÊÕÎäÆ÷²¼Éè³É¹¦ÏûÏ¢µÄÊı¾İ»º³åÇø
+	// æ¥æ”¶æ­¦å™¨å¸ƒè®¾æˆåŠŸæ¶ˆæ¯çš„æ•°æ®ç¼“å†²åŒº
 	void setPtBattleArrangeWeaponSuccM(S_PT_BATTLE_ARRANGE_WEAPON_SUCC_M ptBattleArrganeWeaponSuccM) { memcpy(&mPtBattleArrangeWeaponSuccM, &ptBattleArrganeWeaponSuccM, sizeof(S_PT_BATTLE_ARRANGE_WEAPON_SUCC_M)); };
 	S_PT_BATTLE_ARRANGE_WEAPON_SUCC_M getPtBattleArrangeWeaponSuccM() { return mPtBattleArrangeWeaponSuccM; };
 
-	// ½ÓÊÕ·şÕ½³¡Ì¬ÊÆ¸üĞÂÏûÏ¢µÄÊı¾İ»º³åÇø
+	// æ¥æ”¶æœæˆ˜åœºæ€åŠ¿æ›´æ–°æ¶ˆæ¯çš„æ•°æ®ç¼“å†²åŒº
 	void setPtBattleUpdateSituationM(S_PT_BATTLE_UPDATE_SITUATION_M ptBattleUpdateSituationM){ memcpy(&mPtBattleUpdateSituationM, &ptBattleUpdateSituationM, sizeof(S_PT_BATTLE_UPDATE_SITUATION_M)); };
 	S_PT_BATTLE_UPDATE_SITUATION_M getPtBattleUpdateSituationM(){ return mPtBattleUpdateSituationM; };
 };

@@ -39,7 +39,7 @@ public:
     */
     virtual void applicationWillEnterForeground();
 
-	// ·şÎñÆ÷Á¬½Óº¯Êı
+	// æœåŠ¡å™¨è¿æ¥å‡½æ•°
 	bool connectServer();
 };
 

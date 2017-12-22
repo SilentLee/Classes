@@ -25,7 +25,7 @@ bool LayerSelectButton::init()
 {
 	LayerEx::init();
 
-	// 添加对战按钮
+	// 娣诲姞瀵规垬鎸夐挳
 	Button* BtnStart = Button::create(CU_ImgLoader::getImg(IMG_URL_BTN_START).c_str());
 	BtnStart->setPosition(Vec2(540, 960));
 	BtnStart->addClickEventListener(CC_CALLBACK_0(LayerSelectButton::BtnStartCallback, this, RM_TYPE_1V1));
