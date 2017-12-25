@@ -1,11 +1,11 @@
 #pragma once
 
 #include "cocos2d.h"
-#include "LibCommonGraphApi.h"
+//#include "LibCommonGraphApi.h"
 #include "LibCommonUtilsApi.h"
 #include "LayerBattleSituation.h"
 #include "LayerBattleTouch.h"
-#include "LayerBattleSimulation.h"
+//#include "LayerBattleSimulation.h"
 
 class SceneBattle : public cocos2d::Scene
 {

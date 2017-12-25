@@ -1,9 +1,7 @@
 #pragma once
 
 #include "cocos2d.h"
-#include "LibCommonGraphApi.h"
 #include "LibCommonUtilsApi.h"
-#include "LibBattleFieldGraphApi.h"
 #include "Weapon.h"
 #include "LayerEx.h"
 #include "BattleSimulationMapCell.h"

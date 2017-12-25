@@ -1,1 +1,0 @@
-#include "BFG_SpritePhys.h"

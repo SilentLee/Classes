@@ -21,7 +21,7 @@
 #define DEFAULT_POWER_BUFFER_LENGTH     8 // FOR INT
 
 // 服务器参数
-#define IP_ADDRESS "127.0.0.1"
+#define IP_ADDRESS "192.168.0.106"
 #define IP_PORT     6000
 
 // 游戏文件路径

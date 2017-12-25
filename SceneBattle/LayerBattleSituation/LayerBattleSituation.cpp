@@ -1,5 +1,4 @@
 #include "LayerBattleSituation.h"
-#include "LibBattleFieldGraphApi.h"
 
 
 LayerBattleSituation* LayerBattleSituation::create()
@@ -62,7 +61,7 @@ void LayerBattleSituation::initDefenseLine()
 	this->addChild(defenseLineOwn);
 
 	// 创建对手防线
-	Sprite* defenseLineOppo = CG_Sprite::create(CU_ImgLoader::getImg(IMG_URL_DEFENSE_LINE).c_str());
+	Sprite* defenseLineOppo = Sprite::create(CU_ImgLoader::getImg(IMG_URL_DEFENSE_LINE).c_str());
 	defenseLineOppo->setPosition(WIDTH_OF_BATTLE_DISPLAY_MAP / 2, HEIGHT_OF_BATTLE_DISPLAY_MAP - WIDTH_OF_BATTLE_SIMULATION_MAP_CELL);
 	this->addChild(defenseLineOppo);
 }
