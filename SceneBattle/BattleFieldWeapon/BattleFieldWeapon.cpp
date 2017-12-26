@@ -105,33 +105,106 @@ Size BattleFieldWeapon::GetSizeInSimulationMap()
 
 // 行为函数
 // 移动函数
-void BattleFieldWeapon::Move(CBattleSimulationMapCell* (&BattleSimulationMapCellArray)[WIDTH_OF_BATTLE_SIMULATION_MAP][HEIGHT_OF_BATTLE_SIMULATION_MAP])
+ENUM_STATUS_MOVE BattleFieldWeapon::Move(CBattleSimulationMapCell* (&BattleSimulationMapCellArray)[WIDTH_OF_BATTLE_SIMULATION_MAP][HEIGHT_OF_BATTLE_SIMULATION_MAP])
 {
-	// 获取武器在战场态势仿真地图中的坐标
-	Vec2 Coordinate = this->GetCoordinate();
-	// 重置地图方格中的武器标签
-	BattleSimulationMapCellArray[(int)Coordinate.x][(int)Coordinate.y]->resetWeaponTag();
+	// 如果当前移动计算已经完成 直接返回 完成状态 STATUS_MOVE_COMPLETE
+	if (mMoveStatus == STATUS_MOVE_COMPLETE || mMoveStatus == STATUS_MOVE_PROCESSING) {
+		mMoveStatus = STATUS_MOVE_COMPLETE;
+		return mMoveStatus;
+	}
+
+	// 将当前移动状态设置为 STATUS_MOVE_PROCESSING
+	mMoveStatus = STATUS_MOVE_PROCESSING;
 
 	// 获取当前战场态势显示坐标
-	float posX = this->getPositionX();
-	float posY = this->getPositionY();
+	Vec2 CurrentPosition = this->getPosition();
+	// 获取武器在战场态势仿真地图中的坐标
+	Vec2 CurrentCoordinate = this->GetCoordinate();
 
-	// 判断当前武器敌我属性 计算移动后的战场态势显示坐标
+	// 计算武器当前在战场态势仿真地图中所占的空间
+	int CurrentBorderlineLeft = CurrentCoordinate.x - mSizeInSimulationMap.width / 2;
+	int CurrentBorderlineRight = CurrentCoordinate.x + mSizeInSimulationMap.width / 2;
+	int CurrentBorderlineBottom = CurrentCoordinate.y - mSizeInSimulationMap.height / 2;
+	int CurrentBorderlineTop = CurrentCoordinate.y + mSizeInSimulationMap.height / 2;
+
+	// 下一步移动的 战场态势显示坐标 与 战场态势仿真坐标
+	Vec2  NextPosition, NextCoordinate;
+
+	// 根据当前武器敌我属性 计算移动后的战场态势显示坐标
+	// 如果武器属于本方 从屏幕下方向上方飞行 最大不能越过 HEIGHT_OF_BATTLE_DISPLAY_MAP
 	if (mIFF == IFF_FRIEND) {
-		// 武器属于本方 从屏幕下方向上方飞行 最大不能越过 HEIGHT_OF_BATTLE_DISPLAY_MAP
-		posY = min(HEIGHT_OF_BATTLE_DISPLAY_MAP, posY + mPropertyWp.SPEED);
+		NextPosition.x = CurrentPosition.x;
+		NextPosition.y = min(HEIGHT_OF_BATTLE_DISPLAY_MAP, CurrentPosition.y + mPropertyWp.SPEED);
 	}
+	// 如果武器属于对方 从屏幕上方向下方飞行 最小不能越过 0
 	else if (mIFF == IFF_FOE) {
-		// 武器属于对方 从屏幕上方向下方飞行 最小不能越过 0
-		posY = max(0.0f, posY - mPropertyWp.SPEED);
+		NextPosition.x = CurrentPosition.x;
+		NextPosition.y = max(0.0f, CurrentPosition.y - mPropertyWp.SPEED);
+	}
+	// 根据移动后的战场态势显示坐标 计算移动后的战场态势仿真坐标
+	NextCoordinate.x = (int)(NextPosition.x / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL);
+	NextCoordinate.y = (int)(NextPosition.y / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL);
+
+	// 重新计算武器移动后在战场态势仿真地图中所占的空间
+	int NextBorderlineLeft = NextCoordinate.x - mSizeInSimulationMap.width / 2;
+	int NextBorderlineRight = NextCoordinate.x + mSizeInSimulationMap.width / 2;
+	int NextBorderlineBottom = NextCoordinate.y - mSizeInSimulationMap.height / 2;
+	int NextBorderlineTop = NextCoordinate.y + mSizeInSimulationMap.height / 2;
+
+	// 遍历武器移动后在战场态势仿真地图中所占空间的每一个点
+	for (int indexX = NextBorderlineLeft; indexX <= NextBorderlineRight; indexX++) {
+		for (int indexY = NextBorderlineBottom; indexY <= NextBorderlineTop; indexY++) {
+			// 声明探测区域内当前遍历坐标点的坐标 并将探测区域遍历的点限制在战场态势仿真地图范围内
+			int mapCellX = max(0, min(indexX, WIDTH_OF_BATTLE_SIMULATION_MAP - 1));
+			int mapCellY = max(0, min(indexY, HEIGHT_OF_BATTLE_SIMULATION_MAP - 1));
+			// 获取当前遍历坐标点的武器标签
+			int WeaponTag = BattleSimulationMapCellArray[mapCellX][mapCellY]->GetWeaponTag();
+			// 若检测到武器移动后在战场态势仿真地图中所占空间的某个点已经有武器存在 且该点不是当前移动武器的武器标签
+			if (WeaponTag != TAG_NO_WEAPON_IN && WeaponTag != this->getTag()) {
+				// 通过武器标签获取当前占用该点发生接触的武器
+				BattleFieldWeapon* WeaponOnContact = (BattleFieldWeapon*)this->getParent()->getChildByTag(WeaponTag);
+				// 移动占用该点发生接触武器
+				WeaponOnContact->Move(BattleSimulationMapCellArray);
+				// 在发生接触的武器移动后 重新检测该点 
+				// 若仍然有武器占用该点 当前武器维持原位置不变
+				if (BattleSimulationMapCellArray[mapCellX][mapCellY]->GetWeaponTag() != TAG_NO_WEAPON_IN) {
+					// 完成武器位置移动的计算 维持原有位置不变
+					mMoveStatus = STATUS_MOVE_COMPLETE;
+					// 返回武器移动状态
+					return mMoveStatus;
+				} // endif (BattleSimulationMapCellArray[indexX][indexY]->GetWeaponTag() != TAG_NO_WEAPON_IN)
+			} // endif ( WeaponTag != TAG_NO_WEAPON_IN && WeaponTag != this->getTag())
+		} // endfor (int indexY = NextBorderlineBottom; indexY <= NextBorderlineTop; indexY++)
+	} // endfor (int indexX = NextBorderlineLeft; indexX <= NextBorderlineRight; indexX++)
+
+	  // 重置武器移动前在战场态势仿真地图中所占空间的每一个点的武器标签
+	for (int indexX = CurrentBorderlineLeft; indexX <= CurrentBorderlineRight; indexX++) {
+		for (int indexY = CurrentBorderlineBottom; indexY <= CurrentBorderlineTop; indexY++) {
+			// 声明探测区域内当前遍历坐标点的坐标 并将探测区域遍历的点限制在战场态势仿真地图范围内
+			int mapCellX = max(0, min(indexX, WIDTH_OF_BATTLE_SIMULATION_MAP - 1));
+			int mapCellY = max(0, min(indexY, HEIGHT_OF_BATTLE_SIMULATION_MAP - 1));
+			// 设置武器标签
+			BattleSimulationMapCellArray[mapCellX][mapCellY]->SetWeaponTag(TAG_NO_WEAPON_IN);
+		}
 	}
 
-	// 设置移动后的战场态势显示坐标
-	this->setPosition(Vec2(posX, posY));
-	// 移动后再次读取武器在战场态势仿真地图中的坐标
-	Coordinate = this->GetCoordinate();
-	// 设置战场态势仿真地图中对应的方格坐标的武器标签
-	BattleSimulationMapCellArray[(int)Coordinate.x][(int)Coordinate.y]->SetWeaponTag(this->getTag());
+	// 设置武器移动后在战场态势仿真地图中所占空间的每一个点的武器标签
+	for (int indexX = NextBorderlineLeft; indexX <= NextBorderlineRight; indexX++) {
+		for (int indexY = NextBorderlineBottom; indexY <= NextBorderlineTop; indexY++) {
+			// 声明探测区域内当前遍历坐标点的坐标 并将探测区域遍历的点限制在战场态势仿真地图范围内
+			int mapCellX = max(0, min(indexX, WIDTH_OF_BATTLE_SIMULATION_MAP - 1));
+			int mapCellY = max(0, min(indexY, HEIGHT_OF_BATTLE_SIMULATION_MAP - 1));
+			// 设置武器标签
+			BattleSimulationMapCellArray[mapCellX][mapCellY]->SetWeaponTag(this->getTag());
+		}
+	}
+
+	//// 设置移动后的武器位置
+	this->setPosition(NextPosition);
+	// 设置武器移动后的状态
+	mMoveStatus = STATUS_MOVE_COMPLETE;
+	// 返回武器移动状态
+	return mMoveStatus;
 }
 // 探测函数
 void BattleFieldWeapon::Detect(CBattleSimulationMapCell* (&BattleSimulationMapCellArray)[WIDTH_OF_BATTLE_SIMULATION_MAP][HEIGHT_OF_BATTLE_SIMULATION_MAP])

@@ -145,14 +145,32 @@ void LayerBattleSituation::updateLocalSituation(float dt)
 	// 刷新本方兵力
 	if (mWeaponsOwn.size() > 0) {
 		for (int index = 0; index < mWeaponsOwn.size(); index++) {
+			// 移动
 			mWeaponsOwn[index]->Move(mBattleSimulationMapCellArray);
+			// 探测
 			mWeaponsOwn[index]->Detect(mBattleSimulationMapCellArray);
 		}
 	}
 	// 刷新对方兵力
 	if (mWeaponsOppo.size() > 0) {
 		for (int index = 0; index < mWeaponsOppo.size(); index++) {
+			// 移动
 			mWeaponsOppo[index]->Move(mBattleSimulationMapCellArray);
+		}
+	}
+
+	// 重置本方兵力刷新操作状态
+	if (mWeaponsOwn.size() > 0) {
+		for (int index = 0; index < mWeaponsOwn.size(); index++) {
+			// 重置兵力移动操作状态
+			mWeaponsOwn[index]->ResetMoveStatus();
+		}
+	}
+	// 重置对方兵力刷新操作状态
+	if (mWeaponsOppo.size() > 0) {
+		for (int index = 0; index < mWeaponsOppo.size(); index++) {
+			// 重置兵力移动操作状态
+			mWeaponsOppo[index]->ResetMoveStatus();
 		}
 	}
 }

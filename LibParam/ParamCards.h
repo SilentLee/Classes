@@ -7,8 +7,8 @@
 #define NUM_CARD_USED_CARD				1
 
 // 卡牌武器速度参数
-#define PARAM_SPEED_FIGHTER_PLANE									3.0f
-#define PARAM_SPEED_BOMBING_PLANE								3.0f
+#define PARAM_SPEED_FIGHTER_PLANE									6.0f
+#define PARAM_SPEED_BOMBING_PLANE								1.0f
 #define PARAM_SPEED_ANTI_AIRCRAFT_MISSILE					3.0f
 #define PARAM_SPEED_EARLY_WARNING_PLANE					3.0f
 #define PARAM_SPEED_FLAK														0.0f

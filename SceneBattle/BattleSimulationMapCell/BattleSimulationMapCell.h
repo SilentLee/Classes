@@ -12,6 +12,9 @@
 // 战场态势显示地图高度
 #define HEIGHT_OF_BATTLE_DISPLAY_MAP								1620.0f
 
+// 武器标签初始值、
+#define TAG_NO_WEAPON_IN															-1
+
 typedef struct _S_HERTZ_WAVE {
 	// 电平
 	float LEVEL;
