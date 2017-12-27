@@ -122,7 +122,7 @@ void LayerBattleSituation::updateBFSituation(float dt)
 				arrangeOwnWeaponWithPosition((ENUM_TROOPS)BlueTroopsData[i].TROOP_IN, BlueTroopsData[i].PROPERTY_WP.WP_TYPE, BlueTroopsData[i].POSITION_IN_SIMULATION_MAP.x, BlueTroopsData[i].POSITION_IN_SIMULATION_MAP.y, BlueTroopsData[i].WEAPON_TAG);
 			}
 			else {
-				arrangeEnemyWeaponWithPosition((ENUM_TROOPS)BlueTroopsData[i].TROOP_IN, BlueTroopsData[i].PROPERTY_WP.WP_TYPE, BlueTroopsData[i].POSITION_IN_SIMULATION_MAP.y, BlueTroopsData[i].POSITION_IN_SIMULATION_MAP.y, BlueTroopsData[i].WEAPON_TAG);
+				arrangeEnemyWeaponWithPosition((ENUM_TROOPS)BlueTroopsData[i].TROOP_IN, BlueTroopsData[i].PROPERTY_WP.WP_TYPE, BlueTroopsData[i].POSITION_IN_SIMULATION_MAP.x, BlueTroopsData[i].POSITION_IN_SIMULATION_MAP.y, BlueTroopsData[i].WEAPON_TAG);
 			}
 		}
 
