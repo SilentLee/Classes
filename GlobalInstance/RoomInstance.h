@@ -1,8 +1,6 @@
 #pragma once
 #include "DataType.h"
-#include "LibParamApi.h"
 #include <list>
-
 #include "BATTLE_Protocol.h" // 使用 ProtocolHeader.h 会报错
 #include "BATTLE_PT_Structure.h"
 

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "cocos2d.h"
-#include "LibCommonUtilsApi.h"
 #include "LayerEx.h"
 
 USING_NS_CC;

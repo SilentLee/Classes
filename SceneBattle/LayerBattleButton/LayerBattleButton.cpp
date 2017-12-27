@@ -1,4 +1,5 @@
 #include "LayerBattleButton.h"
+#include "CU_ImgLoader.h"
 
 LayerBattleButton* LayerBattleButton::create()
 {

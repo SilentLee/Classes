@@ -1,4 +1,5 @@
 #include "LayerBattleSituation.h"
+#include "CU_ImgLoader.h"
 
 
 LayerBattleSituation* LayerBattleSituation::create()

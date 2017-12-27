@@ -1,4 +1,5 @@
 #include "BattleSimulationMapCell.h"
+#include "CU_ImgLoader.h"
 
 // 创建函数 使用仿真地图坐标
 CBattleSimulationMapCell* CBattleSimulationMapCell::createWithCoordinate(int coordinateX, int coordinateY)

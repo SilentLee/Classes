@@ -1,7 +1,6 @@
 #pragma once
 
 #include "cocos2d.h"
-#include "LibCommonUtilsApi.h"
 #include "GlobalInstanceApi.h"
 
 class SceneSelect : public cocos2d::Scene

@@ -3,7 +3,7 @@
 #include "cocos2d.h"
 #include <string>
 #include <map>
-#include "LibParamApi.h"
+#include "ParamImageUrl.h"
 
 using namespace std;
 USING_NS_CC;

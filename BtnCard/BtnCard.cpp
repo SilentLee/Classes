@@ -1,4 +1,5 @@
 #include "BtnCard.h"
+#include "CU_ImgLoader.h"
 
 // 创建函数
 BtnCard* BtnCard::create(ENUM_CARD_TYPE cardType, float posX, float posY)

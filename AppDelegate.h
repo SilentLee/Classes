@@ -1,7 +1,8 @@
 #pragma once
 
 #include "cocos2d.h"
-#include "LibCommonUtilsApi.h"
+#include "CU_CardLoader.h"
+#include "CU_ImgLoader.h"
 #include "NetworkSession.h"
 
 /**

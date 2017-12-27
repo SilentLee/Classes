@@ -1,11 +1,12 @@
 #include "CU_CardLoader.h"
+#include "ParamCards.h"
 
-static map<int, PROPERTY_WP> cardParams;
-static map<int, PROPERTY_WP> airborneWeaponParams;
+static map<int, S_PROPERTY_WP> cardParams;
+static map<int, S_PROPERTY_WP> airborneWeaponParams;
 
 void CU_CardLoader::loadCardParams()
 {
-	PROPERTY_WP propertyWp;
+	S_PROPERTY_WP propertyWp;
 
 	// 装载战斗机卡牌参数
 	propertyWp.WP_TYPE = WP_TYPE_FIGHTER_PLANE;
@@ -107,14 +108,14 @@ void CU_CardLoader::loadCardParams()
 	cardParams.insert(make_pair(CARD_TYPE_11, propertyWp));
 }
 
-PROPERTY_WP CU_CardLoader::getCardParam(int key)
+S_PROPERTY_WP CU_CardLoader::getCardParam(int key)
 {
 	return cardParams.find(key)->second;
 }
 
 void CU_CardLoader::loadAirborneWeaponParams()
 {
-	PROPERTY_WP propertyWp;
+	S_PROPERTY_WP propertyWp;
 
 	// 装载空空导弹参数
 	propertyWp.WP_TYPE = WP_TYPE_AAM;
@@ -126,7 +127,7 @@ void CU_CardLoader::loadAirborneWeaponParams()
 	airborneWeaponParams.insert(make_pair(WP_TYPE_AAM, propertyWp));
 }
 
-PROPERTY_WP CU_CardLoader::getAirborneWeaponParams(int key)
+S_PROPERTY_WP CU_CardLoader::getAirborneWeaponParams(int key)
 {
 	return airborneWeaponParams.find(key)->second;
 }

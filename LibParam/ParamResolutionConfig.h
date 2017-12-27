@@ -4,6 +4,7 @@
 
 // 游戏调试分辨率
 static cocos2d::Size debugResolutionSize = cocos2d::Size(540, 960);
+//static cocos2d::Size debugResolutionSize = cocos2d::Size(270, 480);
 // 游戏设计分辨率
 static cocos2d::Size designResolutionSize = cocos2d::Size(1080, 1920);
 

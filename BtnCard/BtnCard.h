@@ -3,7 +3,7 @@
 #include "extensions/cocos-ext.h"
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
-#include "LibCommonUtilsApi.h"
+#include "ParamCards.h"
 
 USING_NS_CC;
 USING_NS_CC_EXT;

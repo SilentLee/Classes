@@ -1,6 +1,7 @@
 #include "LayerBattleSituation.h"
 #include "BattleFieldWeapon.h"
 #include "GlobalInstanceApi.h"
+#include "ParamImageUrl.h"
 
 // 布设兵力预览函数
 // 与 onTouchBegan 配合使用

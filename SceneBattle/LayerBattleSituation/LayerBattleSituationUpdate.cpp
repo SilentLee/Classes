@@ -1,6 +1,7 @@
 #include "LayerBattleSituation.h"
 #include "BattleFieldWeapon.h"
 #include "GlobalInstanceApi.h"
+#include "ParamCards.h"
 
 // 更新函数
 void LayerBattleSituation::updateFrog(float dt)
@@ -92,11 +93,11 @@ void LayerBattleSituation::updateBFSituation(float dt)
 		//int RedTroopsActionDataLength = recvData.RED_TROOPS_ACTION_DATA_LENGTH;
 
 		// 计算需要开辟的数据缓冲区的长度
-		int SizeOfBlueTroopsData = BlueTroopsDataLength / sizeof(Weapon);
-		int SizeOfRedTroopsData = RedTroopsDataLength / sizeof(Weapon);
+		int SizeOfBlueTroopsData = BlueTroopsDataLength / sizeof(S_WEAPON);
+		int SizeOfRedTroopsData = RedTroopsDataLength / sizeof(S_WEAPON);
 
-		vector<Weapon> BlueTroopsData;
-		vector<Weapon> RedTroopsData;
+		vector<S_WEAPON> BlueTroopsData;
+		vector<S_WEAPON> RedTroopsData;
 
 		if (BlueTroopsDataLength != 0) {
 			log("receive weapons blue");
@@ -116,23 +117,23 @@ void LayerBattleSituation::updateBFSituation(float dt)
 
 		// 刷新蓝方兵力
 		for (int i = 0; i < SizeOfBlueTroopsData; i++) {
-			this->removeChildByTag(BlueTroopsData[i].GetWeaponTag());
-			if (BlueTroopsData[i].GetTroopsIn() == userInstance->getTroopsIn()) {
-				arrangeOwnWeaponWithPosition((ENUM_TROOPS)BlueTroopsData[i].GetTroopsIn(), BlueTroopsData[i].GetProperty().WP_TYPE, BlueTroopsData[i].GetPosX(), BlueTroopsData[i].GetPosY(), BlueTroopsData[i].GetWeaponTag());
+			this->removeChildByTag(BlueTroopsData[i].WEAPON_TAG);
+			if (BlueTroopsData[i].TROOP_IN == userInstance->getTroopsIn()) {
+				arrangeOwnWeaponWithPosition((ENUM_TROOPS)BlueTroopsData[i].TROOP_IN, BlueTroopsData[i].PROPERTY_WP.WP_TYPE, BlueTroopsData[i].POSITION_IN_SIMULATION_MAP.x, BlueTroopsData[i].POSITION_IN_SIMULATION_MAP.y, BlueTroopsData[i].WEAPON_TAG);
 			}
 			else {
-				arrangeEnemyWeaponWithPosition((ENUM_TROOPS)BlueTroopsData[i].GetTroopsIn(), BlueTroopsData[i].GetProperty().WP_TYPE, BlueTroopsData[i].GetPosX(), BlueTroopsData[i].GetPosY(), BlueTroopsData[i].GetWeaponTag());
+				arrangeEnemyWeaponWithPosition((ENUM_TROOPS)BlueTroopsData[i].TROOP_IN, BlueTroopsData[i].PROPERTY_WP.WP_TYPE, BlueTroopsData[i].POSITION_IN_SIMULATION_MAP.y, BlueTroopsData[i].POSITION_IN_SIMULATION_MAP.y, BlueTroopsData[i].WEAPON_TAG);
 			}
 		}
 
 		// 刷新红方兵力
 		for (int i = 0; i < SizeOfRedTroopsData; i++) {
-			this->removeChildByTag(RedTroopsData[i].GetWeaponTag());
-			if (RedTroopsData[i].GetTroopsIn() == userInstance->getTroopsIn()) {
-				arrangeOwnWeaponWithPosition((ENUM_TROOPS)RedTroopsData[i].GetTroopsIn(), RedTroopsData[i].GetProperty().WP_TYPE, RedTroopsData[i].GetPosX(), RedTroopsData[i].GetPosY(), RedTroopsData[i].GetWeaponTag());
+			this->removeChildByTag(RedTroopsData[i].WEAPON_TAG);
+			if (RedTroopsData[i].TROOP_IN == userInstance->getTroopsIn()) {
+				arrangeOwnWeaponWithPosition((ENUM_TROOPS)RedTroopsData[i].TROOP_IN, RedTroopsData[i].PROPERTY_WP.WP_TYPE, RedTroopsData[i].POSITION_IN_SIMULATION_MAP.x, RedTroopsData[i].POSITION_IN_SIMULATION_MAP.y, RedTroopsData[i].WEAPON_TAG);
 			}
 			else {
-				arrangeEnemyWeaponWithPosition((ENUM_TROOPS)RedTroopsData[i].GetTroopsIn(), RedTroopsData[i].GetProperty().WP_TYPE, RedTroopsData[i].GetPosX(), RedTroopsData[i].GetPosY(), RedTroopsData[i].GetWeaponTag());
+				arrangeEnemyWeaponWithPosition((ENUM_TROOPS)RedTroopsData[i].TROOP_IN, RedTroopsData[i].PROPERTY_WP.WP_TYPE, RedTroopsData[i].POSITION_IN_SIMULATION_MAP.x, RedTroopsData[i].POSITION_IN_SIMULATION_MAP.y, RedTroopsData[i].WEAPON_TAG);
 			}
 		}
 		operInfoInstance->setIsBattleFieldSituationUpdate(false);

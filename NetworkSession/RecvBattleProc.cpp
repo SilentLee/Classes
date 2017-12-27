@@ -1,6 +1,5 @@
 #include "NetworkSession.h"
 #include "GlobalInstanceApi.h"
-#include "Weapon.h"
 
 USING_NS_CC;
 

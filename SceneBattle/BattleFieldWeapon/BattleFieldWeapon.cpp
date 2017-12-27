@@ -1,4 +1,5 @@
 #include "BattleFieldWeapon.h"
+#include "CU_CardLoader.h"
 
 // 创建函数 使用本地操作数据
 BattleFieldWeapon* BattleFieldWeapon::createWithLocalOperationData(std::string fileName, Vec2 position, ENUM_WEAPON_TYPE weaponType, ENUM_IFF IFF)
@@ -41,7 +42,7 @@ bool BattleFieldWeapon::initWithLocalOperationData(std::string fileName, Vec2 po
 	this->setPosition(posX, posY);
 
 	// 加载卡牌参数
-	PROPERTY_WP propertyWp = CU_CardLoader::getCardParam(weaponType);
+	S_PROPERTY_WP propertyWp = CU_CardLoader::getCardParam(weaponType);
 	SetPropertyWp(propertyWp);
 
 	// 初始化战场态势仿真地图中的武器大小
@@ -65,7 +66,7 @@ bool BattleFieldWeapon::initWithRecvServerData(std::string fileName, Vec2 positi
 	this->setPosition(position.x, position.y);
 
 	// 加载卡牌参数
-	PROPERTY_WP propertyWp = CU_CardLoader::getCardParam(weaponType);
+	S_PROPERTY_WP propertyWp = CU_CardLoader::getCardParam(weaponType);
 	SetPropertyWp(propertyWp);
 
 	// 初始化战场态势仿真地图中的武器大小

@@ -1,5 +1,10 @@
 #pragma once
-#include "LibCommonUtilsApi.h"
+//#include "LibCommonUtilsApi.h"
+#include "cocos2d.h"
+#include "WeaponStructure.h"
+
+USING_NS_CC;
+using namespace std;
 
 // 战场模拟地图方格宽度
 #define WIDTH_OF_BATTLE_SIMULATION_MAP_CELL			27.0f

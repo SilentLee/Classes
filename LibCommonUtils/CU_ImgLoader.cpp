@@ -1,4 +1,5 @@
 #include "CU_ImgLoader.h"
+#include "ParamCards.h"
 
 static map<string, string> ImgUrls;
 static map<int, string> FogImgUrls;

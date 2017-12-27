@@ -3,7 +3,8 @@
 #include "Global.h"
 //#include "BATTLE_Protocol.h" // 使用 ProtocolHeader.h 会报错
 //#include "BATTLE_PT_Structure.h"
-#include "Weapon.h"
+//#include "Weapon.h"
+#include "WeaponStructure.h"
 
 typedef enum ENUM_SIDE_IN_GAME {
 	SIDE_NONE,

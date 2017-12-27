@@ -1,26 +1,8 @@
 #pragma once
-#include "LibCommonUtilsApi.h"
 #include "BattleSimulationMapCell.h"
+#include "WeaponStructure.h"
 
 using namespace std;
-
-// 敌我识别
-// identification friend or foe
-typedef enum ENUM_IFF {
-	IFF_NONE,
-	IFF_FRIEND,
-	IFF_FOE
-};
-
-// 移动函数返回结果
-typedef enum ENUM_STATUS_MOVE {
-	// 移动操作未进行 即尚未调用 Move 函数
-	STATUS_MOVE_WAITING = 0,
-	// 移动操作进行中 即正在调用 Move 函数
-	STATUS_MOVE_PROCESSING,
-	// 移动操作完成 即已经调用过 Move 函数
-	STATUS_MOVE_COMPLETE
-};
 
 // BattleFieldWeapon 类中
 // Coordinate 为 战场态势仿真地图坐标
@@ -30,7 +12,7 @@ class BattleFieldWeapon : public Sprite
 {
 private:
 	// 武器属性
-	PROPERTY_WP mPropertyWp;
+	S_PROPERTY_WP mPropertyWp;
 	// 武器在战场态势仿真地图中的大小
 	Size mSizeInSimulationMap;
 	// 敌我识别标志
@@ -75,8 +57,8 @@ public:
 // 存取函数
 public:
 	// 武器属性
-	void SetPropertyWp(PROPERTY_WP propertyWp) { mPropertyWp = propertyWp; };
-	PROPERTY_WP GetPropertyWp() { return mPropertyWp; };
+	void SetPropertyWp(S_PROPERTY_WP propertyWp) { mPropertyWp = propertyWp; };
+	S_PROPERTY_WP GetPropertyWp() { return mPropertyWp; };
 	// 武器在战场态势仿真地图中的大小
 	Size GetSizeInSimulationMap();
 	// 敌我识别标志

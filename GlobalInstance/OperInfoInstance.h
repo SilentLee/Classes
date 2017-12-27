@@ -3,8 +3,6 @@
 #include "Global.h"
 #include "BATTLE_Protocol.h" // 使用 ProtocolHeader.h 会报错
 #include "BATTLE_PT_Structure.h"
-#include "Weapon.h"
-
 
 class COperInfoInstance
 {
