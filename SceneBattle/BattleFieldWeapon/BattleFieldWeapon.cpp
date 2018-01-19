@@ -81,12 +81,13 @@ bool BattleFieldWeapon::initWithRecvServerData(std::string fileName, Vec2 positi
 // 设置武器在战场态势仿真地图中的尺寸
 void BattleFieldWeapon::initSizeInSimulationMap()
 {
-	Size weaponSize = this->getContentSize();
+	/*Size weaponSize = this->getContentSize();
 
 	int weaponSizeWidth = weaponSize.width / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
 	int weaponSizeHeight = weaponSize.height / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
 
-	mSizeInSimulationMap = Size(weaponSizeWidth, weaponSizeHeight);
+	mSizeInSimulationMap = Size(weaponSizeWidth, weaponSizeHeight);*/
+	mSizeInSimulationMap = Size(2, 2);
 }
 
 // 获取战场态势仿真地图坐标

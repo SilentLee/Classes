@@ -20,10 +20,9 @@ public:
 	DWORD				mCurrentPacketNumber;
 	CCircularQueue		WriteQueue;
     
-	DWORD				mLastReadPacketNumber;
+	DWORD			mLastReadPacketNumber;
     BYTE				mPacketBuffer[MAX_BUFFER_LENGTH * 3];
     INT					mRemainLength;
-//	HANDLE				mRecvDataCompleteEvent;
     
 public:
 	CNetworkSession(void);
@@ -34,8 +33,8 @@ public:
 
 	BOOL		WritePacket(DWORD protocol, const BYTE *packet, DWORD packetLength);
 	BOOL		WriteComplete(VOID);
-	BOOL        GetPacket(DWORD &protocol, BYTE *packet, DWORD &packetLength);
-	VOID        RecvData();
+	BOOL		GetPacket(DWORD &protocol, BYTE *packet, DWORD &packetLength);
+	VOID		RecvData();
 public:
 	// RecvProc1v1
 	void onPT_BATTLE_SEARCH_ROOM_SUCC_U(BYTE* packet);

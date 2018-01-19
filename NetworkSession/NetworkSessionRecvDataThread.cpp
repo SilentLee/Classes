@@ -6,9 +6,6 @@ VOID CNetworkSession::RecvData()
 	DWORD		protocol = 0;
 	BYTE		packet[MAX_BUFFER_LENGTH] = {0, };
 	DWORD		packetLength = 0;
-    
-    //CUserInstance* userInstance = CUserInstance::getInstance();
-    //S_USER_ACCOUNT_INFO* userAccountInfo = CUserInstance::getInstance()->getUserAccountInfo();
 
     while (true) {
 		memset(packet, 0, sizeof(packet));
