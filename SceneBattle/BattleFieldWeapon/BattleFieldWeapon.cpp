@@ -87,7 +87,7 @@ void BattleFieldWeapon::initSizeInSimulationMap()
 	int weaponSizeHeight = weaponSize.height / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
 
 	mSizeInSimulationMap = Size(weaponSizeWidth, weaponSizeHeight);*/
-	mSizeInSimulationMap = Size(2, 2);
+	mSizeInSimulationMap = Size(5, 5);
 }
 
 // 获取战场态势仿真地图坐标
