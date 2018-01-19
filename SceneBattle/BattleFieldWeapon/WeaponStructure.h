@@ -5,6 +5,21 @@ USING_NS_CC;
 
 extern class CBattleField;
 
+// 定义武器在战场态势仿真地图中的投影尺寸
+#define SIZE_OF_ANTI_AIRCRAFT_MISSILE				Size(2, 2)
+#define SIZE_OF_FLAK														Size(2, 2)
+#define SIZE_OF_RADAR													Size(2, 2)
+#define SIZE_OF_FIGHTER_PLANE								Size(2, 2)
+#define SIZE_OF_BOMBING_PLANE								Size(2, 2)
+#define SIZE_OF_EARLY_WARNING_PLANE				Size(2, 2)
+#define SIZE_OF_JAMMING_PLANE								Size(2, 2)
+#define SIZE_OF_TYPE_8													Size(2, 2)
+#define SIZE_OF_TYPE_9													Size(2, 2)
+#define SIZE_OF_TYPE_10												Size(2, 2)
+#define SIZE_OF_TYPE_11												Size(2, 2)
+#define SIZE_OF_TYPE_AAM											Size(2, 2)
+
+
 // 武器类型
 enum ENUM_WEAPON_TYPE {
 	WP_TYPE_NONE = 0,

@@ -87,7 +87,57 @@ void BattleFieldWeapon::initSizeInSimulationMap()
 	int weaponSizeHeight = weaponSize.height / WIDTH_OF_BATTLE_SIMULATION_MAP_CELL;
 
 	mSizeInSimulationMap = Size(weaponSizeWidth, weaponSizeHeight);*/
-	mSizeInSimulationMap = Size(5, 5);
+
+	switch (mPropertyWp.WP_TYPE)
+	{
+	case WP_TYPE_ANTI_AIRCRAFT_MISSILE:
+		mSizeInSimulationMap = SIZE_OF_ANTI_AIRCRAFT_MISSILE;
+		break;
+		
+	case WP_TYPE_FLAK:
+		mSizeInSimulationMap = SIZE_OF_FLAK;
+		break;
+
+	case WP_TYPE_RADAR:
+		mSizeInSimulationMap = SIZE_OF_RADAR;
+		break;
+
+	case WP_TYPE_FIGHTER_PLANE:
+		mSizeInSimulationMap = SIZE_OF_FIGHTER_PLANE;
+		break;
+
+	case WP_TYPE_BOMBING_PLANE:
+		mSizeInSimulationMap = SIZE_OF_BOMBING_PLANE;
+		break;
+
+	case WP_TYPE_EARLY_WARNING_PLANE:
+		mSizeInSimulationMap = SIZE_OF_EARLY_WARNING_PLANE;
+		break;
+
+	case WP_TYPE_JAMMING_PLANE:
+		mSizeInSimulationMap = SIZE_OF_JAMMING_PLANE;
+		break;
+
+	case WP_TYPE_8:
+		mSizeInSimulationMap = SIZE_OF_TYPE_8;
+		break;
+
+	case WP_TYPE_9:
+		mSizeInSimulationMap = SIZE_OF_TYPE_9;
+		break;
+
+	case WP_TYPE_10:
+		mSizeInSimulationMap = SIZE_OF_TYPE_10;
+		break;
+
+	case WP_TYPE_11:
+		mSizeInSimulationMap = SIZE_OF_TYPE_11;
+		break;
+
+	case WP_TYPE_AAM:
+		mSizeInSimulationMap = SIZE_OF_TYPE_AAM;
+		break;
+	}
 }
 
 // 获取战场态势仿真地图坐标
